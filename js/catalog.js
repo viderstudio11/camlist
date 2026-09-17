@@ -58,7 +58,7 @@ export function createCatalog(data, manual = []) {
       else if (tokens.length && tokens.every(tk => p._b.includes(tk))) score = 2;
       out.push({ p, score });
     }
-    out.sort((a, b) => a.score - b.score || a.p.name.localeCompare(b.p.name));
+    out.sort((a, b) => a.score - b.score); // stable: ties keep catalog order (dept → brand → name)
     return out.slice(0, limit).map(o => o.p);
   }
 
