@@ -51,6 +51,7 @@ function route() {
 
 function render() {
   const root = document.getElementById('view');
+  root.classList.remove('has-rail');
   document.body.classList.remove('print-mode');
   const sheet = document.getElementById('sheet');
   if (sheet.open) { sheet.close(); sheet.innerHTML = ''; }

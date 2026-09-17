@@ -12,10 +12,13 @@ const DEPTS = [
   { he: 'גריפ', slug: 'grip', en: 'Grip' },
   { he: 'אביזרים', slug: 'accessories', en: 'Accessories' },
 ];
-// Virtual "Video" department carved out of Accessories: monitors, wireless video, recorders, converters/matrix.
-// Matched by (decoded) subcategory name so it survives Utopia renumbering ids.
-export const VIDEO_DEPT = { id: 900001, slug: 'video', he: 'וידאו', en: 'Video', order: 2.5 };
-const VIDEO_SUBCATS = ['מוניטורים', 'וידאו אלחוטי', 'מקליטים וכרטיסים', 'Converters', 'Mixers & Matrix'];
+// Virtual departments carved out of Accessories, matched by (decoded) subcategory name so they survive Utopia renumbering ids.
+// order is fractional so they slot between the real departments (cameras 1, lenses 2, grip 3, accessories 4).
+export const VIRTUAL_DEPTS = [
+  { id: 900001, slug: 'video', he: 'וידאו', en: 'Video', order: 2.5, subcats: ['מוניטורים', 'וידאו אלחוטי', 'מקליטים וכרטיסים', 'Converters', 'Mixers & Matrix'] },
+  { id: 900002, slug: 'tripods', he: 'חצובות', en: 'Tripods & Heads', order: 2.7, subcats: ['חצובות'] },
+  { id: 900003, slug: 'power', he: 'סוללות וכוח', en: 'Power', order: 3.5, subcats: ['סוללות וספקים'] },
+];
 const SUBCAT_EN = {
   'חצובות': 'Tripods & Heads', 'אביזרים כלליים': 'General Accessories', 'סוללות וספקים': 'Batteries & Power',
   'סוללות': 'Batteries', 'ספקים ומטענים': 'Chargers & PSU', 'מקליטים וכרטיסים': 'Recorders & Media',
@@ -75,27 +78,32 @@ export function buildDeptIndex(categories) {
     })).sort((a, b) => b.count - a.count);
     departments.push({ id: root.id, slug: d.slug, he: d.he, en: d.en, order: order + 1, subcategories });
   });
-  carveVideo(departments, descendants, children, byId);
+  for (const v of VIRTUAL_DEPTS) carve(v, departments, descendants, children);
+  departments.sort((a, b) => a.order - b.order);
+  departments.forEach((d, i) => { d.order = i + 1; });
   return { departments, descendants, byId };
 }
 
-// Moves the VIDEO_SUBCATS subtrees (and their descendants) from Accessories into a virtual Video department.
-function carveVideo(departments, descendants, children, byId) {
+// Moves the named subcategory subtrees (and their descendants) from Accessories into a virtual department.
+function carve(v, departments, descendants, children) {
   const acc = departments.find(d => d.slug === 'accessories');
   if (!acc) return;
-  const roots = acc.subcategories.filter(s => VIDEO_SUBCATS.includes(s.he) || VIDEO_SUBCATS.includes(s.en));
+  const roots = acc.subcategories.filter(s => v.subcats.includes(s.he) || v.subcats.includes(s.en));
   if (!roots.length) return;
   const set = new Set();
   const stack = roots.map(r => r.id);
   while (stack.length) { const id = stack.pop(); if (set.has(id)) continue; set.add(id); for (const ch of children.get(id) || []) stack.push(ch.id); }
-  const subcategories = acc.subcategories.filter(s => set.has(s.id)).map(s => ({ ...s, parent: roots.some(r => r.id === s.id) ? null : s.parent }));
+  let subcategories = acc.subcategories.filter(s => set.has(s.id)).map(s => ({ ...s, parent: roots.some(r => r.id === s.id) ? null : s.parent }));
+  // A single root (e.g. "סוללות וספקים") would be a pointless extra tap: promote its children to top level and hide the root.
+  if (roots.length === 1 && subcategories.some(s => s.parent === roots[0].id)) {
+    subcategories = subcategories.map(s => (s.id === roots[0].id ? { ...s, parent: -1 } : s.parent === roots[0].id ? { ...s, parent: null } : s));
+  }
   acc.subcategories = acc.subcategories.filter(s => !set.has(s.id));
   const accSet = descendants.get(acc.id);
   for (const id of set) accSet.delete(id);
-  descendants.set(VIDEO_DEPT.id, new Set([VIDEO_DEPT.id, ...set]));
-  departments.push({ ...VIDEO_DEPT, subcategories });
-  departments.sort((a, b) => a.order - b.order);
-  departments.forEach((d, i) => { d.order = i + 1; });
+  descendants.set(v.id, new Set([v.id, ...set]));
+  const { subcats: _s, ...dept } = v;
+  departments.push({ ...dept, subcategories });
 }
 
 export function normalizeProduct(raw, idx) {
@@ -105,9 +113,16 @@ export function normalizeProduct(raw, idx) {
   const subcats = [...idx.descendants.get(dept.id)].filter(id => id !== dept.id && catIds.has(id));
   const attr = (raw.attributes || []).find(a => a.name === 'מותג');
   const brandName = attr?.terms?.[0]?.name ? decodeEntities(attr.terms[0].name) : null;
+  // Other Utopia attributes (Mount, Sensor Type, Memory Cards…) kept as { name: [values] } for compatibility features.
+  const attrs = {};
+  for (const a of raw.attributes || []) {
+    if (a.name === 'מותג' || !a.terms?.length) continue;
+    attrs[decodeEntities(a.name)] = a.terms.map(tm => decodeEntities(tm.name));
+  }
   return {
     id: raw.id, name: decodeEntities(raw.name), brand: brandName ? brandSlug(brandName) : null,
     dept: dept.id, subcats, image: raw.images?.[0]?.thumbnail || null, url: raw.permalink || null, sku: raw.sku || '',
+    ...(Object.keys(attrs).length ? { attrs } : {}),
     _brandName: brandName,
   };
 }

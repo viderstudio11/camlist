@@ -5,7 +5,7 @@ import { DEPT_EMOJI } from '../i18n.js';
 import { thumbHTML, parseId } from './list.js';
 
 // Departments that drill Brand → models (the rest drill Subcategory → models grouped by brand).
-const BRAND_FIRST = new Set(['cameras', 'lenses']);
+const BRAND_FIRST = new Set(['cameras', 'lenses', 'tripods']);
 // Preferred hero image per department (first matching product with an image wins).
 const HERO = { cameras: /alexa 35$|fx6|venice/i, lenses: /supreme prime|cooke|s7/i, video: /smallhd|ultra 7|bolt/i, grip: /doorway dolly|dolly|slider/i, accessories: /matte ?box|mb-?\d|filter/i };
 
@@ -51,11 +51,13 @@ export function render(ctx, { id }, root) {
     const order = [...groups.entries()].sort((a, b) => (a[0] === '__none') - (b[0] === '__none') || b[1].length - a[1].length);
     return order.map(([k, list]) => `
       <section class="bgroup">
-        <div class="bgroup-head">${k === '__none' ? `<span class="brandname">${t('no_brand')}</span>` : `${logoHTML(k, catalog.brandName(k), 'row')}<span class="brandname">${esc(catalog.brandName(k))}</span>`}<span class="count">${list.length}</span></div>
+        <div class="bgroup-head" id="bg-${esc(k)}">${k === '__none' ? `<span class="brandname">${t('no_brand')}</span>` : logoHTML(k, catalog.brandName(k), 'head')}<span class="count">${list.length}</span></div>
         ${list.map(p => productRow(p, { showBrand: false })).join('')}
-      </section>`).join('');
+      </section>`).join('') + brandRail(order.map(([k]) => k));
   };
-  const brandGrid = (brands) => `<div class="brand-grid">${brands.map(b => `<div class="brand-tile" data-brand="${esc(b.id)}">${logoHTML(b.id, b.name, 'tile')}<span class="n">${esc(b.name)}</span><span class="c">${t('models_count', { n: b.count })}</span></div>`).join('')}</div>`;
+  // Side rail of brand shortcuts for long grouped lists — tap to jump to that brand's header.
+  const brandRail = (keys) => (keys.length < 4 ? '' : `<nav class="rail" aria-label="${t('jump_to_brand')}">${keys.map(k => `<button data-jump="bg-${esc(k)}" title="${esc(k === '__none' ? t('no_brand') : catalog.brandName(k))}">${esc(k === '__none' ? '…' : (catalog.brandName(k).split(/[s/]+/)[0].slice(0, 10) || '?'))}</button>`).join('')}</nav>`);
+  const brandGrid = (brands) => `<div class="brand-grid">${brands.map(b => `<div class="brand-tile" data-brand="${esc(b.id)}">${logoHTML(b.id, b.name, 'tile')}<span class="c">${t('models_count', { n: b.count })}</span></div>`).join('')}</div>`;
   const brandsIn = (prods) => {
     const m = new Map();
     for (const p of prods) if (p.brand) m.set(p.brand, (m.get(p.brand) || 0) + 1);
@@ -78,7 +80,7 @@ export function render(ctx, { id }, root) {
     const prods = all.filter(p => !st.dept || p.dept === st.dept);
     crumbs = `<div class="crumbs"><button data-crumb="brands">${t('brands')}</button>${arrow}<span>${esc(catalog.brandName(st.brand))}</span></div>`;
     content = `${depts.length > 1 ? `<div class="chips"><button class="${st.dept ? '' : 'active'}" data-chip="">${t('all')}</button>${depts.map(d => `<button class="${st.dept === d.id ? 'active' : ''}" data-chip="${d.id}">${DEPT_EMOJI[d.slug]} ${esc(deptName(d))}</button>`).join('')}</div>` : ''}
-      <div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><b>${esc(catalog.brandName(st.brand))}</b><small>${t('models_count', { n: prods.length })}</small></div></div>
+      <div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${t('models_count', { n: prods.length })}</small></div></div>
       ${prods.map(p => productRow(p, { showBrand: false })).join('')}${manualCTA}`;
   } else if (!st.dept) {
     content = `<div class="dept-grid">${catalog.departments.map(d => { const img = heroImage(d); return `<div class="dept-card" data-dept="${d.id}" ${img ? `style="--img:url('${esc(img)}')"` : ''}><div class="dept-card-body"><span class="emoji">${DEPT_EMOJI[d.slug]}</span><h3>${esc(deptName(d))}</h3><div class="n">${catalog.byDept(d.id).length} ${t('products')}</div></div></div>`; }).join('')}</div>`;
@@ -94,7 +96,7 @@ export function render(ctx, { id }, root) {
         const subs = catalog.subcatsOf(st.dept).filter(s => all.some(p => p.subcats.includes(s.id)));
         const prods = st.sub ? all.filter(p => p.subcats.includes(st.sub)) : all;
         crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<button data-crumb="dept">${esc(deptName(d))}</button>${arrow}<span>${esc(catalog.brandName(st.brand))}</span></div>`;
-        content = `<div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><b>${esc(catalog.brandName(st.brand))}</b><small>${esc(deptName(d))} · ${t('models_count', { n: prods.length })}</small></div></div>
+        content = `<div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${esc(deptName(d))} · ${t('models_count', { n: prods.length })}</small></div></div>
           ${subs.length > 1 ? `<div class="chips"><button class="${st.sub ? '' : 'active'}" data-sub-chip="">${t('all')}</button>${subs.map(s => `<button class="${st.sub === s.id ? 'active' : ''}" data-sub-chip="${s.id}">${esc(subName(s))}</button>`).join('')}</div>` : ''}
           ${prods.map(p => productRow(p, { showBrand: false })).join('')}${manualCTA}`;
       }
@@ -116,6 +118,7 @@ export function render(ctx, { id }, root) {
     <div data-content>${content}</div>
     <div class="bottombar"><button class="btn primary" data-done>${icons.check}${t('back_to_list', { n: totalQty(items()) })}</button></div>`;
 
+  root.classList.toggle('has-rail', !!root.querySelector('.rail'));
   const input = root.querySelector('[data-q]');
   let timer;
   input.oninput = () => {
@@ -143,6 +146,7 @@ export function render(ctx, { id }, root) {
     rerender();
   }; });
   root.querySelector('[data-done]').onclick = () => ctx.navigate(`#/p/${id}`);
+  root.querySelectorAll('[data-jump]').forEach(b => { b.onclick = () => { const h = document.getElementById(b.dataset.jump); if (!h) return; const y = h.getBoundingClientRect().top + window.scrollY - (document.getElementById('topbar').offsetHeight + 70); window.scrollTo({ top: y, behavior: 'smooth' }); }; });
 
   const bindRow = (row) => {
     const productId = parseId(row.dataset.pid);

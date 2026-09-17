@@ -248,3 +248,12 @@ body.print-mode .view { padding: 0; max-width: none; }
 .print .sig { margin-top: 36px; border-top: 1px solid #333; width: 220px; padding-top: 4px; color: #333; }
 .print .screen-only { margin: 0 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 @media print { .print .screen-only { display: none; } @page { margin: 14mm; } body { background: #fff; } }
+
+/* Brand header logo size + side rail of brand shortcuts */
+.logo-head { height: 30px; min-width: 30px; max-width: 150px; padding: 0 10px; font-size: 13px; border-radius: 9px; }
+.logo-head.logo-img { padding: 4px 9px; }
+.rail { position: fixed; inset-inline-end: 4px; top: calc(var(--sat) + 58px + 76px); bottom: calc(var(--sab) + 90px); z-index: 15; display: flex; flex-direction: column; gap: 3px; overflow-y: auto; scrollbar-width: none; padding: 4px 0; max-width: 78px; }
+.rail::-webkit-scrollbar { display: none; }
+.rail button { font-size: 9px; font-weight: 800; color: var(--muted); background: rgba(23,25,32,.85); border: 1px solid var(--border); border-radius: 7px; padding: 5px 5px; line-height: 1; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; backdrop-filter: blur(8px); }
+.rail button:active { color: var(--text); border-color: var(--accent); }
+.has-rail [data-content] { padding-inline-end: 74px; }

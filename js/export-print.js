@@ -1,7 +1,5 @@
 import { esc } from './ui/dom.js';
 import { displayName, formatDateRange, fmtDate, todayStr } from './export-text.js';
-import { logoHTML } from './brands.js';
-import { DEPT_EMOJI } from './i18n.js';
 
 export function renderPrint(ctx, project, groups, root, { includeNotes = true } = {}) {
   const { t } = ctx;
@@ -9,9 +7,9 @@ export function renderPrint(ctx, project, groups, root, { includeNotes = true } 
   ctx.setTopbar({ title: esc(t('pdf')), back: `#/p/${project.id}/export` });
   let total = 0;
   const sections = groups.map(g => `
-    <h2>${DEPT_EMOJI[g.key]} ${esc(t(`dept_${g.key}`))}</h2>
+    <h2>${esc(t(`dept_${g.key}`))}</h2>
     <table><thead><tr><th></th><th>${t('brand')}</th><th>${t('item')}</th><th>${t('qty')}</th>${includeNotes ? `<th>${t('notes')}</th>` : ''}</tr></thead><tbody>
-    ${g.entries.map(({ item, product }) => { total += item.qty; return `<tr><td class="im">${product.image ? `<img src="${esc(product.image)}" alt="" onerror="this.remove()">` : ''}</td><td>${logoHTML(product.brand, product.brandName, 'inline')}${esc(product.brandName || '')}</td><td>${esc(displayName(product))}</td><td class="q">${item.qty}</td>${includeNotes ? `<td>${esc(item.note)}</td>` : ''}</tr>`; }).join('')}
+    ${g.entries.map(({ item, product }) => { total += item.qty; return `<tr><td class="im">${product.image ? `<img src="${esc(product.image)}" alt="" onerror="this.remove()">` : ''}</td><td>${esc(product.brandName || '')}</td><td>${esc(displayName(product))}</td><td class="q">${item.qty}</td>${includeNotes ? `<td>${esc(item.note)}</td>` : ''}</tr>`; }).join('')}
     </tbody></table>`).join('');
   root.innerHTML = `<div class="print" dir="${document.documentElement.dir}">
     <div class="screen-only card" style="background:#fff3f3;border-color:#e0262b;color:#111"><b>${t('pdf_hint')}</b><button class="btn sm primary" data-print>🖨️ ${t('pdf')}</button></div>
