@@ -17,7 +17,7 @@ const SUBCAT_EN = {
   'סוללות': 'Batteries', 'ספקים ומטענים': 'Chargers & PSU', 'מקליטים וכרטיסים': 'Recorders & Media',
   'מוניטורים': 'Monitors', 'ויופיינדרים': 'Viewfinders', 'וידאו אלחוטי': 'Wireless Video', 'מטבוקסים': 'Matte Boxes',
   'פולופוקוס': 'Follow Focus', 'פילטרים': 'Filters', 'תת ימי': 'Underwater', 'תת-ימי': 'Underwater',
-  'סטים': 'Lens Sets', 'מתאמי עדשה': 'Lens Adapters', "עדשות וינטג'": 'Vintage Lenses', 'עדשות וינטג’': 'Vintage Lenses',
+  'סטים': 'Lens Sets', 'פולופוקוס אלחוטי': 'Wireless Follow Focus', 'פולופוקוס ידני': 'Manual Follow Focus', 'ראש שמן': 'Fluid Heads', 'רגלי חצובה': 'Tripod Legs', 'מתאמי עדשה': 'Lens Adapters', "עדשות וינטג'": 'Vintage Lenses', 'עדשות וינטג’': 'Vintage Lenses',
 };
 const BRAND_DISPLAY = {
   arri: 'ARRI', sony: 'Sony', canon: 'Canon', red: 'RED', 'blackmagic-design': 'Blackmagic Design', blackmagic: 'Blackmagic Design',
@@ -26,7 +26,7 @@ const BRAND_DISPLAY = {
   atomos: 'Atomos', tilta: 'Tilta', smallrig: 'SmallRig', sachtler: 'Sachtler', oconnor: "O'Connor", 'wooden-camera': 'Wooden Camera',
   'bright-tangerine': 'Bright Tangerine', easyrig: 'Easyrig', freefly: 'Freefly', tiffen: 'Tiffen', hollyland: 'Hollyland',
   aputure: 'Aputure', nikon: 'Nikon', vinten: 'Vinten', cartoni: 'Cartoni', manfrotto: 'Manfrotto', 'preston-cinema': 'Preston',
-  portkeys: 'Portkeys', shape: 'SHAPE', dzofilm: 'DZOFILM', sirui: 'Sirui', nisi: 'NiSi', tokina: 'Tokina', tamron: 'Tamron',
+  portkeys: 'Portkeys', shape: 'SHAPE', matthews: 'Matthews', samyang: 'Samyang', fxlion: 'FXLion', avenger: 'Avenger', 'ronford-baker': 'Ronford-Baker', utopia: 'Utopia', 'e-image': 'E-Image', kupo: 'Kupo', 'core-swx': 'Core SWX', 'anton-bauer': 'Anton/Bauer', ikan: 'ikan', nanlite: 'Nanlite', godox: 'Godox', dzofilm: 'DZOFILM', sirui: 'Sirui', nisi: 'NiSi', tokina: 'Tokina', tamron: 'Tamron',
 };
 
 export const decodeEntities = (s = '') => s

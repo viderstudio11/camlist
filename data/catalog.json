@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-17T13:49:37.051Z",
+ "generatedAt": "2026-09-17T13:51:18.602Z",
  "source": "https://utopiacam.com",
  "departments": [
   {
@@ -411,7 +411,7 @@
      "id": 246,
      "parent": 244,
      "he": "פולופוקוס אלחוטי",
-     "en": "פולופוקוס אלחוטי",
+     "en": "Wireless Follow Focus",
      "count": 28
     },
     {
@@ -453,7 +453,7 @@
      "id": 229,
      "parent": 226,
      "he": "ראש שמן",
-     "en": "ראש שמן",
+     "en": "Fluid Heads",
      "count": 16
     },
     {
@@ -467,7 +467,7 @@
      "id": 228,
      "parent": 226,
      "he": "רגלי חצובה",
-     "en": "רגלי חצובה",
+     "en": "Tripod Legs",
      "count": 8
     },
     {
@@ -481,7 +481,7 @@
      "id": 248,
      "parent": 244,
      "he": "פולופוקוס ידני",
-     "en": "פולופוקוס ידני",
+     "en": "Manual Follow Focus",
      "count": 3
     },
     {
@@ -512,7 +512,7 @@
   },
   {
    "id": "utopia",
-   "name": "UTOPIA",
+   "name": "Utopia",
    "count": 55
   },
   {
@@ -532,7 +532,7 @@
   },
   {
    "id": "matthews",
-   "name": "MATTHEWS",
+   "name": "Matthews",
    "count": 37
   },
   {
@@ -572,12 +572,12 @@
   },
   {
    "id": "samyang",
-   "name": "SAMYANG",
+   "name": "Samyang",
    "count": 15
   },
   {
    "id": "fxlion",
-   "name": "FXLION",
+   "name": "FXLion",
    "count": 14
   },
   {
@@ -587,7 +587,7 @@
   },
   {
    "id": "avenger",
-   "name": "AVENGER",
+   "name": "Avenger",
    "count": 13
   },
   {
@@ -607,7 +607,7 @@
   },
   {
    "id": "ronford-baker",
-   "name": "RONFORD-BAKER",
+   "name": "Ronford-Baker",
    "count": 11
   },
   {
@@ -912,7 +912,7 @@
   },
   {
    "id": "kupo",
-   "name": "KUPO",
+   "name": "Kupo",
    "count": 2
   },
   {
