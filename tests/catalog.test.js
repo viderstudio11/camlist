@@ -58,3 +58,12 @@ test('indexes and helpers', () => {
   assert.equal(c.byId(2).brandName, 'ARRI');
   assert.deepEqual(c.subcatsOf(7).map(s => s.id), [12]);
 });
+
+test('brand match outranks name-contains (arri → ARRI cameras before "ARRI PL" lenses)', () => {
+  const c = createCatalog({ ...data, products: [
+    { id: 10, name: 'Supreme Prime 50mm (ARRI PL)', brand: 'zeiss', dept: 8, subcats: [20] },
+    { id: 11, name: 'ALEXA 35', brand: 'arri', dept: 7, subcats: [12] },
+    { id: 12, name: 'ARRIFLEX 416', brand: 'arri', dept: 7, subcats: [12] },
+  ] });
+  assert.deepEqual(c.search('arri').map(p => p.id), [12, 11, 10]);
+});

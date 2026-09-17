@@ -52,10 +52,11 @@ export function createCatalog(data, manual = []) {
       if (brand && p.brand !== brand) continue;
       if (subcat && !p.subcats.includes(subcat)) continue;
       if (tokens.length && !tokens.every(tk => p._all.includes(tk))) continue;
+      // 0: name starts with query · 1: query is the brand (e.g. "arri" → ALEXA 35) · 2: name contains query · 3: subcategory/other
       let score = 3;
       if (nq && p._n.startsWith(nq)) score = 0;
-      else if (nq && p._n.includes(nq)) score = 1;
-      else if (tokens.length && tokens.every(tk => p._b.includes(tk))) score = 2;
+      else if (tokens.length && p._b && tokens.every(tk => p._b.includes(tk))) score = 1;
+      else if (nq && p._n.includes(nq)) score = 2;
       out.push({ p, score });
     }
     out.sort((a, b) => a.score - b.score); // stable: ties keep catalog order (dept → brand → name)

@@ -32,7 +32,7 @@ const ctx = {
   resolve: (id) => catalog.byId(id),
   setTopbar({ title = '', back = null, right = [] }) {
     const bar = document.getElementById('topbar');
-    bar.innerHTML = `${back ? `<button class="iconbtn mirror" data-back aria-label="back">${icons.back}</button>` : ''}<div class="title">${title}</div>${right.map((r, i) => `<button class="iconbtn" data-r="${i}" aria-label="${esc(r.label || '')}">${r.icon || esc(r.text ?? '')}</button>`).join('')}`;
+    bar.innerHTML = `${back ? `<button class="iconbtn mirror" data-back aria-label="back">${icons.back}</button>` : ''}<div class="title" dir="auto">${title}</div>${right.map((r, i) => `<button class="iconbtn" data-r="${i}" aria-label="${esc(r.label || '')}">${r.icon || esc(r.text ?? '')}</button>`).join('')}`;
     if (back) bar.querySelector('[data-back]').onclick = () => (typeof back === 'string' ? ctx.navigate(back) : back());
     right.forEach((r, i) => { bar.querySelector(`[data-r="${i}"]`).onclick = r.onClick; });
   },
@@ -123,7 +123,9 @@ applyDir();
 render();
 boot();
 
-if ('serviceWorker' in navigator) {
+// On localhost the SW is skipped (unless ?sw=1) so edits show up on plain reload; production always registers it.
+const devNoSW = ['localhost', '127.0.0.1'].includes(location.hostname) && !location.search.includes('sw=1');
+if ('serviceWorker' in navigator && !devNoSW) {
   navigator.serviceWorker.register('sw.js').then(reg => {
     reg.addEventListener('updatefound', () => {
       const nw = reg.installing;

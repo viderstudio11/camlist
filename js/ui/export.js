@@ -6,6 +6,8 @@ import { exportDocx } from '../export-docx.js';
 import { renderPrint } from '../export-print.js';
 
 const opts = { includeNotes: true, includeLinks: false };
+// Each line gets dir=auto so mixed Hebrew/English lines render the way WhatsApp/mail clients show them.
+const previewHTML = (txt) => txt.split('\n').map(l => `<div dir="auto">${esc(l) || '&nbsp;'}</div>`).join('');
 
 export function render(ctx, { id, print }, root) {
   const { store, t } = ctx;
@@ -16,7 +18,7 @@ export function render(ctx, { id, print }, root) {
   const text = () => buildShareText(p, groups, { lang: ctx.lang(), ...opts });
   root.innerHTML = `
     <div class="section-title">${t('preview')} <span class="count">${totalQty(p.items)}</span></div>
-    <pre class="preview" data-preview>${esc(text())}</pre>
+    <div class="preview" data-preview>${previewHTML(text())}</div>
     <div class="card" style="margin-top:12px;padding:4px 16px">
       <label class="switch"><span>${t('include_notes')}</span><input type="checkbox" data-opt="includeNotes" ${opts.includeNotes ? 'checked' : ''}></label>
       <label class="switch" style="border:0"><span>${t('include_links')}</span><input type="checkbox" data-opt="includeLinks" ${opts.includeLinks ? 'checked' : ''}></label>
@@ -27,7 +29,7 @@ export function render(ctx, { id, print }, root) {
       <button class="btn" data-docx>📝 ${t('word')}<small>.docx</small></button>
       <button class="btn" data-pdf>🖨️ ${t('pdf')}<small>${t('pdf_hint')}</small></button>
     </div>`;
-  root.querySelectorAll('[data-opt]').forEach(c => { c.onchange = () => { opts[c.dataset.opt] = c.checked; root.querySelector('[data-preview]').textContent = text(); }; });
+  root.querySelectorAll('[data-opt]').forEach(c => { c.onchange = () => { opts[c.dataset.opt] = c.checked; root.querySelector('[data-preview]').innerHTML = previewHTML(text()); }; });
   const copy = async (txt) => { await navigator.clipboard.writeText(txt); toast(t('copied'), { kind: 'ok' }); };
   root.querySelector('[data-share]').onclick = async () => {
     const txt = text();

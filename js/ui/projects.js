@@ -34,7 +34,7 @@ export function render(ctx, _params, root) {
     const n = totalQty(p.items);
     const range = formatDateRange(p.dateFrom, p.dateTo);
     return `<article class="card project-card" data-id="${esc(p.id)}">
-      <div><h3>${esc(p.name || t('untitled'))}</h3>
+      <div><h3 dir="auto">${esc(p.name || t('untitled'))}</h3>
         <div class="meta">${p.techManager ? `<span>${esc(p.techManager)}</span>` : ''}${range ? `<span>${range}</span>` : ''}<span>${t('updated')} ${new Date(p.updatedAt).toLocaleDateString(locale)}</span></div></div>
       <span class="pill">${n === 1 ? t('item_count_one') : t('items_count', { n })}</span>
       <button class="iconbtn more" data-more aria-label="more">${icons.more}</button>

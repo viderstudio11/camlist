@@ -30,7 +30,6 @@ export async function exportXlsx(project, groups, { lang, includeNotes = true, i
   rows.push([], [t('total'), '', '', total]);
   const ws = X.utils.aoa_to_sheet(rows);
   ws['!cols'] = [{ wch: 14 }, { wch: 16 }, { wch: 48 }, { wch: 6 }, { wch: 28 }, { wch: 40 }];
-  ws['!freeze'] = { xSplit: 0, ySplit: 5 };
   if (lang === 'he') ws['!views'] = [{ RTL: true }];
   const wb = X.utils.book_new();
   X.utils.book_append_sheet(wb, ws, 'Gear List');
