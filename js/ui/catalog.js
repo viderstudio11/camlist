@@ -56,7 +56,7 @@ export function render(ctx, { id }, root) {
       </section>`).join('') + brandRail(order.map(([k]) => k));
   };
   // Side rail of brand shortcuts for long grouped lists — tap to jump to that brand's header.
-  const brandRail = (keys) => (keys.length < 4 ? '' : `<nav class="rail" aria-label="${t('jump_to_brand')}">${keys.map(k => `<button data-jump="bg-${esc(k)}" title="${esc(k === '__none' ? t('no_brand') : catalog.brandName(k))}">${esc(k === '__none' ? '…' : (catalog.brandName(k).split(/[s/]+/)[0].slice(0, 10) || '?'))}</button>`).join('')}</nav>`);
+  const brandRail = (keys) => (keys.length < 4 ? '' : `<nav class="rail" aria-label="${t('jump_to_brand')}">${keys.map(k => `<button data-jump="bg-${esc(k)}" title="${esc(k === '__none' ? t('no_brand') : catalog.brandName(k))}">${k === '__none' ? `<span class="logo logo-mini logo-text" style="--bg:var(--surface-3);--fg:var(--muted)">…</span>` : logoHTML(k, catalog.brandName(k), 'mini')}</button>`).join('')}</nav>`);
   const brandGrid = (brands) => `<div class="brand-grid">${brands.map(b => `<div class="brand-tile" data-brand="${esc(b.id)}">${logoHTML(b.id, b.name, 'tile')}<span class="c">${t('models_count', { n: b.count })}</span></div>`).join('')}</div>`;
   const brandsIn = (prods) => {
     const m = new Map();
