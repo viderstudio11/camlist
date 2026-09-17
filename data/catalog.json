@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-17T13:51:18.602Z",
+ "generatedAt": "2026-09-17T15:16:32.095Z",
  "source": "https://utopiacam.com",
  "departments": [
   {
@@ -238,11 +238,76 @@
    ]
   },
   {
+   "id": 900001,
+   "slug": "video",
+   "he": "וידאו",
+   "en": "Video",
+   "order": 3,
+   "subcategories": [
+    {
+     "id": 260,
+     "parent": null,
+     "he": "מקליטים וכרטיסים",
+     "en": "Recorders & Media",
+     "count": 61
+    },
+    {
+     "id": 218,
+     "parent": null,
+     "he": "מוניטורים",
+     "en": "Monitors",
+     "count": 60
+    },
+    {
+     "id": 480,
+     "parent": null,
+     "he": "וידאו אלחוטי",
+     "en": "Wireless Video",
+     "count": 40
+    },
+    {
+     "id": 222,
+     "parent": 218,
+     "he": "On Camera",
+     "en": "On Camera",
+     "count": 40
+    },
+    {
+     "id": 220,
+     "parent": 218,
+     "he": "Production Monitors",
+     "en": "Production Monitors",
+     "count": 35
+    },
+    {
+     "id": 266,
+     "parent": null,
+     "he": "Converters",
+     "en": "Converters",
+     "count": 29
+    },
+    {
+     "id": 264,
+     "parent": null,
+     "he": "Mixers & Matrix",
+     "en": "Mixers & Matrix",
+     "count": 23
+    },
+    {
+     "id": 224,
+     "parent": 218,
+     "he": "ויופיינדרים",
+     "en": "Viewfinders",
+     "count": 4
+    }
+   ]
+  },
+  {
    "id": 12,
    "slug": "grip",
    "he": "גריפ",
    "en": "Grip",
-   "order": 3,
+   "order": 4,
    "subcategories": [
     {
      "id": 325,
@@ -286,7 +351,7 @@
    "slug": "accessories",
    "he": "אביזרים",
    "en": "Accessories",
-   "order": 4,
+   "order": 5,
    "subcategories": [
     {
      "id": 236,
@@ -331,20 +396,6 @@
      "count": 62
     },
     {
-     "id": 260,
-     "parent": null,
-     "he": "מקליטים וכרטיסים",
-     "en": "Recorders & Media",
-     "count": 61
-    },
-    {
-     "id": 218,
-     "parent": null,
-     "he": "מוניטורים",
-     "en": "Monitors",
-     "count": 60
-    },
-    {
      "id": 252,
      "parent": 250,
      "he": "סוללות",
@@ -357,27 +408,6 @@
      "he": "4X4",
      "en": "4X4",
      "count": 51
-    },
-    {
-     "id": 480,
-     "parent": null,
-     "he": "וידאו אלחוטי",
-     "en": "Wireless Video",
-     "count": 40
-    },
-    {
-     "id": 222,
-     "parent": 218,
-     "he": "On Camera",
-     "en": "On Camera",
-     "count": 40
-    },
-    {
-     "id": 220,
-     "parent": 218,
-     "he": "Production Monitors",
-     "en": "Production Monitors",
-     "count": 35
     },
     {
      "id": 244,
@@ -401,13 +431,6 @@
      "count": 30
     },
     {
-     "id": 266,
-     "parent": 262,
-     "he": "Converters",
-     "en": "Converters",
-     "count": 29
-    },
-    {
      "id": 246,
      "parent": 244,
      "he": "פולופוקוס אלחוטי",
@@ -420,13 +443,6 @@
      "he": "מטבוקסים",
      "en": "Matte Boxes",
      "count": 27
-    },
-    {
-     "id": 264,
-     "parent": 262,
-     "he": "Mixers & Matrix",
-     "en": "Mixers & Matrix",
-     "count": 23
     },
     {
      "id": 253,
@@ -469,13 +485,6 @@
      "he": "רגלי חצובה",
      "en": "Tripod Legs",
      "count": 8
-    },
-    {
-     "id": 224,
-     "parent": 218,
-     "he": "ויופיינדרים",
-     "en": "Viewfinders",
-     "count": 4
     },
     {
      "id": 248,
@@ -7404,6 +7413,2361 @@
    "sku": "LNS-UPK"
   },
   {
+   "id": 18995,
+   "name": "Connect 4K",
+   "brand": null,
+   "dept": 900001,
+   "subcats": [
+    264,
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/12/atomos_atomcon001_connect_stream_4k_1600167934_1593913-300x300.jpg",
+   "url": "https://utopiacam.com/shop/connect-4k/",
+   "sku": "VA-4VC"
+  },
+  {
+   "id": 21592,
+   "name": "Digital 256GB UHS-II SDXC Memory Card",
+   "brand": null,
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1568212705_1499810-300x300.jpg",
+   "url": "https://utopiacam.com/shop/digital-256gb-uhs-ii-sdxc-memory-card/",
+   "sku": "VTR-2V90"
+  },
+  {
+   "id": 31251,
+   "name": "AB4000 CCU",
+   "brand": "abonair",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/07/images-300x300.jpg",
+   "url": "https://utopiacam.com/shop/ab4000-ccu/",
+   "sku": "WIR-AB4"
+  },
+  {
+   "id": 13568,
+   "name": "AB512 with CCU Control",
+   "brand": "abonair",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2019/05/DSC00251-300x300.jpg",
+   "url": "https://utopiacam.com/shop/abonair-ab512-ccu/",
+   "sku": "WIR-A512"
+  },
+  {
+   "id": 25113,
+   "name": "CineView SE Multi-Spectrum Wireless Video Set",
+   "brand": "accsoon",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1660520957_IMG_1813761-300x300.jpg",
+   "url": "https://utopiacam.com/shop/accsoon-cineview-se-multi-spectrum-wireless-video-set/",
+   "sku": "WIR-TACV"
+  },
+  {
+   "id": 3288,
+   "name": "DVI to SDI Mini-Converter",
+   "brand": "aja",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/ROI.jpg",
+   "url": "https://utopiacam.com/shop/dvi-to-sdi-mini-converter/",
+   "sku": "VA-HTS-641"
+  },
+  {
+   "id": 3275,
+   "name": "HD to SD-SDI & Analog Downconverter",
+   "brand": "aja",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/HD10MD3.jpg",
+   "url": "https://utopiacam.com/shop/hd-to-sd-sdi-analog-downconverter/",
+   "sku": "VA-HSD"
+  },
+  {
+   "id": 3316,
+   "name": "HD/SD-SDI Analog Audio Embedder / Disembedder",
+   "brand": "aja",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/EMBEDE.jpg",
+   "url": "https://utopiacam.com/shop/hdsd-sdi-analog-audio-embedder-disembedder/",
+   "sku": "VA-EMB"
+  },
+  {
+   "id": 3263,
+   "name": "HDMI to SD/HD-SDI Converter",
+   "brand": "aja",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/HA5.jpg",
+   "url": "https://utopiacam.com/shop/hdmi-to-sdhd-sdi-converter/",
+   "sku": "VA-HTS"
+  },
+  {
+   "id": 3281,
+   "name": "Up/Down/Cross Mini-Converter",
+   "brand": "aja",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/UDC.jpg",
+   "url": "https://utopiacam.com/shop/updowncross-mini-converter/",
+   "sku": "VA-165"
+  },
+  {
+   "id": 3096,
+   "name": "CONNEX HDMI Wireless Video set",
+   "brand": "amimon",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/amimon.jpg",
+   "url": "https://utopiacam.com/shop/connex-hdmi-wireless-video-set/",
+   "sku": "WIR-CNN"
+  },
+  {
+   "id": 21606,
+   "name": "128GB AV Pro Mk 2 UHS-II SDXC Memory Card",
+   "brand": "angelbird",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1579192097_1527888-300x300.jpg",
+   "url": "https://utopiacam.com/shop/128gb-av-pro-mk-2-uhs-ii-sdxc-memory-card/",
+   "sku": "VTR-V90"
+  },
+  {
+   "id": 22894,
+   "name": "128GB UHS-II SDXC Memory Card",
+   "brand": "angelbird",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/04/1568212705_1499808-300x300.jpg",
+   "url": "https://utopiacam.com/shop/128gb-uhs-ii-sdxc-memory-card/",
+   "sku": "VTR-V60"
+  },
+  {
+   "id": 21598,
+   "name": "512GB AV PRO CFexpress 2.0 Type B SE Memory Card",
+   "brand": "angelbird",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1639482491_1678305-300x300.jpg",
+   "url": "https://utopiacam.com/shop/512gb-av-pro-cfexpress-2-0-type-b-se-memory-card/",
+   "sku": "VTR-CFAN"
+  },
+  {
+   "id": 26139,
+   "name": "13″ MacBook Air M3",
+   "brand": "apple",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/08/1709549215_1814977-300x300.jpg",
+   "url": "https://utopiacam.com/shop/apple-13-macbook-air/",
+   "sku": "VTR-ARM3"
+  },
+  {
+   "id": 2619,
+   "name": "iPad mini",
+   "brand": "apple",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/IPAD-300x300.jpg",
+   "url": "https://utopiacam.com/shop/ipad-mini/",
+   "sku": "VTR-PAD"
+  },
+  {
+   "id": 2359,
+   "name": "MacBook Pro",
+   "brand": "apple",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/MAC.jpg",
+   "url": "https://utopiacam.com/shop/macbookpro/",
+   "sku": "VTR-MAC"
+  },
+  {
+   "id": 21144,
+   "name": "Codex Compact Drive 1TB",
+   "brand": "arri",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/08/1T-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/codex-compact-drive-1tb/",
+   "sku": "VTR-CCDA"
+  },
+  {
+   "id": 21152,
+   "name": "Codex Compact Drive 2TB",
+   "brand": "arri",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/08/2T-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/codex-compact-drive-2tb/",
+   "sku": "VTR-CCDA"
+  },
+  {
+   "id": 1370,
+   "name": "Director’s Viewfinder w/ PL Mount",
+   "brand": "arri",
+   "dept": 900001,
+   "subcats": [
+    218,
+    224
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/DRF.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/directors-viewfinder-w-pl-mount/",
+   "sku": "VWF-DRF"
+  },
+  {
+   "id": 1261,
+   "name": "DM-3105 “5",
+   "brand": "astro",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/MAST.1.jpg",
+   "url": "https://utopiacam.com/shop/dm-3105/",
+   "sku": "MON-MAST"
+  },
+  {
+   "id": 1249,
+   "name": "WM-3014 “6",
+   "brand": "astro",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/AST.1.jpg",
+   "url": "https://utopiacam.com/shop/wm-3014/",
+   "sku": "MON-AST"
+  },
+  {
+   "id": 30991,
+   "name": "Ninja 5.2″ 4K HDMI Recording Monitor",
+   "brand": "atomos",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/07/atomos-atomnj004-ninja-5-recording-monitor-1691984740-1779413-300x300.jpg",
+   "url": "https://utopiacam.com/shop/ninja-5-2-4k-hdmi-recording-monitor/",
+   "sku": "VTR-NJ"
+  },
+  {
+   "id": 30962,
+   "name": "Shogun CONNECT 7″ HDR Video Monitor & Recorder",
+   "brand": "atomos",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/07/e684286daa5248efe0baba665487e3c0-300x300.webp",
+   "url": "https://utopiacam.com/shop/shogun-connect-7-hdr-video-monitor-recorder/",
+   "sku": "VTR-SC7"
+  },
+  {
+   "id": 10301,
+   "name": "Sumo 19″ HDR Monitor Recorder",
+   "brand": "atomos",
+   "dept": 900001,
+   "subcats": [
+    218,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2017/11/SUMO1.jpg",
+   "url": "https://utopiacam.com/shop/sumo-19-hdr-monitor-recorder/",
+   "sku": "MON-SUM"
+  },
+  {
+   "id": 31095,
+   "name": "Sumo PRO-19 4K HDR Monitor-Recorder-Switcher",
+   "brand": "atomos",
+   "dept": 900001,
+   "subcats": [
+    218,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/07/1776384387-img-2713701-300x300.jpg",
+   "url": "https://utopiacam.com/shop/sumo-pro-19-4k-hdr-monitor-recorder-switcher/",
+   "sku": "MON-SUM-1"
+  },
+  {
+   "id": 25075,
+   "name": "1×9 3G-SDI Reclocking Distribution Amplifier",
+   "brand": "avmatrix",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1606903246_IMG_1454514-300x300.jpg",
+   "url": "https://utopiacam.com/shop/avmatrix-1x9-3g-sdi-reclocking-distribution-amplifier/",
+   "sku": "VA-9CS"
+  },
+  {
+   "id": 24732,
+   "name": "16-Channel 3G-SDI Multiviewer and Switcher",
+   "brand": "avmatrix",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/02/1541090182_1439024-300x300.jpg",
+   "url": "https://utopiacam.com/shop/avmatrix-16-channel-multiviewer-switcher/",
+   "sku": "VA-1630"
+  },
+  {
+   "id": 25066,
+   "name": "3G-SDI Fiber Optic Extender Transmitter & Receiver Set",
+   "brand": "avmatrix",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1498155084_1340651-300x300.jpg",
+   "url": "https://utopiacam.com/shop/avmatirx-3g-sdi-fiber-optic-extender-set/",
+   "sku": "VA-1TX"
+  },
+  {
+   "id": 3332,
+   "name": "Analog to SDI",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/ANALOG-SDI.jpg",
+   "url": "https://utopiacam.com/shop/analog-to-sdi/",
+   "sku": "VA-ATS"
+  },
+  {
+   "id": 18896,
+   "name": "ATEM Mini Pro HDMI Live Stream Switcher",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/12/BL-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/atem-mini-pro-hdmi-live-stream-switcher/",
+   "sku": "VA-MP"
+  },
+  {
+   "id": 19541,
+   "name": "ATEM Streaming Bridge for ATEM Mini Pro Streaming Switchers",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/02/STREAM-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/atem-streaming-bridge-for-atem-mini-pro-streaming-switchers/",
+   "sku": "VA-ASB"
+  },
+  {
+   "id": 15121,
+   "name": "ATEM Television Studio Pro 4K Live Production Switcher",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264,
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2020/01/1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/atem-television-studio-pro-4k-live-production-switcher/",
+   "sku": "VA-ATEM"
+  },
+  {
+   "id": 29199,
+   "name": "ATEM Television Studio Pro 4K8 Live Production Switcher",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264,
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2025/09/1681823756-img-1975502-300x300.jpg",
+   "url": "https://utopiacam.com/shop/atem-television-studio-pro-4k8-live-production-switcher/",
+   "sku": "VA-4K8"
+  },
+  {
+   "id": 10862,
+   "name": "Blackmagic Design UltraStudio HD Mini",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/04/1493667375000_1335021.jpg",
+   "url": "https://utopiacam.com/shop/blackmagic-design-ultrastudio-hd-mini/",
+   "sku": "VA-USH"
+  },
+  {
+   "id": 19533,
+   "name": "Design ATEM Mini Extreme ISO",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/02/IOS-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/design-atem-mini-extreme-iso/",
+   "sku": "VA-MPE"
+  },
+  {
+   "id": 3321,
+   "name": "HDMI to SDI",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/HDMITOSDI-BLKMGC.jpg",
+   "url": "https://utopiacam.com/shop/hdmi-to-sdi/",
+   "sku": "VA-HTS-540"
+  },
+  {
+   "id": 16019,
+   "name": "HyperDeck Studio Mini",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2020/09/Hyper-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/hyperdeck-studio-mini/",
+   "sku": "VTR-HSM"
+  },
+  {
+   "id": 26218,
+   "name": "Micro Converter HDMI to SDI 12G",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/08/1636719716_1674090-300x300.jpg",
+   "url": "https://utopiacam.com/shop/blackmagic-design-micro-converter-hdmi-to-sdi-12g/",
+   "sku": "VA-MCH"
+  },
+  {
+   "id": 23748,
+   "name": "Micro Converter SDI to HDMI 12G",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/08/1636719716_1674092-300x300.jpg",
+   "url": "https://utopiacam.com/shop/blackmagic-design-sdi-to-hdmi-micro-converter-12g/",
+   "sku": "VA-MCS"
+  },
+  {
+   "id": 26343,
+   "name": "Mini Converter Optical Fiber 12G-SDI",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/09/1523369723_IMG_967342-Recovered-300x300.png",
+   "url": "https://utopiacam.com/shop/mini-converter-optical-fiber-12g-sdi/",
+   "sku": "VA-S12"
+  },
+  {
+   "id": 4283,
+   "name": "Multiview 16",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/09/1412098520000_1082834.jpg",
+   "url": "https://utopiacam.com/shop/multiview-16/",
+   "sku": "VA-B16"
+  },
+  {
+   "id": 13050,
+   "name": "SDI to HDMI 6G",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2019/02/2019-02-25_1254-300x300.png",
+   "url": "https://utopiacam.com/shop/sdi-to-hdmi-6g/",
+   "sku": "VA-SH6"
+  },
+  {
+   "id": 4286,
+   "name": "Smart Videohub 12X12",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/09/1428966974000_1137291.jpg",
+   "url": "https://utopiacam.com/shop/smart-videohub-12x12/",
+   "sku": "VA-M12"
+  },
+  {
+   "id": 15106,
+   "name": "Smart Videohub 20X20",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2020/01/1396962335_1044822-300x300.jpg",
+   "url": "https://utopiacam.com/shop/smart-videohub-20x20/",
+   "sku": "VA-M20"
+  },
+  {
+   "id": 18583,
+   "name": "Smart Videohub 40X40",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/10/111-300x300.jpg",
+   "url": "https://utopiacam.com/shop/smart-videohub-40x40/",
+   "sku": "VA-M40"
+  },
+  {
+   "id": 6449,
+   "name": "UltraStudio Mini Recorder",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2017/01/1348246032000_892453.jpg",
+   "url": "https://utopiacam.com/shop/ultrastudio-mini-recorder/",
+   "sku": "VA-UST"
+  },
+  {
+   "id": 24027,
+   "name": "Video Assist 7″ 12G-SDI/HDMI HDR Recording Monitor",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/09/1568713006_1507213-300x300.jpg",
+   "url": "https://utopiacam.com/shop/video-assist-7-12g-sdi-hdmi-hdr-recording-monitor/",
+   "sku": "VTR-B712"
+  },
+  {
+   "id": 31669,
+   "name": "Videohub 40×40 12G Compact",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/09/blackmagic-videohub-40x40-12g-sm-300x112.jpg",
+   "url": "https://utopiacam.com/shop/videohub-40x40-12g-compact/",
+   "sku": "VA-M40C"
+  },
+  {
+   "id": 4293,
+   "name": "Videohub Master Control",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/09/Blackmagic_Design_vhub_wmstrcrl_Videohub_Master_Control_892468.jpg",
+   "url": "https://utopiacam.com/shop/videohub-master-control/",
+   "sku": "VA-CNT"
+  },
+  {
+   "id": 18677,
+   "name": "Videohub Smart control Pro",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/11/CONTROL-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/videohub-smart-control-pro/",
+   "sku": "VA-SCNT"
+  },
+  {
+   "id": 15490,
+   "name": "Web Presenter",
+   "brand": "blackmagic-design",
+   "dept": 900001,
+   "subcats": [
+    264,
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2020/04/WEB0-300x300.jpg",
+   "url": "https://utopiacam.com/shop/web-presenter/",
+   "sku": "VA-WPR"
+  },
+  {
+   "id": 881,
+   "name": "“18.5 BSM-182i",
+   "brand": "bon",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/H18.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bsm-182i/",
+   "sku": "MON-H18"
+  },
+  {
+   "id": 875,
+   "name": "“18.5 BXM-183L3G",
+   "brand": "bon",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/18B.1-300x300.png",
+   "url": "https://utopiacam.com/shop/bxm-183l3g/",
+   "sku": "MON-B18"
+  },
+  {
+   "id": 1161,
+   "name": "“9 BSM-093N3G",
+   "brand": "bon",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/HD9.1-300x300.png",
+   "url": "https://utopiacam.com/shop/bsm-093n3g/",
+   "sku": "MON-HD9"
+  },
+  {
+   "id": 960,
+   "name": "FM-055F “5.5",
+   "brand": "bon",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/55.1-300x294.jpg",
+   "url": "https://utopiacam.com/shop/fm-055f/",
+   "sku": "MON-B55"
+  },
+  {
+   "id": 982,
+   "name": "FM-072SCH “7",
+   "brand": "bon",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/7.1-300x300.png",
+   "url": "https://utopiacam.com/shop/fm-072sch/",
+   "sku": "MON-H7"
+  },
+  {
+   "id": 2851,
+   "name": "MERIDIAN ENG Wireless set",
+   "brand": "boxx",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/BOXXENG-300x300.jpg",
+   "url": "https://utopiacam.com/shop/meridian-eng-wireless-set/",
+   "sku": "WIR-BOX"
+  },
+  {
+   "id": 1343,
+   "name": "EVF4MSS",
+   "brand": "cineroid",
+   "dept": 900001,
+   "subcats": [
+    218,
+    224
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/EF.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/evf4mss/",
+   "sku": "VWF-EF"
+  },
+  {
+   "id": 1353,
+   "name": "EVF4RVW",
+   "brand": "cineroid",
+   "dept": 900001,
+   "subcats": [
+    218,
+    224
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/sdh.1.jpg",
+   "url": "https://utopiacam.com/shop/evf4rvw/",
+   "sku": "VWF-SDH"
+  },
+  {
+   "id": 16345,
+   "name": "Compact Drive Dock – TB3",
+   "brand": "codex",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2020/11/TB3.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/compact-drive-dock-tb3/",
+   "sku": "VTR-CTB3"
+  },
+  {
+   "id": 4072,
+   "name": "Apollo OLED Monitor, Recorder, Switcher “7.7",
+   "brand": "convergent-design",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/09/1446047439000_1194618.jpg",
+   "url": "https://utopiacam.com/shop/apollo/",
+   "sku": "VTR-APO"
+  },
+  {
+   "id": 2129,
+   "name": "Odyssey7 OLED Monitor & Recorder",
+   "brand": "convergent-design",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/ODSY.jpg",
+   "url": "https://utopiacam.com/shop/odyssey7-oled-monitor-recorder/",
+   "sku": "VTR-ODS"
+  },
+  {
+   "id": 4320,
+   "name": "DVK-100 Chroma Keyer",
+   "brand": "datavideo",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/10/11111111122222.jpg",
+   "url": "https://utopiacam.com/shop/dvk-100-chroma-keyer/",
+   "sku": "VA-VMX"
+  },
+  {
+   "id": 3349,
+   "name": "MD-CROSS",
+   "brand": "decimator-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/MD-CROSS.jpg",
+   "url": "https://utopiacam.com/shop/md-cross/",
+   "sku": "VA-CRS"
+  },
+  {
+   "id": 3361,
+   "name": "MD-DUCC",
+   "brand": "decimator-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/DUCC.jpg",
+   "url": "https://utopiacam.com/shop/md-ducc/",
+   "sku": "VA-DUC"
+  },
+  {
+   "id": 4310,
+   "name": "MD-HX",
+   "brand": "decimator-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/10/HX.jpg",
+   "url": "https://utopiacam.com/shop/md-hx/",
+   "sku": "VA-HX"
+  },
+  {
+   "id": 3343,
+   "name": "MD-QUAD",
+   "brand": "decimator-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/MD-QUAD.jpg",
+   "url": "https://utopiacam.com/shop/md-quad/",
+   "sku": "VA-QSH"
+  },
+  {
+   "id": 3368,
+   "name": "MD-RDA",
+   "brand": "decimator-design",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/RDA.jpg",
+   "url": "https://utopiacam.com/shop/md-rda/",
+   "sku": "VA-DAH"
+  },
+  {
+   "id": 2371,
+   "name": "Vostro 3560",
+   "brand": "dell",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/Vostro-3560-Silver-300x300.png",
+   "url": "https://utopiacam.com/shop/vostro-3560/",
+   "sku": "VTR-LAP"
+  },
+  {
+   "id": 21746,
+   "name": "High-Bright Remote Monitor",
+   "brand": "dji",
+   "dept": 900001,
+   "subcats": [
+    480,
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1634722653_1667443-300x300.jpg",
+   "url": "https://utopiacam.com/shop/high-bright-remote-monitor/",
+   "sku": "WIR-TRM"
+  },
+  {
+   "id": 24404,
+   "name": "PROSSD 1TB",
+   "brand": "dji",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/11/1634722653_1667447-300x300.jpg",
+   "url": "https://utopiacam.com/shop/dji-prossd-1tb/",
+   "sku": "VTR-D1T"
+  },
+  {
+   "id": 24319,
+   "name": "Ronin 4D Flex Extension Unit",
+   "brand": "dji",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/11/1678279575_IMG_1951067-300x300.jpg",
+   "url": "https://utopiacam.com/shop/dji-4d-flex-extension-unit/",
+   "sku": "VA-4DF"
+  },
+  {
+   "id": 24333,
+   "name": "Wireless Video Transmitter",
+   "brand": "dji",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/11/1655284863_1706770-300x300.jpg",
+   "url": "https://utopiacam.com/shop/dji-wireless-video-transmitter/",
+   "sku": "WIR-TX3"
+  },
+  {
+   "id": 14784,
+   "name": "FW279S 7″ 4K Ultra Bright Monitor 2200 nits",
+   "brand": "feelworld",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2019/11/1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/fw279s-7-4k-ultra-bright-monitor-2200-nits/",
+   "sku": "MON-279S"
+  },
+  {
+   "id": 18908,
+   "name": "L2 PLUS Video Mixer Switcher with 5.5″ LCD Touch Screen",
+   "brand": "feelworld",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/12/FEEL-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/l2-plus-video-mixer-switcher-with-5-5-lcd-touch-screen/",
+   "sku": "VA-L2"
+  },
+  {
+   "id": 3256,
+   "name": "HVS-300HS HD/SD Video Switcher",
+   "brand": "for-a",
+   "dept": 900001,
+   "subcats": [
+    264,
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/SWICH1.jpg",
+   "url": "https://utopiacam.com/shop/hvs-300hs-hdsd-video-switcher/",
+   "sku": "VA-DVM"
+  },
+  {
+   "id": 31525,
+   "name": "4-channel forward 3G-SDI fiber optic converter",
+   "brand": "ho-link",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/08/s4e70207000854ca1b27a7015024c1d80o-jpg-640x640q75-jpg--300x300.avif",
+   "url": "https://utopiacam.com/shop/4-channel-forward-3g-sdi-fiber-optic-converter/",
+   "sku": "VA-OH4T"
+  },
+  {
+   "id": 19910,
+   "name": "Cosmo C1 SDI/HDMI Wireless Video Transmission System",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/03/C1-1-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/cosmo-c1-sdi-hdmi-wireless-video-transmission-system/",
+   "sku": "WIR-C1T"
+  },
+  {
+   "id": 28272,
+   "name": "Cosmo C2 SDI Wireless Video SET",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2025/05/1740565354_1876119-300x300.jpg",
+   "url": "https://utopiacam.com/shop/cosmo-c2-sdi-wireless-video-set/",
+   "sku": "WIR-C2RX"
+  },
+  {
+   "id": 9450,
+   "name": "COSMO-1000-IL HDMI\\SDI Video Set",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2017/05/1480974605000_1296928.jpg",
+   "url": "https://utopiacam.com/shop/hdmisdi-cosmo-1000-il-video-set/",
+   "sku": "WIR-T10V"
+  },
+  {
+   "id": 12041,
+   "name": "COSMO-1200-IL HDMI&SDI Video Set",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/11/10-08-20181533907369main-image-300x300.jpg",
+   "url": "https://utopiacam.com/shop/cosmo-1200-il-hdmisdi-video-set/",
+   "sku": "WIR-T12"
+  },
+  {
+   "id": 4069,
+   "name": "COSMO-400-IL HDMI\\SDI Video Set",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/09/Untitled11111111-300x300.png",
+   "url": "https://utopiacam.com/shop/hdmisdi-wireless-video-set/",
+   "sku": "WIR-HLT"
+  },
+  {
+   "id": 11461,
+   "name": "COSMO-600-IL HDMI&SDI Video Set",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/08/cosmo600.1.jpg",
+   "url": "https://utopiacam.com/shop/cosmo-600-il-hdmisdi-video-set/",
+   "sku": "WIR-C6T"
+  },
+  {
+   "id": 16814,
+   "name": "MARS 400S PRO HDMI&SDI Video Set",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/03/MARS3.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/mars-400s-pro-hdmisdi-video-set/",
+   "sku": "WIR-TM4P"
+  },
+  {
+   "id": 11566,
+   "name": "Monitor Cage V1",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/09/mc-300x300.png",
+   "url": "https://utopiacam.com/shop/monitor-cage-v1/",
+   "sku": "VA-MC"
+  },
+  {
+   "id": 28281,
+   "name": "Pyro 7 Wireless Transceiver Monitor",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480,
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2025/05/1721897155_1838298-300x300.jpg",
+   "url": "https://utopiacam.com/shop/pyro-7-wireless-transceiver-monitor/",
+   "sku": "MON-PYR7"
+  },
+  {
+   "id": 28259,
+   "name": "Pyro S 4K HDMI/SDI Wireless Video",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2025/05/1716367526_1824709-300x300.jpg",
+   "url": "https://utopiacam.com/shop/pyro-s-4k-hdmi-sdi-wireless-video/",
+   "sku": "WIR-PSS"
+  },
+  {
+   "id": 30855,
+   "name": "Pyro Ultra 4K HDMI/SDI Wireless Video Transmission System",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/06/hollyland-hl-pyro-ultra-1tx-1rx-pyro-ultra-4k-hdmi-sdi-1776502026-1962338-300x300.jpg",
+   "url": "https://utopiacam.com/shop/pyro-ultra-4k-hdmi-sdi-wireless-video-transmission-system/",
+   "sku": "WIR-PUR"
+  },
+  {
+   "id": 17619,
+   "name": "Syscom 421 1800 Wireless Transmission System SDI/HDMI/IP 4*TX + 1RX",
+   "brand": "hollyland",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/06/421.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/syscom-421-1800-wireless-transmission-system-sdi-hdmi-ip-4tx-1rx/",
+   "sku": "WIR-SYS"
+  },
+  {
+   "id": 10807,
+   "name": "CFast/SD/MicroSD to USB-C Card Reader",
+   "brand": "hyper",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/04/sanho_sad209b_hyperdrive_pro_card_reader_black_1520948340000_1394557.jpg",
+   "url": "https://utopiacam.com/shop/cfastsdmicrosd-usb-c-card-reader/",
+   "sku": "VTR-SCM"
+  },
+  {
+   "id": 2247,
+   "name": "BR-HD50E",
+   "brand": "jvc",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/50.jpg",
+   "url": "https://utopiacam.com/shop/br-hd50e/",
+   "sku": "VTR-JVC"
+  },
+  {
+   "id": 4378,
+   "name": "VM-42 Switcher, Distribution Amplifier",
+   "brand": "kramer",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/10/kramer_vm42_lg.jpg",
+   "url": "https://utopiacam.com/shop/vm-42-switcher-distribution-amplifier/",
+   "sku": "VM-VSP-02"
+  },
+  {
+   "id": 4327,
+   "name": "VS-55V 5×1 Composite Video Switcher",
+   "brand": "kramer",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/10/vs-55v-300x300.jpg",
+   "url": "https://utopiacam.com/shop/vs-55v-5x1-composite-video-switcher/",
+   "sku": "VA-VSP"
+  },
+  {
+   "id": 4373,
+   "name": "VS-81V 8×1 Composite Video Switcher",
+   "brand": "kramer",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/10/vs-81v.jpg",
+   "url": "https://utopiacam.com/shop/vs-81v-8x1-composite-video-switcher/",
+   "sku": "VA-VSP-412"
+  },
+  {
+   "id": 2386,
+   "name": "256GB CFast Memory Card",
+   "brand": "lexar",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/256.jpg",
+   "url": "https://utopiacam.com/shop/256gb-cfast-memory-card/",
+   "sku": "VTR-CFS"
+  },
+  {
+   "id": 2474,
+   "name": "32GB CF Card",
+   "brand": "lexar",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/CF32.jpg",
+   "url": "https://utopiacam.com/shop/32gb-cf-card/",
+   "sku": "VTR-CF"
+  },
+  {
+   "id": 2414,
+   "name": "32GB MicroSD Card",
+   "brand": "lexar",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/MSD-32.jpg",
+   "url": "https://utopiacam.com/shop/32gb-microsd-card/",
+   "sku": "VTR-SDM"
+  },
+  {
+   "id": 2471,
+   "name": "64GB SD Card",
+   "brand": "lexar",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/sd300.jpg",
+   "url": "https://utopiacam.com/shop/64gb-sd-card-2/",
+   "sku": "VTR-300"
+  },
+  {
+   "id": 2484,
+   "name": "CFast Card Reader",
+   "brand": "lexar",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/CFAST-R.jpg",
+   "url": "https://utopiacam.com/shop/cfast-card-reader/",
+   "sku": "VTR-CFSR"
+  },
+  {
+   "id": 2477,
+   "name": "SD/CF Card Reader",
+   "brand": "lexar",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/SD-CF-R.jpg",
+   "url": "https://utopiacam.com/shop/sdcf-reader/",
+   "sku": "VTR-CSR"
+  },
+  {
+   "id": 1175,
+   "name": "“9 BT-LH910G",
+   "brand": "panasonic",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/8.4.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bt-lh910g/",
+   "sku": "MON-8.4"
+  },
+  {
+   "id": 29248,
+   "name": "“QLED SCREEN 50",
+   "brand": "panasonic",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2025/10/338436-300x300.jpg",
+   "url": "https://utopiacam.com/shop/qled-screen-50/",
+   "sku": "MON-PR50"
+  },
+  {
+   "id": 2395,
+   "name": "256GB expressP2 Memory Card",
+   "brand": "panasonic",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/256-P2-exp.jpg",
+   "url": "https://utopiacam.com/shop/64gb-expressp2-memory-card/",
+   "sku": "VTR-P2E"
+  },
+  {
+   "id": 2389,
+   "name": "32GB P2 Memory Card",
+   "brand": "panasonic",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/P2-32.jpg",
+   "url": "https://utopiacam.com/shop/32gb-p2-memory-card/",
+   "sku": "VTR-P32"
+  },
+  {
+   "id": 12504,
+   "name": "512GB expressP2 Memory Card",
+   "brand": "panasonic",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/12/panasonic_auxp0512bg_512gb_expressp2_memory_card_1259755-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/512gb-expressp2-memory-card/",
+   "sku": "VTR-P25"
+  },
+  {
+   "id": 2392,
+   "name": "64GB P2 Memory Card",
+   "brand": "panasonic",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/P264.jpg",
+   "url": "https://utopiacam.com/shop/64gb-p2-memory-card/",
+   "sku": "VTR-P64"
+  },
+  {
+   "id": 2490,
+   "name": "AU-XPD1 expressP2 Card Reader",
+   "brand": "panasonic",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/EXPRESS-P2-Card-R.jpg",
+   "url": "https://utopiacam.com/shop/au-xpd1-expressp2-card-reader/",
+   "sku": "VTR-P2R"
+  },
+  {
+   "id": 9479,
+   "name": "BT-LH2170 “21.5",
+   "brand": "panasonic",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2017/05/btlh2170_panasonic_01_web_01_web.jpg",
+   "url": "https://utopiacam.com/shop/bt-lh2170-21-5/",
+   "sku": "MON-L21"
+  },
+  {
+   "id": 954,
+   "name": "TH-L39EM5X “39",
+   "brand": "panasonic",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/L40.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/th-l39em5x/",
+   "sku": "MON-L40"
+  },
+  {
+   "id": 13525,
+   "name": "7″ BM7 2100nit",
+   "brand": "portkeys",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2019/05/1_001-1-300x300.png",
+   "url": "https://utopiacam.com/shop/bm7-2100nit/",
+   "sku": "MON-BM7"
+  },
+  {
+   "id": 14797,
+   "name": "BM5 2000nit “5.2",
+   "brand": "portkeys",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2019/11/aaa-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bm5-2000nit-5-2-2/",
+   "sku": "MON-BM5"
+  },
+  {
+   "id": 17819,
+   "name": "BM5-WR 2200nit “5.2",
+   "brand": "portkeys",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/07/BM5WR-2-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bm5-wr-2200nit-5-2/",
+   "sku": "MON-BM5W"
+  },
+  {
+   "id": 28829,
+   "name": "BM5IV 5.5″ 2000nit",
+   "brand": "portkeys",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2025/08/1731348017-1856882-300x300.jpg",
+   "url": "https://utopiacam.com/shop/portkeys-bm5iv-5-5-2200nit/",
+   "sku": "MON-BM54"
+  },
+  {
+   "id": 25955,
+   "name": "BM7 II DS 7″ High-Bright Monitor",
+   "brand": "portkeys",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/07/1682952912_1764518-300x300.jpg",
+   "url": "https://utopiacam.com/shop/portkeys-bm7-ii-ds-7-high-bright-monitor/",
+   "sku": "MON-BM72"
+  },
+  {
+   "id": 10695,
+   "name": "OBM-U240 Native UHD 4K HDR LCD “24",
+   "brand": "postium",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/03/1484605363000_1310930.jpg",
+   "url": "https://utopiacam.com/shop/obm-u240-24-native-uhd-4k-hdr-lcd-monitor/",
+   "sku": "MON-244K"
+  },
+  {
+   "id": 25061,
+   "name": "Digital CFexpress Type B USB 4.0 Single-Slot Card Reader",
+   "brand": "prograde",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1693925115_1785041-300x300.jpg",
+   "url": "https://utopiacam.com/shop/prograde-digital-cfexpress-type-b-usb-4-0-single-slot-card-reader/",
+   "sku": "VTR-CFE4"
+  },
+  {
+   "id": 12527,
+   "name": "Mini-Mag SSD 480GB",
+   "brand": "red",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/12/red_digital_cinema_750_0090_red_mini_mag_memory_cardtridge_1346527.jpg",
+   "url": "https://utopiacam.com/shop/mini-mag-ssd-480gb-%d7%94%d7%a2%d7%aa%d7%a7/",
+   "sku": "VTR-MNM"
+  },
+  {
+   "id": 12497,
+   "name": "RED Station RED Mini-Mag",
+   "brand": "red",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/12/1-9-300x300.jpg",
+   "url": "https://utopiacam.com/shop/red-station-red-mini-mag/",
+   "sku": "VTR-SMM"
+  },
+  {
+   "id": 2398,
+   "name": "REDMAG 1.8″ SSD 256GB",
+   "brand": "red",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/REDMAG-256-300x300.jpg",
+   "url": "https://utopiacam.com/shop/redmag-1-8-ssd-256gb/",
+   "sku": "VTR-RMG"
+  },
+  {
+   "id": 2498,
+   "name": "STATION REDMAG 1.8″ Mini",
+   "brand": "red",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/redstationmini-usb3-300x300.png",
+   "url": "https://utopiacam.com/shop/station-redmag-1-8-mini/",
+   "sku": "VTR-RS3"
+  },
+  {
+   "id": 27893,
+   "name": "AT-2151HD",
+   "brand": "ruige",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2025/05/index02-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/at-2151hd/",
+   "sku": "MON-M215"
+  },
+  {
+   "id": 2383,
+   "name": "128GB CFast Memory Card",
+   "brand": "sandisk",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/CFAST.jpg",
+   "url": "https://utopiacam.com/shop/128gb-cfast-memory-card/",
+   "sku": "VTR-CFT"
+  },
+  {
+   "id": 2468,
+   "name": "32GB SD Card",
+   "brand": "sandisk",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/SD32.jpg",
+   "url": "https://utopiacam.com/shop/32gb-sd-card/",
+   "sku": "VTR-HMC"
+  },
+  {
+   "id": 2465,
+   "name": "64GB SD Card",
+   "brand": "sandisk",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/SD64.jpg",
+   "url": "https://utopiacam.com/shop/64gb-sd-card/",
+   "sku": "VTR-SD6"
+  },
+  {
+   "id": 25939,
+   "name": "Memory 7 Pro 7″ Touchscreen 4K HDMI/3G-SDI Recording Monitor",
+   "brand": "shimbol",
+   "dept": 900001,
+   "subcats": [
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/07/1710162934_1815347-300x300.jpg",
+   "url": "https://utopiacam.com/shop/shimbol-memory-7-pro-7-touchscreen-4k/",
+   "sku": "MON-ME7"
+  },
+  {
+   "id": 24130,
+   "name": "Memory I 5.5″ 3D LUT 4K HDMI Touchscreen Recorder/Monitor",
+   "brand": "shimbol",
+   "dept": 900001,
+   "subcats": [
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/10/1675257920_1746194-300x300.jpg",
+   "url": "https://utopiacam.com/shop/memory-i-5-5-3d-lut-4k-hdmi-touchscreen-recorder-monitor/",
+   "sku": "MON-MEM"
+  },
+  {
+   "id": 19346,
+   "name": "1303 HDR 13",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/01/1303-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/1303-hdr-13/",
+   "sku": "MON-1303"
+  },
+  {
+   "id": 24661,
+   "name": "702 Touch 7″ Monitor with Bolt 6 750 RX",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    480,
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/08/1-3-300x300.jpg",
+   "url": "https://utopiacam.com/shop/702-touch-7-monitor-with-bolt-6-750-rx/",
+   "sku": "MON-706"
+  },
+  {
+   "id": 16887,
+   "name": "702 Touch 7″ with Bolt 4K Receiver",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    480,
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/03/702.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/702-touch-7-with-bolt-4k-receiver/",
+   "sku": "MON-702"
+  },
+  {
+   "id": 15090,
+   "name": "703 UltraBright",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2020/01/MON-703U_SL_01-300x300.jpg",
+   "url": "https://utopiacam.com/shop/703-ultrabright/",
+   "sku": "MON-703"
+  },
+  {
+   "id": 25700,
+   "name": "Cine 13″ 4K High-Bright Monitor",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/06/11-300x300.webp",
+   "url": "https://utopiacam.com/shop/smallhd-cine-13-4k-high-bright-monitor/",
+   "sku": "MON-C13"
+  },
+  {
+   "id": 31020,
+   "name": "Cine 24″ 4K High Bright Pro Monitor",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/07/smallhd-mon-cine-24-cine-24-4k-high-bright-1596450972-1580839-300x300.jpg",
+   "url": "https://utopiacam.com/shop/cine-24-4k-high-bright-pro-monitor/",
+   "sku": "MON-C24"
+  },
+  {
+   "id": 25033,
+   "name": "Cine 7 Monitor with Bolt 6 750 RX",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    480,
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1705334127_1743468-300x300.jpg",
+   "url": "https://utopiacam.com/shop/smallhd-cine-7-monitor-with-bolt-6-750-rx/",
+   "sku": "MON-C76"
+  },
+  {
+   "id": 28238,
+   "name": "ULTRA 5 Bolt 6 TX 750 Monitor",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    480,
+    218,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/11/1662682088_1721204-300x300.jpg",
+   "url": "https://utopiacam.com/shop/ultra-5-bolt-6-tx-750-monitor/",
+   "sku": "MON-U56-1"
+  },
+  {
+   "id": 26691,
+   "name": "ULTRA 5 Bolt 6 TX 750 Monitor",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    480,
+    218,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/11/1662682088_1721204-300x300.jpg",
+   "url": "https://utopiacam.com/shop/smallhd-ultra-5-bolt-6-tx-750-monitor/",
+   "sku": "MON-U56"
+  },
+  {
+   "id": 31310,
+   "name": "ULTRA 7 Bolt 6 RX 1500 Monitor",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    480,
+    218,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/08/1755022399-img-2551471-300x300.jpg",
+   "url": "https://utopiacam.com/shop/ultra-7-bolt-6-rx-1500-monitor/",
+   "sku": "MON-U7R6"
+  },
+  {
+   "id": 25716,
+   "name": "Ultra 7 UHD 4K On-Camera Touchscreen Monitor",
+   "brand": "smallhd",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/06/1705535184_1795838-300x300.jpg",
+   "url": "https://utopiacam.com/shop/smallhd-ultra-7-uhd-4k-on-camera-touchscreen-monitor/",
+   "sku": "MON-U7"
+  },
+  {
+   "id": 2411,
+   "name": "128GB SxS PRO+ Memory Card",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/SXS128.jpg",
+   "url": "https://utopiacam.com/shop/128gb-sxs-pro-memory-card/",
+   "sku": "VTR-128"
+  },
+  {
+   "id": 2402,
+   "name": "128GB XQD Memory Card",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/XQD128.jpg",
+   "url": "https://utopiacam.com/shop/128gb-xqd-memory-card/",
+   "sku": "VTR-X28"
+  },
+  {
+   "id": 21589,
+   "name": "160GB CFexpress Type A TOUGH Memory Card",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/11/TOGCH-300x300.jpg",
+   "url": "https://utopiacam.com/shop/160gb-cfexpress-type-a-tough-memory-card/",
+   "sku": "VTR-T"
+  },
+  {
+   "id": 21610,
+   "name": "1TB AXS S66 Memory Card",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1637601641_1672839-300x300.jpg",
+   "url": "https://utopiacam.com/shop/1tb-axs-s66-memory-card/",
+   "sku": "VTR-AX1T"
+  },
+  {
+   "id": 2405,
+   "name": "32GB SxS Memory Card",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/SXS32.jpg",
+   "url": "https://utopiacam.com/shop/32gb-sxs-memory-card/",
+   "sku": "VTR-S32"
+  },
+  {
+   "id": 2408,
+   "name": "64GB SxS Memory Card Pro",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/SXS64.jpg",
+   "url": "https://utopiacam.com/shop/64gb-sxs-memory-card-pro/",
+   "sku": "VTR-64G"
+  },
+  {
+   "id": 2588,
+   "name": "AXS-512S24",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/AXSM.jpg",
+   "url": "https://utopiacam.com/shop/axs-512s24/",
+   "sku": "VTR-F55"
+  },
+  {
+   "id": 12478,
+   "name": "AXS-A512S48",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/12/1-6.jpg",
+   "url": "https://utopiacam.com/shop/axs-a512s48/",
+   "sku": "VTR-R7C"
+  },
+  {
+   "id": 2585,
+   "name": "AXS-CR1 Card Reader",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/ACR.jpg",
+   "url": "https://utopiacam.com/shop/axs-cr1-card-reader/",
+   "sku": "VTR-MCR"
+  },
+  {
+   "id": 12468,
+   "name": "AXS-R7 Recorder",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/12/1-5.jpg",
+   "url": "https://utopiacam.com/shop/axs-r7-recorder/",
+   "sku": "VTR-R7"
+  },
+  {
+   "id": 25057,
+   "name": "Digital 1TB CFexpress 4.0 Type B Memory Card",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1700492724_1796985-300x300.jpg",
+   "url": "https://utopiacam.com/shop/prograde-digital-1tb-cfexpress-4-0-type-b-memory-card/",
+   "sku": "VTR-CFB"
+  },
+  {
+   "id": 2237,
+   "name": "HVR-M10E",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/M10-300x161.jpg",
+   "url": "https://utopiacam.com/shop/hvr-m10e/",
+   "sku": "VTR-M10"
+  },
+  {
+   "id": 2231,
+   "name": "HVR-M15E",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/M15E-300x300.jpeg",
+   "url": "https://utopiacam.com/shop/hvr-m15e/",
+   "sku": "VTR-M15"
+  },
+  {
+   "id": 2203,
+   "name": "HVR-M35E",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/M35E-300x300.jpeg",
+   "url": "https://utopiacam.com/shop/hvr-m35e/",
+   "sku": "VTR-M35"
+  },
+  {
+   "id": 12052,
+   "name": "J-30SDI Compact Betacam Series Player",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/11/J30SDI-10825-300x300.jpg",
+   "url": "https://utopiacam.com/shop/j-30sdi-compact-betacam-series-player/",
+   "sku": "VTR-DIG"
+  },
+  {
+   "id": 9489,
+   "name": "LMD-A170 LCD “17",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2017/05/lmda170_sony_01_web-300x300.jpg",
+   "url": "https://utopiacam.com/shop/lmd-a170-17/",
+   "sku": "MON-L17"
+  },
+  {
+   "id": 30907,
+   "name": "LMD-A180 18.4″ LCD",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/06/sony-lmd-a180-18-full-hd-high-1695892821-1787934-300x300.jpg",
+   "url": "https://utopiacam.com/shop/lmd-a180-18-4-lcd/",
+   "sku": "MON-18A"
+  },
+  {
+   "id": 17687,
+   "name": "LMD-B240 24″ HD",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/06/S24.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/lmd-b240-24-hd/",
+   "sku": "MON-S24"
+  },
+  {
+   "id": 10311,
+   "name": "MCX-500 Streaming/Recording Switcher",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2017/11/1472054501000_IMG_674858.jpg",
+   "url": "https://utopiacam.com/shop/mcx-500-streamingrecording-switcher/",
+   "sku": "VA-MIX"
+  },
+  {
+   "id": 897,
+   "name": "PVM-1741 “17",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/O17.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/pvm-1741/",
+   "sku": "MON-O17"
+  },
+  {
+   "id": 942,
+   "name": "PVM-A174",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/A17.1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/pvm-a174/",
+   "sku": "MON-OL7"
+  },
+  {
+   "id": 2480,
+   "name": "SXS Card Reader",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/SXS-R.jpg",
+   "url": "https://utopiacam.com/shop/sxs-card-reader/",
+   "sku": "VTR-R3"
+  },
+  {
+   "id": 2487,
+   "name": "XQD Card Reader",
+   "brand": "sony",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/07/XQD-READ.jpg",
+   "url": "https://utopiacam.com/shop/xqd-card-reader/",
+   "sku": "VTR-XQD"
+  },
+  {
+   "id": 29884,
+   "name": "K15 15.4″ FHD 1500nit Monitor",
+   "brand": "swit",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2025/12/091049108335-300x300.jpg",
+   "url": "https://utopiacam.com/shop/swit-k15/",
+   "sku": "MON-K15"
+  },
+  {
+   "id": 14448,
+   "name": "S-1093H “9",
+   "brand": "swit",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2019/10/swit_s_1093h_a_b_c_d_f_p_s_u_s_1093f_9_full_hd_1499169928_1295186-300x300.jpg",
+   "url": "https://utopiacam.com/shop/s-1093h-9/",
+   "sku": "MON-SWI9"
+  },
+  {
+   "id": 26328,
+   "name": "P31 External SSD 2TB",
+   "brand": "t-create",
+   "dept": 900001,
+   "subcats": [
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/09/04-300x300.jpg",
+   "url": "https://utopiacam.com/shop/tc-p31-external-ssd-2tb/",
+   "sku": "VTR-TC2"
+  },
+  {
+   "id": 19990,
+   "name": "Antenna Array for Bolt 4K",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/03/TD1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/antenna-array-for-bolt-4k/",
+   "sku": "WIR-SQB"
+  },
+  {
+   "id": 14972,
+   "name": "Bolt 4K 750 12G-SDI/HDMI Wireless Video set",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2020/01/teradek_10_2100_bolt_750_12g_sdi_hdmi_wireless_1563891688_1473021-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bolt-4k-750-sdi-hdmi-wireless-video-set/",
+   "sku": "WIR-T4"
+  },
+  {
+   "id": 17027,
+   "name": "Bolt 4K 750 LT 3G-SDI/HDMI Wireless Video set",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/03/4k.1-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bolt-4k-750-lt-3g-sdi-hdmi-wireless-video-set/",
+   "sku": "WIR-LTT"
+  },
+  {
+   "id": 19604,
+   "name": "Bolt 4K LT 1500 3G-SDI/HDMI Wireless Transmitter and Receiver",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/03/1500-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bolt-4k-lt-1500-3g-sdi-hdmi-wireless-transmitter-and-receiver/",
+   "sku": "WIR-T15"
+  },
+  {
+   "id": 20030,
+   "name": "Bolt 4K LT 3G-SDI MAX 5000 Deluxe Kit",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2022/04/max-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bolt-4k-lt-3g-sdi-max-deluxe-kit/",
+   "sku": "WIR-TMX"
+  },
+  {
+   "id": 23608,
+   "name": "Bolt 500 XT 3G-SDI/HDMI Wireless Transmitter and Receiver Set",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/08/1-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bolt-500-xt-3g-sdi-hdmi-wireless/",
+   "sku": "WIR-5XT"
+  },
+  {
+   "id": 23926,
+   "name": "Bolt 6 LT 750 3G-SDI/HDMI Wireless Video Set",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2023/08/1662681512_1723703-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bolt-6-lt-750-3g-sdi-hdmi-wireless-set/",
+   "sku": "WIR-6LT"
+  },
+  {
+   "id": 10926,
+   "name": "Link Dual-Band Wi-Fi Router",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/04/teradek_10_0050_link_wireless_access_point_1348450.jpg",
+   "url": "https://utopiacam.com/shop/link-dual-band-wi-fi-router-2/",
+   "sku": "WIR-LNK"
+  },
+  {
+   "id": 31663,
+   "name": "Serv 4K",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/08/1709046950-img-2196942-300x300.jpg",
+   "url": "https://utopiacam.com/shop/serv-4k/",
+   "sku": "WIR-TS4"
+  },
+  {
+   "id": 10894,
+   "name": "Serv Pro",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/04/1499964349000_1348460.jpg",
+   "url": "https://utopiacam.com/shop/serv-pro/",
+   "sku": "WIR-SRV"
+  },
+  {
+   "id": 31560,
+   "name": "Teradek Serv Micro",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/08/teradek-10-0744-serv-micro-1656007528-1713075-300x300.jpg",
+   "url": "https://utopiacam.com/shop/teradek-serv-micro/",
+   "sku": "WIR-SRV-1"
+  },
+  {
+   "id": 16147,
+   "name": "Vidiu GO",
+   "brand": "teradek",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2020/10/VIDIU-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/vidiu-go/",
+   "sku": "WIR-TVG"
+  },
+  {
+   "id": 1182,
+   "name": "Starlite HD5″-ARRI",
+   "brand": "transvideo",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/05/HD5.1-300x300.jpeg",
+   "url": "https://utopiacam.com/shop/bt-lh910g-copy/",
+   "sku": "MON-HD5"
+  },
+  {
+   "id": 25505,
+   "name": "Bi-Directional SFP Dual Ethernet Transceivers",
+   "brand": "utopia",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/05/DSC00506-300x300.jpg",
+   "url": "https://utopiacam.com/shop/bi-directional-sfp-dual-ethernet-transceivers/",
+   "sku": "VA-SIP"
+  },
+  {
+   "id": 3128,
+   "name": "Compozit to VGA converter",
+   "brand": "utopia",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/COM-TO-VGA.jpg",
+   "url": "https://utopiacam.com/shop/compozit-to-vga-converter/",
+   "sku": "VA-CTV"
+  },
+  {
+   "id": 13006,
+   "name": "F7S “7",
+   "brand": "utopia",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2019/02/sasssssssssssss-300x300.jpg",
+   "url": "https://utopiacam.com/shop/f7s/",
+   "sku": "MON-F7S"
+  },
+  {
+   "id": 25770,
+   "name": "Quad 3G Transmitter/Receiver Extender Kit over Duplex",
+   "brand": "utopia",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2024/06/1521040522_IMG_957688-300x300.jpg",
+   "url": "https://utopiacam.com/shop/digital-forecast-quad-3g-transmitter-receiver/",
+   "sku": "VA-QTX"
+  },
+  {
+   "id": 3137,
+   "name": "VGA to Compozit converter",
+   "brand": "utopia",
+   "dept": 900001,
+   "subcats": [
+    266
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/08/VTC.jpg",
+   "url": "https://utopiacam.com/shop/vga-to-compozit-converter/",
+   "sku": "VA-VTC"
+  },
+  {
+   "id": 2182,
+   "name": "PIX 240i Monitor & Recorder “5",
+   "brand": "video-devices",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/PIX-240.jpg",
+   "url": "https://utopiacam.com/shop/pix-240i-monitor-recorder/",
+   "sku": "VTR-VRM"
+  },
+  {
+   "id": 2185,
+   "name": "PIX E5 Monitor & Recorder “5",
+   "brand": "video-devices",
+   "dept": 900001,
+   "subcats": [
+    218,
+    222,
+    260
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2016/06/E5.jpg",
+   "url": "https://utopiacam.com/shop/pix-e5/",
+   "sku": "VTR-PE5"
+  },
+  {
+   "id": 30868,
+   "name": "WL087 ll Wireless Transmission Set",
+   "brand": "vrriis",
+   "dept": 900001,
+   "subcats": [
+    480
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/06/screenshot-2026-06-25-092145-300x300.jpg",
+   "url": "https://utopiacam.com/shop/wl087-ll-wireless-transmission-set/",
+   "sku": "WIR-VP2"
+  },
+  {
+   "id": 30469,
+   "name": "12G-SDI Distribution Amplifier",
+   "brand": "wooden-camera",
+   "dept": 900001,
+   "subcats": [
+    264
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2026/04/1748436386-1893134-300x300.jpg",
+   "url": "https://utopiacam.com/shop/12g-sdi-distribution-amplifier/",
+   "sku": "VA-4KDA"
+  },
+  {
+   "id": 18506,
+   "name": "Canon C500 Mark II & C300 Mark III Z-Finder",
+   "brand": "zacuto",
+   "dept": 900001,
+   "subcats": [
+    218,
+    220,
+    222
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2021/10/erer-1-300x300.jpg",
+   "url": "https://utopiacam.com/shop/c300-mk3-c500-mk-ii-lcd/",
+   "sku": "VWF-303"
+  },
+  {
+   "id": 10700,
+   "name": "Gratical Eye Micro OLED EVF",
+   "brand": "zacuto",
+   "dept": 900001,
+   "subcats": [
+    218,
+    224
+   ],
+   "image": "https://utopiacam.com/wp-content/uploads/2018/03/1460555985000_IMG_610396.jpg",
+   "url": "https://utopiacam.com/shop/gratical-eye-micro-oled-evf/",
+   "sku": "VWF-ZAC"
+  },
+  {
    "id": 18341,
    "name": "קליפס גריפ  GRIP CLIPS",
    "brand": null,
@@ -8045,18 +10409,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2016/10/GreenBull_BX200__5a9279ad53f4b.jpg",
    "url": "https://utopiacam.com/shop/dolly-slider/",
    "sku": "GRP-DSL"
-  },
-  {
-   "id": 11566,
-   "name": "Monitor Cage V1",
-   "brand": "hollyland",
-   "dept": 12,
-   "subcats": [
-    325
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/09/mc-300x300.png",
-   "url": "https://utopiacam.com/shop/monitor-cage-v1/",
-   "sku": "VA-MC"
   },
   {
    "id": 27293,
@@ -9582,32 +11934,6 @@
    "sku": "FIL-AM12"
   },
   {
-   "id": 18995,
-   "name": "Connect 4K",
-   "brand": null,
-   "dept": 9,
-   "subcats": [
-    262,
-    266,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/12/atomos_atomcon001_connect_stream_4k_1600167934_1593913-300x300.jpg",
-   "url": "https://utopiacam.com/shop/connect-4k/",
-   "sku": "VA-4VC"
-  },
-  {
-   "id": 21592,
-   "name": "Digital 256GB UHS-II SDXC Memory Card",
-   "brand": null,
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1568212705_1499810-300x300.jpg",
-   "url": "https://utopiacam.com/shop/digital-256gb-uhs-ii-sdxc-memory-card/",
-   "sku": "VTR-2V90"
-  },
-  {
    "id": 31516,
    "name": "Elgato Stream Deck MK2",
    "brand": null,
@@ -9658,42 +11984,6 @@
    "sku": "FIL-YLB"
   },
   {
-   "id": 31251,
-   "name": "AB4000 CCU",
-   "brand": "abonair",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/07/images-300x300.jpg",
-   "url": "https://utopiacam.com/shop/ab4000-ccu/",
-   "sku": "WIR-AB4"
-  },
-  {
-   "id": 13568,
-   "name": "AB512 with CCU Control",
-   "brand": "abonair",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2019/05/DSC00251-300x300.jpg",
-   "url": "https://utopiacam.com/shop/abonair-ab512-ccu/",
-   "sku": "WIR-A512"
-  },
-  {
-   "id": 25113,
-   "name": "CineView SE Multi-Spectrum Wireless Video Set",
-   "brand": "accsoon",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1660520957_IMG_1813761-300x300.jpg",
-   "url": "https://utopiacam.com/shop/accsoon-cineview-se-multi-spectrum-wireless-video-set/",
-   "sku": "WIR-TACV"
-  },
-  {
    "id": 5373,
    "name": "UPS PRV850",
    "brand": "advice",
@@ -9704,78 +11994,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2017/01/prvmain800.png",
    "url": "https://utopiacam.com/shop/ups-prv850/",
    "sku": "ACS-UPS"
-  },
-  {
-   "id": 3288,
-   "name": "DVI to SDI Mini-Converter",
-   "brand": "aja",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/ROI.jpg",
-   "url": "https://utopiacam.com/shop/dvi-to-sdi-mini-converter/",
-   "sku": "VA-HTS-641"
-  },
-  {
-   "id": 3275,
-   "name": "HD to SD-SDI & Analog Downconverter",
-   "brand": "aja",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/HD10MD3.jpg",
-   "url": "https://utopiacam.com/shop/hd-to-sd-sdi-analog-downconverter/",
-   "sku": "VA-HSD"
-  },
-  {
-   "id": 3316,
-   "name": "HD/SD-SDI Analog Audio Embedder / Disembedder",
-   "brand": "aja",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/EMBEDE.jpg",
-   "url": "https://utopiacam.com/shop/hdsd-sdi-analog-audio-embedder-disembedder/",
-   "sku": "VA-EMB"
-  },
-  {
-   "id": 3263,
-   "name": "HDMI to SD/HD-SDI Converter",
-   "brand": "aja",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/HA5.jpg",
-   "url": "https://utopiacam.com/shop/hdmi-to-sdhd-sdi-converter/",
-   "sku": "VA-HTS"
-  },
-  {
-   "id": 3281,
-   "name": "Up/Down/Cross Mini-Converter",
-   "brand": "aja",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/UDC.jpg",
-   "url": "https://utopiacam.com/shop/updowncross-mini-converter/",
-   "sku": "VA-165"
-  },
-  {
-   "id": 3096,
-   "name": "CONNEX HDMI Wireless Video set",
-   "brand": "amimon",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/amimon.jpg",
-   "url": "https://utopiacam.com/shop/connex-hdmi-wireless-video-set/",
-   "sku": "WIR-CNN"
   },
   {
    "id": 3278,
@@ -9800,78 +12018,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2016/08/AMP.Z7.1-300x300.jpg",
    "url": "https://utopiacam.com/shop/underwater-housing-for-z7/",
    "sku": "VA-Z7H"
-  },
-  {
-   "id": 21606,
-   "name": "128GB AV Pro Mk 2 UHS-II SDXC Memory Card",
-   "brand": "angelbird",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1579192097_1527888-300x300.jpg",
-   "url": "https://utopiacam.com/shop/128gb-av-pro-mk-2-uhs-ii-sdxc-memory-card/",
-   "sku": "VTR-V90"
-  },
-  {
-   "id": 22894,
-   "name": "128GB UHS-II SDXC Memory Card",
-   "brand": "angelbird",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/04/1568212705_1499808-300x300.jpg",
-   "url": "https://utopiacam.com/shop/128gb-uhs-ii-sdxc-memory-card/",
-   "sku": "VTR-V60"
-  },
-  {
-   "id": 21598,
-   "name": "512GB AV PRO CFexpress 2.0 Type B SE Memory Card",
-   "brand": "angelbird",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1639482491_1678305-300x300.jpg",
-   "url": "https://utopiacam.com/shop/512gb-av-pro-cfexpress-2-0-type-b-se-memory-card/",
-   "sku": "VTR-CFAN"
-  },
-  {
-   "id": 26139,
-   "name": "13″ MacBook Air M3",
-   "brand": "apple",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/08/1709549215_1814977-300x300.jpg",
-   "url": "https://utopiacam.com/shop/apple-13-macbook-air/",
-   "sku": "VTR-ARM3"
-  },
-  {
-   "id": 2619,
-   "name": "iPad mini",
-   "brand": "apple",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/IPAD-300x300.jpg",
-   "url": "https://utopiacam.com/shop/ipad-mini/",
-   "sku": "VTR-PAD"
-  },
-  {
-   "id": 2359,
-   "name": "MacBook Pro",
-   "brand": "apple",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/MAC.jpg",
-   "url": "https://utopiacam.com/shop/macbookpro/",
-   "sku": "VTR-MAC"
   },
   {
    "id": 30946,
@@ -9950,43 +12096,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2019/03/2-300x300.png",
    "url": "https://utopiacam.com/shop/clm-4-motor/",
    "sku": "VA-LM4"
-  },
-  {
-   "id": 21144,
-   "name": "Codex Compact Drive 1TB",
-   "brand": "arri",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/08/1T-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/codex-compact-drive-1tb/",
-   "sku": "VTR-CCDA"
-  },
-  {
-   "id": 21152,
-   "name": "Codex Compact Drive 2TB",
-   "brand": "arri",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/08/2T-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/codex-compact-drive-2tb/",
-   "sku": "VTR-CCDA"
-  },
-  {
-   "id": 1370,
-   "name": "Director’s Viewfinder w/ PL Mount",
-   "brand": "arri",
-   "dept": 9,
-   "subcats": [
-    218,
-    224
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/DRF.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/directors-viewfinder-w-pl-mount/",
-   "sku": "VWF-DRF"
   },
   {
    "id": 15165,
@@ -10294,216 +12403,6 @@
    "sku": "WIR-ZMU"
   },
   {
-   "id": 1261,
-   "name": "DM-3105 “5",
-   "brand": "astro",
-   "dept": 9,
-   "subcats": [
-    218,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/MAST.1.jpg",
-   "url": "https://utopiacam.com/shop/dm-3105/",
-   "sku": "MON-MAST"
-  },
-  {
-   "id": 1249,
-   "name": "WM-3014 “6",
-   "brand": "astro",
-   "dept": 9,
-   "subcats": [
-    218,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/AST.1.jpg",
-   "url": "https://utopiacam.com/shop/wm-3014/",
-   "sku": "MON-AST"
-  },
-  {
-   "id": 30991,
-   "name": "Ninja 5.2″ 4K HDMI Recording Monitor",
-   "brand": "atomos",
-   "dept": 9,
-   "subcats": [
-    218,
-    260,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/07/atomos-atomnj004-ninja-5-recording-monitor-1691984740-1779413-300x300.jpg",
-   "url": "https://utopiacam.com/shop/ninja-5-2-4k-hdmi-recording-monitor/",
-   "sku": "VTR-NJ"
-  },
-  {
-   "id": 30962,
-   "name": "Shogun CONNECT 7″ HDR Video Monitor & Recorder",
-   "brand": "atomos",
-   "dept": 9,
-   "subcats": [
-    218,
-    260,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/07/e684286daa5248efe0baba665487e3c0-300x300.webp",
-   "url": "https://utopiacam.com/shop/shogun-connect-7-hdr-video-monitor-recorder/",
-   "sku": "VTR-SC7"
-  },
-  {
-   "id": 10301,
-   "name": "Sumo 19″ HDR Monitor Recorder",
-   "brand": "atomos",
-   "dept": 9,
-   "subcats": [
-    218,
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2017/11/SUMO1.jpg",
-   "url": "https://utopiacam.com/shop/sumo-19-hdr-monitor-recorder/",
-   "sku": "MON-SUM"
-  },
-  {
-   "id": 31095,
-   "name": "Sumo PRO-19 4K HDR Monitor-Recorder-Switcher",
-   "brand": "atomos",
-   "dept": 9,
-   "subcats": [
-    218,
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/07/1776384387-img-2713701-300x300.jpg",
-   "url": "https://utopiacam.com/shop/sumo-pro-19-4k-hdr-monitor-recorder-switcher/",
-   "sku": "MON-SUM-1"
-  },
-  {
-   "id": 25075,
-   "name": "1×9 3G-SDI Reclocking Distribution Amplifier",
-   "brand": "avmatrix",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1606903246_IMG_1454514-300x300.jpg",
-   "url": "https://utopiacam.com/shop/avmatrix-1x9-3g-sdi-reclocking-distribution-amplifier/",
-   "sku": "VA-9CS"
-  },
-  {
-   "id": 24732,
-   "name": "16-Channel 3G-SDI Multiviewer and Switcher",
-   "brand": "avmatrix",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/02/1541090182_1439024-300x300.jpg",
-   "url": "https://utopiacam.com/shop/avmatrix-16-channel-multiviewer-switcher/",
-   "sku": "VA-1630"
-  },
-  {
-   "id": 25066,
-   "name": "3G-SDI Fiber Optic Extender Transmitter & Receiver Set",
-   "brand": "avmatrix",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1498155084_1340651-300x300.jpg",
-   "url": "https://utopiacam.com/shop/avmatirx-3g-sdi-fiber-optic-extender-set/",
-   "sku": "VA-1TX"
-  },
-  {
-   "id": 3332,
-   "name": "Analog to SDI",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/ANALOG-SDI.jpg",
-   "url": "https://utopiacam.com/shop/analog-to-sdi/",
-   "sku": "VA-ATS"
-  },
-  {
-   "id": 18896,
-   "name": "ATEM Mini Pro HDMI Live Stream Switcher",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    268,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/12/BL-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/atem-mini-pro-hdmi-live-stream-switcher/",
-   "sku": "VA-MP"
-  },
-  {
-   "id": 19541,
-   "name": "ATEM Streaming Bridge for ATEM Mini Pro Streaming Switchers",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/02/STREAM-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/atem-streaming-bridge-for-atem-mini-pro-streaming-switchers/",
-   "sku": "VA-ASB"
-  },
-  {
-   "id": 15121,
-   "name": "ATEM Television Studio Pro 4K Live Production Switcher",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    268,
-    266,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2020/01/1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/atem-television-studio-pro-4k-live-production-switcher/",
-   "sku": "VA-ATEM"
-  },
-  {
-   "id": 29199,
-   "name": "ATEM Television Studio Pro 4K8 Live Production Switcher",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    268,
-    266,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2025/09/1681823756-img-1975502-300x300.jpg",
-   "url": "https://utopiacam.com/shop/atem-television-studio-pro-4k8-live-production-switcher/",
-   "sku": "VA-4K8"
-  },
-  {
-   "id": 10862,
-   "name": "Blackmagic Design UltraStudio HD Mini",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/04/1493667375000_1335021.jpg",
-   "url": "https://utopiacam.com/shop/blackmagic-design-ultrastudio-hd-mini/",
-   "sku": "VA-USH"
-  },
-  {
-   "id": 19533,
-   "name": "Design ATEM Mini Extreme ISO",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    268,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/02/IOS-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/design-atem-mini-extreme-iso/",
-   "sku": "VA-MPE"
-  },
-  {
    "id": 5324,
    "name": "EN-EL20",
    "brand": "blackmagic-design",
@@ -10514,211 +12413,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2017/01/1376582443000_994420.jpg",
    "url": "https://utopiacam.com/shop/en-el20/",
    "sku": "DC-PKT"
-  },
-  {
-   "id": 3321,
-   "name": "HDMI to SDI",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/HDMITOSDI-BLKMGC.jpg",
-   "url": "https://utopiacam.com/shop/hdmi-to-sdi/",
-   "sku": "VA-HTS-540"
-  },
-  {
-   "id": 16019,
-   "name": "HyperDeck Studio Mini",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    218,
-    260,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2020/09/Hyper-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/hyperdeck-studio-mini/",
-   "sku": "VTR-HSM"
-  },
-  {
-   "id": 26218,
-   "name": "Micro Converter HDMI to SDI 12G",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/08/1636719716_1674090-300x300.jpg",
-   "url": "https://utopiacam.com/shop/blackmagic-design-micro-converter-hdmi-to-sdi-12g/",
-   "sku": "VA-MCH"
-  },
-  {
-   "id": 23748,
-   "name": "Micro Converter SDI to HDMI 12G",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/08/1636719716_1674092-300x300.jpg",
-   "url": "https://utopiacam.com/shop/blackmagic-design-sdi-to-hdmi-micro-converter-12g/",
-   "sku": "VA-MCS"
-  },
-  {
-   "id": 26343,
-   "name": "Mini Converter Optical Fiber 12G-SDI",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/09/1523369723_IMG_967342-Recovered-300x300.png",
-   "url": "https://utopiacam.com/shop/mini-converter-optical-fiber-12g-sdi/",
-   "sku": "VA-S12"
-  },
-  {
-   "id": 4283,
-   "name": "Multiview 16",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/09/1412098520000_1082834.jpg",
-   "url": "https://utopiacam.com/shop/multiview-16/",
-   "sku": "VA-B16"
-  },
-  {
-   "id": 13050,
-   "name": "SDI to HDMI 6G",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2019/02/2019-02-25_1254-300x300.png",
-   "url": "https://utopiacam.com/shop/sdi-to-hdmi-6g/",
-   "sku": "VA-SH6"
-  },
-  {
-   "id": 4286,
-   "name": "Smart Videohub 12X12",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/09/1428966974000_1137291.jpg",
-   "url": "https://utopiacam.com/shop/smart-videohub-12x12/",
-   "sku": "VA-M12"
-  },
-  {
-   "id": 15106,
-   "name": "Smart Videohub 20X20",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2020/01/1396962335_1044822-300x300.jpg",
-   "url": "https://utopiacam.com/shop/smart-videohub-20x20/",
-   "sku": "VA-M20"
-  },
-  {
-   "id": 18583,
-   "name": "Smart Videohub 40X40",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/10/111-300x300.jpg",
-   "url": "https://utopiacam.com/shop/smart-videohub-40x40/",
-   "sku": "VA-M40"
-  },
-  {
-   "id": 6449,
-   "name": "UltraStudio Mini Recorder",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2017/01/1348246032000_892453.jpg",
-   "url": "https://utopiacam.com/shop/ultrastudio-mini-recorder/",
-   "sku": "VA-UST"
-  },
-  {
-   "id": 24027,
-   "name": "Video Assist 7″ 12G-SDI/HDMI HDR Recording Monitor",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    218,
-    260,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/09/1568713006_1507213-300x300.jpg",
-   "url": "https://utopiacam.com/shop/video-assist-7-12g-sdi-hdmi-hdr-recording-monitor/",
-   "sku": "VTR-B712"
-  },
-  {
-   "id": 31669,
-   "name": "Videohub 40×40 12G Compact",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/09/blackmagic-videohub-40x40-12g-sm-300x112.jpg",
-   "url": "https://utopiacam.com/shop/videohub-40x40-12g-compact/",
-   "sku": "VA-M40C"
-  },
-  {
-   "id": 4293,
-   "name": "Videohub Master Control",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/09/Blackmagic_Design_vhub_wmstrcrl_Videohub_Master_Control_892468.jpg",
-   "url": "https://utopiacam.com/shop/videohub-master-control/",
-   "sku": "VA-CNT"
-  },
-  {
-   "id": 18677,
-   "name": "Videohub Smart control Pro",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/11/CONTROL-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/videohub-smart-control-pro/",
-   "sku": "VA-SCNT"
-  },
-  {
-   "id": 15490,
-   "name": "Web Presenter",
-   "brand": "blackmagic-design",
-   "dept": 9,
-   "subcats": [
-    262,
-    266,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2020/04/WEB0-300x300.jpg",
-   "url": "https://utopiacam.com/shop/web-presenter/",
-   "sku": "VA-WPR"
   },
   {
    "id": 27389,
@@ -10732,73 +12426,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2025/02/Quad-tube-300x300.png",
    "url": "https://utopiacam.com/shop/mantis-quad/",
    "sku": "VA-MAR"
-  },
-  {
-   "id": 881,
-   "name": "“18.5 BSM-182i",
-   "brand": "bon",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/H18.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bsm-182i/",
-   "sku": "MON-H18"
-  },
-  {
-   "id": 875,
-   "name": "“18.5 BXM-183L3G",
-   "brand": "bon",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/18B.1-300x300.png",
-   "url": "https://utopiacam.com/shop/bxm-183l3g/",
-   "sku": "MON-B18"
-  },
-  {
-   "id": 1161,
-   "name": "“9 BSM-093N3G",
-   "brand": "bon",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/HD9.1-300x300.png",
-   "url": "https://utopiacam.com/shop/bsm-093n3g/",
-   "sku": "MON-HD9"
-  },
-  {
-   "id": 960,
-   "name": "FM-055F “5.5",
-   "brand": "bon",
-   "dept": 9,
-   "subcats": [
-    218,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/55.1-300x294.jpg",
-   "url": "https://utopiacam.com/shop/fm-055f/",
-   "sku": "MON-B55"
-  },
-  {
-   "id": 982,
-   "name": "FM-072SCH “7",
-   "brand": "bon",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/7.1-300x300.png",
-   "url": "https://utopiacam.com/shop/fm-072sch/",
-   "sku": "MON-H7"
   },
   {
    "id": 810,
@@ -10838,18 +12465,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2017/05/pr_01_495.jpg",
    "url": "https://utopiacam.com/shop/v6-fluid-head/",
    "sku": "POD-MS-293"
-  },
-  {
-   "id": 2851,
-   "name": "MERIDIAN ENG Wireless set",
-   "brand": "boxx",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/BOXXENG-300x300.jpg",
-   "url": "https://utopiacam.com/shop/meridian-eng-wireless-set/",
-   "sku": "WIR-BOX"
   },
   {
    "id": 5309,
@@ -11224,32 +12839,6 @@
    "sku": "VA-STM"
   },
   {
-   "id": 1343,
-   "name": "EVF4MSS",
-   "brand": "cineroid",
-   "dept": 9,
-   "subcats": [
-    218,
-    224
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/EF.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/evf4mss/",
-   "sku": "VWF-EF"
-  },
-  {
-   "id": 1353,
-   "name": "EVF4RVW",
-   "brand": "cineroid",
-   "dept": 9,
-   "subcats": [
-    218,
-    224
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/sdh.1.jpg",
-   "url": "https://utopiacam.com/shop/evf4rvw/",
-   "sku": "VWF-SDH"
-  },
-  {
    "id": 3467,
    "name": "NP-F570 L-Series",
    "brand": "cineroid",
@@ -11359,59 +12948,6 @@
    "sku": "VA-D12"
   },
   {
-   "id": 16345,
-   "name": "Compact Drive Dock – TB3",
-   "brand": "codex",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2020/11/TB3.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/compact-drive-dock-tb3/",
-   "sku": "VTR-CTB3"
-  },
-  {
-   "id": 4072,
-   "name": "Apollo OLED Monitor, Recorder, Switcher “7.7",
-   "brand": "convergent-design",
-   "dept": 9,
-   "subcats": [
-    218,
-    260,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/09/1446047439000_1194618.jpg",
-   "url": "https://utopiacam.com/shop/apollo/",
-   "sku": "VTR-APO"
-  },
-  {
-   "id": 2129,
-   "name": "Odyssey7 OLED Monitor & Recorder",
-   "brand": "convergent-design",
-   "dept": 9,
-   "subcats": [
-    218,
-    260,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/ODSY.jpg",
-   "url": "https://utopiacam.com/shop/odyssey7-oled-monitor-recorder/",
-   "sku": "VTR-ODS"
-  },
-  {
-   "id": 4320,
-   "name": "DVK-100 Chroma Keyer",
-   "brand": "datavideo",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/10/11111111122222.jpg",
-   "url": "https://utopiacam.com/shop/dvk-100-chroma-keyer/",
-   "sku": "VA-VMX"
-  },
-  {
    "id": 4394,
    "name": "RMC-140 Preview Tally Box/Tally Light",
    "brand": "datavideo",
@@ -11422,78 +12958,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2016/10/rmc140-300x254.jpg",
    "url": "https://utopiacam.com/shop/rmc-140-preview-tally-boxtally-light/",
    "sku": "VA-TLB"
-  },
-  {
-   "id": 3349,
-   "name": "MD-CROSS",
-   "brand": "decimator-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/MD-CROSS.jpg",
-   "url": "https://utopiacam.com/shop/md-cross/",
-   "sku": "VA-CRS"
-  },
-  {
-   "id": 3361,
-   "name": "MD-DUCC",
-   "brand": "decimator-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/DUCC.jpg",
-   "url": "https://utopiacam.com/shop/md-ducc/",
-   "sku": "VA-DUC"
-  },
-  {
-   "id": 4310,
-   "name": "MD-HX",
-   "brand": "decimator-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/10/HX.jpg",
-   "url": "https://utopiacam.com/shop/md-hx/",
-   "sku": "VA-HX"
-  },
-  {
-   "id": 3343,
-   "name": "MD-QUAD",
-   "brand": "decimator-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/MD-QUAD.jpg",
-   "url": "https://utopiacam.com/shop/md-quad/",
-   "sku": "VA-QSH"
-  },
-  {
-   "id": 3368,
-   "name": "MD-RDA",
-   "brand": "decimator-design",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/RDA.jpg",
-   "url": "https://utopiacam.com/shop/md-rda/",
-   "sku": "VA-DAH"
-  },
-  {
-   "id": 2371,
-   "name": "Vostro 3560",
-   "brand": "dell",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/Vostro-3560-Silver-300x300.png",
-   "url": "https://utopiacam.com/shop/vostro-3560/",
-   "sku": "VTR-LAP"
   },
   {
    "id": 4389,
@@ -11584,47 +13048,6 @@
    "sku": "FPH"
   },
   {
-   "id": 21746,
-   "name": "High-Bright Remote Monitor",
-   "brand": "dji",
-   "dept": 9,
-   "subcats": [
-    480,
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1634722653_1667443-300x300.jpg",
-   "url": "https://utopiacam.com/shop/high-bright-remote-monitor/",
-   "sku": "WIR-TRM"
-  },
-  {
-   "id": 24404,
-   "name": "PROSSD 1TB",
-   "brand": "dji",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/11/1634722653_1667447-300x300.jpg",
-   "url": "https://utopiacam.com/shop/dji-prossd-1tb/",
-   "sku": "VTR-D1T"
-  },
-  {
-   "id": 24319,
-   "name": "Ronin 4D Flex Extension Unit",
-   "brand": "dji",
-   "dept": 9,
-   "subcats": [
-    262,
-    480,
-    271
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/11/1678279575_IMG_1951067-300x300.jpg",
-   "url": "https://utopiacam.com/shop/dji-4d-flex-extension-unit/",
-   "sku": "VA-4DF"
-  },
-  {
    "id": 20972,
    "name": "TB50 Intelligent Flight Battery for DJI 4D Camera or Ronin 2 Gimbal",
    "brand": "dji",
@@ -11660,18 +13083,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2017/01/DJI3-300x300.jpg",
    "url": "https://utopiacam.com/shop/wireless-follow-focus-system/",
    "sku": "WIR-DJF"
-  },
-  {
-   "id": 24333,
-   "name": "Wireless Video Transmitter",
-   "brand": "dji",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/11/1655284863_1706770-300x300.jpg",
-   "url": "https://utopiacam.com/shop/dji-wireless-video-transmitter/",
-   "sku": "WIR-TX3"
   },
   {
    "id": 3726,
@@ -11804,34 +13215,6 @@
    "sku": "POD-VR5S"
   },
   {
-   "id": 14784,
-   "name": "FW279S 7″ 4K Ultra Bright Monitor 2200 nits",
-   "brand": "feelworld",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2019/11/1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/fw279s-7-4k-ultra-bright-monitor-2200-nits/",
-   "sku": "MON-279S"
-  },
-  {
-   "id": 18908,
-   "name": "L2 PLUS Video Mixer Switcher with 5.5″ LCD Touch Screen",
-   "brand": "feelworld",
-   "dept": 9,
-   "subcats": [
-    262,
-    268,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/12/FEEL-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/l2-plus-video-mixer-switcher-with-5-5-lcd-touch-screen/",
-   "sku": "VA-L2"
-  },
-  {
    "id": 9131,
    "name": "2-Axis Puppeteer",
    "brand": "flowcine",
@@ -11866,20 +13249,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2016/08/GRVT-1.jpg",
    "url": "https://utopiacam.com/shop/gravity-one/",
    "sku": "POD-GRV"
-  },
-  {
-   "id": 3256,
-   "name": "HVS-300HS HD/SD Video Switcher",
-   "brand": "for-a",
-   "dept": 9,
-   "subcats": [
-    268,
-    266,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/SWICH1.jpg",
-   "url": "https://utopiacam.com/shop/hvs-300hs-hdsd-video-switcher/",
-   "sku": "VA-DVM"
   },
   {
    "id": 5696,
@@ -12199,165 +13568,6 @@
    "sku": "VA-DTN"
   },
   {
-   "id": 31525,
-   "name": "4-channel forward 3G-SDI fiber optic converter",
-   "brand": "ho-link",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/08/s4e70207000854ca1b27a7015024c1d80o-jpg-640x640q75-jpg--300x300.avif",
-   "url": "https://utopiacam.com/shop/4-channel-forward-3g-sdi-fiber-optic-converter/",
-   "sku": "VA-OH4T"
-  },
-  {
-   "id": 19910,
-   "name": "Cosmo C1 SDI/HDMI Wireless Video Transmission System",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/03/C1-1-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/cosmo-c1-sdi-hdmi-wireless-video-transmission-system/",
-   "sku": "WIR-C1T"
-  },
-  {
-   "id": 28272,
-   "name": "Cosmo C2 SDI Wireless Video SET",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2025/05/1740565354_1876119-300x300.jpg",
-   "url": "https://utopiacam.com/shop/cosmo-c2-sdi-wireless-video-set/",
-   "sku": "WIR-C2RX"
-  },
-  {
-   "id": 9450,
-   "name": "COSMO-1000-IL HDMI\\SDI Video Set",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2017/05/1480974605000_1296928.jpg",
-   "url": "https://utopiacam.com/shop/hdmisdi-cosmo-1000-il-video-set/",
-   "sku": "WIR-T10V"
-  },
-  {
-   "id": 12041,
-   "name": "COSMO-1200-IL HDMI&SDI Video Set",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/11/10-08-20181533907369main-image-300x300.jpg",
-   "url": "https://utopiacam.com/shop/cosmo-1200-il-hdmisdi-video-set/",
-   "sku": "WIR-T12"
-  },
-  {
-   "id": 4069,
-   "name": "COSMO-400-IL HDMI\\SDI Video Set",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/09/Untitled11111111-300x300.png",
-   "url": "https://utopiacam.com/shop/hdmisdi-wireless-video-set/",
-   "sku": "WIR-HLT"
-  },
-  {
-   "id": 11461,
-   "name": "COSMO-600-IL HDMI&SDI Video Set",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/08/cosmo600.1.jpg",
-   "url": "https://utopiacam.com/shop/cosmo-600-il-hdmisdi-video-set/",
-   "sku": "WIR-C6T"
-  },
-  {
-   "id": 16814,
-   "name": "MARS 400S PRO HDMI&SDI Video Set",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/03/MARS3.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/mars-400s-pro-hdmisdi-video-set/",
-   "sku": "WIR-TM4P"
-  },
-  {
-   "id": 28281,
-   "name": "Pyro 7 Wireless Transceiver Monitor",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480,
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2025/05/1721897155_1838298-300x300.jpg",
-   "url": "https://utopiacam.com/shop/pyro-7-wireless-transceiver-monitor/",
-   "sku": "MON-PYR7"
-  },
-  {
-   "id": 28259,
-   "name": "Pyro S 4K HDMI/SDI Wireless Video",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2025/05/1716367526_1824709-300x300.jpg",
-   "url": "https://utopiacam.com/shop/pyro-s-4k-hdmi-sdi-wireless-video/",
-   "sku": "WIR-PSS"
-  },
-  {
-   "id": 30855,
-   "name": "Pyro Ultra 4K HDMI/SDI Wireless Video Transmission System",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/06/hollyland-hl-pyro-ultra-1tx-1rx-pyro-ultra-4k-hdmi-sdi-1776502026-1962338-300x300.jpg",
-   "url": "https://utopiacam.com/shop/pyro-ultra-4k-hdmi-sdi-wireless-video-transmission-system/",
-   "sku": "WIR-PUR"
-  },
-  {
-   "id": 17619,
-   "name": "Syscom 421 1800 Wireless Transmission System SDI/HDMI/IP 4*TX + 1RX",
-   "brand": "hollyland",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/06/421.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/syscom-421-1800-wireless-transmission-system-sdi-hdmi-ip-4tx-1rx/",
-   "sku": "WIR-SYS"
-  },
-  {
-   "id": 10807,
-   "name": "CFast/SD/MicroSD to USB-C Card Reader",
-   "brand": "hyper",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/04/sanho_sad209b_hyperdrive_pro_card_reader_black_1520948340000_1394557.jpg",
-   "url": "https://utopiacam.com/shop/cfastsdmicrosd-usb-c-card-reader/",
-   "sku": "VTR-SCM"
-  },
-  {
    "id": 24388,
    "name": "82mm Solid ND Filter Kit (2, 3, 4, 5, 6, 10-Stop)",
    "brand": "ice",
@@ -12384,18 +13594,6 @@
    "sku": "DC-BX5"
   },
   {
-   "id": 2247,
-   "name": "BR-HD50E",
-   "brand": "jvc",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/50.jpg",
-   "url": "https://utopiacam.com/shop/br-hd50e/",
-   "sku": "VTR-JVC"
-  },
-  {
    "id": 4262,
    "name": "DA BOX DA-105VB",
    "brand": "kramer",
@@ -12406,117 +13604,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2016/09/da-105vb.jpg",
    "url": "https://utopiacam.com/shop/da-box-da-105vb/",
    "sku": "VA-10"
-  },
-  {
-   "id": 4378,
-   "name": "VM-42 Switcher, Distribution Amplifier",
-   "brand": "kramer",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/10/kramer_vm42_lg.jpg",
-   "url": "https://utopiacam.com/shop/vm-42-switcher-distribution-amplifier/",
-   "sku": "VM-VSP-02"
-  },
-  {
-   "id": 4327,
-   "name": "VS-55V 5×1 Composite Video Switcher",
-   "brand": "kramer",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/10/vs-55v-300x300.jpg",
-   "url": "https://utopiacam.com/shop/vs-55v-5x1-composite-video-switcher/",
-   "sku": "VA-VSP"
-  },
-  {
-   "id": 4373,
-   "name": "VS-81V 8×1 Composite Video Switcher",
-   "brand": "kramer",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/10/vs-81v.jpg",
-   "url": "https://utopiacam.com/shop/vs-81v-8x1-composite-video-switcher/",
-   "sku": "VA-VSP-412"
-  },
-  {
-   "id": 2386,
-   "name": "256GB CFast Memory Card",
-   "brand": "lexar",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/256.jpg",
-   "url": "https://utopiacam.com/shop/256gb-cfast-memory-card/",
-   "sku": "VTR-CFS"
-  },
-  {
-   "id": 2474,
-   "name": "32GB CF Card",
-   "brand": "lexar",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/CF32.jpg",
-   "url": "https://utopiacam.com/shop/32gb-cf-card/",
-   "sku": "VTR-CF"
-  },
-  {
-   "id": 2414,
-   "name": "32GB MicroSD Card",
-   "brand": "lexar",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/MSD-32.jpg",
-   "url": "https://utopiacam.com/shop/32gb-microsd-card/",
-   "sku": "VTR-SDM"
-  },
-  {
-   "id": 2471,
-   "name": "64GB SD Card",
-   "brand": "lexar",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/sd300.jpg",
-   "url": "https://utopiacam.com/shop/64gb-sd-card-2/",
-   "sku": "VTR-300"
-  },
-  {
-   "id": 2484,
-   "name": "CFast Card Reader",
-   "brand": "lexar",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/CFAST-R.jpg",
-   "url": "https://utopiacam.com/shop/cfast-card-reader/",
-   "sku": "VTR-CFSR"
-  },
-  {
-   "id": 2477,
-   "name": "SD/CF Card Reader",
-   "brand": "lexar",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/SD-CF-R.jpg",
-   "url": "https://utopiacam.com/shop/sdcf-reader/",
-   "sku": "VTR-CSR"
   },
   {
    "id": 3518,
@@ -12795,106 +13882,6 @@
    "sku": "POD-OCH"
   },
   {
-   "id": 1175,
-   "name": "“9 BT-LH910G",
-   "brand": "panasonic",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/8.4.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bt-lh910g/",
-   "sku": "MON-8.4"
-  },
-  {
-   "id": 29248,
-   "name": "“QLED SCREEN 50",
-   "brand": "panasonic",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2025/10/338436-300x300.jpg",
-   "url": "https://utopiacam.com/shop/qled-screen-50/",
-   "sku": "MON-PR50"
-  },
-  {
-   "id": 2395,
-   "name": "256GB expressP2 Memory Card",
-   "brand": "panasonic",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/256-P2-exp.jpg",
-   "url": "https://utopiacam.com/shop/64gb-expressp2-memory-card/",
-   "sku": "VTR-P2E"
-  },
-  {
-   "id": 2389,
-   "name": "32GB P2 Memory Card",
-   "brand": "panasonic",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/P2-32.jpg",
-   "url": "https://utopiacam.com/shop/32gb-p2-memory-card/",
-   "sku": "VTR-P32"
-  },
-  {
-   "id": 12504,
-   "name": "512GB expressP2 Memory Card",
-   "brand": "panasonic",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/12/panasonic_auxp0512bg_512gb_expressp2_memory_card_1259755-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/512gb-expressp2-memory-card/",
-   "sku": "VTR-P25"
-  },
-  {
-   "id": 2392,
-   "name": "64GB P2 Memory Card",
-   "brand": "panasonic",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/P264.jpg",
-   "url": "https://utopiacam.com/shop/64gb-p2-memory-card/",
-   "sku": "VTR-P64"
-  },
-  {
-   "id": 2490,
-   "name": "AU-XPD1 expressP2 Card Reader",
-   "brand": "panasonic",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/EXPRESS-P2-Card-R.jpg",
-   "url": "https://utopiacam.com/shop/au-xpd1-expressp2-card-reader/",
-   "sku": "VTR-P2R"
-  },
-  {
-   "id": 9479,
-   "name": "BT-LH2170 “21.5",
-   "brand": "panasonic",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2017/05/btlh2170_panasonic_01_web_01_web.jpg",
-   "url": "https://utopiacam.com/shop/bt-lh2170-21-5/",
-   "sku": "MON-L21"
-  },
-  {
    "id": 3472,
    "name": "CGA-D54",
    "brand": "panasonic",
@@ -12941,19 +13928,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2017/01/panasonic_dmw_blg10_id_secured_li_ion_7_2v_1370554593000_982126.jpg",
    "url": "https://utopiacam.com/shop/dmw-blg10/",
    "sku": "DC-LX1"
-  },
-  {
-   "id": 954,
-   "name": "TH-L39EM5X “39",
-   "brand": "panasonic",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/L40.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/th-l39em5x/",
-   "sku": "MON-L40"
   },
   {
    "id": 5337,
@@ -13016,76 +13990,6 @@
    "sku": "OUD"
   },
   {
-   "id": 13525,
-   "name": "7″ BM7 2100nit",
-   "brand": "portkeys",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2019/05/1_001-1-300x300.png",
-   "url": "https://utopiacam.com/shop/bm7-2100nit/",
-   "sku": "MON-BM7"
-  },
-  {
-   "id": 14797,
-   "name": "BM5 2000nit “5.2",
-   "brand": "portkeys",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2019/11/aaa-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bm5-2000nit-5-2-2/",
-   "sku": "MON-BM5"
-  },
-  {
-   "id": 17819,
-   "name": "BM5-WR 2200nit “5.2",
-   "brand": "portkeys",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/07/BM5WR-2-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bm5-wr-2200nit-5-2/",
-   "sku": "MON-BM5W"
-  },
-  {
-   "id": 28829,
-   "name": "BM5IV 5.5″ 2000nit",
-   "brand": "portkeys",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2025/08/1731348017-1856882-300x300.jpg",
-   "url": "https://utopiacam.com/shop/portkeys-bm5iv-5-5-2200nit/",
-   "sku": "MON-BM54"
-  },
-  {
-   "id": 25955,
-   "name": "BM7 II DS 7″ High-Bright Monitor",
-   "brand": "portkeys",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/07/1682952912_1764518-300x300.jpg",
-   "url": "https://utopiacam.com/shop/portkeys-bm7-ii-ds-7-high-bright-monitor/",
-   "sku": "MON-BM72"
-  },
-  {
    "id": 31110,
    "name": "OEYE 3G EVF Viewfinder",
    "brand": "portkeys",
@@ -13096,19 +14000,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2026/07/1606906818-img-1454636-1-300x300.jpg",
    "url": "https://utopiacam.com/shop/oeye-portkeys-viewfinder/",
    "sku": "VWF-OEYE"
-  },
-  {
-   "id": 10695,
-   "name": "OBM-U240 Native UHD 4K HDR LCD “24",
-   "brand": "postium",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/03/1484605363000_1310930.jpg",
-   "url": "https://utopiacam.com/shop/obm-u240-24-native-uhd-4k-hdr-lcd-monitor/",
-   "sku": "MON-244K"
   },
   {
    "id": 5709,
@@ -13124,18 +14015,6 @@
    "sku": "VA-151"
   },
   {
-   "id": 25061,
-   "name": "Digital CFexpress Type B USB 4.0 Single-Slot Card Reader",
-   "brand": "prograde",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1693925115_1785041-300x300.jpg",
-   "url": "https://utopiacam.com/shop/prograde-digital-cfexpress-type-b-usb-4-0-single-slot-card-reader/",
-   "sku": "VTR-CFE4"
-  },
-  {
    "id": 13061,
    "name": "Blue Modular Handle",
    "brand": "rbi",
@@ -13147,54 +14026,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2019/02/2019-02-25_1558_002-300x300.png",
    "url": "https://utopiacam.com/shop/blue-modular-handle/",
    "sku": "VA-BLU"
-  },
-  {
-   "id": 12527,
-   "name": "Mini-Mag SSD 480GB",
-   "brand": "red",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/12/red_digital_cinema_750_0090_red_mini_mag_memory_cardtridge_1346527.jpg",
-   "url": "https://utopiacam.com/shop/mini-mag-ssd-480gb-%d7%94%d7%a2%d7%aa%d7%a7/",
-   "sku": "VTR-MNM"
-  },
-  {
-   "id": 12497,
-   "name": "RED Station RED Mini-Mag",
-   "brand": "red",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/12/1-9-300x300.jpg",
-   "url": "https://utopiacam.com/shop/red-station-red-mini-mag/",
-   "sku": "VTR-SMM"
-  },
-  {
-   "id": 2398,
-   "name": "REDMAG 1.8″ SSD 256GB",
-   "brand": "red",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/REDMAG-256-300x300.jpg",
-   "url": "https://utopiacam.com/shop/redmag-1-8-ssd-256gb/",
-   "sku": "VTR-RMG"
-  },
-  {
-   "id": 2498,
-   "name": "STATION REDMAG 1.8″ Mini",
-   "brand": "red",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/redstationmini-usb3-300x300.png",
-   "url": "https://utopiacam.com/shop/station-redmag-1-8-mini/",
-   "sku": "VTR-RS3"
   },
   {
    "id": 3577,
@@ -13338,19 +14169,6 @@
    "sku": "WIR-RT3"
   },
   {
-   "id": 27893,
-   "name": "AT-2151HD",
-   "brand": "ruige",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2025/05/index02-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/at-2151hd/",
-   "sku": "MON-M215"
-  },
-  {
    "id": 3526,
    "name": "DV 8 Fluid Head",
    "brand": "sachtler",
@@ -13417,42 +14235,6 @@
    "sku": "POD-SH25"
   },
   {
-   "id": 2383,
-   "name": "128GB CFast Memory Card",
-   "brand": "sandisk",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/CFAST.jpg",
-   "url": "https://utopiacam.com/shop/128gb-cfast-memory-card/",
-   "sku": "VTR-CFT"
-  },
-  {
-   "id": 2468,
-   "name": "32GB SD Card",
-   "brand": "sandisk",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/SD32.jpg",
-   "url": "https://utopiacam.com/shop/32gb-sd-card/",
-   "sku": "VTR-HMC"
-  },
-  {
-   "id": 2465,
-   "name": "64GB SD Card",
-   "brand": "sandisk",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/SD64.jpg",
-   "url": "https://utopiacam.com/shop/64gb-sd-card/",
-   "sku": "VTR-SD6"
-  },
-  {
    "id": 10264,
    "name": "ARRI Alexa Mini Housing",
    "brand": "scubacam",
@@ -13503,31 +14285,6 @@
    "sku": "LNA-LS"
   },
   {
-   "id": 25939,
-   "name": "Memory 7 Pro 7″ Touchscreen 4K HDMI/3G-SDI Recording Monitor",
-   "brand": "shimbol",
-   "dept": 9,
-   "subcats": [
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/07/1710162934_1815347-300x300.jpg",
-   "url": "https://utopiacam.com/shop/shimbol-memory-7-pro-7-touchscreen-4k/",
-   "sku": "MON-ME7"
-  },
-  {
-   "id": 24130,
-   "name": "Memory I 5.5″ 3D LUT 4K HDMI Touchscreen Recorder/Monitor",
-   "brand": "shimbol",
-   "dept": 9,
-   "subcats": [
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/10/1675257920_1746194-300x300.jpg",
-   "url": "https://utopiacam.com/shop/memory-i-5-5-3d-lut-4k-hdmi-touchscreen-recorder-monitor/",
-   "sku": "MON-MEM"
-  },
-  {
    "id": 24354,
    "name": "SVT75 Pro Rapid System One-Step Release Video Tripod with SVH15 Video Fluid Head Kit",
    "brand": "sirui",
@@ -13541,232 +14298,6 @@
    "sku": "POD-S15"
   },
   {
-   "id": 19346,
-   "name": "1303 HDR 13",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/01/1303-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/1303-hdr-13/",
-   "sku": "MON-1303"
-  },
-  {
-   "id": 24661,
-   "name": "702 Touch 7″ Monitor with Bolt 6 750 RX",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    480,
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/08/1-3-300x300.jpg",
-   "url": "https://utopiacam.com/shop/702-touch-7-monitor-with-bolt-6-750-rx/",
-   "sku": "MON-706"
-  },
-  {
-   "id": 16887,
-   "name": "702 Touch 7″ with Bolt 4K Receiver",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    480,
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/03/702.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/702-touch-7-with-bolt-4k-receiver/",
-   "sku": "MON-702"
-  },
-  {
-   "id": 15090,
-   "name": "703 UltraBright",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2020/01/MON-703U_SL_01-300x300.jpg",
-   "url": "https://utopiacam.com/shop/703-ultrabright/",
-   "sku": "MON-703"
-  },
-  {
-   "id": 25700,
-   "name": "Cine 13″ 4K High-Bright Monitor",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/06/11-300x300.webp",
-   "url": "https://utopiacam.com/shop/smallhd-cine-13-4k-high-bright-monitor/",
-   "sku": "MON-C13"
-  },
-  {
-   "id": 31020,
-   "name": "Cine 24″ 4K High Bright Pro Monitor",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/07/smallhd-mon-cine-24-cine-24-4k-high-bright-1596450972-1580839-300x300.jpg",
-   "url": "https://utopiacam.com/shop/cine-24-4k-high-bright-pro-monitor/",
-   "sku": "MON-C24"
-  },
-  {
-   "id": 25033,
-   "name": "Cine 7 Monitor with Bolt 6 750 RX",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    480,
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1705334127_1743468-300x300.jpg",
-   "url": "https://utopiacam.com/shop/smallhd-cine-7-monitor-with-bolt-6-750-rx/",
-   "sku": "MON-C76"
-  },
-  {
-   "id": 28238,
-   "name": "ULTRA 5 Bolt 6 TX 750 Monitor",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    480,
-    218,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/11/1662682088_1721204-300x300.jpg",
-   "url": "https://utopiacam.com/shop/ultra-5-bolt-6-tx-750-monitor/",
-   "sku": "MON-U56-1"
-  },
-  {
-   "id": 26691,
-   "name": "ULTRA 5 Bolt 6 TX 750 Monitor",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    480,
-    218,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/11/1662682088_1721204-300x300.jpg",
-   "url": "https://utopiacam.com/shop/smallhd-ultra-5-bolt-6-tx-750-monitor/",
-   "sku": "MON-U56"
-  },
-  {
-   "id": 31310,
-   "name": "ULTRA 7 Bolt 6 RX 1500 Monitor",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    480,
-    218,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/08/1755022399-img-2551471-300x300.jpg",
-   "url": "https://utopiacam.com/shop/ultra-7-bolt-6-rx-1500-monitor/",
-   "sku": "MON-U7R6"
-  },
-  {
-   "id": 25716,
-   "name": "Ultra 7 UHD 4K On-Camera Touchscreen Monitor",
-   "brand": "smallhd",
-   "dept": 9,
-   "subcats": [
-    218,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/06/1705535184_1795838-300x300.jpg",
-   "url": "https://utopiacam.com/shop/smallhd-ultra-7-uhd-4k-on-camera-touchscreen-monitor/",
-   "sku": "MON-U7"
-  },
-  {
-   "id": 2411,
-   "name": "128GB SxS PRO+ Memory Card",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/SXS128.jpg",
-   "url": "https://utopiacam.com/shop/128gb-sxs-pro-memory-card/",
-   "sku": "VTR-128"
-  },
-  {
-   "id": 2402,
-   "name": "128GB XQD Memory Card",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/XQD128.jpg",
-   "url": "https://utopiacam.com/shop/128gb-xqd-memory-card/",
-   "sku": "VTR-X28"
-  },
-  {
-   "id": 21589,
-   "name": "160GB CFexpress Type A TOUGH Memory Card",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/11/TOGCH-300x300.jpg",
-   "url": "https://utopiacam.com/shop/160gb-cfexpress-type-a-tough-memory-card/",
-   "sku": "VTR-T"
-  },
-  {
-   "id": 21610,
-   "name": "1TB AXS S66 Memory Card",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/11/1637601641_1672839-300x300.jpg",
-   "url": "https://utopiacam.com/shop/1tb-axs-s66-memory-card/",
-   "sku": "VTR-AX1T"
-  },
-  {
-   "id": 2405,
-   "name": "32GB SxS Memory Card",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/SXS32.jpg",
-   "url": "https://utopiacam.com/shop/32gb-sxs-memory-card/",
-   "sku": "VTR-S32"
-  },
-  {
-   "id": 2408,
-   "name": "64GB SxS Memory Card Pro",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/SXS64.jpg",
-   "url": "https://utopiacam.com/shop/64gb-sxs-memory-card-pro/",
-   "sku": "VTR-64G"
-  },
-  {
    "id": 5461,
    "name": "AC-VL1",
    "brand": "sony",
@@ -13777,54 +14308,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2017/01/77124-300x250.jpg",
    "url": "https://utopiacam.com/shop/ac-vl1/",
    "sku": "ACS-100"
-  },
-  {
-   "id": 2588,
-   "name": "AXS-512S24",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/AXSM.jpg",
-   "url": "https://utopiacam.com/shop/axs-512s24/",
-   "sku": "VTR-F55"
-  },
-  {
-   "id": 12478,
-   "name": "AXS-A512S48",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/12/1-6.jpg",
-   "url": "https://utopiacam.com/shop/axs-a512s48/",
-   "sku": "VTR-R7C"
-  },
-  {
-   "id": 2585,
-   "name": "AXS-CR1 Card Reader",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/ACR.jpg",
-   "url": "https://utopiacam.com/shop/axs-cr1-card-reader/",
-   "sku": "VTR-MCR"
-  },
-  {
-   "id": 12468,
-   "name": "AXS-R7 Recorder",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/12/1-5.jpg",
-   "url": "https://utopiacam.com/shop/axs-r7-recorder/",
-   "sku": "VTR-R7"
   },
   {
    "id": 5431,
@@ -13899,118 +14382,6 @@
    "sku": "VA-5"
   },
   {
-   "id": 25057,
-   "name": "Digital 1TB CFexpress 4.0 Type B Memory Card",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/03/1700492724_1796985-300x300.jpg",
-   "url": "https://utopiacam.com/shop/prograde-digital-1tb-cfexpress-4-0-type-b-memory-card/",
-   "sku": "VTR-CFB"
-  },
-  {
-   "id": 2237,
-   "name": "HVR-M10E",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/M10-300x161.jpg",
-   "url": "https://utopiacam.com/shop/hvr-m10e/",
-   "sku": "VTR-M10"
-  },
-  {
-   "id": 2231,
-   "name": "HVR-M15E",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/M15E-300x300.jpeg",
-   "url": "https://utopiacam.com/shop/hvr-m15e/",
-   "sku": "VTR-M15"
-  },
-  {
-   "id": 2203,
-   "name": "HVR-M35E",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/M35E-300x300.jpeg",
-   "url": "https://utopiacam.com/shop/hvr-m35e/",
-   "sku": "VTR-M35"
-  },
-  {
-   "id": 12052,
-   "name": "J-30SDI Compact Betacam Series Player",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/11/J30SDI-10825-300x300.jpg",
-   "url": "https://utopiacam.com/shop/j-30sdi-compact-betacam-series-player/",
-   "sku": "VTR-DIG"
-  },
-  {
-   "id": 9489,
-   "name": "LMD-A170 LCD “17",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2017/05/lmda170_sony_01_web-300x300.jpg",
-   "url": "https://utopiacam.com/shop/lmd-a170-17/",
-   "sku": "MON-L17"
-  },
-  {
-   "id": 30907,
-   "name": "LMD-A180 18.4″ LCD",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/06/sony-lmd-a180-18-full-hd-high-1695892821-1787934-300x300.jpg",
-   "url": "https://utopiacam.com/shop/lmd-a180-18-4-lcd/",
-   "sku": "MON-18A"
-  },
-  {
-   "id": 17687,
-   "name": "LMD-B240 24″ HD",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/06/S24.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/lmd-b240-24-hd/",
-   "sku": "MON-S24"
-  },
-  {
-   "id": 10311,
-   "name": "MCX-500 Streaming/Recording Switcher",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    268,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2017/11/1472054501000_IMG_674858.jpg",
-   "url": "https://utopiacam.com/shop/mcx-500-streamingrecording-switcher/",
-   "sku": "VA-MIX"
-  },
-  {
    "id": 5303,
    "name": "NP-FV100",
    "brand": "sony",
@@ -14047,32 +14418,6 @@
    "sku": "DC-B73"
   },
   {
-   "id": 897,
-   "name": "PVM-1741 “17",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/O17.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/pvm-1741/",
-   "sku": "MON-O17"
-  },
-  {
-   "id": 942,
-   "name": "PVM-A174",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    218,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/A17.1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/pvm-a174/",
-   "sku": "MON-OL7"
-  },
-  {
    "id": 14102,
    "name": "Rialto Camera Extension System for Sony Venice",
    "brand": "sony",
@@ -14099,18 +14444,6 @@
    "sku": "VA-CFF"
   },
   {
-   "id": 2480,
-   "name": "SXS Card Reader",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/SXS-R.jpg",
-   "url": "https://utopiacam.com/shop/sxs-card-reader/",
-   "sku": "VTR-R3"
-  },
-  {
    "id": 26365,
    "name": "XLR-K3M Dual-Channel Digital XLR Audio Adapter Kit",
    "brand": "sony",
@@ -14123,18 +14456,6 @@
    "sku": "VA-K3M"
   },
   {
-   "id": 2487,
-   "name": "XQD Card Reader",
-   "brand": "sony",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/07/XQD-READ.jpg",
-   "url": "https://utopiacam.com/shop/xqd-card-reader/",
-   "sku": "VTR-XQD"
-  },
-  {
    "id": 5443,
    "name": "D-3004S",
    "brand": "swit",
@@ -14145,34 +14466,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2017/01/1427318656000_1130071.jpg",
    "url": "https://utopiacam.com/shop/d-3004s/",
    "sku": "ACS-180"
-  },
-  {
-   "id": 29884,
-   "name": "K15 15.4″ FHD 1500nit Monitor",
-   "brand": "swit",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2025/12/091049108335-300x300.jpg",
-   "url": "https://utopiacam.com/shop/swit-k15/",
-   "sku": "MON-K15"
-  },
-  {
-   "id": 14448,
-   "name": "S-1093H “9",
-   "brand": "swit",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2019/10/swit_s_1093h_a_b_c_d_f_p_s_u_s_1093f_9_full_hd_1499169928_1295186-300x300.jpg",
-   "url": "https://utopiacam.com/shop/s-1093h-9/",
-   "sku": "MON-SWI9"
   },
   {
    "id": 3429,
@@ -14271,102 +14564,6 @@
    "sku": "ACS-130"
   },
   {
-   "id": 26328,
-   "name": "P31 External SSD 2TB",
-   "brand": "t-create",
-   "dept": 9,
-   "subcats": [
-    260
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/09/04-300x300.jpg",
-   "url": "https://utopiacam.com/shop/tc-p31-external-ssd-2tb/",
-   "sku": "VTR-TC2"
-  },
-  {
-   "id": 19990,
-   "name": "Antenna Array for Bolt 4K",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/03/TD1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/antenna-array-for-bolt-4k/",
-   "sku": "WIR-SQB"
-  },
-  {
-   "id": 14972,
-   "name": "Bolt 4K 750 12G-SDI/HDMI Wireless Video set",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2020/01/teradek_10_2100_bolt_750_12g_sdi_hdmi_wireless_1563891688_1473021-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bolt-4k-750-sdi-hdmi-wireless-video-set/",
-   "sku": "WIR-T4"
-  },
-  {
-   "id": 17027,
-   "name": "Bolt 4K 750 LT 3G-SDI/HDMI Wireless Video set",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/03/4k.1-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bolt-4k-750-lt-3g-sdi-hdmi-wireless-video-set/",
-   "sku": "WIR-LTT"
-  },
-  {
-   "id": 19604,
-   "name": "Bolt 4K LT 1500 3G-SDI/HDMI Wireless Transmitter and Receiver",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/03/1500-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bolt-4k-lt-1500-3g-sdi-hdmi-wireless-transmitter-and-receiver/",
-   "sku": "WIR-T15"
-  },
-  {
-   "id": 20030,
-   "name": "Bolt 4K LT 3G-SDI MAX 5000 Deluxe Kit",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2022/04/max-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bolt-4k-lt-3g-sdi-max-deluxe-kit/",
-   "sku": "WIR-TMX"
-  },
-  {
-   "id": 23608,
-   "name": "Bolt 500 XT 3G-SDI/HDMI Wireless Transmitter and Receiver Set",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/08/1-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bolt-500-xt-3g-sdi-hdmi-wireless/",
-   "sku": "WIR-5XT"
-  },
-  {
-   "id": 23926,
-   "name": "Bolt 6 LT 750 3G-SDI/HDMI Wireless Video Set",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2023/08/1662681512_1723703-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bolt-6-lt-750-3g-sdi-hdmi-wireless-set/",
-   "sku": "WIR-6LT"
-  },
-  {
    "id": 30320,
    "name": "CTRL.5 Hand Unit",
    "brand": "teradek",
@@ -14379,18 +14576,6 @@
    "sku": "WIR-CT5"
   },
   {
-   "id": 10926,
-   "name": "Link Dual-Band Wi-Fi Router",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/04/teradek_10_0050_link_wireless_access_point_1348450.jpg",
-   "url": "https://utopiacam.com/shop/link-dual-band-wi-fi-router-2/",
-   "sku": "WIR-LNK"
-  },
-  {
    "id": 30693,
    "name": "RT CTRL.1 Single-Axis Wireless Lens Controller",
    "brand": "teradek",
@@ -14401,54 +14586,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2026/05/1544703354-img-1110952-1-300x300.jpg",
    "url": "https://utopiacam.com/shop/rt-ctrl-1-single-axis-wireless-lens-controller/",
    "sku": "WIR-CT1"
-  },
-  {
-   "id": 31663,
-   "name": "Serv 4K",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/08/1709046950-img-2196942-300x300.jpg",
-   "url": "https://utopiacam.com/shop/serv-4k/",
-   "sku": "WIR-TS4"
-  },
-  {
-   "id": 10894,
-   "name": "Serv Pro",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/04/1499964349000_1348460.jpg",
-   "url": "https://utopiacam.com/shop/serv-pro/",
-   "sku": "WIR-SRV"
-  },
-  {
-   "id": 31560,
-   "name": "Teradek Serv Micro",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/08/teradek-10-0744-serv-micro-1656007528-1713075-300x300.jpg",
-   "url": "https://utopiacam.com/shop/teradek-serv-micro/",
-   "sku": "WIR-SRV-1"
-  },
-  {
-   "id": 16147,
-   "name": "Vidiu GO",
-   "brand": "teradek",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2020/10/VIDIU-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/vidiu-go/",
-   "sku": "WIR-TVG"
   },
   {
    "id": 25626,
@@ -16919,20 +17056,6 @@
    "sku": "FIL-TVND"
   },
   {
-   "id": 1182,
-   "name": "Starlite HD5″-ARRI",
-   "brand": "transvideo",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    268
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/05/HD5.1-300x300.jpeg",
-   "url": "https://utopiacam.com/shop/bt-lh910g-copy/",
-   "sku": "MON-HD5"
-  },
-  {
    "id": 4728,
    "name": "12V BATTERY",
    "brand": "utopia",
@@ -17020,18 +17143,6 @@
    "sku": "GEN-PP93"
   },
   {
-   "id": 25505,
-   "name": "Bi-Directional SFP Dual Ethernet Transceivers",
-   "brand": "utopia",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/05/DSC00506-300x300.jpg",
-   "url": "https://utopiacam.com/shop/bi-directional-sfp-dual-ethernet-transceivers/",
-   "sku": "VA-SIP"
-  },
-  {
    "id": 5497,
    "name": "BNC Cable",
    "brand": "utopia",
@@ -17052,32 +17163,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2016/09/1401284179000_1030772.jpg",
    "url": "https://utopiacam.com/shop/clapper/",
    "sku": "VA-CLP"
-  },
-  {
-   "id": 3128,
-   "name": "Compozit to VGA converter",
-   "brand": "utopia",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/COM-TO-VGA.jpg",
-   "url": "https://utopiacam.com/shop/compozit-to-vga-converter/",
-   "sku": "VA-CTV"
-  },
-  {
-   "id": 13006,
-   "name": "F7S “7",
-   "brand": "utopia",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2019/02/sasssssssssssss-300x300.jpg",
-   "url": "https://utopiacam.com/shop/f7s/",
-   "sku": "MON-F7S"
   },
   {
    "id": 5357,
@@ -17138,18 +17223,6 @@
    "sku": "DC-90"
   },
   {
-   "id": 25770,
-   "name": "Quad 3G Transmitter/Receiver Extender Kit over Duplex",
-   "brand": "utopia",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2024/06/1521040522_IMG_957688-300x300.jpg",
-   "url": "https://utopiacam.com/shop/digital-forecast-quad-3g-transmitter-receiver/",
-   "sku": "VA-QTX"
-  },
-  {
    "id": 4133,
    "name": "TS-C Digital Clapper",
    "brand": "utopia",
@@ -17172,18 +17245,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2016/09/20160922_143803-300x300.jpg",
    "url": "https://utopiacam.com/shop/ut-arm/",
    "sku": "VA-UTA"
-  },
-  {
-   "id": 3137,
-   "name": "VGA to Compozit converter",
-   "brand": "utopia",
-   "dept": 9,
-   "subcats": [
-    266
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/08/VTC.jpg",
-   "url": "https://utopiacam.com/shop/vga-to-compozit-converter/",
-   "sku": "VA-VTC"
   },
   {
    "id": 20307,
@@ -17285,34 +17346,6 @@
    "sku": "FIL-BVS"
   },
   {
-   "id": 2182,
-   "name": "PIX 240i Monitor & Recorder “5",
-   "brand": "video-devices",
-   "dept": 9,
-   "subcats": [
-    218,
-    260,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/PIX-240.jpg",
-   "url": "https://utopiacam.com/shop/pix-240i-monitor-recorder/",
-   "sku": "VTR-VRM"
-  },
-  {
-   "id": 2185,
-   "name": "PIX E5 Monitor & Recorder “5",
-   "brand": "video-devices",
-   "dept": 9,
-   "subcats": [
-    218,
-    260,
-    222
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2016/06/E5.jpg",
-   "url": "https://utopiacam.com/shop/pix-e5/",
-   "sku": "VTR-PE5"
-  },
-  {
    "id": 24090,
    "name": "Pro Ped OB Pedestal",
    "brand": "vinten",
@@ -17338,31 +17371,6 @@
    "sku": "LNA-15N"
   },
   {
-   "id": 30868,
-   "name": "WL087 ll Wireless Transmission Set",
-   "brand": "vrriis",
-   "dept": 9,
-   "subcats": [
-    480
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/06/screenshot-2026-06-25-092145-300x300.jpg",
-   "url": "https://utopiacam.com/shop/wl087-ll-wireless-transmission-set/",
-   "sku": "WIR-VP2"
-  },
-  {
-   "id": 30469,
-   "name": "12G-SDI Distribution Amplifier",
-   "brand": "wooden-camera",
-   "dept": 9,
-   "subcats": [
-    262,
-    264
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2026/04/1748436386-1893134-300x300.jpg",
-   "url": "https://utopiacam.com/shop/12g-sdi-distribution-amplifier/",
-   "sku": "VA-4KDA"
-  },
-  {
    "id": 13291,
    "name": "Zip Box Pro Matte Box",
    "brand": "wooden-camera",
@@ -17385,33 +17393,6 @@
    "image": "https://utopiacam.com/wp-content/uploads/2016/12/1370614849000_980117.jpg",
    "url": "https://utopiacam.com/shop/c100-z-finder-pro/",
    "sku": "VWF-C10"
-  },
-  {
-   "id": 18506,
-   "name": "Canon C500 Mark II & C300 Mark III Z-Finder",
-   "brand": "zacuto",
-   "dept": 9,
-   "subcats": [
-    218,
-    222,
-    220
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2021/10/erer-1-300x300.jpg",
-   "url": "https://utopiacam.com/shop/c300-mk3-c500-mk-ii-lcd/",
-   "sku": "VWF-303"
-  },
-  {
-   "id": 10700,
-   "name": "Gratical Eye Micro OLED EVF",
-   "brand": "zacuto",
-   "dept": 9,
-   "subcats": [
-    218,
-    224
-   ],
-   "image": "https://utopiacam.com/wp-content/uploads/2018/03/1460555985000_IMG_610396.jpg",
-   "url": "https://utopiacam.com/shop/gratical-eye-micro-oled-evf/",
-   "sku": "VWF-ZAC"
   },
   {
    "id": 13206,

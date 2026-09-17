@@ -12,6 +12,10 @@ const DEPTS = [
   { he: 'גריפ', slug: 'grip', en: 'Grip' },
   { he: 'אביזרים', slug: 'accessories', en: 'Accessories' },
 ];
+// Virtual "Video" department carved out of Accessories: monitors, wireless video, recorders, converters/matrix.
+// Matched by (decoded) subcategory name so it survives Utopia renumbering ids.
+export const VIDEO_DEPT = { id: 900001, slug: 'video', he: 'וידאו', en: 'Video', order: 2.5 };
+const VIDEO_SUBCATS = ['מוניטורים', 'וידאו אלחוטי', 'מקליטים וכרטיסים', 'Converters', 'Mixers & Matrix'];
 const SUBCAT_EN = {
   'חצובות': 'Tripods & Heads', 'אביזרים כלליים': 'General Accessories', 'סוללות וספקים': 'Batteries & Power',
   'סוללות': 'Batteries', 'ספקים ומטענים': 'Chargers & PSU', 'מקליטים וכרטיסים': 'Recorders & Media',
@@ -65,7 +69,27 @@ export function buildDeptIndex(categories) {
     })).sort((a, b) => b.count - a.count);
     departments.push({ id: root.id, slug: d.slug, he: d.he, en: d.en, order: order + 1, subcategories });
   });
+  carveVideo(departments, descendants, children, byId);
   return { departments, descendants, byId };
+}
+
+// Moves the VIDEO_SUBCATS subtrees (and their descendants) from Accessories into a virtual Video department.
+function carveVideo(departments, descendants, children, byId) {
+  const acc = departments.find(d => d.slug === 'accessories');
+  if (!acc) return;
+  const roots = acc.subcategories.filter(s => VIDEO_SUBCATS.includes(s.he) || VIDEO_SUBCATS.includes(s.en));
+  if (!roots.length) return;
+  const set = new Set();
+  const stack = roots.map(r => r.id);
+  while (stack.length) { const id = stack.pop(); if (set.has(id)) continue; set.add(id); for (const ch of children.get(id) || []) stack.push(ch.id); }
+  const subcategories = acc.subcategories.filter(s => set.has(s.id)).map(s => ({ ...s, parent: roots.some(r => r.id === s.id) ? null : s.parent }));
+  acc.subcategories = acc.subcategories.filter(s => !set.has(s.id));
+  const accSet = descendants.get(acc.id);
+  for (const id of set) accSet.delete(id);
+  descendants.set(VIDEO_DEPT.id, new Set([VIDEO_DEPT.id, ...set]));
+  departments.push({ ...VIDEO_DEPT, subcategories });
+  departments.sort((a, b) => a.order - b.order);
+  departments.forEach((d, i) => { d.order = i + 1; });
 }
 
 export function normalizeProduct(raw, idx) {
@@ -109,7 +133,7 @@ async function main() {
   const dry = args.includes('--dry-run');
   const limit = args.includes('--limit') ? Number(args[args.indexOf('--limit') + 1]) : 0;
   const idx = buildDeptIndex(await getAll('products/categories'));
-  if (idx.departments.length !== DEPTS.length) throw new Error(`Found ${idx.departments.length}/4 departments`);
+  if (idx.departments.length < DEPTS.length) throw new Error(`Found ${idx.departments.length}/4 departments`);
   const rawProducts = await getAll('products', limit);
   const brandNames = new Map();
   const products = [];
