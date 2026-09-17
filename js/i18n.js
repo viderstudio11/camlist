@@ -1,0 +1,56 @@
+export const LANGS = ['he', 'en'];
+export const DEPT_EMOJI = { cameras: '📷', lenses: '🔭', grip: '🎬', accessories: '🔧', other: '📦' };
+
+export const dict = {
+  he: {
+    app_name: 'CamList', projects: 'פרויקטים', new_project: 'פרויקט חדש', no_projects: 'אין עדיין פרויקטים',
+    no_projects_hint: 'צור פרויקט ראשון והתחל לבנות רשימת ציוד', project_name: 'שם ההפקה', tech_manager: 'מנהל טכני',
+    date_from: 'מתאריך', date_to: 'עד תאריך', notes: 'הערות', save: 'שמור', cancel: 'ביטול', delete: 'מחק', duplicate: 'שכפל',
+    rename: 'ערוך פרטים', confirm_delete_project: 'למחוק את הפרויקט "{name}"? הפעולה אינה הפיכה.',
+    items_count: '{n} פריטים', item_count_one: 'פריט אחד', updated: 'עודכן', add_gear: 'הוסף ציוד', export: 'ייצוא / שיתוף',
+    list_empty: 'הרשימה ריקה', list_empty_hint: 'לחץ "הוסף ציוד" כדי להתחיל', note_placeholder: 'הערה (Cam A, גיבוי…)',
+    remove: 'הסר', search_placeholder: 'חיפוש: fx6, arri, 24-70…', departments: 'מחלקות', brands: 'יצרנים',
+    back_to_list: 'חזרה לרשימה ({n})', not_found_add_manual: 'לא מצאת? הוסף פריט ידני', manual_item: 'פריט ידני',
+    item_name: 'שם הפריט', brand: 'יצרן', department: 'מחלקה', other: 'אחר / ידני', add: 'הוסף', added: 'נוסף לרשימה',
+    no_results: 'אין תוצאות עבור "{q}"', all: 'הכל', in_list: 'ברשימה',
+    share: 'שתף / העתק', copied: 'הועתק ללוח', excel: 'Excel', word: 'Word', pdf: 'PDF', include_notes: 'כלול הערות',
+    include_links: 'כלול קישורים לאוטופיה', preview: 'תצוגה מקדימה', export_failed: 'הייצוא נכשל', pdf_hint: 'בחלון ההדפסה בחר "שמור כ-PDF"',
+    settings: 'הגדרות', language: 'שפה', default_tech_manager: 'מנהל טכני (ברירת מחדל)', backup: 'גיבוי', export_backup: 'ייצוא גיבוי (JSON)',
+    import_backup: 'ייבוא גיבוי', import_ok: 'יובאו {projects} פרויקטים ו-{manual} פריטים ידניים', import_failed: 'קובץ גיבוי לא תקין',
+    about: 'אודות', catalog_date: 'מאגר עודכן', products: 'מוצרים', logos_hint: 'לוגואים: שים קובץ logos/<יצרן>.png או .svg',
+    catalog_error: 'המאגר לא נטען', retry: 'נסה שוב', new_version: 'גרסה חדשה זמינה', refresh: 'רענן',
+    total: 'סה"כ', qty: 'כמות', item: 'פריט', link: 'קישור', gear_list: 'רשימת ציוד', storage_warning: 'לא ניתן לשמור — הנתונים יאבדו בסגירה',
+    manual_in_use: 'הפריט בשימוש בפרויקטים: {names}', dept_cameras: 'מצלמות', dept_lenses: 'עדשות', dept_grip: 'גריפ',
+    dept_accessories: 'אביזרים', dept_other: 'אחר', open_utopia: 'פתח באוטופיה', untitled: 'ללא שם', signature: 'חתימה',
+  },
+  en: {
+    app_name: 'CamList', projects: 'Projects', new_project: 'New project', no_projects: 'No projects yet',
+    no_projects_hint: 'Create your first project and start building a gear list', project_name: 'Production name', tech_manager: 'Tech manager',
+    date_from: 'From', date_to: 'To', notes: 'Notes', save: 'Save', cancel: 'Cancel', delete: 'Delete', duplicate: 'Duplicate',
+    rename: 'Edit details', confirm_delete_project: 'Delete project "{name}"? This cannot be undone.',
+    items_count: '{n} items', item_count_one: '1 item', updated: 'Updated', add_gear: 'Add gear', export: 'Export / Share',
+    list_empty: 'List is empty', list_empty_hint: 'Tap "Add gear" to start', note_placeholder: 'Note (Cam A, backup…)',
+    remove: 'Remove', search_placeholder: 'Search: fx6, arri, 24-70…', departments: 'Departments', brands: 'Brands',
+    back_to_list: 'Back to list ({n})', not_found_add_manual: "Can't find it? Add manually", manual_item: 'Manual item',
+    item_name: 'Item name', brand: 'Brand', department: 'Department', other: 'Other / manual', add: 'Add', added: 'Added to list',
+    no_results: 'No results for "{q}"', all: 'All', in_list: 'in list',
+    share: 'Share / Copy', copied: 'Copied to clipboard', excel: 'Excel', word: 'Word', pdf: 'PDF', include_notes: 'Include notes',
+    include_links: 'Include Utopia links', preview: 'Preview', export_failed: 'Export failed', pdf_hint: 'In the print dialog choose "Save as PDF"',
+    settings: 'Settings', language: 'Language', default_tech_manager: 'Default tech manager', backup: 'Backup', export_backup: 'Export backup (JSON)',
+    import_backup: 'Import backup', import_ok: 'Imported {projects} projects and {manual} manual items', import_failed: 'Invalid backup file',
+    about: 'About', catalog_date: 'Catalog updated', products: 'products', logos_hint: 'Logos: drop logos/<brand>.png or .svg',
+    catalog_error: 'Catalog failed to load', retry: 'Retry', new_version: 'New version available', refresh: 'Refresh',
+    total: 'Total', qty: 'Qty', item: 'Item', link: 'Link', gear_list: 'Gear list', storage_warning: "Can't save — data will be lost on close",
+    manual_in_use: 'Item is used in projects: {names}', dept_cameras: 'Cameras', dept_lenses: 'Lenses', dept_grip: 'Grip',
+    dept_accessories: 'Accessories', dept_other: 'Other', open_utopia: 'Open on Utopia', untitled: 'Untitled', signature: 'Signature',
+  },
+};
+
+let current = 'he';
+export const getLang = () => current;
+export const setLang = (lang) => { current = LANGS.includes(lang) ? lang : 'he'; return current; };
+export const dirFor = (lang) => (lang === 'he' ? 'rtl' : 'ltr');
+export function t(key, params = {}, lang = current) {
+  const s = dict[lang]?.[key] ?? dict.he[key] ?? key;
+  return s.replace(/\{(\w+)\}/g, (_, k) => (params[k] ?? `{${k}}`));
+}
