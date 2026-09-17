@@ -1,105 +1,101 @@
 export const slugify = (name = '') => name.toLowerCase().trim()
   .replace(/['’]/g, '').replace(/[^a-z0-9֐-׿]+/g, '-').replace(/^-+|-+$/g, '');
 
-// Typographic wordmarks (generic fonts, brand-ish colors). text/weight/spacing/style/fg/bg
+// Brand-ish colours for the typographic fallback (full name, never initials).
 export const BUILTIN = {
-  arri: { text: 'ARRI', weight: 900, spacing: 0.12, fg: '#ffffff', bg: '#1f4fd8' },
-  sony: { text: 'SONY', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#000000', serif: true },
-  canon: { text: 'Canon', weight: 800, spacing: -0.02, fg: '#ffffff', bg: '#cc0000', italic: true },
-  red: { text: 'RED', weight: 900, spacing: 0.05, fg: '#e0262b', bg: '#111111' },
-  nikon: { text: 'Nikon', weight: 800, spacing: 0, fg: '#111111', bg: '#f7d117' },
-  'blackmagic-design': { text: 'Blackmagic', weight: 700, spacing: 0, fg: '#ffffff', bg: '#2b2b2b' },
-  blackmagic: { text: 'Blackmagic', weight: 700, spacing: 0, fg: '#ffffff', bg: '#2b2b2b' },
-  panasonic: { text: 'Panasonic', weight: 800, spacing: 0, fg: '#ffffff', bg: '#0b3d91' },
-  dji: { text: 'DJI', weight: 900, spacing: 0.1, fg: '#ffffff', bg: '#000000' },
-  gopro: { text: 'GoPro', weight: 900, spacing: 0, fg: '#111111', bg: '#00a3e0' },
-  insta360: { text: 'Insta360', weight: 800, spacing: 0, fg: '#111111', bg: '#ffb800' },
-  zeiss: { text: 'ZEISS', weight: 800, spacing: 0.15, fg: '#ffffff', bg: '#0060a8' },
-  cooke: { text: 'Cooke', weight: 700, spacing: 0.02, fg: '#ffffff', bg: '#6b1e1e', serif: true },
-  angenieux: { text: 'Angénieux', weight: 700, spacing: 0, fg: '#ffffff', bg: '#7a0c1a', serif: true },
-  fujinon: { text: 'FUJINON', weight: 800, spacing: 0.06, fg: '#ffffff', bg: '#008a3e' },
-  fujifilm: { text: 'FUJIFILM', weight: 800, spacing: 0.06, fg: '#ffffff', bg: '#008a3e' },
-  sigma: { text: 'SIGMA', weight: 800, spacing: 0.1, fg: '#ffffff', bg: '#111111' },
-  leica: { text: 'Leica', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#e20612' },
-  laowa: { text: 'LAOWA', weight: 800, spacing: 0.1, fg: '#ffffff', bg: '#222222' },
-  teradek: { text: 'teradek', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#0a84ff' },
-  smallhd: { text: 'SmallHD', weight: 800, spacing: 0, fg: '#ffffff', bg: '#f26522' },
-  atomos: { text: 'ATOMOS', weight: 800, spacing: 0.08, fg: '#111111', bg: '#f5f5f5' },
-  tilta: { text: 'TILTA', weight: 900, spacing: 0.12, fg: '#ffffff', bg: '#c8102e' },
-  smallrig: { text: 'SmallRig', weight: 800, spacing: 0, fg: '#111111', bg: '#f5f5f5' },
-  sachtler: { text: 'sachtler', weight: 700, spacing: 0.02, fg: '#ffffff', bg: '#004b87' },
-  oconnor: { text: 'OConnor', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#005eb8' },
-  vinten: { text: 'Vinten', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#5b2a86' },
-  'wooden-camera': { text: 'WOODEN', weight: 900, spacing: 0.1, fg: '#111111', bg: '#f2c14e' },
-  'bright-tangerine': { text: 'Bright T.', weight: 800, spacing: 0, fg: '#111111', bg: '#ff7f11' },
-  easyrig: { text: 'easyrig', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#d6001c' },
-  freefly: { text: 'FREEFLY', weight: 800, spacing: 0.1, fg: '#ffffff', bg: '#0d0d0d' },
-  tiffen: { text: 'Tiffen', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#004b8d' },
-  hollyland: { text: 'Hollyland', weight: 800, spacing: 0, fg: '#ffffff', bg: '#1b1b1b' },
-  aputure: { text: 'aputure', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#2a2a2a' },
-  manfrotto: { text: 'Manfrotto', weight: 800, spacing: 0, fg: '#ffffff', bg: '#d0021b' },
-  cartoni: { text: 'Cartoni', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#c00000' },
-  dzofilm: { text: 'DZOFILM', weight: 800, spacing: 0.08, fg: '#ffffff', bg: '#000000' },
-  sirui: { text: 'SIRUI', weight: 800, spacing: 0.1, fg: '#ffffff', bg: '#004aad' },
-  portkeys: { text: 'PORTKEYS', weight: 800, spacing: 0.06, fg: '#ffffff', bg: '#0b0b0b' },
-  shape: { text: 'SHAPE', weight: 900, spacing: 0.12, fg: '#ffffff', bg: '#1b1b1b' },
-  matthews: { text: 'MATTHEWS', weight: 900, spacing: 0.06, fg: '#111111', bg: '#f5f5f5' },
-  avenger: { text: 'AVENGER', weight: 900, spacing: 0.08, fg: '#ffffff', bg: '#111111' },
-  samyang: { text: 'SAMYANG', weight: 800, spacing: 0.06, fg: '#ffffff', bg: '#c00000' },
-  fxlion: { text: 'FXLION', weight: 900, spacing: 0.08, fg: '#ffffff', bg: '#e05a00' },
-  'ronford-baker': { text: 'Ronford', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#2f3b52' },
-  utopia: { text: 'UTOPIA', weight: 900, spacing: 0.14, fg: '#ffffff', bg: '#e0262b' },
-  'core-swx': { text: 'CORE', weight: 900, spacing: 0.1, fg: '#ffffff', bg: '#0a5bd3' },
-  'anton-bauer': { text: 'Anton/Bauer', weight: 800, spacing: 0, fg: '#ffffff', bg: '#005a9c' },
-  nanlite: { text: 'NANLITE', weight: 800, spacing: 0.08, fg: '#ffffff', bg: '#00a0e9' },
-  godox: { text: 'Godox', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#ff6b00' },
-  nisi: { text: 'NiSi', weight: 800, spacing: 0.04, fg: '#ffffff', bg: '#3b3b3b' },
-  tokina: { text: 'Tokina', weight: 800, spacing: 0.02, fg: '#ffffff', bg: '#1a3a7a' },
-  tamron: { text: 'TAMRON', weight: 800, spacing: 0.06, fg: '#ffffff', bg: '#1b1b1b' },
+  arri: { fg: '#ffffff', bg: '#1f4fd8', weight: 900, spacing: 0.1 },
+  sony: { fg: '#ffffff', bg: '#000000', weight: 800, serif: true },
+  canon: { fg: '#ffffff', bg: '#cc0000', weight: 800, italic: true },
+  red: { fg: '#e0262b', bg: '#111111', weight: 900, spacing: 0.06 },
+  nikon: { fg: '#111111', bg: '#f7d117', weight: 800 },
+  'blackmagic-design': { fg: '#ffffff', bg: '#2b2b2b', weight: 700 },
+  panasonic: { fg: '#ffffff', bg: '#0b3d91', weight: 800 },
+  dji: { fg: '#ffffff', bg: '#000000', weight: 900, spacing: 0.08 },
+  gopro: { fg: '#111111', bg: '#00a3e0', weight: 900 },
+  insta360: { fg: '#111111', bg: '#ffb800', weight: 800 },
+  zeiss: { fg: '#ffffff', bg: '#0060a8', weight: 800, spacing: 0.1 },
+  cooke: { fg: '#111111', bg: '#f5c400', weight: 800, serif: true },
+  angenieux: { fg: '#ffffff', bg: '#7a0c1a', weight: 700, serif: true },
+  fujinon: { fg: '#ffffff', bg: '#008a3e', weight: 800, spacing: 0.04 },
+  fujifilm: { fg: '#ffffff', bg: '#008a3e', weight: 800, spacing: 0.04 },
+  sigma: { fg: '#ffffff', bg: '#111111', weight: 800, spacing: 0.08 },
+  leica: { fg: '#ffffff', bg: '#e20612', weight: 800 },
+  laowa: { fg: '#ffffff', bg: '#222222', weight: 800, spacing: 0.08 },
+  teradek: { fg: '#ffffff', bg: '#0a84ff', weight: 800 },
+  smallhd: { fg: '#ffffff', bg: '#f26522', weight: 800 },
+  atomos: { fg: '#111111', bg: '#f5f5f5', weight: 800, spacing: 0.06 },
+  tilta: { fg: '#ffffff', bg: '#c8102e', weight: 900, spacing: 0.1 },
+  smallrig: { fg: '#111111', bg: '#f5f5f5', weight: 800 },
+  sachtler: { fg: '#ffffff', bg: '#004b87', weight: 700 },
+  oconnor: { fg: '#ffffff', bg: '#005eb8', weight: 800 },
+  vinten: { fg: '#ffffff', bg: '#1a7fd6', weight: 800, italic: true },
+  'wooden-camera': { fg: '#111111', bg: '#f2c14e', weight: 900, spacing: 0.06 },
+  'bright-tangerine': { fg: '#111111', bg: '#ff7f11', weight: 800 },
+  easyrig: { fg: '#ffffff', bg: '#d6001c', weight: 800 },
+  freefly: { fg: '#ffffff', bg: '#0d0d0d', weight: 800, spacing: 0.08 },
+  tiffen: { fg: '#ffffff', bg: '#004b8d', weight: 800 },
+  hollyland: { fg: '#ffffff', bg: '#1b1b1b', weight: 800 },
+  aputure: { fg: '#ffffff', bg: '#2a2a2a', weight: 800 },
+  manfrotto: { fg: '#ffffff', bg: '#d0021b', weight: 800 },
+  cartoni: { fg: '#ffffff', bg: '#c00000', weight: 800 },
+  dzofilm: { fg: '#ffffff', bg: '#000000', weight: 800, spacing: 0.06 },
+  sirui: { fg: '#ffffff', bg: '#004aad', weight: 800, spacing: 0.08 },
+  portkeys: { fg: '#ffffff', bg: '#0b0b0b', weight: 800, spacing: 0.04 },
+  shape: { fg: '#ffffff', bg: '#1b1b1b', weight: 900, spacing: 0.1 },
+  matthews: { fg: '#ffffff', bg: '#d0021b', weight: 900, spacing: 0.04 },
+  avenger: { fg: '#ffffff', bg: '#111111', weight: 900, spacing: 0.06 },
+  samyang: { fg: '#ffffff', bg: '#c00000', weight: 800, spacing: 0.04 },
+  fxlion: { fg: '#ffffff', bg: '#e05a00', weight: 900, spacing: 0.06 },
+  'ronford-baker': { fg: '#ffffff', bg: '#2f3b52', weight: 800 },
+  utopia: { fg: '#ffffff', bg: '#e0262b', weight: 900, spacing: 0.1 },
+  'core-swx': { fg: '#ffffff', bg: '#0a5bd3', weight: 900, spacing: 0.06 },
+  'anton-bauer': { fg: '#ffffff', bg: '#005a9c', weight: 800 },
+  nanlite: { fg: '#ffffff', bg: '#00a0e9', weight: 800, spacing: 0.06 },
+  godox: { fg: '#ffffff', bg: '#ff6b00', weight: 800 },
+  nisi: { fg: '#ffffff', bg: '#3b3b3b', weight: 800 },
+  tokina: { fg: '#ffffff', bg: '#1a3a7a', weight: 800 },
+  tamron: { fg: '#ffffff', bg: '#1b1b1b', weight: 800, spacing: 0.06 },
+  swit: { fg: '#ffffff', bg: '#c8102e', weight: 900, spacing: 0.08 },
+  chrosziel: { fg: '#ffffff', bg: '#005f9e', weight: 800 },
+  viltrox: { fg: '#ffffff', bg: '#111111', weight: 800, spacing: 0.06 },
+  vaxis: { fg: '#ffffff', bg: '#111111', weight: 800, spacing: 0.08 },
+  aja: { fg: '#ffffff', bg: '#0055a5', weight: 900, spacing: 0.1 },
+  lexar: { fg: '#ffffff', bg: '#0067b1', weight: 800 },
+  sandisk: { fg: '#ffffff', bg: '#d0021b', weight: 800 },
+  angelbird: { fg: '#ffffff', bg: '#2c3e50', weight: 800 },
 };
 
 const hash = (s) => { let h = 0; for (const ch of s) h = (h * 31 + ch.codePointAt(0)) >>> 0; return h; };
-
-export function monogram(slug, name) {
-  const words = String(name || slug || '?').replace(/[^\p{L}\p{N} ]/gu, ' ').split(/\s+/).filter(Boolean);
-  const text = (words.length >= 2 ? words.slice(0, 3).map(w => w[0]).join('') : (words[0] || '?').slice(0, 2)).toUpperCase();
-  return { text, hue: hash(slug || name || '') % 360 };
-}
+export const hueOf = (slug) => hash(slug || '') % 360;
 
 const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-let misses = null;
-function loadMisses() {
-  if (misses) return misses;
-  misses = new Set();
-  try {
-    const raw = globalThis.localStorage?.getItem('camlist.logomiss');
-    if (raw) { const { at, slugs } = JSON.parse(raw); if (Date.now() - at < 864e5) slugs.forEach(s => misses.add(s)); }
-  } catch { /* ignore */ }
-  return misses;
+// logos/index.json → { "arri.svg": "light", "teradek.svg": "dark" }. Loaded once by the app (setLogoIndex);
+// until then, and for brands without a file, the typographic fallback is used.
+let files = new Map(); // slug → { file, plate }
+export function setLogoIndex(index) {
+  files = new Map();
+  const entries = Array.isArray(index) ? index.map(f => [f, 'light']) : Object.entries(index || {});
+  for (const [file, plate] of entries) {
+    const slug = file.replace(/\.[^.]+$/, '');
+    if (!files.has(slug) || file.endsWith('.svg')) files.set(slug, { file, plate: plate === 'dark' ? 'dark' : 'light' });
+  }
 }
-export function rememberMiss(slug) {
-  loadMisses().add(slug);
-  try { globalThis.localStorage?.setItem('camlist.logomiss', JSON.stringify({ at: Date.now(), slugs: [...misses] })); } catch { /* ignore */ }
-}
-export const hasMiss = (slug) => loadMisses().has(slug);
+export const hasLogoFile = (slug) => files.has(slug);
+export const logoFile = (slug) => files.get(slug)?.file || null;
 
-function builtinHTML(slug, name, size) {
+// Typographic fallback: the full brand name in the brand's colours (or a hue derived from the slug).
+export function fallbackHTML(slug, name, size = 'row') {
   const b = BUILTIN[slug];
-  const style = `--bg:${b.bg};--fg:${b.fg};--w:${b.weight};--ls:${b.spacing}em;${b.italic ? 'font-style:italic;' : ''}${b.serif ? 'font-family:Georgia,serif;' : ''}`;
-  return `<span class="logo logo-${size} logo-mark" style="${style}" title="${esc(name || slug)}">${esc(b.text)}</span>`;
+  const style = b
+    ? `--bg:${b.bg};--fg:${b.fg};--w:${b.weight || 800};--ls:${b.spacing || 0}em;${b.italic ? 'font-style:italic;' : ''}${b.serif ? 'font-family:Georgia,"Times New Roman",serif;' : ''}`
+    : `--bg:hsl(${hueOf(slug)} 40% 26%);--fg:#fff;--w:800;--ls:0.02em;`;
+  return `<span class="logo logo-${size} logo-text" style="${style}" title="${esc(name || slug)}">${esc(name || slug)}</span>`;
 }
-function monogramHTML(slug, name, size) {
-  const m = monogram(slug, name);
-  return `<span class="logo logo-${size} logo-mono" style="--hue:${m.hue}" title="${esc(name || slug)}">${esc(m.text)}</span>`;
-}
-
-export const fallbackHTML = (slug, name, size = 'row') => (BUILTIN[slug] ? builtinHTML(slug, name, size) : monogramHTML(slug, name, size));
 
 export function logoHTML(slug, name, size = 'row') {
   if (!slug) return `<span class="logo logo-${size} logo-none" aria-hidden="true"></span>`;
-  if (hasMiss(slug)) return fallbackHTML(slug, name, size);
-  // Try user-supplied png → svg → fallback. The inline onerror survives innerHTML; app.js defines window.__logoMiss,
-  // which calls rememberMiss(slug) and swaps the wrapper for logoHTML(slug, name, size) (now a fallback).
-  return `<span class="logo logo-${size} logo-user" data-slug="${esc(slug)}" data-name="${esc(name || slug)}" data-size="${esc(size)}"><img src="logos/${esc(slug)}.png" alt="${esc(name || slug)}" loading="lazy" onerror="this.onerror=function(){window.__logoMiss&&window.__logoMiss(this)};this.src='logos/${esc(slug)}.svg'"></span>`;
+  const f = files.get(slug);
+  if (!f) return fallbackHTML(slug, name, size);
+  return `<span class="logo logo-${size} logo-img plate-${f.plate}" title="${esc(name || slug)}"><img src="logos/${esc(f.file)}" alt="${esc(name || slug)}" loading="lazy" onerror="this.parentElement.outerHTML=window.__logoFallback?window.__logoFallback('${esc(slug)}','${esc(size)}'):''"></span>`;
 }

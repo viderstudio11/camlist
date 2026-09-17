@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-17T15:16:32.095Z",
+ "generatedAt": "2026-09-17T15:36:58.397Z",
  "source": "https://utopiacam.com",
  "departments": [
   {
@@ -641,7 +641,7 @@
   },
   {
    "id": "chrosziel",
-   "name": "CHROSZIEL",
+   "name": "Chrosziel",
    "count": 10
   },
   {
@@ -676,12 +676,12 @@
   },
   {
    "id": "digitalfoto",
-   "name": "DIGITALFOTO",
+   "name": "DigitalFoto",
    "count": 8
   },
   {
    "id": "vaxis",
-   "name": "VAXIS",
+   "name": "Vaxis",
    "count": 8
   },
   {
@@ -701,12 +701,12 @@
   },
   {
    "id": "atlas",
-   "name": "Atlas",
+   "name": "Atlas Lens Co.",
    "count": 6
   },
   {
    "id": "lexar",
-   "name": "LEXAR",
+   "name": "Lexar",
    "count": 6
   },
   {
@@ -726,12 +726,12 @@
   },
   {
    "id": "cineroid",
-   "name": "CINEROID",
+   "name": "Cineroid",
    "count": 5
   },
   {
    "id": "decimator-design",
-   "name": "DECIMATOR DESIGN",
+   "name": "Decimator",
    "count": 5
   },
   {
@@ -741,7 +741,7 @@
   },
   {
    "id": "panther",
-   "name": "PANTHER",
+   "name": "Panther",
    "count": 5
   },
   {
@@ -771,7 +771,7 @@
   },
   {
    "id": "filmair",
-   "name": "FILMAIR",
+   "name": "Filmair",
    "count": 4
   },
   {
@@ -786,7 +786,7 @@
   },
   {
    "id": "kramer",
-   "name": "KRAMER",
+   "name": "Kramer",
    "count": 4
   },
   {
@@ -796,12 +796,12 @@
   },
   {
    "id": "metabones",
-   "name": "METABONES",
+   "name": "Metabones",
    "count": 4
   },
   {
    "id": "zacuto",
-   "name": "ZACUTO",
+   "name": "Zacuto",
    "count": 4
   },
   {
@@ -811,27 +811,27 @@
   },
   {
    "id": "apple",
-   "name": "APPLE",
+   "name": "Apple",
    "count": 3
   },
   {
    "id": "avmatrix",
-   "name": "AVMATRIX",
+   "name": "AVMatrix",
    "count": 3
   },
   {
    "id": "botai",
-   "name": "BOTAI",
+   "name": "botai",
    "count": 3
   },
   {
    "id": "cmotion",
-   "name": "CMOTION",
+   "name": "cmotion",
    "count": 3
   },
   {
    "id": "flowcine",
-   "name": "FLOWCINE",
+   "name": "Flowcine",
    "count": 3
   },
   {
@@ -846,12 +846,12 @@
   },
   {
    "id": "movietech",
-   "name": "MOVIETECH",
+   "name": "MovieTech",
    "count": 3
   },
   {
    "id": "sandisk",
-   "name": "SANDISK",
+   "name": "SanDisk",
    "count": 3
   },
   {
@@ -866,7 +866,7 @@
   },
   {
    "id": "vocas",
-   "name": "VOCAS",
+   "name": "Vocas",
    "count": 3
   },
   {
@@ -876,47 +876,47 @@
   },
   {
    "id": "amphibico",
-   "name": "AMPHIBICO",
+   "name": "Amphibico",
    "count": 2
   },
   {
    "id": "astro",
-   "name": "ASTRO",
+   "name": "astro",
    "count": 2
   },
   {
    "id": "convergent-design",
-   "name": "CONVERGENT DESIGN",
+   "name": "Convergent Design",
    "count": 2
   },
   {
    "id": "datavideo",
-   "name": "DATAVIDEO",
+   "name": "Datavideo",
    "count": 2
   },
   {
    "id": "denecke",
-   "name": "DENECKE",
+   "name": "Denecke",
    "count": 2
   },
   {
    "id": "elemack",
-   "name": "ELEMACK",
+   "name": "elemack",
    "count": 2
   },
   {
    "id": "feelworld",
-   "name": "FEELWORLD",
+   "name": "Feelworld",
    "count": 2
   },
   {
    "id": "iron-glass",
-   "name": "IRON GLASS",
+   "name": "Iron Glass",
    "count": 2
   },
   {
    "id": "kipon",
-   "name": "KIPON",
+   "name": "Kipon",
    "count": 2
   },
   {
@@ -926,12 +926,12 @@
   },
   {
    "id": "meikon",
-   "name": "MEIKON",
+   "name": "Meikon",
    "count": 2
   },
   {
    "id": "modern-studio",
-   "name": "MODERN STUDIO",
+   "name": "Modern Studio",
    "count": 2
   },
   {
@@ -941,7 +941,7 @@
   },
   {
    "id": "rt-motion",
-   "name": "RT MOTION",
+   "name": "RT Motion",
    "count": 2
   },
   {
@@ -956,12 +956,12 @@
   },
   {
    "id": "varavon",
-   "name": "VARAVON",
+   "name": "Varavon",
    "count": 2
   },
   {
    "id": "video-devices",
-   "name": "VIDEO DEVICES",
+   "name": "Video Devices",
    "count": 2
   },
   {
@@ -971,7 +971,7 @@
   },
   {
    "id": "vision-research",
-   "name": "VISION RESEARCH",
+   "name": "Vision Research",
    "count": 2
   },
   {
@@ -991,17 +991,17 @@
   },
   {
    "id": "advice",
-   "name": "ADVICE",
+   "name": "advice",
    "count": 1
   },
   {
    "id": "america",
-   "name": "AMERICA",
+   "name": "america",
    "count": 1
   },
   {
    "id": "amimon",
-   "name": "AMIMON",
+   "name": "amimon",
    "count": 1
   },
   {
@@ -1011,17 +1011,17 @@
   },
   {
    "id": "blazar",
-   "name": "BLAZAR",
+   "name": "blazar",
    "count": 1
   },
   {
    "id": "blazer-lens",
-   "name": "BLAZER LENS",
+   "name": "blazer lens",
    "count": 1
   },
   {
    "id": "blkbrd",
-   "name": "BLKBRD",
+   "name": "blkbrd",
    "count": 1
   },
   {
@@ -1031,12 +1031,12 @@
   },
   {
    "id": "caligri",
-   "name": "CALIGRI",
+   "name": "caligri",
    "count": 1
   },
   {
    "id": "century",
-   "name": "CENTURY",
+   "name": "century",
    "count": 1
   },
   {
@@ -1051,32 +1051,32 @@
   },
   {
    "id": "cinesaddle",
-   "name": "CINESADDLE",
+   "name": "cinesaddle",
    "count": 1
   },
   {
    "id": "cinescope",
-   "name": "CINESCOPE",
+   "name": "cinescope",
    "count": 1
   },
   {
    "id": "citytek",
-   "name": "CITYTEK",
+   "name": "citytek",
    "count": 1
   },
   {
    "id": "cobalt",
-   "name": "COBALT",
+   "name": "cobalt",
    "count": 1
   },
   {
    "id": "codex",
-   "name": "CODEX",
+   "name": "codex",
    "count": 1
   },
   {
    "id": "dana-dolly",
-   "name": "DANA DOLLY",
+   "name": "dana dolly",
    "count": 1
   },
   {
@@ -1086,7 +1086,7 @@
   },
   {
    "id": "dvtec",
-   "name": "DVTEC",
+   "name": "dvtec",
    "count": 1
   },
   {
@@ -1096,7 +1096,7 @@
   },
   {
    "id": "edelkrone",
-   "name": "EDELKRONE",
+   "name": "edelkrone",
    "count": 1
   },
   {
@@ -1106,17 +1106,17 @@
   },
   {
    "id": "elite",
-   "name": "ELITE",
+   "name": "elite",
    "count": 1
   },
   {
    "id": "eurogrip",
-   "name": "EUROGRIP",
+   "name": "eurogrip",
    "count": 1
   },
   {
    "id": "film-devices",
-   "name": "FILM DEVICES",
+   "name": "film devices",
    "count": 1
   },
   {
@@ -1131,7 +1131,7 @@
   },
   {
    "id": "glidecam",
-   "name": "GLIDECAM",
+   "name": "glidecam",
    "count": 1
   },
   {
@@ -1141,7 +1141,7 @@
   },
   {
    "id": "hahnel",
-   "name": "HAHNEL",
+   "name": "hahnel",
    "count": 1
   },
   {
@@ -1151,12 +1151,12 @@
   },
   {
    "id": "ho-link",
-   "name": "HO-LINK",
+   "name": "Ho-Link",
    "count": 1
   },
   {
    "id": "hyper",
-   "name": "HYPER",
+   "name": "hyper",
    "count": 1
   },
   {
@@ -1176,17 +1176,17 @@
   },
   {
    "id": "konova",
-   "name": "KONOVA",
+   "name": "konova",
    "count": 1
   },
   {
    "id": "lawmate",
-   "name": "LAWMATE",
+   "name": "lawmate",
    "count": 1
   },
   {
    "id": "lensbaby",
-   "name": "LENSBABY",
+   "name": "lensbaby",
    "count": 1
   },
   {
@@ -1196,17 +1196,17 @@
   },
   {
    "id": "marshall",
-   "name": "MARSHALL",
+   "name": "marshall",
    "count": 1
   },
   {
    "id": "mean-well",
-   "name": "MEAN WELL",
+   "name": "mean well",
    "count": 1
   },
   {
    "id": "movcam",
-   "name": "MOVCAM",
+   "name": "movcam",
    "count": 1
   },
   {
@@ -1216,7 +1216,7 @@
   },
   {
    "id": "nokia",
-   "name": "NOKIA",
+   "name": "nokia",
    "count": 1
   },
   {
@@ -1231,7 +1231,7 @@
   },
   {
    "id": "optitek",
-   "name": "OPTITEK",
+   "name": "optitek",
    "count": 1
   },
   {
@@ -1246,17 +1246,17 @@
   },
   {
    "id": "postium",
-   "name": "POSTIUM",
+   "name": "postium",
    "count": 1
   },
   {
    "id": "preston",
-   "name": "PRESTON",
+   "name": "preston",
    "count": 1
   },
   {
    "id": "prograde",
-   "name": "PROGRADE",
+   "name": "prograde",
    "count": 1
   },
   {
@@ -1266,7 +1266,7 @@
   },
   {
    "id": "ruige",
-   "name": "RUIGE",
+   "name": "ruige",
    "count": 1
   },
   {
@@ -1276,17 +1276,17 @@
   },
   {
    "id": "scubacam",
-   "name": "SCUBACAM",
+   "name": "scubacam",
    "count": 1
   },
   {
    "id": "sea-frogs",
-   "name": "sea frogs",
+   "name": "Sea Frogs",
    "count": 1
   },
   {
    "id": "secced",
-   "name": "SECCED",
+   "name": "secced",
    "count": 1
   },
   {
@@ -1296,7 +1296,7 @@
   },
   {
    "id": "t-create",
-   "name": "T-CREATE",
+   "name": "t-create",
    "count": 1
   },
   {
@@ -1311,22 +1311,22 @@
   },
   {
    "id": "transvideo",
-   "name": "TRANSVIDEO",
+   "name": "transvideo",
    "count": 1
   },
   {
    "id": "tribe7",
-   "name": "TRIBE7",
+   "name": "tribe7",
    "count": 1
   },
   {
    "id": "ttartisan",
-   "name": "TTARTISAN",
+   "name": "TTArtisan",
    "count": 1
   },
   {
    "id": "vrriis",
-   "name": "VRRIIS",
+   "name": "vrriis",
    "count": 1
   }
  ],

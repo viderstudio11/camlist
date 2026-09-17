@@ -31,6 +31,12 @@ const BRAND_DISPLAY = {
   'bright-tangerine': 'Bright Tangerine', easyrig: 'Easyrig', freefly: 'Freefly', tiffen: 'Tiffen', hollyland: 'Hollyland',
   aputure: 'Aputure', nikon: 'Nikon', vinten: 'Vinten', cartoni: 'Cartoni', manfrotto: 'Manfrotto', 'preston-cinema': 'Preston',
   portkeys: 'Portkeys', shape: 'SHAPE', matthews: 'Matthews', samyang: 'Samyang', fxlion: 'FXLion', avenger: 'Avenger', 'ronford-baker': 'Ronford-Baker', utopia: 'Utopia', 'e-image': 'E-Image', kupo: 'Kupo', 'core-swx': 'Core SWX', 'anton-bauer': 'Anton/Bauer', ikan: 'ikan', nanlite: 'Nanlite', godox: 'Godox', dzofilm: 'DZOFILM', sirui: 'Sirui', nisi: 'NiSi', tokina: 'Tokina', tamron: 'Tamron',
+  lexar: 'Lexar', apple: 'Apple', sandisk: 'SanDisk', angelbird: 'Angelbird', 'vision-research': 'Vision Research', chrosziel: 'Chrosziel', cineroid: 'Cineroid',
+  proaim: 'Proaim', zacuto: 'Zacuto', vocas: 'Vocas', datavideo: 'Datavideo', kramer: 'Kramer', metabones: 'Metabones', 'decimator-design': 'Decimator', movmax: 'MOVMAX',
+  viltrox: 'Viltrox', vaxis: 'Vaxis', digitalfoto: 'DigitalFoto', androokie: 'Androokie', atlas: 'Atlas Lens Co.', dulens: 'Dulens', panther: 'Panther', filmair: 'Filmair',
+  avmatrix: 'AVMatrix', flowcine: 'Flowcine', movietech: 'MovieTech', urth: 'Urth', abonair: 'ABonAir', amphibico: 'Amphibico', 'convergent-design': 'Convergent Design',
+  denecke: 'Denecke', feelworld: 'Feelworld', 'iron-glass': 'Iron Glass', kipon: 'Kipon', meikon: 'Meikon', 'modern-studio': 'Modern Studio', 'rt-motion': 'RT Motion', shimbol: 'Shimbol',
+  varavon: 'Varavon', 'video-devices': 'Video Devices', ttartisan: 'TTArtisan', 'sea-frogs': 'Sea Frogs', wincode: 'Wincode', portkeys: 'Portkeys', 'ho-link': 'Ho-Link', ulanzi: 'Ulanzi', behringer: 'Behringer',
 };
 
 export const decodeEntities = (s = '') => s
@@ -146,7 +152,8 @@ async function main() {
   }
   const order = new Map(idx.departments.map(d => [d.id, d.order]));
   products.sort((a, b) => order.get(a.dept) - order.get(b.dept) || (a.brand || '~').localeCompare(b.brand || '~') || a.name.localeCompare(b.name));
-  const brands = [...brandNames].map(([id, first]) => ({ id, name: BRAND_DISPLAY[id] || first, count: products.filter(p => p.brand === id).length }))
+  const titleCase = (n) => (/^[A-Z0-9 &.-]+$/.test(n) && n.replace(/[^A-Z]/g, '').length > 4 ? n.toLowerCase().replace(/(^|[s-])S/g, c => c.toUpperCase()) : n);
+  const brands = [...brandNames].map(([id, first]) => ({ id, name: BRAND_DISPLAY[id] || titleCase(first), count: products.filter(p => p.brand === id).length }))
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   const catalog = { generatedAt: new Date().toISOString(), source: 'https://utopiacam.com', departments: idx.departments, brands, products };
 

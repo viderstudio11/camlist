@@ -2,7 +2,7 @@ import { createStore } from './store.js';
 import { createCatalog, loadCatalog } from './catalog.js';
 import { t, setLang, getLang, dirFor } from './i18n.js';
 import { esc, el, toast, icons, download } from './ui/dom.js';
-import { rememberMiss, fallbackHTML } from './brands.js';
+import { fallbackHTML, setLogoIndex } from './brands.js';
 import * as Projects from './ui/projects.js';
 import * as List from './ui/list.js';
 import * as Catalog from './ui/catalog.js';
@@ -13,14 +13,8 @@ setLang(store.state.settings.lang);
 let catalog = createCatalog({ departments: [], brands: [], products: [] }, store.state.manualProducts);
 let catalogError = null;
 
-// Called by the inline onerror in brands.logoHTML when neither logos/<slug>.png nor .svg exists.
-window.__logoMiss = (img) => {
-  const wrap = img.closest('.logo-user');
-  if (!wrap) return;
-  const { slug, name, size } = wrap.dataset;
-  rememberMiss(slug);
-  wrap.outerHTML = fallbackHTML(slug, name, size);
-};
+// Called by the inline onerror in brands.logoHTML if a listed logo file fails to load.
+window.__logoFallback = (slug, size) => fallbackHTML(slug, catalog.brandName(slug), size);
 
 const ctx = {
   store, t, get catalog() { return catalog; },
@@ -32,7 +26,8 @@ const ctx = {
   resolve: (id) => catalog.byId(id),
   setTopbar({ title = '', back = null, right = [] }) {
     const bar = document.getElementById('topbar');
-    bar.innerHTML = `${back ? `<button class="iconbtn mirror" data-back aria-label="back">${icons.back}</button>` : ''}<div class="title" dir="auto">${title}</div>${right.map((r, i) => `<button class="iconbtn" data-r="${i}" aria-label="${esc(r.label || '')}">${r.icon || esc(r.text ?? '')}</button>`).join('')}`;
+    bar.innerHTML = `${back ? `<button class="iconbtn mirror" data-back aria-label="back">${icons.back}</button>` : ''}<div class="title" dir="auto">${title}</div>${right.map((r, i) => `<button class="iconbtn" data-r="${i}" aria-label="${esc(r.label || '')}">${r.icon || esc(r.text ?? '')}</button>`).join('')}<button class="langpill" data-lang aria-label="language">${t('lang_switch')}</button>`;
+    bar.querySelector('[data-lang]').onclick = () => ctx.setLang(getLang() === 'he' ? 'en' : 'he');
     if (back) bar.querySelector('[data-back]').onclick = () => (typeof back === 'string' ? ctx.navigate(back) : back());
     right.forEach((r, i) => { bar.querySelector(`[data-r="${i}"]`).onclick = r.onClick; });
   },
@@ -75,7 +70,6 @@ function renderSettings(ctx, _p, root) {
   const locale = getLang() === 'he' ? 'he-IL' : 'en-GB';
   root.innerHTML = `
     <div class="card form">
-      <label>${t('language')}<select name="lang"><option value="he" ${s.lang === 'he' ? 'selected' : ''}>עברית</option><option value="en" ${s.lang === 'en' ? 'selected' : ''}>English</option></select></label>
       <label>${t('default_tech_manager')}<input name="techManager" value="${esc(s.techManager)}" autocomplete="off"></label>
     </div>
     <div class="section-title">${t('backup')}</div>
@@ -92,7 +86,6 @@ function renderSettings(ctx, _p, root) {
       <div class="kv"><span>${t('logos_hint')}</span></div>
       <div class="kv"><span>utopiacam.com</span><b>CamList v1</b></div>
     </div>`;
-  root.querySelector('[name=lang]').onchange = (e) => ctx.setLang(e.target.value);
   root.querySelector('[name=techManager]').onchange = (e) => store.setSettings({ techManager: e.target.value.trim() });
   root.querySelector('[data-export]').onclick = () => download(`camlist-backup-${new Date().toISOString().slice(0, 10)}.json`, new Blob([JSON.stringify(store.exportBackup(), null, 1)], { type: 'application/json' }));
   const file = root.querySelector('[data-file]');
@@ -105,6 +98,7 @@ function renderSettings(ctx, _p, root) {
 }
 
 async function boot() {
+  fetch('logos/index.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).then(idx => { if (idx) { setLogoIndex(idx); render(); } }).catch(() => {});
   try {
     const data = await loadCatalog();
     catalog = createCatalog(data, store.state.manualProducts);

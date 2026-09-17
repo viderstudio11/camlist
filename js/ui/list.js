@@ -26,7 +26,7 @@ export function render(ctx, { id }, root) {
   const groups = groupByDept(p.items, ctx.resolve, ctx.deptOrder());
   const body = groups.map(g => `
     <section class="group ${collapsed.has(g.key) ? 'collapsed' : ''}" data-key="${g.key}">
-      <div class="group-head"><span>${DEPT_EMOJI[g.key]}</span><h2>${t(`dept_${g.key}`)}</h2><span class="count">${g.entries.reduce((s, e) => s + e.item.qty, 0)}</span><span class="chev">${icons.chev}</span></div>
+      <div class="group-head"><span class="emoji">${DEPT_EMOJI[g.key]}</span><h2>${t(`dept_${g.key}`)}</h2><span class="count">${g.entries.reduce((s, e) => s + e.item.qty, 0)}</span><span class="chev">${icons.chev}</span></div>
       <div class="group-body">${g.entries.map(({ item, product }) => `
         <div class="row" data-pid="${esc(item.productId)}">
           ${thumbHTML(product, g.key)}

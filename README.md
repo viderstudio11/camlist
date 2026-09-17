@@ -23,21 +23,19 @@ On `localhost` the service worker is **not** registered (so edits show on a plai
 ```bash
 npm run fetch-catalog
 ```
-Pulls **Cameras / Lenses / Grip / Accessories** from Utopia's public WooCommerce Store API into `data/catalog.json` (~1,270 products, ~165 brands, with images and links). Commit the result, then bump `VERSION` in `sw.js` so installed apps get the new data (they show a "new version" toast).
+Pulls **Cameras / Lenses / Grip / Accessories** from Utopia's public WooCommerce Store API into `data/catalog.json` (~1,270 products, ~165 brands, with images and links). A virtual **Video** department is carved out of Accessories (monitors, wireless video, recorders, converters/matrix) — see `VIDEO_SUBCATS` in the script. Commit the result, then bump `VERSION` in `sw.js` so installed apps get the new data (they show a "new version" toast).
 
 To add more departments, add them to `DEPTS` in `scripts/fetch-catalog.js`.
 
 ## לוגואים של יצרנים · Brand logos
 
-The app ships with built-in typographic wordmarks for ~55 brands and an automatic monogram for the rest.
-To use a real logo, drop a file into `logos/`:
+`logos/` holds real brand logos (50 brands, pulled from Wikipedia infoboxes / Wikimedia Commons / the brands' own sites) and `logos/index.json`, which lists each file and whether it sits on a `light` or `dark` plate. Brands without a file get their full name in brand colours (never initials).
 
+```bash
+npm run fetch-logos     # download logos for brands listed in scripts/fetch-logos.js (skips existing files)
+npm run logos-index     # rebuild logos/index.json after adding/removing files by hand
 ```
-logos/arri.svg
-logos/sony.png
-logos/wooden-camera.png
-```
-File name = brand slug: lowercase, spaces → `-`, apostrophes removed (`oconnor`, `bright-tangerine`). The app prefers your file over the built-in mark automatically. Brand slugs are listed in `data/catalog.json` under `brands[].id`.
+To add a logo manually: drop `logos/<brand-slug>.svg|png` (slug = lowercase, spaces → `-`, apostrophes removed: `oconnor`, `wooden-camera`), then run `npm run logos-index`. White-on-transparent logos go in `DARK_PLATE` in the script.
 
 ## פריסה · Deploy (GitHub Pages, free)
 
