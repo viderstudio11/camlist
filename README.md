@@ -37,6 +37,16 @@ npm run logos-index     # rebuild logos/index.json after adding/removing files b
 ```
 To add a logo manually: drop `logos/<brand-slug>.svg|png` (slug = lowercase, spaces → `-`, apostrophes removed: `oconnor`, `wooden-camera`), then run `npm run logos-index`. White-on-transparent logos go in `DARK_PLATE` in the script.
 
+## בנייה סביב מצלמה · Build around a camera
+
+`data/compat.json` holds hand-curated camera profiles (native mount, mounts usable via adapter, sensor format, media families, battery families, kit type) plus base-kit slot lists per camera type. Edit it directly — it is plain JSON:
+
+- `cameras[]`: `id` = Utopia product id (or `match` = regex on the product name), `mount`, `adapters` (extra), `format` (FF / S35 / MFT / MF / 2/3 / 1in / 16 / action), `media`, `battery`, `type`.
+- `adapters`: which lens mounts each camera mount can take via an adapter (E → EF/PL/…).
+- `kits`: base-kit slots per `type` (department + subcategory + qty).
+
+Rules live in `js/compat.js` (lens mount/coverage, media and battery families matched by name). Unknown products are shown grey, never hidden. Tests: `tests/compat.test.js`.
+
 ## פריסה · Deploy (GitHub Pages, free)
 
 1. Push the repo to GitHub.

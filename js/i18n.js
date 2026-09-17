@@ -25,6 +25,10 @@ export const dict = {
     dept_video: 'וידאו', dept_tripods: 'חצובות', dept_power: 'סוללות וכוח', jump_to_brand: 'קפיצה ליצרן', optional: 'אופציונלי', hero_sub: 'רשימות ציוד להפקות · מבוסס מאגר אוטופיה', stat_products: 'מוצרים', stat_brands: 'יצרנים', stat_projects: 'פרויקטים',
     models_count: '{n} דגמים', all_brands: 'כל היצרנים', choose_brand: 'בחר יצרן', choose_subcat: 'בחר קטגוריה', no_brand: 'ללא יצרן', show_more: 'הצג עוד ({n})',
     lang_switch: 'EN', install_hint: 'טיפ: הוסף למסך הבית כדי לעבוד כמו אפליקציה', in_project: 'בפרויקט',
+    build_around: 'בנה סביב', building_around: 'בונה סביב', active_camera: 'מצלמה פעילה', compat_only: 'רק תואם', show_all_items: 'הצג הכל',
+    tag_native: 'תואם', tag_adapter: 'דרך מתאם', tag_partial: 'קרופ / כיסוי חלקי', tag_unknown: 'לא ידוע', tag_no: 'לא תואם',
+    base_kit: 'ערכת בסיס', choose: 'בחר', kit_done: 'יש', no_profile: 'אין פרופיל תאימות למצלמה זו', clear_build: 'בטל בנייה סביב', hidden_count: '{n} פריטים לא תואמים מוסתרים',
+    mount: 'מאונט', sensor: 'חיישן', media: 'מדיה', battery: 'סוללה', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
   },
   en: {
     app_name: 'CamList', projects: 'Projects', new_project: 'New project', no_projects: 'No projects yet',
@@ -49,6 +53,10 @@ export const dict = {
     dept_video: 'Video', dept_tripods: 'Tripods & Heads', dept_power: 'Power', jump_to_brand: 'Jump to brand', optional: 'optional', hero_sub: 'Production gear lists · built on the Utopia catalog', stat_products: 'products', stat_brands: 'brands', stat_projects: 'projects',
     models_count: '{n} models', all_brands: 'All brands', choose_brand: 'Choose a brand', choose_subcat: 'Choose a category', no_brand: 'No brand', show_more: 'Show more ({n})',
     lang_switch: 'עב', install_hint: 'Tip: add to Home Screen to use it like an app', in_project: 'in project',
+    build_around: 'Build around', building_around: 'Building around', active_camera: 'Active camera', compat_only: 'Compatible only', show_all_items: 'Show all',
+    tag_native: 'Compatible', tag_adapter: 'Via adapter', tag_partial: 'Crop / partial coverage', tag_unknown: 'Unknown', tag_no: 'Not compatible',
+    base_kit: 'Base kit', choose: 'Choose', kit_done: 'Have', no_profile: 'No compatibility profile for this camera', clear_build: 'Stop building around', hidden_count: '{n} incompatible items hidden',
+    mount: 'Mount', sensor: 'Sensor', media: 'Media', battery: 'Battery', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
   },
 };
 

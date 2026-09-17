@@ -46,6 +46,7 @@ export function createStore(storage = localStorageAdapter()) {
       return store.createProject({ ...rest, name: `${src.name || ''} (2)`.trim(), items: src.items.map(x => ({ ...x })) });
     },
     setItems(id, items) { const p = project(id); if (!p) return; p.items = items; touch(p); emit(); },
+    setBuildCamera(id, productId) { const p = project(id); if (!p) return; p.buildCameraId = productId ?? null; touch(p); emit(); },
     addManualProduct({ name, brand = null, brandName = null, dept = 'other' }) {
       const m = { id: uid('m'), name: String(name).trim(), brand, brandName, dept, createdAt: now() };
       state.manualProducts.push(m); emit(); return m;

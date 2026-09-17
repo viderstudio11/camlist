@@ -1,5 +1,6 @@
 import { createStore } from './store.js';
 import { createCatalog, loadCatalog } from './catalog.js';
+import { createCompat, loadCompat } from './compat.js';
 import { t, setLang, getLang, dirFor } from './i18n.js';
 import { esc, el, toast, icons, download } from './ui/dom.js';
 import { fallbackHTML, setLogoIndex } from './brands.js';
@@ -12,12 +13,14 @@ const store = createStore();
 setLang(store.state.settings.lang);
 let catalog = createCatalog({ departments: [], brands: [], products: [] }, store.state.manualProducts);
 let catalogError = null;
+let compatData = { cameras: [], adapters: {}, kits: {} };
+let compat = createCompat(compatData, catalog);
 
 // Called by the inline onerror in brands.logoHTML if a listed logo file fails to load.
 window.__logoFallback = (slug, size) => fallbackHTML(slug, catalog.brandName(slug), size);
 
 const ctx = {
-  store, t, get catalog() { return catalog; },
+  store, t, get catalog() { return catalog; }, get compat() { return compat; },
   lang: getLang,
   setLang(l) { setLang(l); store.setSettings({ lang: l }); applyDir(); render(); },
   navigate(hash) { if (location.hash === hash) render(); else location.hash = hash; },
@@ -101,8 +104,10 @@ function renderSettings(ctx, _p, root) {
 async function boot() {
   fetch('logos/index.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).then(idx => { if (idx) { setLogoIndex(idx); render(); } }).catch(() => {});
   try {
-    const data = await loadCatalog();
+    const [data, cdata] = await Promise.all([loadCatalog(), loadCompat().catch(() => compatData)]);
     catalog = createCatalog(data, store.state.manualProducts);
+    compatData = cdata;
+    compat = createCompat(compatData, catalog);
     catalogError = null;
   } catch (e) { catalogError = e; }
   render();

@@ -2,19 +2,32 @@ import { esc, icons, openSheet, toast } from './dom.js';
 import { addItem, setQty, getQty, totalQty } from '../list.js';
 import { logoHTML, slugify } from '../brands.js';
 import { DEPT_EMOJI } from '../i18n.js';
-import { thumbHTML, parseId } from './list.js';
+import { thumbHTML, parseId, profileChips } from './list.js';
 
 // Departments that drill Brand → models (the rest drill Subcategory → models grouped by brand).
 const BRAND_FIRST = new Set(['cameras', 'lenses', 'tripods']);
 // Preferred hero image per department (first matching product with an image wins).
-const HERO = { cameras: /alexa 35$|fx6|venice/i, lenses: /supreme prime|cooke|s7/i, video: /smallhd|ultra 7|bolt/i, grip: /doorway dolly|dolly|slider/i, accessories: /matte ?box|mb-?\d|filter/i };
+const HERO = { cameras: /alexa 35$|fx6|venice/i, lenses: /supreme prime|cooke|s7/i, video: /smallhd|ultra 7|bolt/i, tripods: /o'?connor|sachtler|fluid head/i, grip: /doorway dolly|dolly|slider/i, power: /v-?mount|battery/i, accessories: /matte ?box|mb-?\d|filter/i };
 
 let st = { pid: null, q: '', view: 'depts', dept: null, subcat: null, brand: null, sub: null };
+let preset = null;      // set by the list screen's kit slots before navigating here
+let compatOnly = true;  // "compatible only" toggle (per session)
+export function presetCatalog(o) { preset = o; }
 
 export function render(ctx, { id }, root) {
   const { store, t, catalog } = ctx;
   if (st.pid !== id) st = { pid: id, q: '', view: 'depts', dept: null, subcat: null, brand: null, sub: null };
+  if (preset) { st = { pid: id, q: '', view: 'depts', dept: preset.dept ?? null, subcat: preset.subcat ?? null, brand: null, sub: null }; preset = null; }
   const lang = ctx.lang();
+  const { compat } = ctx;
+  const project = store.getProject(id);
+  const active = project.buildCameraId != null ? ctx.resolve(project.buildCameraId) : null;
+  const prof = active ? compat.profileFor(active) : null;
+  const grade = (p) => (prof ? compat.verdict(p, prof).status : 'neutral');
+  let hidden = 0;
+  const visible = (list, count = true) => (!prof || !compatOnly ? list : list.filter(p => { const ok = grade(p) !== 'no'; if (!ok && count) hidden++; return ok; }));
+  const TAG = { native: ['ok', '✓ ' + t('tag_native')], adapter: ['adp', '↻ ' + t('tag_adapter')], partial: ['warn', '⚠ ' + t('tag_partial')], unknown: ['dim', t('tag_unknown')], no: ['bad', '✕ ' + t('tag_no')] };
+  const tagHTML = (p) => { if (!prof) return ''; const g = grade(p); return TAG[g] ? `<span class="ctag ${TAG[g][0]}">${TAG[g][1]}</span>` : ''; };
   const items = () => store.getProject(id).items;
   const rerender = () => render(ctx, { id }, root);
   const deptName = (d) => (lang === 'he' ? d.he : d.en);
@@ -40,7 +53,7 @@ export function render(ctx, { id }, root) {
     return `<div class="row ${q ? 'in-list' : ''}" data-pid="${esc(p.id)}">
       ${thumbHTML(p, catalog.deptKey(p.dept))}
       <div class="body"><div class="name" dir="auto">${esc(p.name)}</div>
-        <div class="sub">${showBrand && p.brand ? `<span class="brandname">${esc(p.brandName)}</span>` : ''}${sub ? `<span class="chip">${esc(subName(sub))}</span>` : ''}${p.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}</div></div>
+        <div class="sub">${showBrand && p.brand ? `<span class="brandname">${esc(p.brandName)}</span>` : ''}${sub ? `<span class="chip">${esc(subName(sub))}</span>` : ''}${p.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${tagHTML(p)}</div></div>
       ${q ? `<div class="stepper compact"><button data-d="-1" aria-label="-">−</button><span class="q">${q}</span><button class="plus" data-d="1" aria-label="+">+</button></div>` : `<button class="addbtn" data-d="1" aria-label="${t('add')}">+</button>`}
     </div>`;
   };
@@ -70,12 +83,12 @@ export function render(ctx, { id }, root) {
   let content = '';
   let crumbs = '';
   if (st.q.length >= 1) {
-    const res = catalog.search(st.q, { limit: 120 });
+    const res = visible(catalog.search(st.q, { limit: 160 }));
     content = (res.length ? groupedByBrand(res) : `<div class="empty"><p>${t('no_results', { q: esc(st.q) })}</p></div>`) + manualCTA;
   } else if (st.view === 'brands' && !st.brand) {
     content = brandGrid(catalog.brands);
   } else if (st.view === 'brands' && st.brand) {
-    const all = catalog.byBrand(st.brand);
+    const all = visible(catalog.byBrand(st.brand));
     const depts = catalog.departments.filter(d => all.some(p => p.dept === d.id));
     const prods = all.filter(p => !st.dept || p.dept === st.dept);
     crumbs = `<div class="crumbs"><button data-crumb="brands">${t('brands')}</button>${arrow}<span>${esc(catalog.brandName(st.brand))}</span></div>`;
@@ -86,7 +99,7 @@ export function render(ctx, { id }, root) {
     content = `<div class="dept-grid">${catalog.departments.map(d => { const img = heroImage(d); return `<div class="dept-card" data-dept="${d.id}" ${img ? `style="--img:url('${esc(img)}')"` : ''}><div class="dept-card-body"><span class="emoji">${DEPT_EMOJI[d.slug]}</span><h3>${esc(deptName(d))}</h3><div class="n">${catalog.byDept(d.id).length} ${t('products')}</div></div></div>`; }).join('')}</div>`;
   } else {
     const d = catalog.deptById(st.dept);
-    const deptProds = catalog.byDept(st.dept);
+    const deptProds = visible(catalog.byDept(st.dept));
     if (BRAND_FIRST.has(d.slug)) {
       if (!st.brand) {
         crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<span>${esc(deptName(d))}</span></div>`;
@@ -102,23 +115,27 @@ export function render(ctx, { id }, root) {
       }
     } else if (!st.subcat) {
       crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<span>${esc(deptName(d))}</span></div>`;
-      content = `<div class="section-title">${t('choose_subcat')}</div><div class="sub-list">${catalog.subcatsOf(st.dept).map(s => `<div class="card" data-sub="${s.id}"><b>${esc(subName(s))}</b><span class="n">${catalog.bySubcat(s.id).length}</span></div>`).join('')}</div>`;
+      content = `<div class="section-title">${t('choose_subcat')}</div><div class="sub-list">${catalog.subcatsOf(st.dept).map(s => `<div class="card" data-sub="${s.id}"><b>${esc(subName(s))}</b><span class="n">${visible(catalog.bySubcat(s.id), false).length}</span></div>`).join('')}</div>`;
     } else {
       const s = d.subcategories.find(x => x.id === st.subcat);
       crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<button data-crumb="dept">${esc(deptName(d))}</button>${arrow}<span>${esc(subName(s))}</span></div>`;
-      content = groupedByBrand(catalog.bySubcat(st.subcat)) + manualCTA;
+      content = groupedByBrand(visible(catalog.bySubcat(st.subcat))) + manualCTA;
     }
   }
 
   root.innerHTML = `
     <div class="search"><div class="field"><span>🔍</span><input type="search" value="${esc(st.q)}" placeholder="${t('search_placeholder')}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" data-q>${st.q ? `<button class="clear" data-clear aria-label="clear">×</button>` : ''}</div>
+      ${prof ? `<div class="cbar"><div class="thumb">${active.image ? `<img src="${esc(active.image)}" alt="">` : '📷'}</div><div class="cbar-body"><small>${t('building_around')}</small><b dir="auto">${esc(active.name)}</b><div class="pchips">${profileChips(prof, t)}</div></div><label class="cbar-toggle"><input type="checkbox" data-compat-only ${compatOnly ? 'checked' : ''}><span>${t('compat_only')}</span></label></div>` : ''}
       ${st.q || st.dept || st.brand ? '' : `<div class="tabs"><button class="${st.view === 'depts' ? 'active' : ''}" data-tab="depts">${t('departments')}</button><button class="${st.view === 'brands' ? 'active' : ''}" data-tab="brands">${t('all_brands')}</button></div>`}
     </div>
     ${crumbs}
-    <div data-content>${content}</div>
+    <div data-content>${content}${hidden && compatOnly ? `<p class="hidden-note">${t('hidden_count', { n: hidden })} · <button data-show-all>${t('show_all_items')}</button></p>` : ''}</div>
     <div class="bottombar"><button class="btn primary" data-done>${icons.check}${t('back_to_list', { n: totalQty(items()) })}</button></div>`;
 
   root.classList.toggle('has-rail', !!root.querySelector('.rail'));
+  root.style.setProperty('--search-h', root.querySelector('.search').offsetHeight + 'px');
+  root.querySelector('[data-compat-only]')?.addEventListener('change', (e) => { compatOnly = e.target.checked; rerender(); });
+  root.querySelector('[data-show-all]')?.addEventListener('click', () => { compatOnly = false; rerender(); });
   const input = root.querySelector('[data-q]');
   let timer;
   input.oninput = () => {
