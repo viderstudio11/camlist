@@ -74,7 +74,7 @@ export function render(ctx, { id }, root) {
       <div class="slots">${slots.map(s => `
         <div class="slot ${s.done ? 'done' : ''}" data-slot="${esc(s.slot)}">
           <span class="slot-check">${s.done ? '✓' : ''}</span>
-          <span class="slot-label">${esc(lang === 'he' ? s.he : s.en)}</span>
+          <span class="slot-label">${esc(lang === 'he' ? s.he : s.en)}${s.missing?.length ? `<small class="slot-warn">⚠ ${t('no_reader_short', { fam: esc(s.missing.join(' / ')) })}</small>` : ''}</span>
           <span class="slot-have">${s.have} / ${s.qty}</span>
           <button class="btn sm ${s.done ? 'ghost' : ''}" data-choose="${esc(s.slot)}">${s.done ? '+' : t('choose')}</button>
         </div>`).join('')}</div>

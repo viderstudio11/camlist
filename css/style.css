@@ -318,3 +318,8 @@ body.print-mode .view { padding: 0; max-width: none; }
 .card.news h3 { font-size: 15px; font-weight: 800; line-height: 1.35; }
 .card.news p { color: var(--muted); font-size: 13px; margin-top: 6px; line-height: 1.45; }
 .card.news .ctag { display: inline-block; margin-top: 10px; }
+
+.note-missing { border-color: rgba(251,191,36,.4); background: linear-gradient(90deg, rgba(251,191,36,.10), var(--surface) 60%); margin-bottom: 12px; }
+.note-missing p { color: var(--muted); font-size: 13px; margin: 6px 0 10px; }
+.note-missing .btn.sm { margin: 4px 4px 0 0; }
+.slot-warn { display: block; color: #fbbf24; font-weight: 700; font-size: 11px; margin-top: 2px; }

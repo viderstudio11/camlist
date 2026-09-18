@@ -97,7 +97,7 @@ export function createCompat(data, catalog) {
   const familiesIn = (table, name) => Object.entries(table).filter(([, rx]) => rx.test(name)).map(([k]) => k);
 
   // Returns { status, reason } for a product against a camera profile.
-  function verdict(product, prof) {
+  function verdict(product, prof, opts = {}) {
     if (!prof || !product || product.manual) return { status: 'neutral' };
     const dept = deptKey(product);
     const subs = subNames(product);
@@ -128,8 +128,10 @@ export function createCompat(data, catalog) {
       const kind = READER_RX.test(product.name) ? 'reader' : fams.length ? 'card' : 'other';
       if (kind === 'other') return { status: 'neutral', kind };
       if (!fams.length) return { status: 'unknown', kind };
-      const idx = fams.map(f => (prof.media || []).indexOf(f)).filter(i => i >= 0);
-      const family = idx.length ? prof.media[Math.min(...idx)] : fams[0];
+      // A reader is judged against the card families already chosen in the project (opts.chosenMedia), else the camera's.
+      const want = kind === 'reader' && opts.chosenMedia?.length ? opts.chosenMedia : (prof.media || []);
+      const idx = fams.map(f => want.indexOf(f)).filter(i => i >= 0);
+      const family = idx.length ? want[Math.min(...idx)] : fams[0];
       return idx.length ? { status: 'native', reason: 'media', kind, family, pref: Math.min(...idx) } : { status: 'no', reason: 'media', kind, family };
     }
     if (dept === 'power' && (subs.includes('Batteries') || subs.includes('Chargers & PSU'))) {
@@ -145,23 +147,35 @@ export function createCompat(data, catalog) {
     return { status: 'neutral' };
   }
 
+  // Card families the project already contains (used to pick the right reader).
+  function chosenMedia(prof, items, resolve) {
+    const fams = [];
+    for (const it of items) { const p = resolve(it.productId); if (!p) continue; const v = verdict(p, prof); if (v.kind === 'card' && v.family && !fams.includes(v.family)) fams.push(v.family); }
+    return fams;
+  }
+  // Readers in the catalog that cover a family — empty means Utopia has none for it.
+  const readersFor = (family) => catalog.products.filter(p => catalog.deptKey(p.dept) === 'video' && READER_RX.test(p.name) && mediaFamilies(p.name).includes(family));
+
   // Kit slot progress against the project's items: how many units of matching products are already in the list.
   // A slot with `kind` (card / reader / battery / charger) only counts items of that kind.
   function kitStatus(prof, items, resolve) {
+    const chosen = chosenMedia(prof, items, resolve);
     return (prof?.kit || []).map(slot => {
       const deptId = catalog.departments.find(d => d.slug === slot.dept)?.id;
       const subId = slot.subcat ? catalog.departments.flatMap(d => d.subcategories).find(s => s.en === slot.subcat)?.id : null;
       const have = items.reduce((n, it) => {
         const p = resolve(it.productId) || { dept: it.snapshot?.dept, subcats: [] };
         if (p.dept !== deptId || (subId && !(p.subcats || []).includes(subId))) return n;
-        if (slot.kind && p.name && verdict(p, prof).kind !== slot.kind) return n;
+        if (slot.kind && p.name && verdict(p, prof, { chosenMedia: chosen }).kind !== slot.kind) return n;
         return n + it.qty;
       }, 0);
-      return { ...slot, deptId, subId, have, done: have >= slot.qty };
+      const out = { ...slot, deptId, subId, have, done: have >= slot.qty };
+      if (slot.kind === 'reader') { out.wanted = chosen.length ? chosen : (prof.media || []); out.missing = out.wanted.filter(f => !readersFor(f).length); }
+      return out;
     });
   }
 
-  return { profileFor, isCamera, lensInfo, verdict, kitStatus, profiles };
+  return { profileFor, isCamera, lensInfo, verdict, kitStatus, chosenMedia, readersFor, profiles };
 }
 
 export async function loadCompat(url = 'data/compat.json') {

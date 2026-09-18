@@ -26,7 +26,8 @@ export function render(ctx, { id }, root) {
   const active = project.buildCameraId != null ? ctx.resolve(project.buildCameraId) : null;
   const prof = active ? compat.profileFor(active) : null;
   const verdicts = new Map();
-  const verdictOf = (p) => { if (!verdicts.has(p.id)) verdicts.set(p.id, prof ? compat.verdict(p, prof) : { status: 'neutral' }); return verdicts.get(p.id); };
+  const chosenMedia = prof ? compat.chosenMedia(prof, project.items, ctx.resolve) : [];
+  const verdictOf = (p) => { if (!verdicts.has(p.id)) verdicts.set(p.id, prof ? compat.verdict(p, prof, { chosenMedia }) : { status: 'neutral' }); return verdicts.get(p.id); };
   const grade = (p) => verdictOf(p).status;
   let hidden = 0;
   const RANK = { native: 0, adapter: 1, partial: 2, neutral: 3, unknown: 4, no: 5 };
@@ -107,6 +108,14 @@ export function render(ctx, { id }, root) {
     return [...m].map(([id, count]) => ({ id, name: catalog.brandName(id), count })).sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   };
   const manualCTA = `<button class="btn block ghost" data-manual style="margin-top:8px">${t('not_found_add_manual')}</button>`;
+  const SUGGEST_READER = { 'CFexpress A': 'Sony MRW-G2 CFexpress Type A / SD Card Reader', 'CFexpress B': 'ProGrade CFexpress Type B Card Reader', 'CFast': 'CFast 2.0 Card Reader', 'XQD': 'Sony MRW-E90 XQD Card Reader', 'SxS': 'Sony SBAC-US30 SxS Card Reader', 'AXS': 'Sony AXS-CR1 Card Reader', 'Codex': 'Codex Compact Drive Dock', 'SD': 'SD UHS-II Card Reader', 'microSD': 'microSD Card Reader', 'P2': 'Panasonic AU-XPD1 P2 Card Reader', 'RED MINI-MAG': 'RED Station Mini-Mag', 'SSD': 'USB-C SSD Dock' };
+  let manualPrefill = '';
+  const readerNote = () => {
+    const wanted = chosenMedia.length ? chosenMedia : (prof.media || []);
+    const missing = wanted.filter(f => !compat.readersFor(f).length);
+    if (!missing.length) return '';
+    return `<div class="card note-missing"><b>${t('no_reader_at_utopia', { fam: esc(missing.join(' / ')) })}</b><p>${t('no_reader_hint')}</p>${missing.map(f => `<button class="btn sm" data-manual-reader="${esc(SUGGEST_READER[f] || f + ' Card Reader')}">＋ ${esc(SUGGEST_READER[f] || f + ' Card Reader')}</button>`).join(' ')}</div>`;
+  };
   const heroImage = (d) => { const list = catalog.byDept(d.id); return (list.find(p => p.image && HERO[d.slug]?.test(p.name)) || list.find(p => p.image))?.image || null; };
 
   // ---- content ----
@@ -159,6 +168,7 @@ export function render(ctx, { id }, root) {
       ${st.q || st.dept || st.brand ? '' : `<div class="tabs"><button class="${st.view === 'depts' ? 'active' : ''}" data-tab="depts">${t('departments')}</button><button class="${st.view === 'brands' ? 'active' : ''}" data-tab="brands">${t('all_brands')}</button></div>`}
     </div>
     ${crumbs}
+    ${strict && kind === 'reader' && prof ? readerNote() : ''}
     <div data-content>${content}${hidden && compatOnly ? `<p class="hidden-note">${strict ? t('strict_note', { n: hidden, cam: esc(active.name) }) : t('hidden_count', { n: hidden })} · <button data-show-all>${t('show_all_items')}</button></p>` : ''}</div>
     <div class="bottombar"><button class="btn primary" data-done>${icons.check}${t('back_to_list', { n: totalQty(items()) })}</button></div>`;
 
@@ -210,10 +220,10 @@ export function render(ctx, { id }, root) {
   };
   root.querySelectorAll('.row').forEach(bindRow);
 
-  root.querySelector('[data-manual]')?.addEventListener('click', () => openSheet({
+  const openManual = () => openSheet({
     title: t('manual_item'),
     bodyHTML: `<div class="form">
-      <label>${t('item_name')}<input name="name" value="${esc(st.q)}" autocomplete="off" required></label>
+      <label>${t('item_name')}<input name="name" value="${esc(manualPrefill || st.q)}" autocomplete="off" required></label>
       <label>${t('brand')}<input name="brand" list="brand-list" autocomplete="off" value="${st.brand ? esc(catalog.brandName(st.brand)) : ''}"><datalist id="brand-list">${catalog.brands.map(b => `<option value="${esc(b.name)}">`).join('')}</datalist></label>
       <label>${t('department')}<select name="dept">${catalog.departments.map(d => `<option value="${d.id}" ${st.dept === d.id ? 'selected' : ''}>${esc(deptName(d))}</option>`).join('')}<option value="other">${t('other')}</option></select></label>
     </div>`,
@@ -226,5 +236,7 @@ export function render(ctx, { id }, root) {
       st.q = ''; toast(t('added'), { kind: 'ok' }); rerender();
     } }],
     onOpen: (body) => body.querySelector('[name=name]').focus(),
-  }));
+  });
+  root.querySelector('[data-manual]')?.addEventListener('click', () => { manualPrefill = ''; openManual(); });
+  root.querySelectorAll('[data-manual-reader]').forEach(b => { b.onclick = () => { manualPrefill = b.dataset.manualReader; openManual(); }; });
 }
