@@ -37,7 +37,7 @@ export function mediaFamilies(name) {
 // Battery families — each regex also covers that family's chargers (BC-U1 → BP-U, LC-E6 → LP-E6, D-3004S → V-Mount…).
 export const BATTERY = {
   'BP-U': /bp-?u\s?\d*|\bu\d{2,3}\b|bc-?u\d/i,
-  'V-Mount': /v[-\s]?mount|v[-\s]?lock|\bbp-?\d{2,3}s\b|\bv\d{2,3}\b|\bd-?3004|\bsc-?302|fx-?m2s/i,
+  'V-Mount': /v[-\s]?mount|v[-\s]?lock|bp-?gl\d|\bbp-?\d{2,3}s\b|\bv\d{2,3}\b|\bd-?3004|\bsc-?302|fx-?m2s/i,
   'Gold': /gold|anton|\bab-?mount|\bg\d{2,3}\b/i, 'B-Mount': /\bb-?mount/i,
   'NP-F': /np-?f\d{3}|ac-?vl1|bc-?l1/i, 'NP-FV': /np-?fv|bc-?qm1/i, 'NP-FZ100': /np-?fz|fz-?100|bc-?qz1/i, 'NP-FW50': /fw-?50|bc-?trw/i,
   'LP-E6': /lp-?e6|lc-?e6/i, 'BP-A': /bp-?a\d{2}|cg-?a\d{2}/i, 'BP-9': /bp-?9\d{2}|ca-?930|cg-?940/i,
