@@ -29,7 +29,8 @@ export function buildShareText(project, groups, { lang = 'he', includeNotes = tr
     for (const { item, product } of g.entries) {
       total += item.qty;
       const note = includeNotes && item.note ? `  (${item.note})` : '';
-      lines.push(` ${item.qty}× ${displayName(product)}${note}`);
+      const src = product.extra ? `  [${t('not_at_utopia_item', {}, lang)}]` : '';
+      lines.push(` ${item.qty}× ${displayName(product)}${src}${note}`);
       if (includeLinks && product.url) lines.push(`   ${product.url}`);
     }
   }

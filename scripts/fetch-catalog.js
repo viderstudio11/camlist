@@ -34,7 +34,7 @@ const BRAND_DISPLAY = {
   'bright-tangerine': 'Bright Tangerine', easyrig: 'Easyrig', freefly: 'Freefly', tiffen: 'Tiffen', hollyland: 'Hollyland',
   aputure: 'Aputure', nikon: 'Nikon', vinten: 'Vinten', cartoni: 'Cartoni', manfrotto: 'Manfrotto', 'preston-cinema': 'Preston',
   portkeys: 'Portkeys', shape: 'SHAPE', matthews: 'Matthews', samyang: 'Samyang', fxlion: 'FXLion', avenger: 'Avenger', 'ronford-baker': 'Ronford-Baker', utopia: 'Utopia', 'e-image': 'E-Image', kupo: 'Kupo', 'core-swx': 'Core SWX', 'anton-bauer': 'Anton/Bauer', ikan: 'ikan', nanlite: 'Nanlite', godox: 'Godox', dzofilm: 'DZOFILM', sirui: 'Sirui', nisi: 'NiSi', tokina: 'Tokina', tamron: 'Tamron',
-  lexar: 'Lexar', apple: 'Apple', sandisk: 'SanDisk', angelbird: 'Angelbird', 'vision-research': 'Vision Research', chrosziel: 'Chrosziel', cineroid: 'Cineroid',
+  lexar: 'Lexar', prograde: 'ProGrade Digital', apple: 'Apple', sandisk: 'SanDisk', angelbird: 'Angelbird', 'vision-research': 'Vision Research', chrosziel: 'Chrosziel', cineroid: 'Cineroid',
   proaim: 'Proaim', zacuto: 'Zacuto', vocas: 'Vocas', datavideo: 'Datavideo', kramer: 'Kramer', metabones: 'Metabones', 'decimator-design': 'Decimator', movmax: 'MOVMAX',
   viltrox: 'Viltrox', vaxis: 'Vaxis', digitalfoto: 'DigitalFoto', androokie: 'Androokie', atlas: 'Atlas Lens Co.', dulens: 'Dulens', panther: 'Panther', filmair: 'Filmair',
   avmatrix: 'AVMatrix', flowcine: 'Flowcine', movietech: 'MovieTech', urth: 'Urth', abonair: 'ABonAir', amphibico: 'Amphibico', 'convergent-design': 'Convergent Design',

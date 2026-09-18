@@ -3,12 +3,20 @@ export const normalize = (s = '') => String(s).toLowerCase()
   .replace(/[-_/\\.,()\[\]"'+:;|]+/g, ' ')
   .replace(/\s+/g, ' ').trim();
 
-export function createCatalog(data, manual = []) {
+// data = data/catalog.json; manual = user's own items; extra = data/extra.json (products Utopia doesn't carry,
+// referenced by department slug + subcategory English name, flagged `extra: true`).
+export function createCatalog(data, manual = [], extra = null) {
   const departments = [...(data.departments || [])].sort((a, b) => a.order - b.order);
   const deptMap = new Map(departments.map(d => [d.id, d]));
   const subcatMap = new Map();
   for (const d of departments) for (const s of d.subcategories || []) subcatMap.set(s.id, { ...s, dept: d.id });
   const brandNames = new Map((data.brands || []).map(b => [b.id, b.name]));
+  for (const b of extra?.brands || []) brandNames.set(b.id, b.name); // supplement's display names win
+  const extraProducts = (extra?.products || []).map(x => {
+    const d = departments.find(dd => dd.slug === x.dept);
+    const s = d?.subcategories.find(ss => ss.en === x.subcat || ss.he === x.subcat);
+    return d ? { ...x, dept: d.id, subcats: s ? [s.id] : [], extra: true } : null;
+  }).filter(Boolean);
 
   const products = [];
   const byIdMap = new Map();
@@ -17,7 +25,7 @@ export function createCatalog(data, manual = []) {
   const decorate = (p, isManual) => ({
     id: p.id, name: p.name, brand: p.brand || null,
     brandName: p.brandName || brandNames.get(p.brand) || p.brand || null,
-    dept: p.dept, subcats: p.subcats || [], image: p.image || null, url: p.url || null, manual: !!isManual,
+    dept: p.dept, subcats: p.subcats || [], image: p.image || null, url: p.url || null, manual: !!isManual, extra: !!p.extra,
     _n: '', _b: '', _all: '',
   });
   const indexOf = (p) => {
@@ -27,12 +35,13 @@ export function createCatalog(data, manual = []) {
     p._all = normalize(`${p.name} ${p.brandName || ''} ${sub}`);
     return p;
   };
-  for (const raw of data.products || []) {
+  for (const raw of [...(data.products || []), ...extraProducts]) {
     const p = indexOf(decorate(raw, false));
     if (p.brand && !brandNames.has(p.brand)) brandNames.set(p.brand, p.brandName);
     products.push(p); byIdMap.set(p.id, p);
   }
   const brands = (data.brands || []).map(b => ({ ...b }));
+  for (const x of extraProducts) { if (!x.brand) continue; let b = brands.find(bb => bb.id === x.brand); if (!b) { b = { id: x.brand, name: brandNames.get(x.brand), count: 0 }; brands.push(b); } b.name = brandNames.get(x.brand) || b.name; b.count++; }
 
   function setManual(list) {
     for (const m of manualProducts) byIdMap.delete(m.id);

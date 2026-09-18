@@ -12,6 +12,7 @@ import * as News from './ui/news.js';
 
 const store = createStore();
 setLang(store.state.settings.lang);
+let extraData = null;
 let catalog = createCatalog({ departments: [], brands: [], products: [] }, store.state.manualProducts);
 let catalogError = null;
 let compatData = { cameras: [], adapters: {}, kits: {} };
@@ -106,8 +107,9 @@ function renderSettings(ctx, _p, root) {
 async function boot() {
   fetch('logos/index.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).then(idx => { if (idx) { setLogoIndex(idx); render(); } }).catch(() => {});
   try {
-    const [data, cdata] = await Promise.all([loadCatalog(), loadCompat().catch(() => compatData)]);
-    catalog = createCatalog(data, store.state.manualProducts);
+    const [data, cdata, xdata] = await Promise.all([loadCatalog(), loadCompat().catch(() => compatData), fetch('data/extra.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null)]);
+    extraData = xdata;
+    catalog = createCatalog(data, store.state.manualProducts, extraData);
     compatData = cdata;
     compat = createCompat(compatData, catalog);
     catalogError = null;

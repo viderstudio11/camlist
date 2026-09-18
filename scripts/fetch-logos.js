@@ -52,6 +52,7 @@ const SOURCES = {
   tokina: { wiki: 'Tokina', commons: 'Tokina logo' },
   atlas: { commons: 'Atlas Lens Co logo', site: 'https://www.atlaslensco.com' },
   lexar: { wiki: 'Lexar' },
+  prograde: { site: 'https://progradedigital.com' },
   portkeys: { site: 'https://portkeys.com' },
   aja: { wiki: 'AJA Video Systems', commons: 'AJA Video Systems logo' },
   cineroid: { site: 'https://www.cineroid.com' },

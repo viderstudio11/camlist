@@ -67,3 +67,15 @@ test('brand match outranks name-contains (arri → ARRI cameras before "ARRI PL"
   ] });
   assert.deepEqual(c.search('arri').map(p => p.id), [12, 11, 10]);
 });
+
+test('extra products merge with dept/subcat resolution, brand added, flagged extra', () => {
+  const c = createCatalog(data, [], { brands: [{ id: 'prograde', name: 'ProGrade Digital' }], products: [
+    { id: 'x_1', name: 'CFexpress Type A Reader', brand: 'prograde', dept: 'cameras', subcat: 'Digital Cinema' },
+    { id: 'x_2', name: 'Nowhere', brand: 'prograde', dept: 'nope' },
+  ] });
+  const x = c.byId('x_1');
+  assert.equal(x.extra, true); assert.equal(x.dept, 7); assert.deepEqual(x.subcats, [12]); assert.equal(x.brandName, 'ProGrade Digital');
+  assert.equal(c.byId('x_2'), undefined);
+  assert.equal(c.brands.find(b => b.id === 'prograde').count, 1);
+  assert.equal(c.search('cfexpress')[0].id, 'x_1');
+});

@@ -53,7 +53,7 @@ export function render(ctx, { id }, root) {
           ${thumbHTML(product, g.key)}
           <div class="body">
             <div class="name">${esc(displayName(product))}</div>
-            <div class="sub">${logoHTML(product.brand, product.brandName, 'row')}${product.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${buildBtn(product)}</div>
+            <div class="sub">${logoHTML(product.brand, product.brandName, 'row')}${product.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${product.extra ? `<span class="chip extra">${t('not_at_utopia_item')}</span>` : ''}${buildBtn(product)}</div>
             <input class="note" value="${esc(item.note)}" placeholder="${t('note_placeholder')}" data-note>
           </div>
           <div class="stepper compact"><button data-d="-1" aria-label="-">−</button><span class="q">${item.qty}</span><button class="plus" data-d="1" aria-label="+">+</button></div>

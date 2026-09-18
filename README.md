@@ -37,6 +37,10 @@ npm run logos-index     # rebuild logos/index.json after adding/removing files b
 ```
 To add a logo manually: drop `logos/<brand-slug>.svg|png` (slug = lowercase, spaces → `-`, apostrophes removed: `oconnor`, `wooden-camera`), then run `npm run logos-index`. White-on-transparent logos go in `DARK_PLATE` in the script.
 
+## מאגר משלים · Supplementary products (not at Utopia)
+
+`data/extra.json` lists products Utopia does not carry but a list often needs (currently Sony / ProGrade / Lexar card readers). They are merged into the catalog at load, searchable, graded for compatibility like everything else, and shown with a **"לא באוטופיה / Not at Utopia"** badge (also in the share text). Entry format: `{ id: "x_…", name, brand, dept: "<department slug>", subcat: "<subcategory English name>", url }`.
+
 ## בנייה סביב מצלמה · Build around a camera
 
 `data/compat.json` holds hand-curated camera profiles (native mount, mounts usable via adapter, sensor format, media families, battery families, kit type) plus base-kit slot lists per camera type. Edit it directly — it is plain JSON:
