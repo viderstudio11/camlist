@@ -1,0 +1,41 @@
+name: Refresh catalog & news
+
+on:
+  schedule:
+    - cron: '0 5 1,15 * *'   # 1st and 15th of every month, 05:00 UTC (08:00 Israel)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Keep previous catalog for the diff
+        run: cp data/catalog.json /tmp/prev-catalog.json
+      - name: Pull Utopia catalog
+        run: node scripts/fetch-catalog.js
+      - name: Record new / removed Utopia products
+        run: node scripts/catalog-diff.js /tmp/prev-catalog.json
+      - name: Pull gear news
+        run: node scripts/fetch-news.js
+      - name: Download logos for any new brands
+        run: node scripts/fetch-logos.js || true
+      - run: npm test
+      - name: Bump service-worker version if anything changed
+        run: |
+          if git diff --quiet -- data logos; then echo "no changes"; exit 0; fi
+          node -e "
+            const fs=require('fs'); let s=fs.readFileSync('sw.js','utf8');
+            s=s.replace(/const VERSION = 'v(\d+)\.(\d+)\.(\d+)';/, (_,a,b,c)=>\`const VERSION = 'v\${a}.\${b}.\${+c+1}';\`);
+            fs.writeFileSync('sw.js', s);"
+          git config user.name "camlist-bot"
+          git config user.email "viderstudio@gmail.com"
+          git add -A
+          git commit -m "chore: scheduled catalog/news refresh $(date -u +%Y-%m-%d)"
+          git push

@@ -47,6 +47,12 @@ To add a logo manually: drop `logos/<brand-slug>.svg|png` (slug = lowercase, spa
 
 Rules live in `js/compat.js` (lens mount/coverage, media and battery families matched by name). Unknown products are shown grey, never hidden. Tests: `tests/compat.test.js`.
 
+## עדכון אוטומטי וחדשות · Scheduled refresh & news
+
+`.github/workflows/refresh.yml` runs on the **1st and 15th of every month** (and on demand from the Actions tab): it re-pulls the Utopia catalog, records added/removed products into `data/changes.json` (`scripts/catalog-diff.js`), aggregates gear launches from the trade press into `data/news.json` (`scripts/fetch-news.js` — Newsshooter, CineD, ProVideo Coalition, RedShark, Y.M.Cinema, No Film School), downloads logos for new brands, bumps the service-worker version and pushes. The push triggers the Pages deploy, so phones get a "new version" toast.
+
+The app shows both feeds under **חדש / What's new** on the home screen.
+
 ## פריסה · Deploy (GitHub Pages, free)
 
 1. Push the repo to GitHub.

@@ -8,6 +8,7 @@ import * as Projects from './ui/projects.js';
 import * as List from './ui/list.js';
 import * as Catalog from './ui/catalog.js';
 import * as Export from './ui/export.js';
+import * as News from './ui/news.js';
 
 const store = createStore();
 setLang(store.state.settings.lang);
@@ -49,6 +50,7 @@ function route() {
   if ((m = h.match(/^#\/p\/([^/]+)\/print$/))) return { screen: Export, params: { id: m[1], print: true } };
   if ((m = h.match(/^#\/p\/([^/]+)$/))) return { screen: List, params: { id: m[1] } };
   if (h === '#/settings') return { screen: { render: renderSettings }, params: {} };
+  if (h === '#/news') return { screen: News, params: {} };
   return { screen: Projects, params: {} };
 }
 

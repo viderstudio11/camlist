@@ -2,6 +2,7 @@ import { esc, openSheet, confirmDialog, icons } from './dom.js';
 import { totalQty, groupByDept } from '../list.js';
 import { formatDateRange } from '../export-text.js';
 import { DEPT_EMOJI } from '../i18n.js';
+import { newCounts } from './news.js';
 
 export function projectForm(t, p = {}) {
   const opt = `<em class="opt">(${t('optional')})</em>`;
@@ -40,6 +41,7 @@ export function render(ctx, _params, root) {
       <div><b>${catalog.brands.length || '—'}</b><span>${t('stat_brands')}</span></div>
       <div><b>${projects.length}</b><span>${t('stat_projects')}</span></div>
     </div>
+    <button class="newsbtn" data-news>📰 ${t('whats_new')}<span class="badge" data-news-badge hidden></span><span class="arrow">›</span></button>
   </section>`;
 
   const list = projects.map(p => {
@@ -64,6 +66,8 @@ export function render(ctx, _params, root) {
   root.innerHTML = hero + (projects.length ? `<div class="section-title">${t('projects')} <span class="count">${projects.length}</span></div>${list}` : `<div class="empty"><div class="big">🎬</div><h2>${t('no_projects')}</h2><p>${t('no_projects_hint')}</p></div>`);
   root.insertAdjacentHTML('beforeend', `<div class="bottombar"><button class="btn primary" data-new>${icons.plus}${t('new_project')}</button></div>`);
 
+  root.querySelector('[data-news]').onclick = () => ctx.navigate('#/news');
+  newCounts().then(({ market, utopia }) => { const b = root.querySelector('[data-news-badge]'); if (!b) return; const n = market + utopia; if (n) { b.textContent = n; b.hidden = false; } });
   root.querySelector('[data-new]').onclick = () => openSheet({
     title: t('new_project'), bodyHTML: projectForm(t, { techManager: store.state.settings.techManager }),
     actions: [{ label: t('cancel'), kind: 'ghost' }, { label: t('save'), kind: 'primary', onClick: (body) => { const f = readForm(body); if (!f.name) { body.querySelector('[name=name]').focus(); return false; } const p = store.createProject(f); ctx.navigate(`#/p/${p.id}`); } }],

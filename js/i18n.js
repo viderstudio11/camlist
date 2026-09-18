@@ -28,7 +28,7 @@ export const dict = {
     build_around: 'בנה סביב', building_around: 'בונה סביב', active_camera: 'מצלמה פעילה', compat_only: 'רק תואם', show_all_items: 'הצג הכל',
     tag_native: 'תואם', tag_adapter: 'דרך מתאם', tag_partial: 'קרופ / כיסוי חלקי', tag_unknown: 'לא ידוע', tag_no: 'לא תואם',
     base_kit: 'ערכת בסיס', choose: 'בחר', kit_done: 'יש', no_profile: 'אין פרופיל תאימות למצלמה זו', clear_build: 'בטל בנייה סביב', hidden_count: '{n} פריטים לא תואמים מוסתרים', strict_note: 'מוצג רק מה שמתאים ל-{cam} ({n} הוסתרו)',
-    mount: 'מאונט', sensor: 'חיישן', media: 'מדיה', battery: 'סוללה', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
+    whats_new: 'חדש', new_in_market: 'חדש בשוק', new_at_utopia: 'חדש באוטופיה', no_news: 'אין חדשות עדיין', no_changes: 'אין מוצרים חדשים באוטופיה', no_changes_hint: 'המאגר נבדק אוטומטית פעמיים בחודש', news_sources: '{n} השקות מהעיתונות המקצועית', brand_at_utopia: 'יצרן קיים באוטופיה', not_at_utopia: 'יצרן לא באוטופיה', mount: 'מאונט', sensor: 'חיישן', media: 'מדיה', battery: 'סוללה', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
   },
   en: {
     app_name: 'CamList', projects: 'Projects', new_project: 'New project', no_projects: 'No projects yet',
@@ -56,7 +56,7 @@ export const dict = {
     build_around: 'Build around', building_around: 'Building around', active_camera: 'Active camera', compat_only: 'Compatible only', show_all_items: 'Show all',
     tag_native: 'Compatible', tag_adapter: 'Via adapter', tag_partial: 'Crop / partial coverage', tag_unknown: 'Unknown', tag_no: 'Not compatible',
     base_kit: 'Base kit', choose: 'Choose', kit_done: 'Have', no_profile: 'No compatibility profile for this camera', clear_build: 'Stop building around', hidden_count: '{n} incompatible items hidden', strict_note: 'Showing only what fits {cam} ({n} hidden)',
-    mount: 'Mount', sensor: 'Sensor', media: 'Media', battery: 'Battery', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
+    whats_new: "What's new", new_in_market: 'New on the market', new_at_utopia: 'New at Utopia', no_news: 'No news yet', no_changes: 'No new products at Utopia', no_changes_hint: 'The catalog is checked automatically twice a month', news_sources: '{n} launches from the trade press', brand_at_utopia: 'Brand carried by Utopia', not_at_utopia: 'Brand not at Utopia', mount: 'Mount', sensor: 'Sensor', media: 'Media', battery: 'Battery', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
   },
 };
 

@@ -1,11 +1,11 @@
-const VERSION = 'v1.4.0';
+const VERSION = 'v1.5.0';
 const SHELL = `camlist-shell-${VERSION}`;
 const IMAGES = 'camlist-images';
 const ASSETS = [
   './', './index.html', './css/style.css', './manifest.json', './data/catalog.json',
   './js/app.js', './js/store.js', './js/catalog.js', './js/list.js', './js/i18n.js', './js/brands.js',
   './js/export-text.js', './js/export-xlsx.js', './js/export-docx.js', './js/export-print.js',
-  './js/ui/dom.js', './js/ui/projects.js', './js/ui/list.js', './js/ui/catalog.js', './js/ui/export.js', './logos/index.json', './js/compat.js', './data/compat.json',
+  './js/ui/dom.js', './js/ui/projects.js', './js/ui/list.js', './js/ui/catalog.js', './js/ui/export.js', './logos/index.json', './js/compat.js', './data/compat.json', './js/ui/news.js', './data/news.json', './data/changes.json',
   './vendor/xlsx.full.min.js', './vendor/docx.umd.js',
   './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-180.png',
 ];
