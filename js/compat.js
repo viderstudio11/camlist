@@ -18,17 +18,35 @@ const MOUNT_NAME_RX = [
 const SUBCAT_MOUNT = { 'PL-Mount': 'PL', 'HDSLR E-Mount': 'E', 'HDSLR EF-Mount': 'EF', 'Broadcast / ENG B4-Mount': 'B4', 'MFT M4/3': 'MFT', 'L-Mount': 'L', 'G-Mount': 'G', 'M-Mount': 'M' };
 const SUBCAT_FORMAT = { 'Full Frame': 'FF', '35mm Prime': 'S35', '35mm Zoom': 'S35', 'Broadcast / ENG B4-Mount': '2/3', '16mm': '16', 'MFT M4/3': 'MFT', 'G-Mount': 'MF', 'Medium Format': 'MF' };
 
+// Media families, matched on product names. Order matters only for display; specificity is resolved in mediaFamilies().
 export const MEDIA = {
   'CFexpress A': /cfexpress[\s\d.]*(type\s*)?-?a\b/i, 'CFexpress B': /cfexpress[\s\d.]*(type\s*)?-?b\b/i, 'microSD': /micro\s*-?sd/i,
   'SD': /(^|[^a-z])(sd|sdxc|sdhc)([^a-z]|$)/i, 'CFast': /cfast/i, 'XQD': /xqd/i, 'SxS': /sxs/i, 'AXS': /\baxs\b/i, 'Codex': /codex|compact drive/i,
-  'RED MINI-MAG': /mini-?mag/i, 'P2': /\bp2\b/i, 'CF': /(^|[^a-z])cf([^a-z]|$)|compact\s*flash/i, 'SSD': /\bssd\b|\bt7\b|\bt5\b/i, 'ProSSD': /pro-?ssd/i,
+  'RED MINI-MAG': /mini-?mag|redmag/i, 'P2': /express\s*p2|\bp2\b/i, 'CF': /(^|[^a-z])cf([^a-z]|$)|compact\s*flash/i, 'SSD': /\bssd\b|\bt7\b|\bt5\b/i, 'ProSSD': /pro-?ssd/i,
   'CineMag': /cinemag/i, 'XDCAM': /xdcam|professional disc/i,
 };
+// Things in "Recorders & Media" that are neither cards nor readers (laptops, decks, monitor-recorders).
+const MEDIA_IGNORE = /recorder|monitor|macbook|ipad|vostro|hyperdeck|video assist|apollo|odyssey|\bpix\b|hvr-|betacam|br-hd|player|sumo|ninja|shogun/i;
+const READER_RX = /reader|dock|station/i;
+// Resolve overlapping matches: RED mags ⊃ SSD, ProSSD ⊃ SSD. (The SD regex already refuses "microSD".)
+export function mediaFamilies(name) {
+  let f = Object.entries(MEDIA).filter(([, rx]) => rx.test(name)).map(([k]) => k);
+  if (f.includes('RED MINI-MAG') || f.includes('ProSSD')) f = f.filter(x => x !== 'SSD');
+  return f;
+}
+// Battery families — each regex also covers that family's chargers (BC-U1 → BP-U, LC-E6 → LP-E6, D-3004S → V-Mount…).
 export const BATTERY = {
-  'BP-U': /bp-?u\s?\d*|\bu\d{2,3}\b/i, 'V-Mount': /v-?mount|v-?lock|\bbp-?\d{2,3}s\b|\bv\d{2,3}\b/i, 'Gold': /gold|anton|\bab-?mount|\bg\d{2,3}\b/i, 'B-Mount': /\bb-?mount/i,
-  'NP-F': /np-?f\d{3}/i, 'NP-FV': /np-?fv/i, 'NP-FZ100': /np-?fz|fz-?100/i, 'NP-FW50': /fw-?50/i, 'LP-E6': /lp-?e6/i, 'BP-A': /bp-?a\d{2}/i, 'BP-9': /bp-?9\d{2}/i,
-  'VBR': /\bvbr|\bvbd|ag-?vb|vw-?vb/i, 'DMW-BLF19': /blf-?19/i, 'DMW-BLK22': /blk-?22/i, 'DMW-BLJ31': /blj-?31/i, 'NP-W235': /w-?235/i, 'TB50': /tb-?50/i, 'BP-FL': /bp-?fl/i,
+  'BP-U': /bp-?u\s?\d*|\bu\d{2,3}\b|bc-?u\d/i,
+  'V-Mount': /v[-\s]?mount|v[-\s]?lock|\bbp-?\d{2,3}s\b|\bv\d{2,3}\b|\bd-?3004|\bsc-?302|fx-?m2s/i,
+  'Gold': /gold|anton|\bab-?mount|\bg\d{2,3}\b/i, 'B-Mount': /\bb-?mount/i,
+  'NP-F': /np-?f\d{3}|ac-?vl1|bc-?l1/i, 'NP-FV': /np-?fv|bc-?qm1/i, 'NP-FZ100': /np-?fz|fz-?100|bc-?qz1/i, 'NP-FW50': /fw-?50|bc-?trw/i,
+  'LP-E6': /lp-?e6|lc-?e6/i, 'BP-A': /bp-?a\d{2}|cg-?a\d{2}/i, 'BP-9': /bp-?9\d{2}|ca-?930|cg-?940/i,
+  'VBR': /\bvbr|\bvbd|ag-?vb[rd]|vw-?vb[rd]|vw-?ad20|ag-?b23|s-?8d58/i, 'VBG': /vbg\d|vw-?vbg/i, 'VBT': /vbt\d|vw-?vbt|vw-?bc10/i, 'CGA-D54': /cga-?d54|de-?a20|ag-?b23/i,
+  'DMW-BLF19': /blf-?19/i, 'DMW-BLK22': /blk-?22/i, 'DMW-BLJ31': /blj-?31/i, 'NP-W235': /w-?235/i, 'TB50': /tb-?50/i, 'BP-FL': /bp-?fl/i,
+  'GoPro': /\bhero\d*|gopro|aadbd/i, 'Insta360': /insta360|\bx[345]\b|למצלמת x|ace pro/i, 'Osmo': /osmo/i,
 };
+// Power items that are not camera batteries/chargers (lighting/grid power, UPS, adapters).
+const POWER_IGNORE = /48v|power pack|portable power|\bups\b|\bgel\b|\b(12|24)v battery|24v battery charger|d-tap batt|li-ion 11\.1v|energy storage|vertex/i;
 
 export function parseMounts(text) {
   const out = new Set();
@@ -105,26 +123,40 @@ export function createCompat(data, catalog) {
       return viaAdapter ? { status: 'adapter', reason: 'mount' } : { status: 'native' };
     }
     if (dept === 'video' && subs.includes('Recorders & Media')) {
-      const fams = familiesIn(MEDIA, product.name);
-      if (!fams.length) return { status: 'neutral' }; // recorders, readers, drives
-      // "SD" also matches microSD names — prefer the most specific family present
-      const specific = fams.includes('microSD') ? fams.filter(f => f !== 'SD') : fams;
-      return specific.some(f => (prof.media || []).includes(f)) ? { status: 'native', reason: 'media' } : { status: 'no', reason: 'media' };
+      if (MEDIA_IGNORE.test(product.name)) return { status: 'neutral', kind: 'other' };
+      const fams = mediaFamilies(product.name);
+      const kind = READER_RX.test(product.name) ? 'reader' : fams.length ? 'card' : 'other';
+      if (kind === 'other') return { status: 'neutral', kind };
+      if (!fams.length) return { status: 'unknown', kind };
+      const idx = fams.map(f => (prof.media || []).indexOf(f)).filter(i => i >= 0);
+      const family = idx.length ? prof.media[Math.min(...idx)] : fams[0];
+      return idx.length ? { status: 'native', reason: 'media', kind, family, pref: Math.min(...idx) } : { status: 'no', reason: 'media', kind, family };
     }
     if (dept === 'power' && (subs.includes('Batteries') || subs.includes('Chargers & PSU'))) {
+      if (POWER_IGNORE.test(product.name)) return { status: 'neutral', kind: 'other' };
+      const isBattery = subs.includes('Batteries') && !/charger|station/i.test(product.name);
+      const kind = isBattery ? 'battery' : 'charger';
       const fams = familiesIn(BATTERY, product.name);
-      if (!fams.length) return { status: subs.includes('Batteries') ? 'unknown' : 'neutral' };
-      return fams.some(f => (prof.battery || []).includes(f)) ? { status: 'native', reason: 'battery' } : { status: 'no', reason: 'battery' };
+      if (!fams.length) return { status: 'unknown', kind };
+      const idx = fams.map(f => (prof.battery || []).indexOf(f)).filter(i => i >= 0);
+      const family = idx.length ? prof.battery[Math.min(...idx)] : fams[0];
+      return idx.length ? { status: 'native', reason: 'battery', kind, family, pref: Math.min(...idx) } : { status: 'no', reason: 'battery', kind, family };
     }
     return { status: 'neutral' };
   }
 
   // Kit slot progress against the project's items: how many units of matching products are already in the list.
+  // A slot with `kind` (card / reader / battery / charger) only counts items of that kind.
   function kitStatus(prof, items, resolve) {
     return (prof?.kit || []).map(slot => {
       const deptId = catalog.departments.find(d => d.slug === slot.dept)?.id;
       const subId = slot.subcat ? catalog.departments.flatMap(d => d.subcategories).find(s => s.en === slot.subcat)?.id : null;
-      const have = items.reduce((n, it) => { const p = resolve(it.productId) || { dept: it.snapshot?.dept, subcats: [] }; return p.dept === deptId && (!subId || (p.subcats || []).includes(subId)) ? n + it.qty : n; }, 0);
+      const have = items.reduce((n, it) => {
+        const p = resolve(it.productId) || { dept: it.snapshot?.dept, subcats: [] };
+        if (p.dept !== deptId || (subId && !(p.subcats || []).includes(subId))) return n;
+        if (slot.kind && p.name && verdict(p, prof).kind !== slot.kind) return n;
+        return n + it.qty;
+      }, 0);
       return { ...slot, deptId, subId, have, done: have >= slot.qty };
     });
   }

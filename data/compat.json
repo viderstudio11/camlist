@@ -1,157 +1,1647 @@
 {
   "_readme": "Camera profiles for 'build around a camera'. mount = native mount(s); adapters = lens mounts usable via an adapter; format = FF | S35 | MFT | MF | 2/3 | 1in | 16; media / battery = families matched by name patterns in js/compat.js; kit = key into kits. Edit freely — ids are Utopia product ids, match is a fallback regex on the product name.",
   "adapters": {
-    "E": ["EF", "PL", "F", "M"],
-    "RF": ["EF", "PL"],
-    "L": ["EF", "PL", "M"],
-    "MFT": ["EF", "PL"],
-    "LPL": ["PL"],
-    "DL": ["E", "L", "PL", "M"],
-    "Z": ["F", "PL"],
-    "X": ["EF"],
-    "G": ["PL"],
+    "E": [
+      "EF",
+      "PL",
+      "F",
+      "M"
+    ],
+    "RF": [
+      "EF",
+      "PL"
+    ],
+    "L": [
+      "EF",
+      "PL",
+      "M"
+    ],
+    "MFT": [
+      "EF",
+      "PL"
+    ],
+    "LPL": [
+      "PL"
+    ],
+    "DL": [
+      "E",
+      "L",
+      "PL",
+      "M"
+    ],
+    "Z": [
+      "F",
+      "PL"
+    ],
+    "X": [
+      "EF"
+    ],
+    "G": [
+      "PL"
+    ],
     "PL": [],
     "EF": [],
     "B4": []
   },
   "cameras": [
-    { "id": 16514, "match": "PXW-FX6", "type": "cinema-compact", "mount": ["E"], "format": "FF", "media": ["CFexpress A", "SD"], "battery": ["BP-U"] },
-    { "id": 14868, "match": "PXW-FX9", "type": "cinema-compact", "mount": ["E"], "format": "FF", "media": ["XQD", "CFexpress B"], "battery": ["BP-U"] },
-    { "id": 17205, "match": "ILME-FX3", "type": "mirrorless", "mount": ["E"], "format": "FF", "media": ["CFexpress A", "SD"], "battery": ["NP-FZ100"] },
-    { "id": 28981, "match": "ILME-FX2", "type": "mirrorless", "mount": ["E"], "format": "FF", "media": ["CFexpress A", "SD"], "battery": ["NP-FZ100"] },
-    { "id": 21802, "match": "ILME-FX30", "type": "mirrorless", "mount": ["E"], "format": "S35", "media": ["CFexpress A", "SD"], "battery": ["NP-FZ100"] },
-    { "id": 19101, "match": "A7 IV", "type": "mirrorless", "mount": ["E"], "format": "FF", "media": ["CFexpress A", "SD"], "battery": ["NP-FZ100"] },
-    { "id": 16386, "match": "A7S MARK III", "type": "mirrorless", "mount": ["E"], "format": "FF", "media": ["CFexpress A", "SD"], "battery": ["NP-FZ100"] },
-    { "id": 12017, "match": "A7 MARK III", "type": "mirrorless", "mount": ["E"], "format": "FF", "media": ["SD"], "battery": ["NP-FZ100"] },
-    { "id": 666, "match": "A7S MARK II", "type": "mirrorless", "mount": ["E"], "format": "FF", "media": ["SD"], "battery": ["NP-FW50"] },
-    { "id": 662, "match": "ALPHA A7S$", "type": "mirrorless", "mount": ["E"], "format": "FF", "media": ["SD"], "battery": ["NP-FW50"] },
-    { "id": 12069, "match": "^VENICE$", "type": "cinema", "mount": ["PL", "E"], "format": "FF", "media": ["SxS", "AXS"], "battery": ["V-Mount"] },
-    { "id": 21267, "match": "VENICE 2", "type": "cinema", "mount": ["PL", "E"], "format": "FF", "media": ["AXS"], "battery": ["V-Mount", "B-Mount"] },
-    { "id": 24920, "match": "BURANO", "type": "cinema", "mount": ["PL", "E"], "format": "FF", "media": ["CFexpress B", "SD"], "battery": ["V-Mount"] },
-    { "id": 654, "match": "PXW-FS7$", "type": "cinema-compact", "mount": ["E"], "format": "S35", "media": ["XQD"], "battery": ["BP-U"] },
-    { "id": 9860, "match": "PXW-FS7 II", "type": "cinema-compact", "mount": ["E"], "format": "S35", "media": ["XQD"], "battery": ["BP-U"] },
-    { "id": 11797, "match": "PXW-FS5", "type": "cinema-compact", "mount": ["E"], "format": "S35", "media": ["SD"], "battery": ["BP-U"] },
-    { "id": 674, "match": "NEX-FS700", "type": "cinema-compact", "mount": ["E"], "format": "S35", "media": ["SD"], "battery": ["NP-F"] },
-    { "id": 629, "match": "PMW-F5", "type": "cinema", "mount": ["PL"], "format": "S35", "media": ["SxS", "AXS"], "battery": ["BP-FL", "V-Mount"] },
-    { "id": 633, "match": "PMW-F55", "type": "cinema", "mount": ["PL"], "format": "S35", "media": ["SxS", "AXS"], "battery": ["BP-FL", "V-Mount"] },
-    { "id": 670, "match": "PMW-F3", "type": "cinema-compact", "mount": ["PL"], "format": "S35", "media": ["SxS"], "battery": ["BP-U"] },
-    { "id": 9371, "match": "PXW-X400", "type": "eng", "mount": ["B4"], "format": "2/3", "media": ["SxS", "SD"], "battery": ["V-Mount"] },
-    { "id": 451, "match": "PMW-400", "type": "eng", "mount": ["B4"], "format": "2/3", "media": ["SxS"], "battery": ["V-Mount"] },
-    { "id": 438, "match": "PDW-700", "type": "eng", "mount": ["B4"], "format": "2/3", "media": ["XDCAM"], "battery": ["V-Mount"] },
-    { "id": 68, "match": "PDW-800", "type": "eng", "mount": ["B4"], "format": "2/3", "media": ["XDCAM"], "battery": ["V-Mount"] },
-    { "id": 23137, "match": "PXW-Z150", "type": "handheld", "mount": [], "format": "1in", "media": ["SD"], "battery": ["NP-F"] },
-    { "id": 571, "match": "PXW-X180", "type": "handheld", "mount": [], "format": "1in", "media": ["SD"], "battery": ["NP-F"] },
-    { "id": 10420, "match": "PXW-Z90", "type": "handheld", "mount": [], "format": "1in", "media": ["SD"], "battery": ["NP-FV"] },
-    { "id": 591, "match": "PXW-X70", "type": "handheld", "mount": [], "format": "1in", "media": ["SD"], "battery": ["NP-FV"] },
-    { "id": 22036, "match": "FR7", "type": "ptz", "mount": ["E"], "format": "FF", "media": ["CFexpress A", "SD"], "battery": [] },
-
-    { "id": 12328, "match": "^ALEXA 35$", "type": "cinema", "mount": ["LPL"], "format": "S35", "media": ["Codex"], "battery": ["B-Mount", "V-Mount"] },
-    { "id": 30380, "match": "ALEXA 35 EXTREME", "type": "cinema", "mount": ["LPL"], "format": "S35", "media": ["Codex"], "battery": ["B-Mount", "V-Mount"] },
-    { "id": 14095, "match": "ALEXA MINI LF", "type": "cinema", "mount": ["LPL"], "format": "FF", "media": ["Codex"], "battery": ["V-Mount", "Gold"] },
-    { "id": 493, "match": "^ALEXA MINI$", "type": "cinema", "mount": ["PL"], "adapters": ["EF"], "format": "S35", "media": ["CFast"], "battery": ["V-Mount", "Gold"] },
-    { "id": 448, "match": "AMIRA", "type": "cinema", "mount": ["PL"], "adapters": ["EF", "B4"], "format": "S35", "media": ["CFast"], "battery": ["V-Mount", "Gold"] },
-    { "id": 66, "match": "ALEXA EV-1", "type": "cinema", "mount": ["PL"], "format": "S35", "media": ["SxS"], "battery": ["V-Mount", "Gold"] },
-    { "id": 7387, "match": "ALEXA PLUS", "type": "cinema", "mount": ["PL"], "format": "S35", "media": ["SxS"], "battery": ["V-Mount", "Gold"] },
-
-    { "id": 678, "match": "C300 EF", "type": "cinema-compact", "mount": ["EF"], "format": "S35", "media": ["CF"], "battery": ["BP-9"] },
-    { "id": 700, "match": "C300 PL", "type": "cinema-compact", "mount": ["PL"], "format": "S35", "media": ["CF"], "battery": ["BP-9"] },
-    { "id": 9029, "match": "C300 Mark II", "type": "cinema-compact", "mount": ["EF"], "adapters": ["PL"], "format": "S35", "media": ["CFast", "SD"], "battery": ["BP-A"] },
-    { "id": 15177, "match": "C500 Mark II", "type": "cinema", "mount": ["EF"], "adapters": ["PL"], "format": "FF", "media": ["CFast", "SD"], "battery": ["BP-A"] },
-    { "id": 28559, "match": "C400", "type": "cinema-compact", "mount": ["RF"], "format": "FF", "media": ["CFexpress B", "SD"], "battery": ["BP-A"] },
-    { "id": 19707, "match": "C70", "type": "cinema-compact", "mount": ["RF"], "format": "S35", "media": ["SD"], "battery": ["BP-A"] },
-    { "id": 30392, "match": "C80", "type": "cinema-compact", "mount": ["RF"], "format": "FF", "media": ["CFexpress B", "SD"], "battery": ["BP-A"] },
-    { "id": 533, "match": "5D MARK II", "type": "mirrorless", "mount": ["EF"], "format": "FF", "media": ["CF"], "battery": ["LP-E6"] },
-
-    { "id": 16253, "match": "KOMODO 6K", "type": "cinema-compact", "mount": ["RF"], "format": "S35", "media": ["CFast"], "battery": ["BP-9", "V-Mount"] },
-    { "id": 22830, "match": "KOMODO Monochrome", "type": "cinema-compact", "mount": ["RF"], "format": "S35", "media": ["CFast"], "battery": ["BP-9", "V-Mount"] },
-    { "id": 607, "match": "EPIC DRAGON", "type": "cinema", "mount": ["PL"], "adapters": ["EF"], "format": "S35", "media": ["RED MINI-MAG"], "battery": ["V-Mount", "Gold"] },
-    { "id": 615, "match": "EPIC-W HELIUM", "type": "cinema", "mount": ["PL"], "adapters": ["EF"], "format": "S35", "media": ["RED MINI-MAG"], "battery": ["V-Mount", "Gold"] },
-
-    { "id": 16137, "match": "URSA MINI PRO 12K", "type": "cinema", "mount": ["PL"], "adapters": ["EF", "B4"], "format": "S35", "media": ["CFast", "SD", "SSD"], "battery": ["V-Mount", "Gold"] },
-    { "id": 13949, "match": "URSA MINI PRO 4.6K", "type": "cinema", "mount": ["EF"], "adapters": ["PL", "B4"], "format": "S35", "media": ["CFast", "SD", "SSD"], "battery": ["V-Mount", "Gold"] },
-    { "id": 26769, "match": "PYXIS", "type": "cinema-compact", "mount": ["L"], "format": "FF", "media": ["CFexpress B", "SSD"], "battery": ["NP-F"] },
-    { "id": 12287, "match": "Pocket Cinema Camera 4K", "type": "mirrorless", "mount": ["MFT"], "format": "MFT", "media": ["CFast", "SD", "SSD"], "battery": ["LP-E6"] },
-    { "id": 14259, "match": "Pocket Cinema Camera 6K", "type": "mirrorless", "mount": ["EF"], "format": "S35", "media": ["CFast", "SD", "SSD"], "battery": ["LP-E6"] },
-    { "id": 9036, "match": "Micro Cinema Camera", "type": "mirrorless", "mount": ["MFT"], "format": "16", "media": ["SD"], "battery": ["LP-E6"] },
-
-    { "id": 10395, "match": "AU-EVA1", "type": "cinema-compact", "mount": ["EF"], "adapters": ["PL"], "format": "S35", "media": ["SD"], "battery": ["VBR", "V-Mount"] },
-    { "id": 1344, "match": "VariCam 35", "type": "cinema", "mount": ["PL"], "format": "S35", "media": ["P2"], "battery": ["V-Mount", "Gold"] },
-    { "id": 8473, "match": "Varicam LT", "type": "cinema", "mount": ["EF"], "adapters": ["PL"], "format": "S35", "media": ["P2", "SD"], "battery": ["V-Mount", "Gold"] },
-    { "id": 14712, "match": "S1H", "type": "mirrorless", "mount": ["L"], "format": "FF", "media": ["SD"], "battery": ["DMW-BLJ31"] },
-    { "id": 20892, "match": "BS1H", "type": "mirrorless", "mount": ["L"], "format": "FF", "media": ["SD"], "battery": ["DMW-BLK22"] },
-    { "id": 11007, "match": "GH5S", "type": "mirrorless", "mount": ["MFT"], "format": "MFT", "media": ["SD"], "battery": ["DMW-BLF19"] },
-    { "id": 20870, "match": "BGH1", "type": "mirrorless", "mount": ["MFT"], "format": "MFT", "media": ["SD"], "battery": ["DMW-BLF19"] },
-    { "id": 19850, "match": "AG-CX350", "type": "handheld", "mount": [], "format": "1in", "media": ["SD"], "battery": ["VBR"] },
-    { "id": 8989, "match": "AG-UX180", "type": "handheld", "mount": [], "format": "1in", "media": ["SD"], "battery": ["VBR"] },
-    { "id": 508, "match": "DVX-200", "type": "handheld", "mount": [], "format": "MFT", "media": ["SD"], "battery": ["VBR"] },
-    { "id": 9023, "match": "AJ-PX270", "type": "handheld", "mount": [], "format": "1in", "media": ["P2", "SD"], "battery": ["VBR"] },
-    { "id": 470, "match": "AG-HPX500", "type": "eng", "mount": ["B4"], "format": "2/3", "media": ["P2"], "battery": ["V-Mount", "Gold"] },
-
-    { "id": 29623, "match": "GFX ETERNA", "type": "cinema", "mount": ["G"], "format": "MF", "media": ["CFexpress B", "SD"], "battery": ["V-Mount", "NP-W235"] },
-    { "id": 29654, "match": "GFX 100", "type": "mirrorless", "mount": ["G"], "format": "MF", "media": ["CFexpress B", "SD"], "battery": ["NP-W235"] },
-    { "id": 20463, "match": "Ronin 4D", "type": "cinema-compact", "mount": ["DL"], "format": "FF", "media": ["ProSSD", "CFexpress B"], "battery": ["TB50"] },
-    { "id": 600, "match": "PHANTOM FLEX", "type": "cinema", "mount": ["PL"], "format": "S35", "media": ["CineMag"], "battery": ["V-Mount"] },
-
-    { "match": "HERO ?\\d+|HERO\\d+", "type": "action", "mount": [], "format": "action", "media": ["microSD"], "battery": [] },
-    { "match": "Osmo Action|Osmo Pocket|Ace Pro|INSTA360 X|X5-8K|ONE R|ONE RS|MISSION 1", "type": "action", "mount": [], "format": "action", "media": ["microSD"], "battery": [] }
+    {
+      "id": 16514,
+      "match": "PXW-FX6",
+      "type": "cinema-compact",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "battery": [
+        "BP-U"
+      ]
+    },
+    {
+      "id": 14868,
+      "match": "PXW-FX9",
+      "type": "cinema-compact",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "XQD",
+        "CFexpress B"
+      ],
+      "battery": [
+        "BP-U"
+      ],
+      "_verified": "B&H / manufacturer 2026-09-18"
+    },
+    {
+      "id": 17205,
+      "match": "ILME-FX3",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "battery": [
+        "NP-FZ100"
+      ]
+    },
+    {
+      "id": 28981,
+      "match": "ILME-FX2",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "battery": [
+        "NP-FZ100"
+      ]
+    },
+    {
+      "id": 21802,
+      "match": "ILME-FX30",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "S35",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "battery": [
+        "NP-FZ100"
+      ]
+    },
+    {
+      "id": 19101,
+      "match": "A7 IV",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "battery": [
+        "NP-FZ100"
+      ]
+    },
+    {
+      "id": 16386,
+      "match": "A7S MARK III",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "battery": [
+        "NP-FZ100"
+      ]
+    },
+    {
+      "id": 12017,
+      "match": "A7 MARK III",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "NP-FZ100"
+      ]
+    },
+    {
+      "id": 666,
+      "match": "A7S MARK II",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "NP-FW50"
+      ]
+    },
+    {
+      "id": 662,
+      "match": "ALPHA A7S$",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "NP-FW50"
+      ]
+    },
+    {
+      "id": 12069,
+      "match": "^VENICE$",
+      "type": "cinema",
+      "mount": [
+        "PL",
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "SxS",
+        "AXS"
+      ],
+      "battery": [
+        "V-Mount"
+      ]
+    },
+    {
+      "id": 21267,
+      "match": "VENICE 2",
+      "type": "cinema",
+      "mount": [
+        "PL",
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "AXS"
+      ],
+      "battery": [
+        "V-Mount",
+        "B-Mount"
+      ],
+      "_verified": "B&H / manufacturer 2026-09-18"
+    },
+    {
+      "id": 24920,
+      "match": "BURANO",
+      "type": "cinema",
+      "mount": [
+        "PL",
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress B"
+      ],
+      "battery": [
+        "V-Mount"
+      ],
+      "_verified": "pro.sony 2026-09-18"
+    },
+    {
+      "id": 654,
+      "match": "PXW-FS7$",
+      "type": "cinema-compact",
+      "mount": [
+        "E"
+      ],
+      "format": "S35",
+      "media": [
+        "XQD"
+      ],
+      "battery": [
+        "BP-U"
+      ]
+    },
+    {
+      "id": 9860,
+      "match": "PXW-FS7 II",
+      "type": "cinema-compact",
+      "mount": [
+        "E"
+      ],
+      "format": "S35",
+      "media": [
+        "XQD"
+      ],
+      "battery": [
+        "BP-U"
+      ]
+    },
+    {
+      "id": 11797,
+      "match": "PXW-FS5",
+      "type": "cinema-compact",
+      "mount": [
+        "E"
+      ],
+      "format": "S35",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "BP-U"
+      ]
+    },
+    {
+      "id": 674,
+      "match": "NEX-FS700",
+      "type": "cinema-compact",
+      "mount": [
+        "E"
+      ],
+      "format": "S35",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "NP-F"
+      ]
+    },
+    {
+      "id": 629,
+      "match": "PMW-F5",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "SxS",
+        "AXS"
+      ],
+      "battery": [
+        "BP-FL",
+        "V-Mount"
+      ]
+    },
+    {
+      "id": 633,
+      "match": "PMW-F55",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "SxS",
+        "AXS"
+      ],
+      "battery": [
+        "BP-FL",
+        "V-Mount"
+      ]
+    },
+    {
+      "id": 670,
+      "match": "PMW-F3",
+      "type": "cinema-compact",
+      "mount": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "SxS"
+      ],
+      "battery": [
+        "BP-U"
+      ]
+    },
+    {
+      "id": 9371,
+      "match": "PXW-X400",
+      "type": "eng",
+      "mount": [
+        "B4"
+      ],
+      "format": "2/3",
+      "media": [
+        "SxS",
+        "SD"
+      ],
+      "battery": [
+        "V-Mount"
+      ]
+    },
+    {
+      "id": 451,
+      "match": "PMW-400",
+      "type": "eng",
+      "mount": [
+        "B4"
+      ],
+      "format": "2/3",
+      "media": [
+        "SxS"
+      ],
+      "battery": [
+        "V-Mount"
+      ]
+    },
+    {
+      "id": 438,
+      "match": "PDW-700",
+      "type": "eng",
+      "mount": [
+        "B4"
+      ],
+      "format": "2/3",
+      "media": [
+        "XDCAM"
+      ],
+      "battery": [
+        "V-Mount"
+      ]
+    },
+    {
+      "id": 68,
+      "match": "PDW-800",
+      "type": "eng",
+      "mount": [
+        "B4"
+      ],
+      "format": "2/3",
+      "media": [
+        "XDCAM"
+      ],
+      "battery": [
+        "V-Mount"
+      ]
+    },
+    {
+      "id": 23137,
+      "match": "PXW-Z150",
+      "type": "handheld",
+      "mount": [],
+      "format": "1in",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "NP-F"
+      ]
+    },
+    {
+      "id": 571,
+      "match": "PXW-X180",
+      "type": "handheld",
+      "mount": [],
+      "format": "1in",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "NP-F"
+      ]
+    },
+    {
+      "id": 10420,
+      "match": "PXW-Z90",
+      "type": "handheld",
+      "mount": [],
+      "format": "1in",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "NP-FV"
+      ]
+    },
+    {
+      "id": 591,
+      "match": "PXW-X70",
+      "type": "handheld",
+      "mount": [],
+      "format": "1in",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "NP-FV"
+      ]
+    },
+    {
+      "id": 22036,
+      "match": "FR7",
+      "type": "ptz",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "battery": []
+    },
+    {
+      "id": 12328,
+      "match": "^ALEXA 35$",
+      "type": "cinema",
+      "mount": [
+        "LPL"
+      ],
+      "format": "S35",
+      "media": [
+        "Codex"
+      ],
+      "battery": [
+        "B-Mount",
+        "V-Mount"
+      ],
+      "_verified": "B&H / manufacturer 2026-09-18"
+    },
+    {
+      "id": 30380,
+      "match": "ALEXA 35 EXTREME",
+      "type": "cinema",
+      "mount": [
+        "LPL"
+      ],
+      "format": "S35",
+      "media": [
+        "Codex"
+      ],
+      "battery": [
+        "B-Mount",
+        "V-Mount"
+      ]
+    },
+    {
+      "id": 14095,
+      "match": "ALEXA MINI LF",
+      "type": "cinema",
+      "mount": [
+        "LPL"
+      ],
+      "format": "FF",
+      "media": [
+        "Codex"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ],
+      "_verified": "B&H / manufacturer 2026-09-18"
+    },
+    {
+      "id": 493,
+      "match": "^ALEXA MINI$",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "adapters": [
+        "EF"
+      ],
+      "format": "S35",
+      "media": [
+        "CFast"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 448,
+      "match": "AMIRA",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "adapters": [
+        "EF",
+        "B4"
+      ],
+      "format": "S35",
+      "media": [
+        "CFast"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 66,
+      "match": "ALEXA EV-1",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "SxS"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 7387,
+      "match": "ALEXA PLUS",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "SxS"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 678,
+      "match": "C300 EF",
+      "type": "cinema-compact",
+      "mount": [
+        "EF"
+      ],
+      "format": "S35",
+      "media": [
+        "CF"
+      ],
+      "battery": [
+        "BP-9"
+      ]
+    },
+    {
+      "id": 700,
+      "match": "C300 PL",
+      "type": "cinema-compact",
+      "mount": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "CF"
+      ],
+      "battery": [
+        "BP-9"
+      ]
+    },
+    {
+      "id": 9029,
+      "match": "C300 Mark II",
+      "type": "cinema-compact",
+      "mount": [
+        "EF"
+      ],
+      "adapters": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "CFast",
+        "SD"
+      ],
+      "battery": [
+        "BP-A"
+      ]
+    },
+    {
+      "id": 15177,
+      "match": "C500 Mark II",
+      "type": "cinema",
+      "mount": [
+        "EF"
+      ],
+      "adapters": [
+        "PL"
+      ],
+      "format": "FF",
+      "media": [
+        "CFast",
+        "SD"
+      ],
+      "battery": [
+        "BP-A"
+      ]
+    },
+    {
+      "id": 28559,
+      "match": "C400",
+      "type": "cinema-compact",
+      "mount": [
+        "RF"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress B",
+        "SD"
+      ],
+      "battery": [
+        "BP-A"
+      ],
+      "_verified": "B&H / manufacturer 2026-09-18"
+    },
+    {
+      "id": 19707,
+      "match": "C70",
+      "type": "cinema-compact",
+      "mount": [
+        "RF"
+      ],
+      "format": "S35",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "BP-A"
+      ]
+    },
+    {
+      "id": 30392,
+      "match": "C80",
+      "type": "cinema-compact",
+      "mount": [
+        "RF"
+      ],
+      "format": "FF",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "BP-A"
+      ],
+      "_verified": "usa.canon.com 2026-09-18"
+    },
+    {
+      "id": 533,
+      "match": "5D MARK II",
+      "type": "mirrorless",
+      "mount": [
+        "EF"
+      ],
+      "format": "FF",
+      "media": [
+        "CF"
+      ],
+      "battery": [
+        "LP-E6"
+      ]
+    },
+    {
+      "id": 16253,
+      "match": "KOMODO 6K",
+      "type": "cinema-compact",
+      "mount": [
+        "RF"
+      ],
+      "format": "S35",
+      "media": [
+        "CFast"
+      ],
+      "battery": [
+        "BP-9",
+        "V-Mount"
+      ],
+      "_verified": "B&H / manufacturer 2026-09-18"
+    },
+    {
+      "id": 22830,
+      "match": "KOMODO Monochrome",
+      "type": "cinema-compact",
+      "mount": [
+        "RF"
+      ],
+      "format": "S35",
+      "media": [
+        "CFast"
+      ],
+      "battery": [
+        "BP-9",
+        "V-Mount"
+      ]
+    },
+    {
+      "id": 607,
+      "match": "EPIC DRAGON",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "adapters": [
+        "EF"
+      ],
+      "format": "S35",
+      "media": [
+        "RED MINI-MAG"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 615,
+      "match": "EPIC-W HELIUM",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "adapters": [
+        "EF"
+      ],
+      "format": "S35",
+      "media": [
+        "RED MINI-MAG"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 16137,
+      "match": "URSA MINI PRO 12K",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "adapters": [
+        "EF",
+        "B4"
+      ],
+      "format": "S35",
+      "media": [
+        "CFast",
+        "SD",
+        "SSD"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ],
+      "_verified": "B&H / manufacturer 2026-09-18"
+    },
+    {
+      "id": 13949,
+      "match": "URSA MINI PRO 4.6K",
+      "type": "cinema",
+      "mount": [
+        "EF"
+      ],
+      "adapters": [
+        "PL",
+        "B4"
+      ],
+      "format": "S35",
+      "media": [
+        "CFast",
+        "SD",
+        "SSD"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 26769,
+      "match": "PYXIS",
+      "type": "cinema-compact",
+      "mount": [
+        "L"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress B",
+        "SSD"
+      ],
+      "battery": [
+        "BP-U"
+      ],
+      "_verified": "blackmagicdesign.com 2026-09-18"
+    },
+    {
+      "id": 12287,
+      "match": "Pocket Cinema Camera 4K",
+      "type": "mirrorless",
+      "mount": [
+        "MFT"
+      ],
+      "format": "MFT",
+      "media": [
+        "CFast",
+        "SD",
+        "SSD"
+      ],
+      "battery": [
+        "LP-E6"
+      ]
+    },
+    {
+      "id": 14259,
+      "match": "Pocket Cinema Camera 6K",
+      "type": "mirrorless",
+      "mount": [
+        "EF"
+      ],
+      "format": "S35",
+      "media": [
+        "CFast",
+        "SD",
+        "SSD"
+      ],
+      "battery": [
+        "LP-E6"
+      ]
+    },
+    {
+      "id": 9036,
+      "match": "Micro Cinema Camera",
+      "type": "mirrorless",
+      "mount": [
+        "MFT"
+      ],
+      "format": "16",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "LP-E6"
+      ]
+    },
+    {
+      "id": 10395,
+      "match": "AU-EVA1",
+      "type": "cinema-compact",
+      "mount": [
+        "EF"
+      ],
+      "adapters": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "VBR",
+        "V-Mount"
+      ],
+      "_verified": "B&H / manufacturer 2026-09-18"
+    },
+    {
+      "id": 1344,
+      "match": "VariCam 35",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "P2"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 8473,
+      "match": "Varicam LT",
+      "type": "cinema",
+      "mount": [
+        "EF"
+      ],
+      "adapters": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "P2",
+        "SD"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 14712,
+      "match": "S1H",
+      "type": "mirrorless",
+      "mount": [
+        "L"
+      ],
+      "format": "FF",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "DMW-BLJ31"
+      ]
+    },
+    {
+      "id": 20892,
+      "match": "BS1H",
+      "type": "mirrorless",
+      "mount": [
+        "L"
+      ],
+      "format": "FF",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "DMW-BLK22"
+      ]
+    },
+    {
+      "id": 11007,
+      "match": "GH5S",
+      "type": "mirrorless",
+      "mount": [
+        "MFT"
+      ],
+      "format": "MFT",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "DMW-BLF19"
+      ]
+    },
+    {
+      "id": 20870,
+      "match": "BGH1",
+      "type": "mirrorless",
+      "mount": [
+        "MFT"
+      ],
+      "format": "MFT",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "DMW-BLF19"
+      ]
+    },
+    {
+      "id": 19850,
+      "match": "AG-CX350",
+      "type": "handheld",
+      "mount": [],
+      "format": "1in",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "VBR"
+      ]
+    },
+    {
+      "id": 8989,
+      "match": "AG-UX180",
+      "type": "handheld",
+      "mount": [],
+      "format": "1in",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "VBR",
+        "CGA-D54"
+      ]
+    },
+    {
+      "id": 508,
+      "match": "DVX-200",
+      "type": "handheld",
+      "mount": [],
+      "format": "MFT",
+      "media": [
+        "SD"
+      ],
+      "battery": [
+        "VBR",
+        "CGA-D54"
+      ]
+    },
+    {
+      "id": 9023,
+      "match": "AJ-PX270",
+      "type": "handheld",
+      "mount": [],
+      "format": "1in",
+      "media": [
+        "P2",
+        "SD"
+      ],
+      "battery": [
+        "VBR",
+        "CGA-D54"
+      ]
+    },
+    {
+      "id": 470,
+      "match": "AG-HPX500",
+      "type": "eng",
+      "mount": [
+        "B4"
+      ],
+      "format": "2/3",
+      "media": [
+        "P2"
+      ],
+      "battery": [
+        "V-Mount",
+        "Gold"
+      ]
+    },
+    {
+      "id": 29623,
+      "match": "GFX ETERNA",
+      "type": "cinema",
+      "mount": [
+        "G"
+      ],
+      "format": "MF",
+      "media": [
+        "CFexpress B",
+        "SD"
+      ],
+      "battery": [
+        "V-Mount",
+        "NP-W235"
+      ],
+      "_verified": "B&H / manufacturer 2026-09-18"
+    },
+    {
+      "id": 29654,
+      "match": "GFX 100",
+      "type": "mirrorless",
+      "mount": [
+        "G"
+      ],
+      "format": "MF",
+      "media": [
+        "CFexpress B",
+        "SD"
+      ],
+      "battery": [
+        "NP-W235"
+      ]
+    },
+    {
+      "id": 20463,
+      "match": "Ronin 4D",
+      "type": "cinema-compact",
+      "mount": [
+        "DL"
+      ],
+      "format": "FF",
+      "media": [
+        "ProSSD",
+        "CFexpress B"
+      ],
+      "battery": [
+        "TB50"
+      ]
+    },
+    {
+      "id": 600,
+      "match": "PHANTOM FLEX",
+      "type": "cinema",
+      "mount": [
+        "PL"
+      ],
+      "format": "S35",
+      "media": [
+        "CineMag"
+      ],
+      "battery": [
+        "V-Mount"
+      ]
+    },
+    {
+      "match": "HERO ?\\d+|HERO\\d+",
+      "type": "action",
+      "mount": [],
+      "format": "action",
+      "media": [
+        "microSD"
+      ],
+      "battery": [
+        "GoPro"
+      ]
+    },
+    {
+      "match": "Osmo Action|Osmo Pocket",
+      "type": "action",
+      "mount": [],
+      "format": "action",
+      "media": [
+        "microSD"
+      ],
+      "battery": [
+        "Osmo"
+      ]
+    },
+    {
+      "match": "Ace Pro|INSTA360 X|X5-8K|ONE R|ONE RS|MISSION 1",
+      "type": "action",
+      "mount": [],
+      "format": "action",
+      "media": [
+        "microSD"
+      ],
+      "battery": [
+        "Insta360"
+      ]
+    }
   ],
   "kits": {
     "cinema": [
-      { "slot": "lens", "he": "עדשות (סט או זום)", "en": "Lenses (set or zoom)", "dept": "lenses", "qty": 1 },
-      { "slot": "mattebox", "he": "מטבוקס", "en": "Matte box", "dept": "accessories", "subcat": "Matte Boxes", "qty": 1 },
-      { "slot": "ff", "he": "פולופוקוס", "en": "Follow focus", "dept": "accessories", "subcat": "Follow Focus", "qty": 1 },
-      { "slot": "filters", "he": "פילטרים (ND / דיפיוז׳ן)", "en": "Filters (ND / diffusion)", "dept": "accessories", "subcat": "Filters", "qty": 2 },
-      { "slot": "media", "he": "מדיה (כרטיסים)", "en": "Media (cards)", "dept": "video", "subcat": "Recorders & Media", "qty": 4 },
-      { "slot": "battery", "he": "סוללות", "en": "Batteries", "dept": "power", "subcat": "Batteries", "qty": 8 },
-      { "slot": "charger", "he": "מטען", "en": "Charger", "dept": "power", "subcat": "Chargers & PSU", "qty": 1 },
-      { "slot": "monitor", "he": "מוניטור על המצלמה", "en": "On-camera monitor", "dept": "video", "subcat": "On Camera", "qty": 1 },
-      { "slot": "wireless", "he": "וידאו אלחוטי (TX/RX)", "en": "Wireless video (TX/RX)", "dept": "video", "subcat": "Wireless Video", "qty": 1 },
-      { "slot": "prodmon", "he": "מוניטור במאי / DIT", "en": "Director / DIT monitor", "dept": "video", "subcat": "Production Monitors", "qty": 1 },
-      { "slot": "head", "he": "ראש פלואיד", "en": "Fluid head", "dept": "tripods", "subcat": "Fluid Heads", "qty": 1 },
-      { "slot": "legs", "he": "רגלי חצובה", "en": "Tripod legs", "dept": "tripods", "subcat": "Tripod Legs", "qty": 1 }
+      {
+        "slot": "lens",
+        "he": "עדשות (סט או זום)",
+        "en": "Lenses (set or zoom)",
+        "dept": "lenses",
+        "qty": 1
+      },
+      {
+        "slot": "mattebox",
+        "he": "מטבוקס",
+        "en": "Matte box",
+        "dept": "accessories",
+        "subcat": "Matte Boxes",
+        "qty": 1
+      },
+      {
+        "slot": "ff",
+        "he": "פולופוקוס",
+        "en": "Follow focus",
+        "dept": "accessories",
+        "subcat": "Follow Focus",
+        "qty": 1
+      },
+      {
+        "slot": "filters",
+        "he": "פילטרים (ND / דיפיוז׳ן)",
+        "en": "Filters (ND / diffusion)",
+        "dept": "accessories",
+        "subcat": "Filters",
+        "qty": 2
+      },
+      {
+        "slot": "media",
+        "he": "מדיה (כרטיסים)",
+        "en": "Media (cards)",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 4,
+        "kind": "card"
+      },
+      {
+        "slot": "reader",
+        "he": "קורא כרטיסים",
+        "en": "Card reader",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 1,
+        "kind": "reader"
+      },
+      {
+        "slot": "battery",
+        "he": "סוללות",
+        "en": "Batteries",
+        "dept": "power",
+        "subcat": "Batteries",
+        "qty": 8,
+        "kind": "battery"
+      },
+      {
+        "slot": "charger",
+        "he": "מטען",
+        "en": "Charger",
+        "dept": "power",
+        "subcat": "Chargers & PSU",
+        "qty": 1,
+        "kind": "charger"
+      },
+      {
+        "slot": "monitor",
+        "he": "מוניטור על המצלמה",
+        "en": "On-camera monitor",
+        "dept": "video",
+        "subcat": "On Camera",
+        "qty": 1
+      },
+      {
+        "slot": "wireless",
+        "he": "וידאו אלחוטי (TX/RX)",
+        "en": "Wireless video (TX/RX)",
+        "dept": "video",
+        "subcat": "Wireless Video",
+        "qty": 1
+      },
+      {
+        "slot": "prodmon",
+        "he": "מוניטור במאי / DIT",
+        "en": "Director / DIT monitor",
+        "dept": "video",
+        "subcat": "Production Monitors",
+        "qty": 1
+      },
+      {
+        "slot": "head",
+        "he": "ראש פלואיד",
+        "en": "Fluid head",
+        "dept": "tripods",
+        "subcat": "Fluid Heads",
+        "qty": 1
+      },
+      {
+        "slot": "legs",
+        "he": "רגלי חצובה",
+        "en": "Tripod legs",
+        "dept": "tripods",
+        "subcat": "Tripod Legs",
+        "qty": 1
+      }
     ],
     "cinema-compact": [
-      { "slot": "lens", "he": "עדשות", "en": "Lenses", "dept": "lenses", "qty": 2 },
-      { "slot": "media", "he": "מדיה (כרטיסים)", "en": "Media (cards)", "dept": "video", "subcat": "Recorders & Media", "qty": 4 },
-      { "slot": "battery", "he": "סוללות", "en": "Batteries", "dept": "power", "subcat": "Batteries", "qty": 6 },
-      { "slot": "charger", "he": "מטען", "en": "Charger", "dept": "power", "subcat": "Chargers & PSU", "qty": 1 },
-      { "slot": "monitor", "he": "מוניטור על המצלמה", "en": "On-camera monitor", "dept": "video", "subcat": "On Camera", "qty": 1 },
-      { "slot": "wireless", "he": "וידאו אלחוטי (TX/RX)", "en": "Wireless video (TX/RX)", "dept": "video", "subcat": "Wireless Video", "qty": 1 },
-      { "slot": "filters", "he": "פילטרים", "en": "Filters", "dept": "accessories", "subcat": "Filters", "qty": 1 },
-      { "slot": "mattebox", "he": "מטבוקס", "en": "Matte box", "dept": "accessories", "subcat": "Matte Boxes", "qty": 1 },
-      { "slot": "head", "he": "ראש פלואיד + רגליים", "en": "Fluid head + legs", "dept": "tripods", "qty": 1 }
+      {
+        "slot": "lens",
+        "he": "עדשות",
+        "en": "Lenses",
+        "dept": "lenses",
+        "qty": 2
+      },
+      {
+        "slot": "media",
+        "he": "מדיה (כרטיסים)",
+        "en": "Media (cards)",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 4,
+        "kind": "card"
+      },
+      {
+        "slot": "reader",
+        "he": "קורא כרטיסים",
+        "en": "Card reader",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 1,
+        "kind": "reader"
+      },
+      {
+        "slot": "battery",
+        "he": "סוללות",
+        "en": "Batteries",
+        "dept": "power",
+        "subcat": "Batteries",
+        "qty": 6,
+        "kind": "battery"
+      },
+      {
+        "slot": "charger",
+        "he": "מטען",
+        "en": "Charger",
+        "dept": "power",
+        "subcat": "Chargers & PSU",
+        "qty": 1,
+        "kind": "charger"
+      },
+      {
+        "slot": "monitor",
+        "he": "מוניטור על המצלמה",
+        "en": "On-camera monitor",
+        "dept": "video",
+        "subcat": "On Camera",
+        "qty": 1
+      },
+      {
+        "slot": "wireless",
+        "he": "וידאו אלחוטי (TX/RX)",
+        "en": "Wireless video (TX/RX)",
+        "dept": "video",
+        "subcat": "Wireless Video",
+        "qty": 1
+      },
+      {
+        "slot": "filters",
+        "he": "פילטרים",
+        "en": "Filters",
+        "dept": "accessories",
+        "subcat": "Filters",
+        "qty": 1
+      },
+      {
+        "slot": "mattebox",
+        "he": "מטבוקס",
+        "en": "Matte box",
+        "dept": "accessories",
+        "subcat": "Matte Boxes",
+        "qty": 1
+      },
+      {
+        "slot": "head",
+        "he": "ראש פלואיד + רגליים",
+        "en": "Fluid head + legs",
+        "dept": "tripods",
+        "qty": 1
+      }
     ],
     "mirrorless": [
-      { "slot": "lens", "he": "עדשות", "en": "Lenses", "dept": "lenses", "qty": 2 },
-      { "slot": "media", "he": "מדיה (כרטיסים)", "en": "Media (cards)", "dept": "video", "subcat": "Recorders & Media", "qty": 4 },
-      { "slot": "battery", "he": "סוללות", "en": "Batteries", "dept": "power", "subcat": "Batteries", "qty": 6 },
-      { "slot": "charger", "he": "מטען", "en": "Charger", "dept": "power", "subcat": "Chargers & PSU", "qty": 1 },
-      { "slot": "monitor", "he": "מוניטור / מקליט חיצוני", "en": "Monitor / external recorder", "dept": "video", "subcat": "On Camera", "qty": 1 },
-      { "slot": "rig", "he": "כלוב / ריג", "en": "Cage / rig", "dept": "grip", "subcat": "Camera Support & Rigs", "qty": 1 },
-      { "slot": "head", "he": "ראש פלואיד + רגליים", "en": "Fluid head + legs", "dept": "tripods", "qty": 1 }
+      {
+        "slot": "lens",
+        "he": "עדשות",
+        "en": "Lenses",
+        "dept": "lenses",
+        "qty": 2
+      },
+      {
+        "slot": "media",
+        "he": "מדיה (כרטיסים)",
+        "en": "Media (cards)",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 4,
+        "kind": "card"
+      },
+      {
+        "slot": "reader",
+        "he": "קורא כרטיסים",
+        "en": "Card reader",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 1,
+        "kind": "reader"
+      },
+      {
+        "slot": "battery",
+        "he": "סוללות",
+        "en": "Batteries",
+        "dept": "power",
+        "subcat": "Batteries",
+        "qty": 6,
+        "kind": "battery"
+      },
+      {
+        "slot": "charger",
+        "he": "מטען",
+        "en": "Charger",
+        "dept": "power",
+        "subcat": "Chargers & PSU",
+        "qty": 1,
+        "kind": "charger"
+      },
+      {
+        "slot": "monitor",
+        "he": "מוניטור / מקליט חיצוני",
+        "en": "Monitor / external recorder",
+        "dept": "video",
+        "subcat": "On Camera",
+        "qty": 1
+      },
+      {
+        "slot": "rig",
+        "he": "כלוב / ריג",
+        "en": "Cage / rig",
+        "dept": "grip",
+        "subcat": "Camera Support & Rigs",
+        "qty": 1
+      },
+      {
+        "slot": "head",
+        "he": "ראש פלואיד + רגליים",
+        "en": "Fluid head + legs",
+        "dept": "tripods",
+        "qty": 1
+      }
     ],
     "eng": [
-      { "slot": "lens", "he": "עדשת B4", "en": "B4 lens", "dept": "lenses", "qty": 1 },
-      { "slot": "media", "he": "מדיה", "en": "Media", "dept": "video", "subcat": "Recorders & Media", "qty": 4 },
-      { "slot": "battery", "he": "סוללות", "en": "Batteries", "dept": "power", "subcat": "Batteries", "qty": 6 },
-      { "slot": "charger", "he": "מטען", "en": "Charger", "dept": "power", "subcat": "Chargers & PSU", "qty": 1 },
-      { "slot": "wireless", "he": "וידאו אלחוטי", "en": "Wireless video", "dept": "video", "subcat": "Wireless Video", "qty": 1 },
-      { "slot": "head", "he": "ראש פלואיד + רגליים", "en": "Fluid head + legs", "dept": "tripods", "qty": 1 }
+      {
+        "slot": "lens",
+        "he": "עדשת B4",
+        "en": "B4 lens",
+        "dept": "lenses",
+        "qty": 1
+      },
+      {
+        "slot": "media",
+        "he": "מדיה",
+        "en": "Media",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 4,
+        "kind": "card"
+      },
+      {
+        "slot": "reader",
+        "he": "קורא כרטיסים",
+        "en": "Card reader",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 1,
+        "kind": "reader"
+      },
+      {
+        "slot": "battery",
+        "he": "סוללות",
+        "en": "Batteries",
+        "dept": "power",
+        "subcat": "Batteries",
+        "qty": 6,
+        "kind": "battery"
+      },
+      {
+        "slot": "charger",
+        "he": "מטען",
+        "en": "Charger",
+        "dept": "power",
+        "subcat": "Chargers & PSU",
+        "qty": 1,
+        "kind": "charger"
+      },
+      {
+        "slot": "wireless",
+        "he": "וידאו אלחוטי",
+        "en": "Wireless video",
+        "dept": "video",
+        "subcat": "Wireless Video",
+        "qty": 1
+      },
+      {
+        "slot": "head",
+        "he": "ראש פלואיד + רגליים",
+        "en": "Fluid head + legs",
+        "dept": "tripods",
+        "qty": 1
+      }
     ],
     "handheld": [
-      { "slot": "media", "he": "כרטיסי SD", "en": "SD cards", "dept": "video", "subcat": "Recorders & Media", "qty": 4 },
-      { "slot": "battery", "he": "סוללות", "en": "Batteries", "dept": "power", "subcat": "Batteries", "qty": 4 },
-      { "slot": "charger", "he": "מטען", "en": "Charger", "dept": "power", "subcat": "Chargers & PSU", "qty": 1 },
-      { "slot": "head", "he": "ראש פלואיד + רגליים", "en": "Fluid head + legs", "dept": "tripods", "qty": 1 }
+      {
+        "slot": "media",
+        "he": "כרטיסי SD",
+        "en": "SD cards",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 4,
+        "kind": "card"
+      },
+      {
+        "slot": "reader",
+        "he": "קורא כרטיסים",
+        "en": "Card reader",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 1,
+        "kind": "reader"
+      },
+      {
+        "slot": "battery",
+        "he": "סוללות",
+        "en": "Batteries",
+        "dept": "power",
+        "subcat": "Batteries",
+        "qty": 4,
+        "kind": "battery"
+      },
+      {
+        "slot": "charger",
+        "he": "מטען",
+        "en": "Charger",
+        "dept": "power",
+        "subcat": "Chargers & PSU",
+        "qty": 1,
+        "kind": "charger"
+      },
+      {
+        "slot": "head",
+        "he": "ראש פלואיד + רגליים",
+        "en": "Fluid head + legs",
+        "dept": "tripods",
+        "qty": 1
+      }
     ],
     "action": [
-      { "slot": "media", "he": "כרטיסי microSD", "en": "microSD cards", "dept": "video", "subcat": "Recorders & Media", "qty": 3 },
-      { "slot": "mounts", "he": "מאונטים ואביזרים", "en": "Mounts & accessories", "dept": "accessories", "qty": 1 }
+      {
+        "slot": "media",
+        "he": "כרטיסי microSD",
+        "en": "microSD cards",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 3,
+        "kind": "card"
+      },
+      {
+        "slot": "reader",
+        "he": "קורא כרטיסים",
+        "en": "Card reader",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 1,
+        "kind": "reader"
+      },
+      {
+        "slot": "mounts",
+        "he": "מאונטים ואביזרים",
+        "en": "Mounts & accessories",
+        "dept": "accessories",
+        "qty": 1
+      }
     ],
     "ptz": [
-      { "slot": "lens", "he": "עדשות", "en": "Lenses", "dept": "lenses", "qty": 1 },
-      { "slot": "media", "he": "מדיה", "en": "Media", "dept": "video", "subcat": "Recorders & Media", "qty": 2 },
-      { "slot": "controller", "he": "בקר / מיקסר", "en": "Controller / switcher", "dept": "video", "subcat": "Mixers & Matrix", "qty": 1 }
+      {
+        "slot": "lens",
+        "he": "עדשות",
+        "en": "Lenses",
+        "dept": "lenses",
+        "qty": 1
+      },
+      {
+        "slot": "media",
+        "he": "מדיה",
+        "en": "Media",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 2,
+        "kind": "card"
+      },
+      {
+        "slot": "reader",
+        "he": "קורא כרטיסים",
+        "en": "Card reader",
+        "dept": "video",
+        "subcat": "Recorders & Media",
+        "qty": 1,
+        "kind": "reader"
+      },
+      {
+        "slot": "controller",
+        "he": "בקר / מיקסר",
+        "en": "Controller / switcher",
+        "dept": "video",
+        "subcat": "Mixers & Matrix",
+        "qty": 1
+      }
     ]
   }
 }

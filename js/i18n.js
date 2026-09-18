@@ -27,7 +27,7 @@ export const dict = {
     lang_switch: 'EN', install_hint: 'טיפ: הוסף למסך הבית כדי לעבוד כמו אפליקציה', in_project: 'בפרויקט',
     build_around: 'בנה סביב', building_around: 'בונה סביב', active_camera: 'מצלמה פעילה', compat_only: 'רק תואם', show_all_items: 'הצג הכל',
     tag_native: 'תואם', tag_adapter: 'דרך מתאם', tag_partial: 'קרופ / כיסוי חלקי', tag_unknown: 'לא ידוע', tag_no: 'לא תואם',
-    base_kit: 'ערכת בסיס', choose: 'בחר', kit_done: 'יש', no_profile: 'אין פרופיל תאימות למצלמה זו', clear_build: 'בטל בנייה סביב', hidden_count: '{n} פריטים לא תואמים מוסתרים',
+    base_kit: 'ערכת בסיס', choose: 'בחר', kit_done: 'יש', no_profile: 'אין פרופיל תאימות למצלמה זו', clear_build: 'בטל בנייה סביב', hidden_count: '{n} פריטים לא תואמים מוסתרים', strict_note: 'מוצג רק מה שמתאים ל-{cam} ({n} הוסתרו)',
     mount: 'מאונט', sensor: 'חיישן', media: 'מדיה', battery: 'סוללה', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
   },
   en: {
@@ -55,7 +55,7 @@ export const dict = {
     lang_switch: 'עב', install_hint: 'Tip: add to Home Screen to use it like an app', in_project: 'in project',
     build_around: 'Build around', building_around: 'Building around', active_camera: 'Active camera', compat_only: 'Compatible only', show_all_items: 'Show all',
     tag_native: 'Compatible', tag_adapter: 'Via adapter', tag_partial: 'Crop / partial coverage', tag_unknown: 'Unknown', tag_no: 'Not compatible',
-    base_kit: 'Base kit', choose: 'Choose', kit_done: 'Have', no_profile: 'No compatibility profile for this camera', clear_build: 'Stop building around', hidden_count: '{n} incompatible items hidden',
+    base_kit: 'Base kit', choose: 'Choose', kit_done: 'Have', no_profile: 'No compatibility profile for this camera', clear_build: 'Stop building around', hidden_count: '{n} incompatible items hidden', strict_note: 'Showing only what fits {cam} ({n} hidden)',
     mount: 'Mount', sensor: 'Sensor', media: 'Media', battery: 'Battery', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
   },
 };

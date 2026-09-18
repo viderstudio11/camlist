@@ -12,20 +12,38 @@ const HERO = { cameras: /alexa 35$|fx6|venice/i, lenses: /supreme prime|cooke|s7
 let st = { pid: null, q: '', view: 'depts', dept: null, subcat: null, brand: null, sub: null };
 let preset = null;      // set by the list screen's kit slots before navigating here
 let compatOnly = true;  // "compatible only" toggle (per session)
+let strict = false;     // entered from a kit slot: show ONLY items that fit the active camera (no neutral/unknown noise)
+let kind = null;        // kit slot kind (card / reader / battery / charger) — restricts the list to that kind
 export function presetCatalog(o) { preset = o; }
 
 export function render(ctx, { id }, root) {
   const { store, t, catalog } = ctx;
   if (st.pid !== id) st = { pid: id, q: '', view: 'depts', dept: null, subcat: null, brand: null, sub: null };
-  if (preset) { st = { pid: id, q: '', view: 'depts', dept: preset.dept ?? null, subcat: preset.subcat ?? null, brand: null, sub: null }; preset = null; }
+  if (preset) { st = { pid: id, q: '', view: 'depts', dept: preset.dept ?? null, subcat: preset.subcat ?? null, brand: null, sub: null }; strict = !!preset.strict; kind = preset.kind || null; compatOnly = true; preset = null; }
   const lang = ctx.lang();
   const { compat } = ctx;
   const project = store.getProject(id);
   const active = project.buildCameraId != null ? ctx.resolve(project.buildCameraId) : null;
   const prof = active ? compat.profileFor(active) : null;
-  const grade = (p) => (prof ? compat.verdict(p, prof).status : 'neutral');
+  const verdicts = new Map();
+  const verdictOf = (p) => { if (!verdicts.has(p.id)) verdicts.set(p.id, prof ? compat.verdict(p, prof) : { status: 'neutral' }); return verdicts.get(p.id); };
+  const grade = (p) => verdictOf(p).status;
   let hidden = 0;
-  const visible = (list, count = true) => (!prof || !compatOnly ? list : list.filter(p => { const ok = grade(p) !== 'no'; if (!ok && count) hidden++; return ok; }));
+  const RANK = { native: 0, adapter: 1, partial: 2, neutral: 3, unknown: 4, no: 5 };
+  // Strict (kit slot): only graded-compatible items. Normal build mode: hide "no" only. Always sort best fit first.
+  // In strict mode "neutral" items (monitors, heads…) stay only when nothing in the list is graded — otherwise
+  // e.g. a media slot would still show readers/recorders next to the matching cards.
+  const visible = (list) => {
+    if (!prof || !compatOnly) return list;
+    if (strict && kind) list = list.filter(p => verdictOf(p).kind === kind);
+    const graded = strict && list.some(p => RANK[grade(p)] <= 2);
+    // Strict with nothing graded (monitors, heads…): keep everything that isn't a hard "no".
+    const fits = (g) => (strict ? RANK[g] <= 2 || (!graded && g !== 'no') : g !== 'no');
+    const out = list.filter(p => fits(grade(p)));
+    return out.map((p, i) => [RANK[grade(p)] * 100 + (verdictOf(p).pref ?? 50), i, p]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).map(x => x[2]);
+  };
+  // shown(): the list that is actually rendered — the hidden counter is derived from it alone.
+  const shown = (list) => { const out = visible(list); hidden = list.length - out.length; return out; };
   const TAG = { native: ['ok', '✓ ' + t('tag_native')], adapter: ['adp', '↻ ' + t('tag_adapter')], partial: ['warn', '⚠ ' + t('tag_partial')], unknown: ['dim', t('tag_unknown')], no: ['bad', '✕ ' + t('tag_no')] };
   const tagHTML = (p) => { if (!prof) return ''; const g = grade(p); return TAG[g] ? `<span class="ctag ${TAG[g][0]}">${TAG[g][1]}</span>` : ''; };
   const items = () => store.getProject(id).items;
@@ -59,6 +77,18 @@ export function render(ctx, { id }, root) {
   };
   // Products grouped under a brand header (logo + full name + count), brands ordered by count desc.
   const groupedByBrand = (prods) => {
+    // Kit slots for cards/readers/batteries/chargers group by family (CFexpress A, SD, BP-U…) in the camera's preference order.
+    if (strict && kind && prof) {
+      const groups = new Map();
+      for (const p of prods) { const k = verdictOf(p).family || '—'; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(p); }
+      const prefOf = (k) => { const i = [...(prof.media || []), ...(prof.battery || [])].indexOf(k); return i < 0 ? 99 : i; };
+      const order = [...groups.entries()].sort((a, b) => prefOf(a[0]) - prefOf(b[0]));
+      return order.map(([k, list]) => `
+        <section class="bgroup">
+          <div class="bgroup-head"><span class="brandname">${esc(k)}</span><span class="count">${list.length}</span></div>
+          ${list.map(p => productRow(p, { showBrand: true })).join('')}
+        </section>`).join('');
+    }
     const groups = new Map();
     for (const p of prods) { const k = p.brand || '__none'; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(p); }
     const order = [...groups.entries()].sort((a, b) => (a[0] === '__none') - (b[0] === '__none') || b[1].length - a[1].length);
@@ -83,14 +113,14 @@ export function render(ctx, { id }, root) {
   let content = '';
   let crumbs = '';
   if (st.q.length >= 1) {
-    const res = visible(catalog.search(st.q, { limit: 160 }));
+    const res = shown(catalog.search(st.q, { limit: 160 }));
     content = (res.length ? groupedByBrand(res) : `<div class="empty"><p>${t('no_results', { q: esc(st.q) })}</p></div>`) + manualCTA;
   } else if (st.view === 'brands' && !st.brand) {
     content = brandGrid(catalog.brands);
   } else if (st.view === 'brands' && st.brand) {
-    const all = visible(catalog.byBrand(st.brand));
-    const depts = catalog.departments.filter(d => all.some(p => p.dept === d.id));
-    const prods = all.filter(p => !st.dept || p.dept === st.dept);
+    const all = catalog.byBrand(st.brand);
+    const depts = catalog.departments.filter(d => visible(all).some(p => p.dept === d.id));
+    const prods = shown(all.filter(p => !st.dept || p.dept === st.dept));
     crumbs = `<div class="crumbs"><button data-crumb="brands">${t('brands')}</button>${arrow}<span>${esc(catalog.brandName(st.brand))}</span></div>`;
     content = `${depts.length > 1 ? `<div class="chips"><button class="${st.dept ? '' : 'active'}" data-chip="">${t('all')}</button>${depts.map(d => `<button class="${st.dept === d.id ? 'active' : ''}" data-chip="${d.id}">${DEPT_EMOJI[d.slug]} ${esc(deptName(d))}</button>`).join('')}</div>` : ''}
       <div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${t('models_count', { n: prods.length })}</small></div></div>
@@ -107,7 +137,7 @@ export function render(ctx, { id }, root) {
       } else {
         const all = deptProds.filter(p => p.brand === st.brand);
         const subs = catalog.subcatsOf(st.dept).filter(s => all.some(p => p.subcats.includes(s.id)));
-        const prods = st.sub ? all.filter(p => p.subcats.includes(st.sub)) : all;
+        const prods = shown(st.sub ? all.filter(p => p.subcats.includes(st.sub)) : all);
         crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<button data-crumb="dept">${esc(deptName(d))}</button>${arrow}<span>${esc(catalog.brandName(st.brand))}</span></div>`;
         content = `<div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${esc(deptName(d))} · ${t('models_count', { n: prods.length })}</small></div></div>
           ${subs.length > 1 ? `<div class="chips"><button class="${st.sub ? '' : 'active'}" data-sub-chip="">${t('all')}</button>${subs.map(s => `<button class="${st.sub === s.id ? 'active' : ''}" data-sub-chip="${s.id}">${esc(subName(s))}</button>`).join('')}</div>` : ''}
@@ -115,11 +145,11 @@ export function render(ctx, { id }, root) {
       }
     } else if (!st.subcat) {
       crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<span>${esc(deptName(d))}</span></div>`;
-      content = `<div class="section-title">${t('choose_subcat')}</div><div class="sub-list">${catalog.subcatsOf(st.dept).map(s => `<div class="card" data-sub="${s.id}"><b>${esc(subName(s))}</b><span class="n">${visible(catalog.bySubcat(s.id), false).length}</span></div>`).join('')}</div>`;
+      content = `<div class="section-title">${t('choose_subcat')}</div><div class="sub-list">${catalog.subcatsOf(st.dept).map(s => `<div class="card" data-sub="${s.id}"><b>${esc(subName(s))}</b><span class="n">${visible(catalog.bySubcat(s.id)).length}</span></div>`).join('')}</div>`;
     } else {
       const s = d.subcategories.find(x => x.id === st.subcat);
       crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<button data-crumb="dept">${esc(deptName(d))}</button>${arrow}<span>${esc(subName(s))}</span></div>`;
-      content = groupedByBrand(visible(catalog.bySubcat(st.subcat))) + manualCTA;
+      content = groupedByBrand(shown(catalog.bySubcat(st.subcat))) + manualCTA;
     }
   }
 
@@ -129,13 +159,13 @@ export function render(ctx, { id }, root) {
       ${st.q || st.dept || st.brand ? '' : `<div class="tabs"><button class="${st.view === 'depts' ? 'active' : ''}" data-tab="depts">${t('departments')}</button><button class="${st.view === 'brands' ? 'active' : ''}" data-tab="brands">${t('all_brands')}</button></div>`}
     </div>
     ${crumbs}
-    <div data-content>${content}${hidden && compatOnly ? `<p class="hidden-note">${t('hidden_count', { n: hidden })} · <button data-show-all>${t('show_all_items')}</button></p>` : ''}</div>
+    <div data-content>${content}${hidden && compatOnly ? `<p class="hidden-note">${strict ? t('strict_note', { n: hidden, cam: esc(active.name) }) : t('hidden_count', { n: hidden })} · <button data-show-all>${t('show_all_items')}</button></p>` : ''}</div>
     <div class="bottombar"><button class="btn primary" data-done>${icons.check}${t('back_to_list', { n: totalQty(items()) })}</button></div>`;
 
   root.classList.toggle('has-rail', !!root.querySelector('.rail'));
   root.style.setProperty('--search-h', root.querySelector('.search').offsetHeight + 'px');
   root.querySelector('[data-compat-only]')?.addEventListener('change', (e) => { compatOnly = e.target.checked; rerender(); });
-  root.querySelector('[data-show-all]')?.addEventListener('click', () => { compatOnly = false; rerender(); });
+  root.querySelector('[data-show-all]')?.addEventListener('click', () => { if (strict) { strict = false; kind = null; } else compatOnly = false; rerender(); });
   const input = root.querySelector('[data-q]');
   let timer;
   input.oninput = () => {

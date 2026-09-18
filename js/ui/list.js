@@ -91,7 +91,7 @@ export function render(ctx, { id }, root) {
   root.querySelector('[data-clear-build]')?.addEventListener('click', () => { store.setBuildCamera(id, null); ctx.render(); });
   root.querySelectorAll('[data-choose]').forEach(b => { b.onclick = () => {
     const slot = compat.kitStatus(activeProf, p.items, ctx.resolve).find(s => s.slot === b.dataset.choose);
-    presetCatalog({ dept: slot.deptId, subcat: slot.subId });
+    presetCatalog({ dept: slot.deptId, subcat: slot.subId, strict: true, kind: slot.kind || null });
     ctx.navigate(`#/p/${id}/add`);
   }; });
 
