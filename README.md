@@ -41,6 +41,10 @@ To add a logo manually: drop `logos/<brand-slug>.svg|png` (slug = lowercase, spa
 
 `data/extra.json` lists products Utopia does not carry but a list often needs (currently Sony / ProGrade / Lexar card readers). They are merged into the catalog at load, searchable, graded for compatibility like everything else, and shown with a **"לא באוטופיה / Not at Utopia"** badge (also in the share text). Entry format: `{ id: "x_…", name, brand, dept: "<department slug>", subcat: "<subcategory English name>", url }`.
 
+## מיון לפי חדשות · Newest model first
+
+Inside every brand and category the newest model comes first. `data/releases.json` holds curated market-release years keyed by Utopia product id; `js/recency.js` estimates every other product by interpolating its id against those anchors (Utopia ids rise over time — 94% pairwise agreement with the 39 verified cameras). Add anchors freely: each one sharpens the estimates around it. Tests: `tests/recency.test.js`.
+
 ## בנייה סביב מצלמה · Build around a camera
 
 `data/compat.json` holds hand-curated camera profiles (native mount, mounts usable via adapter, sensor format, media families, battery families, kit type) plus base-kit slot lists per camera type. Edit it directly — it is plain JSON:

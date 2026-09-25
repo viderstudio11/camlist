@@ -24,7 +24,7 @@ export function render(ctx, { id }, root) {
   if (st.pid !== id) { st = { pid: id, q: '', view: 'depts', dept: null, subcat: null, brand: null, sub: null }; lf = { type: null, mount: null, format: null }; }
   if (preset) { st = { pid: id, q: '', view: 'depts', dept: preset.dept ?? null, subcat: preset.subcat ?? null, brand: null, sub: null }; strict = !!preset.strict; kind = preset.kind || null; compatOnly = true; preset = null; }
   const lang = ctx.lang();
-  const { compat } = ctx;
+  const { compat, recency } = ctx;
   const project = store.getProject(id);
   const active = project.buildCameraId != null ? ctx.resolve(project.buildCameraId) : null;
   const prof = active ? compat.profileFor(active) : null;
@@ -44,7 +44,9 @@ export function render(ctx, { id }, root) {
     // Strict with nothing graded (monitors, heads…): keep everything that isn't a hard "no".
     const fits = (g) => (strict ? RANK[g] <= 2 || (!graded && g !== 'no') : g !== 'no');
     const out = list.filter(p => fits(grade(p)));
-    return out.map((p, i) => [RANK[grade(p)] * 100 + (verdictOf(p).pref ?? 50), i, p]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).map(x => x[2]);
+    return out.map(p => [RANK[grade(p)] * 100 + (verdictOf(p).pref ?? 50), p])
+      .sort((x, y) => x[0] - y[0] || recency.compare(x[1], y[1]))
+      .map(x => x[1]);
   };
   // shown(): the list that is actually rendered — the hidden counter is derived from it alone.
   const shown = (list) => { const out = visible(list); hidden = list.length - out.length; return out; };
@@ -85,6 +87,7 @@ export function render(ctx, { id }, root) {
     if (strict && kind && prof) {
       const groups = new Map();
       for (const p of prods) { const k = verdictOf(p).family || '—'; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(p); }
+      for (const [k, list] of groups) groups.set(k, recency.sort(list));
       const prefOf = (k) => { const i = [...(prof.media || []), ...(prof.battery || [])].indexOf(k); return i < 0 ? 99 : i; };
       const order = [...groups.entries()].sort((a, b) => prefOf(a[0]) - prefOf(b[0]));
       return order.map(([k, list]) => `
@@ -95,6 +98,7 @@ export function render(ctx, { id }, root) {
     }
     const groups = new Map();
     for (const p of prods) { const k = p.brand || '__none'; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(p); }
+    for (const [k, list] of groups) groups.set(k, recency.sort(list)); // newest model of each brand first
     const order = [...groups.entries()].sort((a, b) => (a[0] === '__none') - (b[0] === '__none') || b[1].length - a[1].length);
     return order.map(([k, list]) => `
       <section class="bgroup">
@@ -159,7 +163,7 @@ export function render(ctx, { id }, root) {
   } else if (st.view === 'brands' && st.brand) {
     const all = catalog.byBrand(st.brand);
     const depts = catalog.departments.filter(d => visible(all).some(p => p.dept === d.id));
-    const prods = shown(all.filter(p => !st.dept || p.dept === st.dept));
+    const prods = recency.sort(shown(all.filter(p => !st.dept || p.dept === st.dept)));
     crumbs = `<div class="crumbs"><button data-crumb="brands">${t('brands')}</button>${arrow}<span>${esc(catalog.brandName(st.brand))}</span></div>`;
     content = `${depts.length > 1 ? `<div class="chips"><button class="${st.dept ? '' : 'active'}" data-chip="">${t('all')}</button>${depts.map(d => `<button class="${st.dept === d.id ? 'active' : ''}" data-chip="${d.id}">${DEPT_EMOJI[d.slug]} ${esc(deptName(d))}</button>`).join('')}</div>` : ''}
       <div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${t('models_count', { n: prods.length })}</small></div></div>
@@ -182,7 +186,7 @@ export function render(ctx, { id }, root) {
       } else {
         const all = (inLenses ? applyLens(deptProds) : deptProds).filter(p => p.brand === st.brand);
         const subs = catalog.subcatsOf(st.dept).filter(s => all.some(p => p.subcats.includes(s.id)));
-        const prods = shown(st.sub ? all.filter(p => p.subcats.includes(st.sub)) : all);
+        const prods = recency.sort(shown(st.sub ? all.filter(p => p.subcats.includes(st.sub)) : all));
         crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<button data-crumb="dept">${esc(deptName(d))}</button>${arrow}<span>${esc(catalog.brandName(st.brand))}</span></div>`;
         content = `${inLenses ? lensFilterBar() : ''}<div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${esc(deptName(d))} · ${t('models_count', { n: prods.length })}</small></div></div>
           ${subs.length > 1 ? `<div class="chips"><button class="${st.sub ? '' : 'active'}" data-sub-chip="">${t('all')}</button>${subs.map(s => `<button class="${st.sub === s.id ? 'active' : ''}" data-sub-chip="${s.id}">${esc(subName(s))}</button>`).join('')}</div>` : ''}
