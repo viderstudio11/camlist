@@ -40,11 +40,7 @@ export function render(ctx, _params, root) {
   const hero = `<section class="hero">
     <div class="hero-mark">CAM<b>LIST</b></div>
     <p class="hero-sub">${t('hero_sub')}</p>
-    <div class="stats">
-      <div><b>${catalog.products.length || '—'}</b><span>${t('stat_products')}</span></div>
-      <div><b>${catalog.brands.length || '—'}</b><span>${t('stat_brands')}</span></div>
-      <div><b>${projects.length}</b><span>${t('stat_projects')}</span></div>
-    </div>
+
   </section>`;
 
   const list = projects.map(p => {

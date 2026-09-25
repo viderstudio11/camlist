@@ -1,5 +1,5 @@
 const KEY = 'camlist.v1';
-const DEFAULT = () => ({ settings: { lang: 'he', techManager: '' }, manualProducts: [], projects: [] });
+const DEFAULT = () => ({ settings: { lang: 'he', techManager: '', theme: 'light' }, manualProducts: [], projects: [] });
 
 export function localStorageAdapter() {
   return {

@@ -29,14 +29,17 @@ const ctx = {
   store, t, get catalog() { return catalog; }, get compat() { return compat; }, get recency() { return recency; }, get power() { return power; },
   lang: getLang,
   setLang(l) { setLang(l); store.setSettings({ lang: l }); applyDir(); render(); },
+  theme: () => store.state.settings.theme || 'light',
+  toggleTheme() { const next = ctx.theme() === 'dark' ? 'light' : 'dark'; store.setSettings({ theme: next }); applyTheme(); },
   navigate(hash) { if (location.hash === hash) render(); else location.hash = hash; },
   render,
   deptOrder: () => catalog.departments.map(d => ({ id: d.id, key: d.slug })),
   resolve: (id) => catalog.byId(id),
   setTopbar({ title = '', back = null, right = [] }) {
     const bar = document.getElementById('topbar');
-    bar.innerHTML = `${back ? `<button class="iconbtn mirror" data-back aria-label="back">${icons.back}</button>` : ''}<div class="title" dir="auto">${title}</div>${right.map((r, i) => `<button class="iconbtn" data-r="${i}" aria-label="${esc(r.label || '')}">${r.icon || esc(r.text ?? '')}</button>`).join('')}<button class="langpill" data-lang aria-label="language">${t('lang_switch')}</button>`;
+    bar.innerHTML = `${back ? `<button class="iconbtn mirror" data-back aria-label="back">${icons.back}</button>` : ''}<div class="title" dir="auto">${title}</div>${right.map((r, i) => `<button class="iconbtn" data-r="${i}" aria-label="${esc(r.label || '')}">${r.icon || esc(r.text ?? '')}</button>`).join('')}<button class="iconbtn" data-theme-btn aria-label="${esc(t('theme'))}" title="${esc(t('theme'))}">${ctx.theme() === 'dark' ? '\u2600' : '\u263E'}</button><button class="langpill" data-lang aria-label="language">${t('lang_switch')}</button>`;
     bar.querySelector('[data-lang]').onclick = () => ctx.setLang(getLang() === 'he' ? 'en' : 'he');
+    bar.querySelector('[data-theme-btn]').onclick = () => ctx.toggleTheme();
     if (back) bar.querySelector('[data-back]').onclick = () => (typeof back === 'string' ? ctx.navigate(back) : back());
     right.forEach((r, i) => { bar.querySelector(`[data-r="${i}"]`).onclick = r.onClick; });
   },
@@ -45,6 +48,14 @@ const ctx = {
 function applyDir() {
   document.documentElement.lang = getLang();
   document.documentElement.dir = dirFor(getLang());
+}
+
+// The light palette is the default because the list is read outside; dark is for night work.
+function applyTheme() {
+  const dark = (store.state.settings.theme || 'light') === 'dark';
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#14161A' : '#F5F4F1');
+  render();
 }
 
 function route() {
@@ -74,7 +85,7 @@ function render() {
   }
 }
 
-export const APP_VERSION = 'v1.9.1';
+export const APP_VERSION = 'v1.10.0';
 const BUILD_DATE = '25.09.2026';
 
 function renderSettings(ctx, _p, root) {
@@ -140,6 +151,7 @@ store.subscribe(() => {
 });
 window.addEventListener('hashchange', render);
 applyDir();
+document.documentElement.dataset.theme = store.state.settings.theme || 'light';
 render();
 boot();
 

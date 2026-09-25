@@ -15,6 +15,12 @@ export const parseId = (s) => (/^\d+$/.test(s) ? Number(s) : s);
 const hrs = (n) => (n >= 10 ? Math.round(n) : Math.round(n * 10) / 10).toString();
 // "4 סוללות" but "סוללה" for one — Hebrew reads badly with a bare 1 in front of a plural.
 const unit = (t, n, one, many) => (Number(n) === 1 ? t(one) : `${n} ${t(many)}`);
+// One block per shooting hour, the way a camera shows a battery: lit blocks are hours you have.
+const segBlocks = (hours, need) => {
+  const total = Math.max(Math.ceil(need) || 1, 1);
+  const lit = Math.max(0, Math.min(Math.round(hours), total));
+  return Array.from({ length: total }, (_, i) => `<i class="${i < lit ? '' : 'off'}"></i>`).join('');
+};
 
 // Camera profile summary chips (mount · sensor · media · battery)
 export function profileChips(prof, t) {
@@ -54,7 +60,7 @@ export function render(ctx, { id }, root) {
   };
 
   const tailHTML = (item) => {
-    if (!pickup) return `<div class="stepper compact"><button data-d="-1" aria-label="-">−</button><span class="q">${item.qty}</span><button class="plus" data-d="1" aria-label="+">+</button></div>`;
+    if (!pickup) return `<div class="stepper compact"><button data-d="-1" aria-label="-">−</button><span class="q px">${item.qty}</span><button class="plus" data-d="1" aria-label="+">+</button></div>`;
     const have = Math.min(packed[item.productId] || 0, item.qty);
     return `<button class="packbtn ${have >= item.qty ? 'done' : ''}" data-pack aria-label="${t('pickup_mode')}"><span class="pk-check">${have >= item.qty ? '✓' : ''}</span><span class="pk-count">${have}/${item.qty}</span></button>`;
   };
@@ -75,6 +81,15 @@ export function render(ctx, { id }, root) {
     </section>`).join('');
 
   // Prep day banner: how much of the list is already in the truck.
+  const fmtLabel = (activeProf && ctx.power) ? (ctx.power.formatsFor(activeProf)[Math.min(Number(p.formatIndex || 0), ctx.power.formatsFor(activeProf).length - 1)]?.label || '') : '';
+  const statusHTML = `<div class="statusbar">
+    ${pickup ? `<span class="rec"><i></i>PREP</span>` : ''}
+    ${active ? `<span><span class="k">CAM</span><span class="v">${esc((displayName(active) || '').slice(0, 14))}</span></span>` : ''}
+    ${fmtLabel ? `<span><span class="k">FMT</span><span class="v">${esc(fmtLabel)}</span></span>` : ''}
+    <span class="sp"></span>
+    <span><span class="k">ITEMS</span><span class="v">${n}</span></span>
+  </div>`;
+
   const pickHTML = !pickup ? '' : `<section class="card pickbar ${packedQty >= n && n ? 'done' : ''}">
     <div class="pick-top"><b>${packedQty >= n && n ? t('pickup_done') : t('packed_of', { a: packedQty, b: n })}</b>
       <div class="pick-acts"><button class="btn sm ghost" data-copy-missing>${t('pickup_report')}</button><button class="btn sm" data-mark-all>${t('mark_all')}</button></div></div>
@@ -92,7 +107,7 @@ export function render(ctx, { id }, root) {
     const meter = (kind, have, hours, ok, gap, add, emptyKey) => `
       <div class="meter ${have ? (ok ? 'ok' : 'bad') : 'none'}">
         <div class="m-top"><span>${t(kind === 'power' ? 'power_have' : 'media_have', { n: unit(t, have, kind === 'power' ? 'u_batt' : 'u_card', kind === 'power' ? 'u_batts' : 'u_cards') })}</span><b>${have ? hoursTxt(hours) : '—'}</b></div>
-        <div class="m-bar"><i style="width:${Math.min(need ? (hours / need) * 100 : 0, 100)}%"></i></div>
+        <div class="seg ${have ? (ok ? '' : 'bad') : 'none'}">${segBlocks(hours, need)}</div>
         <div class="m-note">${have ? (ok ? `✓ ${t('enough')}` : t(kind === 'power' ? 'add_batteries' : 'add_cards', { gap: hoursTxt(gap), n: unit(t, add || 1, kind === 'power' ? 'u_batt' : 'u_card', kind === 'power' ? 'u_batts' : 'u_cards') })) : t(emptyKey)}</div>
       </div>`;
     powerHTML = `<section class="card pw">
@@ -129,11 +144,20 @@ export function render(ctx, { id }, root) {
   }
 
   root.classList.toggle('pickup', pickup);
-  root.innerHTML = pickHTML + (groups.length ? body : `<div class="empty"><div class="big">🧰</div><h2>${t('list_empty')}</h2><p>${t('list_empty_hint')}</p></div>`) + (pickup ? '' : powerHTML + kitHTML);
+  const framed = groups.length
+    ? `<section class="arri">
+        <div class="arri-hd"><span class="k">MENU</span><b dir="auto">${esc(p.name || t('gear_list'))}</b><span class="n">${n}</span></div>
+        <div class="arri-bd">${body}</div>
+        <div class="arri-ft"><button data-home>HOME</button><button data-back-menu>BACK</button></div>
+      </section>`
+    : `<div class="empty"><div class="big">🧰</div><h2>${t('list_empty')}</h2><p>${t('list_empty_hint')}</p></div>`;
+  root.innerHTML = statusHTML + pickHTML + framed + (pickup ? '' : powerHTML + kitHTML);
   root.insertAdjacentHTML('beforeend', `<div class="bottombar">${pickup
     ? `<button class="btn primary" data-pick-off>${t('pickup_off')}</button>`
     : `<button class="btn primary" data-add>${icons.plus}${t('add_gear')}</button><button class="btn" data-export ${n ? '' : 'disabled'}>${icons.share}${t('export')}</button>`}</div>`);
 
+  root.querySelector('[data-home]')?.addEventListener('click', () => ctx.navigate('#/'));
+  root.querySelector('[data-back-menu]')?.addEventListener('click', () => { if (pickup) { pickup = false; ctx.render(); } else ctx.navigate('#/'); });
   root.querySelector('[data-add]')?.addEventListener('click', () => ctx.navigate(`#/p/${id}/add`));
   root.querySelector('[data-export]')?.addEventListener('click', () => ctx.navigate(`#/p/${id}/export`));
   root.querySelector('[data-pick-off]')?.addEventListener('click', () => { pickup = false; ctx.render(); });
