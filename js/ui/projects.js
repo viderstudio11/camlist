@@ -40,6 +40,7 @@ export function render(ctx, _params, root) {
   const hero = `<section class="hero">
     <div class="hero-mark">CAM<b>LIST</b></div>
     <p class="hero-sub">${t('hero_sub')}</p>
+    <button class="toolsbtn" data-tools>${t('tools')}<span class="arrow">›</span></button>
 
   </section>`;
 
@@ -71,6 +72,7 @@ export function render(ctx, _params, root) {
     onOpen: (body) => body.querySelector('[name=name]').focus(),
   });
 
+  root.querySelector('[data-tools]')?.addEventListener('click', () => ctx.navigate('#/tools'));
   root.querySelectorAll('.project-card').forEach(card => {
     const id = card.dataset.id;
     card.onclick = (e) => { if (!e.target.closest('[data-more]')) ctx.navigate(`#/p/${id}`); };

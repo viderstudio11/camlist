@@ -65,3 +65,31 @@ test('subscribe fires on every mutation', () => {
   store.setSettings({ techManager: 'A' });
   assert.equal(n, 2);
 });
+
+test('versions snapshot the list and restoring never loses the current one', () => {
+  const store = createStore(mem());
+  const p = store.createProject({ name: 'Version test' });
+  store.setItems(p.id, [{ productId: 1, qty: 2, note: '' }]);
+  const v1 = store.saveVersion(p.id, 'day one');
+  assert.equal(store.getProject(p.id).versions.length, 1);
+  assert.equal(v1.items[0].qty, 2);
+
+  store.setItems(p.id, [{ productId: 1, qty: 9, note: '' }, { productId: 2, qty: 1, note: '' }]);
+  assert.equal(store.restoreVersion(p.id, v1.id, 'before restore'), true);
+
+  const after = store.getProject(p.id);
+  assert.equal(after.items.length, 1);
+  assert.equal(after.items[0].qty, 2);
+  // Restoring kept the state it replaced, so the 9 is still reachable.
+  assert.equal(after.versions.length, 2);
+  assert.equal(after.versions[0].label, 'before restore');
+  assert.equal(after.versions[0].items.find(i => i.productId === 1).qty, 9);
+
+  // A snapshot is a copy, not a live reference.
+  store.setItems(p.id, [{ productId: 1, qty: 5, note: '' }]);
+  assert.equal(v1.items[0].qty, 2);
+
+  store.deleteVersion(p.id, v1.id);
+  assert.equal(store.getProject(p.id).versions.some(v => v.id === v1.id), false);
+  assert.equal(store.restoreVersion(p.id, 'nope'), false);
+});

@@ -10,6 +10,8 @@ import * as Projects from './ui/projects.js';
 import * as List from './ui/list.js';
 import * as Catalog from './ui/catalog.js';
 import * as Export from './ui/export.js';
+import * as Tools from './ui/tools.js';
+import { loadCodecs } from './tools/media.js';
 
 const store = createStore();
 setLang(store.state.settings.lang);
@@ -65,6 +67,8 @@ function route() {
   if ((m = h.match(/^#\/p\/([^/]+)\/export$/))) return { screen: Export, params: { id: m[1] } };
   if ((m = h.match(/^#\/p\/([^/]+)\/print$/))) return { screen: Export, params: { id: m[1], print: true } };
   if ((m = h.match(/^#\/p\/([^/]+)$/))) return { screen: List, params: { id: m[1] } };
+  if (h === '#/tools') return { screen: Tools, params: {} };
+  if ((m = h.match(/^#\/tools\/([a-z]+)$/))) return { screen: Tools, params: { tool: m[1] } };
   if (h === '#/settings') return { screen: { render: renderSettings }, params: {} };
   return { screen: Projects, params: {} };
 }
@@ -85,7 +89,7 @@ function render() {
   }
 }
 
-export const APP_VERSION = 'v1.10.1';
+export const APP_VERSION = 'v1.11.0';
 const BUILD_DATE = '25.09.2026';
 
 function renderSettings(ctx, _p, root) {
@@ -125,12 +129,13 @@ function renderSettings(ctx, _p, root) {
 async function boot() {
   fetch('logos/index.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).then(idx => { if (idx) { setLogoIndex(idx); render(); } }).catch(() => {});
   try {
-    const [data, cdata, xdata, rdata, pdata] = await Promise.all([
+    const [data, cdata, xdata, rdata, pdata, kdata] = await Promise.all([
       loadCatalog(),
       loadCompat().catch(() => compatData),
       fetch('data/extra.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null),
       fetch('data/releases.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null),
       loadPower().catch(() => powerData),
+      loadCodecs().catch(() => null),
     ]);
     recency = createRecency(rdata || {});
     extraData = xdata;
@@ -139,6 +144,7 @@ async function boot() {
     compat = createCompat(compatData, catalog);
     powerData = pdata || powerData;
     power = createPower(powerData, catalog, compat);
+    if (kdata) Tools.setCodecs(kdata);
     catalogError = null;
   } catch (e) { catalogError = e; }
   render();

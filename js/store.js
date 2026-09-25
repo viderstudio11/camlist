@@ -49,6 +49,41 @@ export function createStore(storage = localStorageAdapter()) {
     setBuildCamera(id, productId) { const p = project(id); if (!p) return; p.buildCameraId = productId ?? null; touch(p); emit(); },
     setPacked(id, productId, qty) { const p = project(id); if (!p) return; p.packed = p.packed || {}; if (qty > 0) p.packed[productId] = qty; else delete p.packed[productId]; touch(p); emit(); },
     setShoot(id, patch) { const p = project(id); if (!p) return; Object.assign(p, patch); touch(p); emit(); },
+
+    // Versions are snapshots of the list, kept so a change can be undone days later.
+    // Restoring one snapshots the current state first, so nothing is ever lost by restoring.
+    saveVersion(id, label = '') {
+      const p = project(id);
+      if (!p) return null;
+      p.versions = p.versions || [];
+      const v = {
+        id: uid('v'),
+        label: String(label || '').slice(0, 60),
+        at: now(),
+        items: JSON.parse(JSON.stringify(p.items || [])),
+        buildCameraId: p.buildCameraId ?? null,
+      };
+      p.versions.unshift(v);
+      p.versions = p.versions.slice(0, 30);
+      touch(p); emit();
+      return v;
+    },
+    restoreVersion(id, versionId, autoLabel = '') {
+      const p = project(id);
+      const v = p?.versions?.find(x => x.id === versionId);
+      if (!p || !v) return false;
+      store.saveVersion(id, autoLabel);
+      p.items = JSON.parse(JSON.stringify(v.items));
+      p.buildCameraId = v.buildCameraId ?? null;
+      touch(p); emit();
+      return true;
+    },
+    deleteVersion(id, versionId) {
+      const p = project(id);
+      if (!p?.versions) return;
+      p.versions = p.versions.filter(x => x.id !== versionId);
+      touch(p); emit();
+    },
     addManualProduct({ name, brand = null, brandName = null, dept = 'other' }) {
       const m = { id: uid('m'), name: String(name).trim(), brand, brandName, dept, createdAt: now() };
       state.manualProducts.push(m); emit(); return m;

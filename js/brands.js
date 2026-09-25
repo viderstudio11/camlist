@@ -93,6 +93,13 @@ export function fallbackHTML(slug, name, size = 'row') {
   return `<span class="logo logo-${size} logo-text" style="${style}" title="${esc(name || slug)}">${esc(name || slug)}</span>`;
 }
 
+// In the gear list the product name is what matters, so the brand is set in plain type there.
+// The marks stay where they help you navigate: the brand grid and the jump rail in the catalog.
+export function brandText(slug, name) {
+  const label = name || slug;
+  return label ? `<span class="brandname" title="${esc(label)}">${esc(label)}</span>` : '';
+}
+
 export function logoHTML(slug, name, size = 'row') {
   if (!slug) return `<span class="logo logo-${size} logo-none" aria-hidden="true"></span>`;
   const f = files.get(slug);
