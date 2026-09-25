@@ -13,7 +13,7 @@ export function renderPrint(ctx, project, groups, root, { includeNotes = true } 
     </tbody></table>`).join('');
   root.innerHTML = `<div class="print" dir="${document.documentElement.dir}">
     <div class="screen-only card" style="background:#fff3f3;border-color:#e0262b;color:#111"><b>${t('pdf_hint')}</b><button class="btn sm primary" data-print>🖨️ ${t('pdf')}</button></div>
-    <header><div><h1>${esc(project.name || t('untitled'))}</h1><div class="meta">${[project.techManager ? `${t('tech_manager')}: ${esc(project.techManager)}` : '', formatDateRange(project.dateFrom, project.dateTo)].filter(Boolean).join(' · ')}</div>${project.notes ? `<div class="meta">${esc(project.notes)}</div>` : ''}</div><div class="brandmark" style="color:#111">CAM<b style="color:#e0262b">LIST</b></div></header>
+    <header><div><h1>${esc(project.name || t('untitled'))}</h1>${project.productionCo ? `<div class="meta"><b>${esc(project.productionCo)}</b></div>` : ''}<div class="meta">${[project.techManager ? `${t('tech_manager')}: ${esc(project.techManager)}` : '', formatDateRange(project.dateFrom, project.dateTo), project.phone, project.email].filter(Boolean).map(esc).join(' · ')}</div>${project.notes ? `<div class="meta">${esc(project.notes)}</div>` : ''}</div><div class="brandmark" style="color:#111">CAM<b style="color:#e0262b">LIST</b></div></header>
     ${sections}
     <footer><div>${t('total')}: ${t('items_count', { n: total })}</div><div>${fmtDate(todayStr())}</div></footer>
     <div class="sig">${t('signature')}</div>

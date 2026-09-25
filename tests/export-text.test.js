@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildShareText, displayName, formatDateRange } from '../js/export-text.js';
 
-const project = { name: 'המירוץ למיליון 12', techManager: 'Amir', dateFrom: '2026-10-12', dateTo: '2026-10-28', notes: 'יחידה 2 מצטרפת ב-20.10' };
+const project = { name: 'המירוץ למיליון 12', productionCo: 'קשת 12', techManager: 'Amir', phone: '050-1234567', email: 'a@b.com', dateFrom: '2026-10-12', dateTo: '2026-10-28', notes: 'יחידה 2 מצטרפת ב-20.10' };
 const groups = [
   { dept: 7, key: 'cameras', entries: [
     { item: { productId: 1, qty: 2, note: 'Cam A+B' }, product: { name: 'FX6', brandName: 'Sony', url: 'https://u/fx6' } },
@@ -30,7 +30,9 @@ test('hebrew share text snapshot', () => {
   const txt = buildShareText(project, groups, { lang: 'he', now: new Date('2026-09-17T10:00:00Z') });
   assert.equal(txt, [
     'המירוץ למיליון 12',
-    'מנהל טכני: Amir | 12.10.2026–28.10.2026',
+    'קשת 12',
+    'עוזר צלם: Amir | 12.10.2026–28.10.2026',
+    '050-1234567 · a@b.com',
     'יחידה 2 מצטרפת ב-20.10',
     '',
     'מצלמות:',

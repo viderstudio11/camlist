@@ -8,7 +8,12 @@ export function projectForm(t, p = {}) {
   const opt = `<em class="opt">(${t('optional')})</em>`;
   return `<div class="form">
     <label>${t('project_name')}<input name="name" value="${esc(p.name || '')}" autocomplete="off" enterkeyhint="done"></label>
+    <label>${t('production_co')} ${opt}<input name="productionCo" value="${esc(p.productionCo || '')}" autocomplete="off"></label>
     <label>${t('tech_manager')} ${opt}<input name="techManager" value="${esc(p.techManager || '')}" autocomplete="off"></label>
+    <div class="two">
+      <label>${t('phone')} ${opt}<input type="tel" name="phone" value="${esc(p.phone || '')}" autocomplete="off" inputmode="tel"></label>
+      <label>${t('email')} ${opt}<input type="email" name="email" value="${esc(p.email || '')}" autocomplete="off" inputmode="email"></label>
+    </div>
     <div class="two">
       <label>${t('date_from')} ${opt}<input type="date" name="dateFrom" value="${esc(p.dateFrom || '')}"></label>
       <label>${t('date_to')} ${opt}<input type="date" name="dateTo" value="${esc(p.dateTo || '')}"></label>
@@ -52,7 +57,7 @@ export function render(ctx, _params, root) {
     return `<article class="card project-card" data-id="${esc(p.id)}">
       <div class="pc-main">
         <h3 dir="auto">${esc(p.name || t('untitled'))}</h3>
-        <div class="meta">${p.techManager ? `<span>👤 ${esc(p.techManager)}</span>` : ''}${range ? `<span>📅 ${range}</span>` : ''}</div>
+        <div class="meta">${p.productionCo ? `<span>🎬 ${esc(p.productionCo)}</span>` : ''}${p.techManager ? `<span>👤 ${esc(p.techManager)}</span>` : ''}${range ? `<span>📅 ${range}</span>` : ''}</div>
         <div class="dchips">${chips || `<span class="dchip muted">${t('list_empty')}</span>`}</div>
       </div>
       <div class="pc-side">

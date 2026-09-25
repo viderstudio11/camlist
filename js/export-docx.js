@@ -21,8 +21,11 @@ export async function exportDocx(project, groups, { lang, includeNotes = true, i
 
   const children = [
     P(project.name || t('untitled'), { size: 40, bold: true }),
+    ...(project.productionCo ? [P(project.productionCo, { size: 26, bold: true, color: '555555' })] : []),
     P([project.techManager ? `${t('tech_manager')}: ${project.techManager}` : '', formatDateRange(project.dateFrom, project.dateTo)].filter(Boolean).join('   |   '), { color: '555555' }),
   ];
+  const contact = [project.phone, project.email].filter(Boolean).join('   ·   ');
+  if (contact) children.push(P(contact, { color: '555555' }));
   if (project.notes) children.push(P(project.notes, { color: '555555' }));
   let total = 0;
   for (const g of groups) {

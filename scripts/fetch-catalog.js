@@ -18,6 +18,8 @@ export const VIRTUAL_DEPTS = [
   { id: 900001, slug: 'video', he: 'וידאו', en: 'Video', order: 2.5, subcats: ['מוניטורים', 'וידאו אלחוטי', 'מקליטים וכרטיסים', 'Converters', 'Mixers & Matrix'] },
   { id: 900002, slug: 'tripods', he: 'חצובות', en: 'Tripods & Heads', order: 2.7, subcats: ['חצובות'] },
   { id: 900003, slug: 'power', he: 'סוללות וכוח', en: 'Power', order: 3.5, subcats: ['סוללות וספקים'] },
+  // Gimbals (DJI Ronin, MoVI…) live under Cameras > "Camera Support" at Utopia — they belong with the support gear.
+  { id: 900002, slug: 'tripods', he: 'חצובות', en: 'Tripods & Heads', order: 2.7, from: 'cameras', subcats: ['Camera Support'], rename: { he: 'גימבלים ומייצבים', en: 'Gimbals & Stabilizers' } },
 ];
 const SUBCAT_EN = {
   'חצובות': 'Tripods & Heads', 'אביזרים כלליים': 'General Accessories', 'סוללות וספקים': 'Batteries & Power',
@@ -84,9 +86,10 @@ export function buildDeptIndex(categories) {
   return { departments, descendants, byId };
 }
 
-// Moves the named subcategory subtrees (and their descendants) from Accessories into a virtual department.
+// Moves the named subcategory subtrees (and their descendants) from a source department into a virtual one.
+// `v.from` defaults to accessories; a second carve into an existing virtual department appends to it.
 function carve(v, departments, descendants, children) {
-  const acc = departments.find(d => d.slug === 'accessories');
+  const acc = departments.find(d => d.slug === (v.from || 'accessories'));
   if (!acc) return;
   const roots = acc.subcategories.filter(s => v.subcats.includes(s.he) || v.subcats.includes(s.en));
   if (!roots.length) return;
@@ -101,8 +104,15 @@ function carve(v, departments, descendants, children) {
   acc.subcategories = acc.subcategories.filter(s => !set.has(s.id));
   const accSet = descendants.get(acc.id);
   for (const id of set) accSet.delete(id);
+  if (v.rename) subcategories = subcategories.map(s2 => (roots.some(r => r.id === s2.id) ? { ...s2, ...v.rename } : s2));
+  const existing = departments.find(d => d.id === v.id);
+  if (existing) { // second carve into the same virtual department
+    existing.subcategories.push(...subcategories);
+    for (const id of set) descendants.get(v.id).add(id);
+    return;
+  }
   descendants.set(v.id, new Set([v.id, ...set]));
-  const { subcats: _s, ...dept } = v;
+  const { subcats: _s, from: _f, rename: _r, ...dept } = v;
   departments.push({ ...dept, subcategories });
 }
 

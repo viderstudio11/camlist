@@ -20,8 +20,11 @@ export const todayStr = (now = new Date()) => now.toISOString().slice(0, 10);
 
 export function buildShareText(project, groups, { lang = 'he', includeNotes = true, includeLinks = false, now = new Date() } = {}) {
   const lines = [project.name || t('untitled', {}, lang)];
+  if (project.productionCo) lines.push(project.productionCo);
   const meta = [project.techManager ? `${t('tech_manager', {}, lang)}: ${project.techManager}` : '', formatDateRange(project.dateFrom, project.dateTo)].filter(Boolean);
   if (meta.length) lines.push(meta.join(' | '));
+  const contact = [project.phone, project.email].filter(Boolean);
+  if (contact.length) lines.push(contact.join(' · '));
   if (includeNotes && project.notes) lines.push(project.notes);
   let total = 0;
   for (const g of groups) {

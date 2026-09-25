@@ -3,6 +3,8 @@ import { addItem, setQty, getQty, totalQty } from '../list.js';
 import { logoHTML, slugify } from '../brands.js';
 import { DEPT_EMOJI } from '../i18n.js';
 import { thumbHTML, parseId, profileChips } from './list.js';
+import { lensTypes, LENS_TYPES } from '../lens.js';
+import { deptIcon } from './icons-dept.js';
 
 // Departments that drill Brand → models (the rest drill Subcategory → models grouped by brand).
 const BRAND_FIRST = new Set(['cameras', 'lenses', 'tripods']);
@@ -13,12 +15,13 @@ let st = { pid: null, q: '', view: 'depts', dept: null, subcat: null, brand: nul
 let preset = null;      // set by the list screen's kit slots before navigating here
 let compatOnly = true;  // "compatible only" toggle (per session)
 let strict = false;     // entered from a kit slot: show ONLY items that fit the active camera (no neutral/unknown noise)
+let lf = { type: null, mount: null, format: null };  // lens quick filters
 let kind = null;        // kit slot kind (card / reader / battery / charger) — restricts the list to that kind
 export function presetCatalog(o) { preset = o; }
 
 export function render(ctx, { id }, root) {
   const { store, t, catalog } = ctx;
-  if (st.pid !== id) st = { pid: id, q: '', view: 'depts', dept: null, subcat: null, brand: null, sub: null };
+  if (st.pid !== id) { st = { pid: id, q: '', view: 'depts', dept: null, subcat: null, brand: null, sub: null }; lf = { type: null, mount: null, format: null }; }
   if (preset) { st = { pid: id, q: '', view: 'depts', dept: preset.dept ?? null, subcat: preset.subcat ?? null, brand: null, sub: null }; strict = !!preset.strict; kind = preset.kind || null; compatOnly = true; preset = null; }
   const lang = ctx.lang();
   const { compat } = ctx;
@@ -108,6 +111,33 @@ export function render(ctx, { id }, root) {
     return [...m].map(([id, count]) => ({ id, name: catalog.brandName(id), count })).sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   };
   const manualCTA = `<button class="btn block ghost" data-manual style="margin-top:8px">${t('not_found_add_manual')}</button>`;
+  // ---- lens quick filters (type → mount → coverage) ----
+  const lensDept = catalog.departments.find(d => d.slug === 'lenses');
+  const inLenses = st.dept === lensDept?.id && !st.q;
+  const subEnOf = (p) => p.subcats.map(sid => allSubcats.find(s2 => s2.id === sid)?.en).filter(Boolean);
+  const typesOf = (p) => lensTypes(p, subEnOf(p));
+  const infoOf = (p) => compat.lensInfo(p);
+  const lfActive = !!(lf.type || lf.mount || lf.format);
+  const applyLens = (list) => list.filter(p =>
+    (!lf.type || typesOf(p).includes(lf.type))
+    && (!lf.mount || infoOf(p).mounts.has(lf.mount))
+    && (!lf.format || infoOf(p).format === lf.format));
+  const chipRow = (key, options, current) => `<div class="chips fchips"><span class="frow-label">${t('f_' + key)}</span><button class="${current ? '' : 'active'}" data-lf="${key}" data-val="">${t('all')}</button>${options.map(o => `<button class="${current === o.val ? 'active' : ''}" data-lf="${key}" data-val="${esc(o.val)}">${esc(o.label)} <i>${o.n}</i></button>`).join('')}</div>`;
+  const lensFilterBar = () => {
+    const base = catalog.byDept(lensDept.id);
+    const pool = prof && compatOnly ? base.filter(p => grade(p) !== 'no') : base;
+    const count = (fn) => pool.filter(fn).length;
+    const types = LENS_TYPES.map(v => ({ val: v, label: t('lt_' + v), n: count(p => typesOf(p).includes(v)) })).filter(o => o.n);
+    const mounts = [...new Set(pool.flatMap(p => [...infoOf(p).mounts]))].map(m => ({ val: m, label: m, n: count(p => infoOf(p).mounts.has(m)) })).sort((a, b) => b.n - a.n).filter(o => o.n > 1);
+    const fmts = [...new Set(pool.map(p => infoOf(p).format).filter(Boolean))].map(f => ({ val: f, label: t('fmt_' + f), n: count(p => infoOf(p).format === f) })).sort((a, b) => b.n - a.n);
+    const shownList = applyLens(pool);
+    return `<div class="filterbar">
+      ${chipRow('type', types, lf.type)}
+      ${chipRow('mount', mounts, lf.mount)}
+      ${chipRow('format', fmts, lf.format)}
+      ${lfActive ? `<div class="fmeta"><span>${t('results_count', { n: shownList.length })}</span><button data-lf-clear>${t('clear_filters')}</button></div>` : ''}
+    </div>`;
+  };
   const SUGGEST_READER = { 'CFexpress A': 'Sony MRW-G2 CFexpress Type A / SD Card Reader', 'CFexpress B': 'ProGrade CFexpress Type B Card Reader', 'CFast': 'CFast 2.0 Card Reader', 'XQD': 'Sony MRW-E90 XQD Card Reader', 'SxS': 'Sony SBAC-US30 SxS Card Reader', 'AXS': 'Sony AXS-CR1 Card Reader', 'Codex': 'Codex Compact Drive Dock', 'SD': 'SD UHS-II Card Reader', 'microSD': 'microSD Card Reader', 'P2': 'Panasonic AU-XPD1 P2 Card Reader', 'RED MINI-MAG': 'RED Station Mini-Mag', 'SSD': 'USB-C SSD Dock' };
   let manualPrefill = '';
   const readerNote = () => {
@@ -135,20 +165,26 @@ export function render(ctx, { id }, root) {
       <div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${t('models_count', { n: prods.length })}</small></div></div>
       ${prods.map(p => productRow(p, { showBrand: false })).join('')}${manualCTA}`;
   } else if (!st.dept) {
-    content = `<div class="dept-grid">${catalog.departments.map(d => { const img = heroImage(d); return `<div class="dept-card" data-dept="${d.id}" ${img ? `style="--img:url('${esc(img)}')"` : ''}><div class="dept-card-body"><span class="emoji">${DEPT_EMOJI[d.slug]}</span><h3>${esc(deptName(d))}</h3><div class="n">${catalog.byDept(d.id).length} ${t('products')}</div></div></div>`; }).join('')}</div>`;
+    content = `<div class="dept-grid">${catalog.departments.map(d => `<div class="dept-card" data-dept="${d.id}"><div class="dept-card-body"><span class="dept-ico">${deptIcon(d.slug)}</span><h3>${esc(deptName(d))}</h3><div class="n">${catalog.byDept(d.id).length} ${t('products')}</div></div></div>`).join('')}</div>`;
   } else {
     const d = catalog.deptById(st.dept);
     const deptProds = visible(catalog.byDept(st.dept));
     if (BRAND_FIRST.has(d.slug)) {
       if (!st.brand) {
         crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<span>${esc(deptName(d))}</span></div>`;
-        content = `<div class="section-title">${t('choose_brand')}</div>${brandGrid(brandsIn(deptProds))}`;
+        if (inLenses) {
+          content = lensFilterBar() + (lfActive
+            ? groupedByBrand(applyLens(deptProds))
+            : `<div class="section-title">${t('choose_brand')}</div>${brandGrid(brandsIn(deptProds))}`);
+        } else {
+          content = `<div class="section-title">${t('choose_brand')}</div>${brandGrid(brandsIn(deptProds))}`;
+        }
       } else {
-        const all = deptProds.filter(p => p.brand === st.brand);
+        const all = (inLenses ? applyLens(deptProds) : deptProds).filter(p => p.brand === st.brand);
         const subs = catalog.subcatsOf(st.dept).filter(s => all.some(p => p.subcats.includes(s.id)));
         const prods = shown(st.sub ? all.filter(p => p.subcats.includes(st.sub)) : all);
         crumbs = `<div class="crumbs"><button data-crumb="root">${t('departments')}</button>${arrow}<button data-crumb="dept">${esc(deptName(d))}</button>${arrow}<span>${esc(catalog.brandName(st.brand))}</span></div>`;
-        content = `<div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${esc(deptName(d))} · ${t('models_count', { n: prods.length })}</small></div></div>
+        content = `${inLenses ? lensFilterBar() : ''}<div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${esc(deptName(d))} · ${t('models_count', { n: prods.length })}</small></div></div>
           ${subs.length > 1 ? `<div class="chips"><button class="${st.sub ? '' : 'active'}" data-sub-chip="">${t('all')}</button>${subs.map(s => `<button class="${st.sub === s.id ? 'active' : ''}" data-sub-chip="${s.id}">${esc(subName(s))}</button>`).join('')}</div>` : ''}
           ${prods.map(p => productRow(p, { showBrand: false })).join('')}${manualCTA}`;
       }
@@ -189,8 +225,10 @@ export function render(ctx, { id }, root) {
   };
   input.onkeydown = (e) => { if (e.key === 'Enter') input.blur(); };
   root.querySelector('[data-clear]')?.addEventListener('click', () => { st.q = ''; rerender(); root.querySelector('[data-q]').focus(); });
+  root.querySelectorAll('[data-lf]').forEach(b => { b.onclick = () => { lf[b.dataset.lf] = b.dataset.val || null; rerender(); }; });
+  root.querySelector('[data-lf-clear]')?.addEventListener('click', () => { lf = { type: null, mount: null, format: null }; rerender(); });
   root.querySelectorAll('[data-tab]').forEach(b => { b.onclick = () => { st.view = b.dataset.tab; st.dept = null; st.subcat = null; st.brand = null; st.sub = null; rerender(); }; });
-  root.querySelectorAll('[data-dept]').forEach(c => { c.onclick = () => { st.dept = Number(c.dataset.dept); st.brand = null; st.subcat = null; st.sub = null; rerender(); }; });
+  root.querySelectorAll('[data-dept]').forEach(c => { c.onclick = () => { st.dept = Number(c.dataset.dept); st.brand = null; st.subcat = null; st.sub = null; lf = { type: null, mount: null, format: null }; rerender(); }; });
   root.querySelectorAll('[data-sub]').forEach(c => { c.onclick = () => { st.subcat = Number(c.dataset.sub); rerender(); }; });
   root.querySelectorAll('[data-brand]').forEach(c => { c.onclick = () => { st.brand = c.dataset.brand; st.sub = null; if (st.view === 'brands') st.dept = null; rerender(); }; });
   root.querySelectorAll('[data-chip]').forEach(c => { c.onclick = () => { st.dept = c.dataset.chip ? Number(c.dataset.chip) : null; rerender(); }; });

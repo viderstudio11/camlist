@@ -8,7 +8,9 @@ export async function exportXlsx(project, groups, { lang, includeNotes = true, i
   const X = globalThis.XLSX;
   const rows = [
     [project.name || t('untitled')],
+    [project.productionCo || ''],
     [`${t('tech_manager')}: ${project.techManager || ''}`, formatDateRange(project.dateFrom, project.dateTo)],
+    [[project.phone, project.email].filter(Boolean).join(' · ')],
     [project.notes || ''],
     [],
   ];

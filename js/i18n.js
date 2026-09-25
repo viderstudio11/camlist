@@ -4,7 +4,7 @@ export const DEPT_EMOJI = { cameras: '📷', lenses: '🔭', video: '📺', trip
 export const dict = {
   he: {
     app_name: 'CamList', projects: 'פרויקטים', new_project: 'פרויקט חדש', no_projects: 'אין עדיין פרויקטים',
-    no_projects_hint: 'צור פרויקט ראשון והתחל לבנות רשימת ציוד', project_name: 'שם ההפקה', tech_manager: 'מנהל טכני',
+    no_projects_hint: 'צור פרויקט ראשון והתחל לבנות רשימת ציוד', project_name: 'שם ההפקה', tech_manager: 'עוזר צלם',
     date_from: 'מתאריך', date_to: 'עד תאריך', notes: 'הערות', save: 'שמור', cancel: 'ביטול', delete: 'מחק', duplicate: 'שכפל',
     rename: 'ערוך פרטים', confirm_delete_project: 'למחוק את הפרויקט "{name}"? הפעולה אינה הפיכה.',
     items_count: '{n} פריטים', item_count_one: 'פריט אחד', updated: 'עודכן', add_gear: 'הוסף ציוד', export: 'ייצוא / שיתוף',
@@ -15,7 +15,7 @@ export const dict = {
     no_results: 'אין תוצאות עבור "{q}"', all: 'הכל', in_list: 'ברשימה',
     share: 'שתף / העתק', copied: 'הועתק ללוח', excel: 'Excel', word: 'Word', pdf: 'PDF', include_notes: 'כלול הערות',
     include_links: 'כלול קישורים לאוטופיה', preview: 'תצוגה מקדימה', export_failed: 'הייצוא נכשל', pdf_hint: 'בחלון ההדפסה בחר "שמור כ-PDF"',
-    settings: 'הגדרות', language: 'שפה', default_tech_manager: 'מנהל טכני (ברירת מחדל)', backup: 'גיבוי', export_backup: 'ייצוא גיבוי (JSON)',
+    settings: 'הגדרות', language: 'שפה', default_tech_manager: 'עוזר צלם (ברירת מחדל)', backup: 'גיבוי', export_backup: 'ייצוא גיבוי (JSON)',
     import_backup: 'ייבוא גיבוי', import_ok: 'יובאו {projects} פרויקטים ו-{manual} פריטים ידניים', import_failed: 'קובץ גיבוי לא תקין',
     about: 'אודות', catalog_date: 'מאגר עודכן', products: 'מוצרים', logos_hint: 'לוגואים: שים קובץ logos/<יצרן>.png או .svg',
     catalog_error: 'המאגר לא נטען', retry: 'נסה שוב', new_version: 'גרסה חדשה זמינה', refresh: 'רענן',
@@ -28,11 +28,13 @@ export const dict = {
     build_around: 'בנה סביב', building_around: 'בונה סביב', active_camera: 'מצלמה פעילה', compat_only: 'רק תואם', show_all_items: 'הצג הכל',
     tag_native: 'תואם', tag_adapter: 'דרך מתאם', tag_partial: 'קרופ / כיסוי חלקי', tag_unknown: 'לא ידוע', tag_no: 'לא תואם',
     base_kit: 'ערכת בסיס', choose: 'בחר', kit_done: 'יש', no_profile: 'אין פרופיל תאימות למצלמה זו', clear_build: 'בטל בנייה סביב', hidden_count: '{n} פריטים לא תואמים מוסתרים', strict_note: 'מוצג רק מה שמתאים ל-{cam} ({n} הוסתרו)',
-    not_at_utopia_item: 'לא באוטופיה', no_reader_at_utopia: 'לאוטופיה אין קורא כרטיסים ל-{fam}', no_reader_hint: 'הוסף אותו כפריט ידני (מספק אחר / ציוד משלך):', no_reader_short: 'אין קורא ל-{fam} באוטופיה', whats_new: 'חדש', new_in_market: 'חדש בשוק', new_at_utopia: 'חדש באוטופיה', no_news: 'אין חדשות עדיין', no_changes: 'אין מוצרים חדשים באוטופיה', no_changes_hint: 'המאגר נבדק אוטומטית פעמיים בחודש', news_sources: '{n} השקות מהעיתונות המקצועית', brand_at_utopia: 'יצרן קיים באוטופיה', not_at_utopia: 'יצרן לא באוטופיה', mount: 'מאונט', sensor: 'חיישן', media: 'מדיה', battery: 'סוללה', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
+    production_co: 'חברת הפקה', phone: 'טלפון', email: 'אימייל', doc_lang: 'שפת המסמך', filters: 'סינון מהיר', f_type: 'סוג', f_mount: 'מאונט', f_format: 'פורמט',
+    lt_prime: 'פריים', lt_zoom: 'זום', lt_set: 'סטים', lt_anamorphic: 'אנמורפי', lt_macro: 'מאקרו', lt_vintage: 'וינטג׳', lt_adapter: 'מתאמים',
+    clear_filters: 'נקה סינון', results_count: '{n} תוצאות', not_at_utopia_item: 'לא באוטופיה', no_reader_at_utopia: 'לאוטופיה אין קורא כרטיסים ל-{fam}', no_reader_hint: 'הוסף אותו כפריט ידני (מספק אחר / ציוד משלך):', no_reader_short: 'אין קורא ל-{fam} באוטופיה', whats_new: 'חדש', new_in_market: 'חדש בשוק', new_at_utopia: 'חדש באוטופיה', no_news: 'אין חדשות עדיין', no_changes: 'אין מוצרים חדשים באוטופיה', no_changes_hint: 'המאגר נבדק אוטומטית פעמיים בחודש', news_sources: '{n} השקות מהעיתונות המקצועית', brand_at_utopia: 'יצרן קיים באוטופיה', not_at_utopia: 'יצרן לא באוטופיה', mount: 'מאונט', sensor: 'חיישן', media: 'מדיה', battery: 'סוללה', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
   },
   en: {
     app_name: 'CamList', projects: 'Projects', new_project: 'New project', no_projects: 'No projects yet',
-    no_projects_hint: 'Create your first project and start building a gear list', project_name: 'Production name', tech_manager: 'Tech manager',
+    no_projects_hint: 'Create your first project and start building a gear list', project_name: 'Production name', tech_manager: '1st AC',
     date_from: 'From', date_to: 'To', notes: 'Notes', save: 'Save', cancel: 'Cancel', delete: 'Delete', duplicate: 'Duplicate',
     rename: 'Edit details', confirm_delete_project: 'Delete project "{name}"? This cannot be undone.',
     items_count: '{n} items', item_count_one: '1 item', updated: 'Updated', add_gear: 'Add gear', export: 'Export / Share',
@@ -43,7 +45,7 @@ export const dict = {
     no_results: 'No results for "{q}"', all: 'All', in_list: 'in list',
     share: 'Share / Copy', copied: 'Copied to clipboard', excel: 'Excel', word: 'Word', pdf: 'PDF', include_notes: 'Include notes',
     include_links: 'Include Utopia links', preview: 'Preview', export_failed: 'Export failed', pdf_hint: 'In the print dialog choose "Save as PDF"',
-    settings: 'Settings', language: 'Language', default_tech_manager: 'Default tech manager', backup: 'Backup', export_backup: 'Export backup (JSON)',
+    settings: 'Settings', language: 'Language', default_tech_manager: 'Default 1st AC', backup: 'Backup', export_backup: 'Export backup (JSON)',
     import_backup: 'Import backup', import_ok: 'Imported {projects} projects and {manual} manual items', import_failed: 'Invalid backup file',
     about: 'About', catalog_date: 'Catalog updated', products: 'products', logos_hint: 'Logos: drop logos/<brand>.png or .svg',
     catalog_error: 'Catalog failed to load', retry: 'Retry', new_version: 'New version available', refresh: 'Refresh',
@@ -56,7 +58,9 @@ export const dict = {
     build_around: 'Build around', building_around: 'Building around', active_camera: 'Active camera', compat_only: 'Compatible only', show_all_items: 'Show all',
     tag_native: 'Compatible', tag_adapter: 'Via adapter', tag_partial: 'Crop / partial coverage', tag_unknown: 'Unknown', tag_no: 'Not compatible',
     base_kit: 'Base kit', choose: 'Choose', kit_done: 'Have', no_profile: 'No compatibility profile for this camera', clear_build: 'Stop building around', hidden_count: '{n} incompatible items hidden', strict_note: 'Showing only what fits {cam} ({n} hidden)',
-    not_at_utopia_item: 'Not at Utopia', no_reader_at_utopia: 'Utopia has no card reader for {fam}', no_reader_hint: 'Add it as a manual item (other supplier / your own gear):', no_reader_short: 'No {fam} reader at Utopia', whats_new: "What's new", new_in_market: 'New on the market', new_at_utopia: 'New at Utopia', no_news: 'No news yet', no_changes: 'No new products at Utopia', no_changes_hint: 'The catalog is checked automatically twice a month', news_sources: '{n} launches from the trade press', brand_at_utopia: 'Brand carried by Utopia', not_at_utopia: 'Brand not at Utopia', mount: 'Mount', sensor: 'Sensor', media: 'Media', battery: 'Battery', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
+    production_co: 'Production company', phone: 'Phone', email: 'Email', doc_lang: 'Document language', filters: 'Quick filters', f_type: 'Type', f_mount: 'Mount', f_format: 'Format',
+    lt_prime: 'Primes', lt_zoom: 'Zooms', lt_set: 'Sets', lt_anamorphic: 'Anamorphic', lt_macro: 'Macro', lt_vintage: 'Vintage', lt_adapter: 'Adapters',
+    clear_filters: 'Clear filters', results_count: '{n} results', not_at_utopia_item: 'Not at Utopia', no_reader_at_utopia: 'Utopia has no card reader for {fam}', no_reader_hint: 'Add it as a manual item (other supplier / your own gear):', no_reader_short: 'No {fam} reader at Utopia', whats_new: "What's new", new_in_market: 'New on the market', new_at_utopia: 'New at Utopia', no_news: 'No news yet', no_changes: 'No new products at Utopia', no_changes_hint: 'The catalog is checked automatically twice a month', news_sources: '{n} launches from the trade press', brand_at_utopia: 'Brand carried by Utopia', not_at_utopia: 'Brand not at Utopia', mount: 'Mount', sensor: 'Sensor', media: 'Media', battery: 'Battery', fmt_FF: 'Full Frame', fmt_S35: 'Super 35', fmt_MFT: 'MFT', fmt_MF: 'Medium Format', 'fmt_2/3': '2/3"', fmt_1in: '1"', fmt_16: '16mm', fmt_action: 'Action',
   },
 };
 

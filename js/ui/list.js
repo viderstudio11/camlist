@@ -3,6 +3,7 @@ import { groupByDept, setQty, setNote, totalQty } from '../list.js';
 import { logoHTML } from '../brands.js';
 import { displayName, formatDateRange } from '../export-text.js';
 import { DEPT_EMOJI } from '../i18n.js';
+import { deptIcon } from './icons-dept.js';
 import { editProjectSheet } from './projects.js';
 import { presetCatalog } from './catalog.js';
 
@@ -47,7 +48,7 @@ export function render(ctx, { id }, root) {
 
   const body = groups.map(g => `
     <section class="group ${collapsed.has(g.key) ? 'collapsed' : ''}" data-key="${g.key}">
-      <div class="group-head"><span class="emoji">${DEPT_EMOJI[g.key]}</span><h2>${t(`dept_${g.key}`)}</h2><span class="count">${g.entries.reduce((s, e) => s + e.item.qty, 0)}</span><span class="chev">${icons.chev}</span></div>
+      <div class="group-head"><span class="dept-ico sm">${deptIcon(g.key)}</span><h2>${t(`dept_${g.key}`)}</h2><span class="count">${g.entries.reduce((s, e) => s + e.item.qty, 0)}</span><span class="chev">${icons.chev}</span></div>
       <div class="group-body">${g.entries.map(({ item, product }) => `
         <div class="row ${p.buildCameraId === product.id ? 'is-build' : ''}" data-pid="${esc(item.productId)}">
           ${thumbHTML(product, g.key)}
