@@ -21,6 +21,12 @@ export const VIRTUAL_DEPTS = [
   // Gimbals (DJI Ronin, MoVI…) live under Cameras > "Camera Support" at Utopia — they belong with the support gear.
   { id: 900002, slug: 'tripods', he: 'חצובות', en: 'Tripods & Heads', order: 2.7, from: 'cameras', subcats: ['Camera Support'], rename: { he: 'גימבלים ומייצבים', en: 'Gimbals & Stabilizers' } },
 ];
+// Subcategory names Utopia uses that are noise for a gear list — renamed in both languages.
+const SUBCAT_RENAME = {
+  'HDSLR E-Mount': { he: 'E-Mount', en: 'E-Mount' },
+  'HDSLR EF-Mount': { he: 'EF-Mount', en: 'EF-Mount' },
+  'Broadcast / ENG B4-Mount': { he: 'B4-Mount', en: 'B4-Mount' },
+};
 const SUBCAT_EN = {
   'חצובות': 'Tripods & Heads', 'אביזרים כלליים': 'General Accessories', 'סוללות וספקים': 'Batteries & Power',
   'סוללות': 'Batteries', 'ספקים ומטענים': 'Chargers & PSU', 'מקליטים וכרטיסים': 'Recorders & Media',
@@ -76,7 +82,7 @@ export function buildDeptIndex(categories) {
     descendants.set(root.id, set);
     const subcategories = [...set].filter(id => id !== root.id).map(id => byId.get(id)).map(c => ({
       id: c.id, parent: c.parent === root.id ? null : c.parent,
-      he: c.name, en: SUBCAT_EN[c.name] || c.name, count: c.count,
+      ...(SUBCAT_RENAME[c.name] || { he: c.name, en: SUBCAT_EN[c.name] || c.name }), count: c.count,
     })).sort((a, b) => b.count - a.count);
     departments.push({ id: root.id, slug: d.slug, he: d.he, en: d.en, order: order + 1, subcategories });
   });

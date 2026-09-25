@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-25T13:52:26.355Z",
+ "generatedAt": "2026-09-25T15:01:40.627Z",
  "source": "https://utopiacam.com",
  "departments": [
   {
@@ -126,15 +126,15 @@
     {
      "id": 206,
      "parent": null,
-     "he": "HDSLR E-Mount",
-     "en": "HDSLR E-Mount",
+     "he": "E-Mount",
+     "en": "E-Mount",
      "count": 72
     },
     {
      "id": 208,
      "parent": null,
-     "he": "HDSLR EF-Mount",
-     "en": "HDSLR EF-Mount",
+     "he": "EF-Mount",
+     "en": "EF-Mount",
      "count": 68
     },
     {
@@ -175,8 +175,8 @@
     {
      "id": 204,
      "parent": null,
-     "he": "Broadcast / ENG B4-Mount",
-     "en": "Broadcast / ENG B4-Mount",
+     "he": "B4-Mount",
+     "en": "B4-Mount",
      "count": 17
     },
     {

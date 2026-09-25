@@ -346,3 +346,5 @@ body.print-mode .view { padding: 0; max-width: none; }
 .seg { display: flex; background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 3px; }
 .seg button { padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 12.5px; color: var(--muted); }
 .seg button.active { background: var(--surface-3); color: var(--text); }
+.chip.lt { background: rgba(125,200,255,.14); color: #8cc4ef; font-weight: 800; letter-spacing: .02em; }
+.chip.lt.alt { background: rgba(251,191,36,.14); color: #fbbf24; }

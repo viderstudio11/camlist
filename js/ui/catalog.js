@@ -74,10 +74,23 @@ export function render(ctx, { id }, root) {
   const productRow = (p, { showBrand = true } = {}) => {
     const q = getQty(items(), p.id);
     const sub = subOf(p);
+    // Lenses: say PRIME / ZOOM and the coverage — far more useful on a row than "Full Frame" or a mount subcategory.
+    const isLens = catalog.deptKey(p.dept) === 'lenses';
+    const lensChips = () => {
+      const types = lensTypes(p, subEnOf(p)).filter(x => x !== 'set');
+      const main = ['zoom', 'prime'].find(x => types.includes(x));
+      const extras = types.filter(x => ['anamorphic', 'macro', 'vintage', 'adapter'].includes(x));
+      const fmt = infoOf(p).format;
+      const out = [];
+      if (main) out.push(`<span class="chip lt">${t('lt_' + main)}</span>`);
+      for (const x of extras) out.push(`<span class="chip lt alt">${t('lt_' + x)}</span>`);
+      if (fmt) out.push(`<span class="chip">${t('fmt_' + fmt)}</span>`);
+      return out.join('');
+    };
     return `<div class="row ${q ? 'in-list' : ''}" data-pid="${esc(p.id)}">
       ${thumbHTML(p, catalog.deptKey(p.dept))}
       <div class="body"><div class="name" dir="auto">${esc(p.name)}</div>
-        <div class="sub">${showBrand && p.brand ? `<span class="brandname">${esc(p.brandName)}</span>` : ''}${sub ? `<span class="chip">${esc(subName(sub))}</span>` : ''}${p.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${p.extra ? `<span class="chip extra">${t('not_at_utopia_item')}</span>` : ''}${tagHTML(p)}</div></div>
+        <div class="sub">${showBrand && p.brand ? `<span class="brandname">${esc(p.brandName)}</span>` : ''}${isLens ? lensChips() : (sub ? `<span class="chip">${esc(subName(sub))}</span>` : '')}${p.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${p.extra ? `<span class="chip extra">${t('not_at_utopia_item')}</span>` : ''}${tagHTML(p)}</div></div>
       ${q ? `<div class="stepper compact"><button data-d="-1" aria-label="-">−</button><span class="q">${q}</span><button class="plus" data-d="1" aria-label="+">+</button></div>` : `<button class="addbtn" data-d="1" aria-label="${t('add')}">+</button>`}
     </div>`;
   };
