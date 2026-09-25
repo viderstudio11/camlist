@@ -76,6 +76,9 @@ function render() {
   }
 }
 
+export const APP_VERSION = 'v1.9.1';
+const BUILD_DATE = '25.09.2026';
+
 function renderSettings(ctx, _p, root) {
   ctx.setTopbar({ title: t('settings'), back: '#/' });
   const s = store.state.settings;
@@ -96,7 +99,8 @@ function renderSettings(ctx, _p, root) {
       <div class="kv"><span>${t('products')}</span><b>${catalog.products.length}</b></div>
       <div class="kv"><span>${t('brands')}</span><b>${catalog.brands.length}</b></div>
       <div class="kv"><span>${t('logos_hint')}</span></div>
-      <div class="kv"><span>utopiacam.com</span><b>CamList v1</b></div>
+      <div class="kv"><span>${t('version')}</span><b>${esc(APP_VERSION)}</b></div>
+      <div class="kv"><span>utopiacam.com</span><b>${esc(BUILD_DATE)}</b></div>
     </div>`;
   root.querySelector('[name=techManager]').onchange = (e) => store.setSettings({ techManager: e.target.value.trim() });
   root.querySelector('[data-export]').onclick = () => download(`camlist-backup-${new Date().toISOString().slice(0, 10)}.json`, new Blob([JSON.stringify(store.exportBackup(), null, 1)], { type: 'application/json' }));
@@ -144,11 +148,23 @@ boot();
 // On localhost the SW is skipped (unless ?sw=1) so edits show up on plain reload; production always registers it.
 const devNoSW = ['localhost', '127.0.0.1'].includes(location.hostname) && !location.search.includes('sw=1');
 if ('serviceWorker' in navigator && !devNoSW) {
+  // A new worker that skipped waiting takes control straight away: reload once so the running
+  // page is not left on the previous version. The guard keeps it from looping.
+  let reloading = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (reloading || !sessionStorage.getItem('camlist.updating')) return;
+    reloading = true;
+    sessionStorage.removeItem('camlist.updating');
+    location.reload();
+  });
   navigator.serviceWorker.register('sw.js').then(reg => {
+    reg.update().catch(() => {});
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) reg.update().catch(() => {}); });
     reg.addEventListener('updatefound', () => {
       const nw = reg.installing;
       nw?.addEventListener('statechange', () => {
         if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+          sessionStorage.setItem('camlist.updating', '1');
           const n = el(`<div class="toast" style="pointer-events:auto;cursor:pointer">${esc(t('new_version'))} · ${esc(t('refresh'))}</div>`);
           n.onclick = () => location.reload();
           document.getElementById('toasts').appendChild(n);

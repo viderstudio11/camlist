@@ -1,4 +1,4 @@
-const VERSION = 'v1.9.0';
+const VERSION = 'v1.9.1';
 const SHELL = `camlist-shell-${VERSION}`;
 const IMAGES = 'camlist-images';
 const ASSETS = [
@@ -11,7 +11,9 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(SHELL).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(SHELL)
+    .then(c => c.addAll(ASSETS.map(u => new Request(u, { cache: 'reload' }))))
+    .then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (e) => {
@@ -31,12 +33,18 @@ async function trimImages(max = 500) {
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
+  if (e.request.mode === 'navigate') {
+    e.respondWith(fetch(e.request)
+      .then(res => { if (res.ok) caches.open(SHELL).then(c => c.put('./index.html', res.clone())); return res; })
+      .catch(() => caches.match('./index.html', { ignoreSearch: true }).then(hit => hit || caches.match('./'))));
+    return;
+  }
   if (url.origin === location.origin) {
     e.respondWith(
-      caches.match(e.request, { ignoreSearch: true }).then(hit => hit || fetch(e.request).then(res => {
-        if (res.ok) caches.open(SHELL).then(c => c.put(e.request, res.clone()));
+      caches.open(SHELL).then(c => c.match(e.request, { ignoreSearch: true }).then(hit => hit || fetch(e.request).then(res => {
+        if (res.ok) c.put(e.request, res.clone());
         return res;
-      })),
+      }))),
     );
     return;
   }
