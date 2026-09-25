@@ -50,8 +50,10 @@ export function render(ctx, { id }, root) {
   };
   // shown(): the list that is actually rendered — the hidden counter is derived from it alone.
   const shown = (list) => { const out = visible(list); hidden = list.length - out.length; return out; };
-  const TAG = { native: ['ok', '✓ ' + t('tag_native')], adapter: ['adp', '↻ ' + t('tag_adapter')], partial: ['warn', '⚠ ' + t('tag_partial')], unknown: ['dim', t('tag_unknown')], no: ['bad', '✕ ' + t('tag_no')] };
-  const tagHTML = (p) => { if (!prof) return ''; const g = grade(p); return TAG[g] ? `<span class="ctag ${TAG[g][0]}">${TAG[g][1]}</span>` : ''; };
+  // False colour, the way a monitor shows exposure: green fits, yellow needs an adapter, orange crops, red is out.
+  const FC = { native: ['ok', 'FIT'], adapter: ['adp', 'ADPT'], partial: ['warn', 'CROP'], unknown: ['dim', '?'], no: ['bad', 'NO'] };
+  const tagHTML = (p) => { if (!prof) return ''; const g = grade(p); return FC[g] ? `<span class="fcode ${FC[g][0]}" title="${esc(t('tag_' + g))}">${FC[g][1]}</span>` : ''; };
+  const fcClass = (p) => (prof && FC[grade(p)] ? ' fc-' + FC[grade(p)][0] : '');
   const items = () => store.getProject(id).items;
   const rerender = () => render(ctx, { id }, root);
   const deptName = (d) => (lang === 'he' ? d.he : d.en);
@@ -87,7 +89,7 @@ export function render(ctx, { id }, root) {
       if (fmt) out.push(`<span class="chip">${t('fmt_' + fmt)}</span>`);
       return out.join('');
     };
-    return `<div class="row ${q ? 'in-list' : ''}" data-pid="${esc(p.id)}">
+    return `<div class="row ${q ? 'in-list' : ''}${fcClass(p)}" data-pid="${esc(p.id)}">
       ${thumbHTML(p, catalog.deptKey(p.dept))}
       <div class="body"><div class="name" dir="auto">${esc(p.name)}</div>
         <div class="sub">${showBrand && p.brand ? `<span class="brandname">${esc(p.brandName)}</span>` : ''}${isLens ? lensChips() : (sub ? `<span class="chip">${esc(subName(sub))}</span>` : '')}${p.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${p.extra ? `<span class="chip extra">${t('not_at_utopia_item')}</span>` : ''}${tagHTML(p)}</div></div>

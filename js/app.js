@@ -2,6 +2,7 @@ import { createStore } from './store.js';
 import { createCatalog, loadCatalog } from './catalog.js';
 import { createCompat, loadCompat } from './compat.js';
 import { createRecency } from './recency.js';
+import { createPower, loadPower } from './power.js';
 import { t, setLang, getLang, dirFor } from './i18n.js';
 import { esc, el, toast, icons, download } from './ui/dom.js';
 import { fallbackHTML, setLogoIndex } from './brands.js';
@@ -19,12 +20,14 @@ let catalogError = null;
 let compatData = { cameras: [], adapters: {}, kits: {} };
 let compat = createCompat(compatData, catalog);
 let recency = createRecency({});
+let powerData = {};
+let power = createPower(powerData, catalog, compat);
 
 // Called by the inline onerror in brands.logoHTML if a listed logo file fails to load.
 window.__logoFallback = (slug, size) => fallbackHTML(slug, catalog.brandName(slug), size);
 
 const ctx = {
-  store, t, get catalog() { return catalog; }, get compat() { return compat; }, get recency() { return recency; },
+  store, t, get catalog() { return catalog; }, get compat() { return compat; }, get recency() { return recency; }, get power() { return power; },
   lang: getLang,
   setLang(l) { setLang(l); store.setSettings({ lang: l }); applyDir(); render(); },
   navigate(hash) { if (location.hash === hash) render(); else location.hash = hash; },
@@ -109,17 +112,20 @@ function renderSettings(ctx, _p, root) {
 async function boot() {
   fetch('logos/index.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).then(idx => { if (idx) { setLogoIndex(idx); render(); } }).catch(() => {});
   try {
-    const [data, cdata, xdata, rdata] = await Promise.all([
+    const [data, cdata, xdata, rdata, pdata] = await Promise.all([
       loadCatalog(),
       loadCompat().catch(() => compatData),
       fetch('data/extra.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null),
       fetch('data/releases.json', { cache: 'no-cache' }).then(r => (r.ok ? r.json() : null)).catch(() => null),
+      loadPower().catch(() => powerData),
     ]);
     recency = createRecency(rdata || {});
     extraData = xdata;
     catalog = createCatalog(data, store.state.manualProducts, extraData);
     compatData = cdata;
     compat = createCompat(compatData, catalog);
+    powerData = pdata || powerData;
+    power = createPower(powerData, catalog, compat);
     catalogError = null;
   } catch (e) { catalogError = e; }
   render();

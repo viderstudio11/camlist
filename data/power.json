@@ -1,0 +1,133 @@
+{
+  "_readme": "Power & media maths. batteryWh: model token → watt-hours (names that already carry 'NNWh' are parsed automatically). cameras: body draw in watts (body + EVF, no accessories). formats: recording formats per camera product id, with the stream's bitrate in Mbps; '_type_<type>' entries are the fallback for cameras without their own list. All values are editable — correct anything that differs from what you measure on set.",
+  "batteryWh": {
+    "BP-U30": 28, "BP-U35": 33, "BP-U60": 56, "BP-U70": 68, "BP-U100": 97,
+    "BP-955": 63, "BP-915": 45, "BP-A30": 30, "BP-A60": 61,
+    "LP-E6": 14, "EN-EL20": 8.4,
+    "NP-F570": 16, "NP-F770": 31, "NP-F970": 47,
+    "NP-FZ100": 16.4, "NP-FV50": 7.3, "NP-FV100": 26.5, "NP-FW50": 7.3,
+    "DMW-BLF19": 23, "DMW-BLG10": 7.4, "DMW-BLJ31": 21, "NP-W235": 16,
+    "CGA-D54": 53, "VW-VBT190": 14, "VW-VBD58": 43, "VM-VBG6": 21, "VM-VBG260": 26,
+    "TB50": 97, "WB37": 17, "S-8D58": 43
+  },
+  "cameras": {
+    "12328": 90, "30380": 90, "14095": 85, "493": 75, "448": 85, "66": 85, "7387": 85,
+    "12069": 90, "21267": 95, "24920": 45, "16514": 25, "14868": 35, "17205": 15, "21802": 15, "28981": 15,
+    "654": 30, "9860": 30, "11797": 25, "629": 60, "633": 60, "670": 30,
+    "16253": 30, "22830": 30, "607": 80, "615": 80,
+    "678": 25, "700": 25, "9029": 25, "15177": 30, "28559": 30, "19707": 22, "30392": 22,
+    "16137": 45, "13949": 40, "26769": 25, "12287": 15, "14259": 18,
+    "10395": 20, "1344": 70, "8473": 60, "14712": 15, "20870": 15, "20892": 15,
+    "29623": 40, "29654": 20, "20463": 40, "600": 120,
+    "_type_cinema": 80, "_type_cinema-compact": 28, "_type_mirrorless": 15, "_type_eng": 30, "_type_handheld": 12, "_type_ptz": 20, "_type_action": 3
+  },
+  "formats": {
+    "16514": [
+      { "label": "XAVC-I 4K 25p", "mbps": 240 },
+      { "label": "XAVC-I 4K 50p", "mbps": 500 },
+      { "label": "XAVC-L 4K 25p", "mbps": 100 },
+      { "label": "XAVC-I HD 25p", "mbps": 185 }
+    ],
+    "14868": [
+      { "label": "XAVC-I 4K 25p", "mbps": 240 },
+      { "label": "XAVC-I 4K 50p", "mbps": 500 },
+      { "label": "XAVC-I QFHD 25p", "mbps": 240 },
+      { "label": "XAVC-L 4K 25p", "mbps": 100 }
+    ],
+    "17205": [
+      { "label": "XAVC-I 4K 25p", "mbps": 240 },
+      { "label": "XAVC-S-I 4K 50p", "mbps": 500 },
+      { "label": "XAVC-HS 4K 25p", "mbps": 200 }
+    ],
+    "24920": [
+      { "label": "X-OCN LT 8K 25p", "mbps": 1200 },
+      { "label": "X-OCN ST 8K 25p", "mbps": 1800 },
+      { "label": "XAVC-I 4K 25p", "mbps": 240 }
+    ],
+    "21267": [
+      { "label": "X-OCN LT 8.6K 25p", "mbps": 1600 },
+      { "label": "X-OCN ST 8.6K 25p", "mbps": 2400 },
+      { "label": "X-OCN XT 8.6K 25p", "mbps": 3200 }
+    ],
+    "12069": [
+      { "label": "X-OCN ST 6K 25p", "mbps": 1400 },
+      { "label": "X-OCN LT 6K 25p", "mbps": 950 },
+      { "label": "XAVC-I 4K 25p", "mbps": 240 }
+    ],
+    "12328": [
+      { "label": "ARRIRAW 4.6K 25p", "mbps": 1600 },
+      { "label": "ProRes 4444 XQ 4.6K 25p", "mbps": 1900 },
+      { "label": "ProRes 422 HQ 4.6K 25p", "mbps": 900 },
+      { "label": "ProRes 422 HQ UHD 25p", "mbps": 700 }
+    ],
+    "30380": [
+      { "label": "ARRIRAW 4.6K 25p", "mbps": 1600 },
+      { "label": "ProRes 4444 XQ 4.6K 25p", "mbps": 1900 },
+      { "label": "ProRes 422 HQ 4.6K 25p", "mbps": 900 }
+    ],
+    "14095": [
+      { "label": "ARRIRAW LF Open Gate 25p", "mbps": 1900 },
+      { "label": "ProRes 4444 XQ UHD 25p", "mbps": 1200 },
+      { "label": "ProRes 422 HQ UHD 25p", "mbps": 700 }
+    ],
+    "493": [
+      { "label": "ARRIRAW 3.4K 25p", "mbps": 1000 },
+      { "label": "ProRes 4444 UHD 25p", "mbps": 800 },
+      { "label": "ProRes 422 HQ HD 25p", "mbps": 185 }
+    ],
+    "16253": [
+      { "label": "R3D 6K 8:1 25p", "mbps": 1230 },
+      { "label": "R3D 6K 12:1 25p", "mbps": 820 },
+      { "label": "ProRes 422 HQ 4K 25p", "mbps": 700 }
+    ],
+    "28559": [
+      { "label": "Cinema RAW Light 6K 25p", "mbps": 1000 },
+      { "label": "XF-AVC 4K 25p", "mbps": 410 },
+      { "label": "XF-HEVC 4K 25p", "mbps": 225 }
+    ],
+    "19707": [
+      { "label": "Cinema RAW Light 4K 25p", "mbps": 470 },
+      { "label": "XF-AVC 4K 25p", "mbps": 410 }
+    ],
+    "16137": [
+      { "label": "BRAW 12:1 12K 25p", "mbps": 900 },
+      { "label": "BRAW 8:1 8K 25p", "mbps": 800 },
+      { "label": "ProRes 422 HQ UHD 25p", "mbps": 700 }
+    ],
+    "26769": [
+      { "label": "BRAW 8:1 6K 25p", "mbps": 600 },
+      { "label": "BRAW 5:1 6K 25p", "mbps": 950 },
+      { "label": "ProRes 422 HQ 4K 25p", "mbps": 700 }
+    ],
+    "_type_cinema": [
+      { "label": "RAW 4K 25p", "mbps": 1400 },
+      { "label": "ProRes 422 HQ 4K 25p", "mbps": 880 },
+      { "label": "ProRes 422 HD 25p", "mbps": 147 }
+    ],
+    "_type_cinema-compact": [
+      { "label": "4K 25p · 240 Mbps", "mbps": 240 },
+      { "label": "4K 50p · 500 Mbps", "mbps": 500 },
+      { "label": "HD 25p · 100 Mbps", "mbps": 100 }
+    ],
+    "_type_mirrorless": [
+      { "label": "4K 25p · 200 Mbps", "mbps": 200 },
+      { "label": "4K 50p · 280 Mbps", "mbps": 280 },
+      { "label": "HD 25p · 100 Mbps", "mbps": 100 }
+    ],
+    "_type_eng": [
+      { "label": "XAVC-I HD 25p", "mbps": 112 },
+      { "label": "XDCAM HD422 50 Mbps", "mbps": 50 }
+    ],
+    "_type_handheld": [
+      { "label": "4K 25p · 100 Mbps", "mbps": 100 },
+      { "label": "HD 25p · 50 Mbps", "mbps": 50 }
+    ],
+    "_type_action": [
+      { "label": "5.3K 25p · 120 Mbps", "mbps": 120 },
+      { "label": "4K 50p · 100 Mbps", "mbps": 100 }
+    ],
+    "_type_ptz": [
+      { "label": "4K 25p · 100 Mbps", "mbps": 100 }
+    ]
+  }
+}

@@ -5,7 +5,7 @@ import { exportXlsx } from '../export-xlsx.js';
 import { exportDocx } from '../export-docx.js';
 import { renderPrint } from '../export-print.js';
 
-const opts = { includeNotes: true, includeLinks: false };
+const opts = { includeNotes: true, includeLinks: false, includeImages: false };
 let docLang = null; // null = follow the UI language
 // Each line gets dir=auto so mixed Hebrew/English lines render the way WhatsApp/mail clients show them.
 const previewHTML = (txt) => txt.split('\n').map(l => `<div dir="auto">${esc(l) || '&nbsp;'}</div>`).join('');
@@ -27,7 +27,8 @@ export function render(ctx, { id, print }, root) {
         <button class="${lang() === 'en' ? 'active' : ''}" data-doclang="en">English</button>
       </div></div>
       <label class="switch"><span>${t('include_notes')}</span><input type="checkbox" data-opt="includeNotes" ${opts.includeNotes ? 'checked' : ''}></label>
-      <label class="switch" style="border:0"><span>${t('include_links')}</span><input type="checkbox" data-opt="includeLinks" ${opts.includeLinks ? 'checked' : ''}></label>
+      <label class="switch"><span>${t('include_links')}</span><input type="checkbox" data-opt="includeLinks" ${opts.includeLinks ? 'checked' : ''}></label>
+      <label class="switch" style="border:0"><span>${t('include_images')}</span><input type="checkbox" data-opt="includeImages" ${opts.includeImages ? 'checked' : ''}></label>
     </div>
     <div class="export-grid">
       <button class="btn primary" data-share>${icons.share}${t('share')}<small>WhatsApp · Mail</small></button>
