@@ -1,4 +1,4 @@
-name: Refresh catalog & news
+name: Refresh catalog
 
 on:
   schedule:
@@ -22,8 +22,6 @@ jobs:
         run: node scripts/fetch-catalog.js
       - name: Record new / removed Utopia products
         run: node scripts/catalog-diff.js /tmp/prev-catalog.json
-      - name: Pull gear news
-        run: node scripts/fetch-news.js
       - name: Download logos for any new brands
         run: node scripts/fetch-logos.js || true
       - run: npm test
@@ -37,5 +35,5 @@ jobs:
           git config user.name "camlist-bot"
           git config user.email "viderstudio@gmail.com"
           git add -A
-          git commit -m "chore: scheduled catalog/news refresh $(date -u +%Y-%m-%d)"
+          git commit -m "chore: scheduled catalog refresh $(date -u +%Y-%m-%d)"
           git push

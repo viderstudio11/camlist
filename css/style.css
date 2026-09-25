@@ -327,19 +327,6 @@ body.print-mode .view { padding: 0; max-width: none; }
 .slot .btn.sm { min-height: 34px; padding: 0 12px; font-size: 12px; }
 
 /* What's new */
-.newsbtn { margin-top: 14px; width: 100%; display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid var(--hair); font-weight: 800; font-size: 14px; color: var(--text); transition: transform .5s var(--spring), background .3s; }
-.newsbtn:active { transform: scale(.98); }
-.newsbtn .badge { background: var(--accent); color: #fff; border-radius: 999px; padding: 2px 8px; font-size: 11px; }
-.newsbtn .arrow { margin-inline-start: auto; color: var(--muted); }
-[dir="rtl"] .newsbtn .arrow { display: inline-block; transform: scaleX(-1); }
-.news-meta { color: var(--dim); font-size: 12px; font-weight: 600; margin: 10px 0 12px; }
-.card.news { display: block; text-decoration: none; animation: rise .7s var(--spring) both; }
-.news-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; }
-.news-src { font-weight: 800; color: var(--muted); }
-.news-date { margin-inline-start: auto; color: var(--dim); font-weight: 600; }
-.card.news h3 { font-size: 15px; font-weight: 800; line-height: 1.35; }
-.card.news p { color: var(--muted); font-size: 13px; margin-top: 6px; line-height: 1.45; }
-.card.news .ctag { display: inline-block; margin-top: 10px; }
 
 .note-missing { border-color: rgba(251,191,36,.4); background: linear-gradient(90deg, rgba(251,191,36,.10), var(--surface) 60%); margin-bottom: 12px; }
 .note-missing p { color: var(--muted); font-size: 13px; margin: 6px 0 10px; }
