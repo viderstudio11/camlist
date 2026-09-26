@@ -289,12 +289,15 @@ body.print-mode .view { padding: 0; max-width: none; }
 
 /* Slate: one tight grid of fields with hairline rules — the only solid ink is the clapper strip. */
 .print .slate { border: 1px solid #000; background: #000; }
-.print .sticks { height: 20px; display: flex; align-items: center; justify-content: flex-end; padding-inline: 6px;
-  background: repeating-linear-gradient(68deg, #000 0 15px, #fff 15px 30px); border-block-end: 1px solid #000; }
+.print .sticks { height: 26px; display: flex; align-items: center; justify-content: flex-end; padding-inline: 8px;
+  background: repeating-linear-gradient(65deg, #000 0 17px, #fff 17px 34px);
+  border-block-end: 2px solid #000; position: relative; }
+.print .sticks::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; width: 26px;
+  background: #000; }
 .print .sticks .mark { background: #fff; border: 1px solid #000; padding: 0 5px; font-size: 10px; font-weight: 800; letter-spacing: .14em; line-height: 14px; }
 .print .sticks .mark b { font-weight: 800; }
 .print .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: #000; }
-.print .cell { background: #fff; padding: 3px 7px 4px; display: flex; flex-direction: column; justify-content: center; min-height: 30px; overflow: hidden; }
+.print .cell { background: #fff; border-inline-end: 1px solid #000; border-block-end: 1px solid #000; padding: 3px 7px 4px; display: flex; flex-direction: column; justify-content: center; min-height: 30px; overflow: hidden; }
 .print .cell i { font-style: normal; font-size: 8px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #666; line-height: 1.25; }
 .print .cell b { font-size: 13px; font-weight: 800; line-height: 1.2; overflow-wrap: anywhere; }
 .print .cell:first-child b { font-size: 18px; letter-spacing: -.01em; }
@@ -305,9 +308,11 @@ body.print-mode .view { padding: 0; max-width: none; }
 .print table { width: 100%; border-collapse: collapse; margin-block-start: 10px; }
 .print td { border-block-end: 1px solid #ddd; padding: 2px 7px; vertical-align: middle; }
 .print tr { break-inside: avoid; }
-.print tr.dept td { background: #000; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .13em;
-  text-transform: uppercase; padding: 2px 7px; border: 0; break-after: avoid; }
-.print tr.dept td.q { color: #fff; font-size: 10px; }
+.print tr.dept td { color: #000; font-size: 10.5px; font-weight: 800; letter-spacing: .14em;
+  text-transform: uppercase; padding: 9px 7px 3px; border: 0; border-block-start: 2px solid #000;
+  border-block-end: 1px solid #000; break-after: avoid; }
+.print tbody:first-child tr.dept td { border-block-start: 0; padding-block-start: 4px; }
+.print tr.dept td.q { color: #000; font-size: 11px; }
 .print td.br { width: 20%; font-weight: 700; }
 .print td.nt { width: 24%; color: #555; font-size: 11px; }
 .print td.q { width: 34px; text-align: center; font-weight: 900; font-variant-numeric: tabular-nums; }
@@ -321,8 +326,9 @@ body.print-mode .view { padding: 0; max-width: none; }
   body { background: #fff; }
   .print { padding: 0; max-width: none; font-size: 10.5pt; }
   /* Rental houses print in black and white: keep the rules and bands, drop everything else. */
-  .print .slate, .print .sticks, .print tr.dept td, .print .grid { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .print .sticks { height: 6mm; background: repeating-linear-gradient(68deg, #000 0 4mm, #fff 4mm 8mm); }
+  /* Only the clapper strip and the hairline grid need ink the browser might otherwise drop. */
+  .print .sticks, .print .grid { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .print .sticks { height: 7mm; background: repeating-linear-gradient(65deg, #000 0 5mm, #fff 5mm 10mm); }
 }
 
 /* Brand header logo size + side rail of brand logo squares */
@@ -512,3 +518,37 @@ body.print-mode .view { padding: 0; max-width: none; }
 .vmain b { display: block; font-size: 13.5px; font-weight: 700; }
 .vmain small { color: var(--muted); font-size: 11.5px; }
 .iconbtn.sm { width: 30px; height: 30px; font-size: 16px; }
+
+/* ---------- Department cards in the light palette ----------
+   They were drawn for a dark ground: a dark scrim with white type over it. On paper-white
+   that reads as washed out. In light mode the card becomes a plain panel with black type,
+   and the photo sits behind a white scrim instead of a black one. */
+:root:not([data-theme="dark"]) .dept-card {
+  background-color: var(--surface);
+  border-color: var(--border-2);
+  box-shadow: var(--shadow-s);
+}
+:root:not([data-theme="dark"]) .dept-card::before {
+  background: linear-gradient(180deg, rgba(255,255,255,.62) 0%, rgba(255,255,255,.86) 45%, rgba(255,255,255,.97) 100%);
+}
+:root:not([data-theme="dark"]) .dept-card h3 { color: var(--text); text-shadow: none; }
+:root:not([data-theme="dark"]) .dept-card .n { color: var(--muted); font-weight: 700; }
+:root:not([data-theme="dark"]) .dept-card .emoji { filter: none; }
+:root:not([data-theme="dark"]) .dept-card .dept-ico { color: var(--accent); opacity: 1; }
+
+/* ---------- Behave like an app, not a web page ----------
+   A long press on a phone was opening the browser's selection callout ("copy", "search Google"),
+   the way it does on any web page. Chrome is not selectable text, so it stops offering to select it.
+   Anything the user genuinely needs to copy — fields, the export preview, results — opts back in. */
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+input, textarea, select, [contenteditable],
+.preview, .tout, .tnote, .vmain, .row .name, .print {
+  -webkit-touch-callout: default;
+  -webkit-user-select: text;
+  user-select: text;
+}
+img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; }

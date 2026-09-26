@@ -89,7 +89,7 @@ function render() {
   }
 }
 
-export const APP_VERSION = 'v1.11.0';
+export const APP_VERSION = 'v1.11.1';
 const BUILD_DATE = '25.09.2026';
 
 function renderSettings(ctx, _p, root) {
