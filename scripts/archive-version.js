@@ -24,6 +24,10 @@ const version = (() => {
   return m[1];
 })();
 
+const asArg = process.argv.indexOf('--as');
+// --as lets a build be published to the archive under its own name without going live,
+// which is how a version gets previewed before it replaces the one people are using.
+const name = asArg > -1 ? process.argv[asArg + 1] : null;
 const labelArg = process.argv.indexOf('--label');
 const label = labelArg > -1 ? process.argv[labelArg + 1] || '' : '';
 
@@ -38,7 +42,7 @@ const copyDir = (from, to) => {
 };
 
 function archive() {
-  const dir = path.join(ARCHIVE, version);
+  const dir = path.join(ARCHIVE, name || version);
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
 
@@ -46,7 +50,7 @@ function archive() {
   copyDir(path.join(ROOT, 'js'), path.join(dir, 'js'));
 
   let html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  const base = `${SITE}/v/${version}/`;
+  const base = `${SITE}/v/${name || version}/`;
   html = html
     .replace('<head>', `<head>\n<base href="${SITE}/">`)
     .replace(/href="css\//g, `href="${base}css/`)
@@ -122,7 +126,7 @@ function writeIndex(list) {
 
 const dir = archive();
 const list = readIndex().filter(v => v.version !== version);
-list.unshift({ version, date: new Date().toISOString().slice(0, 10), label });
+list.unshift({ version: name || version, date: new Date().toISOString().slice(0, 10), label });
 writeIndex(list);
 
 const size = (() => {
