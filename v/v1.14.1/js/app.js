@@ -191,7 +191,7 @@ render();
 boot();
 
 // On localhost the SW is skipped (unless ?sw=1) so edits show up on plain reload; production always registers it.
-const devNoSW = ['localhost', '127.0.0.1'].includes(location.hostname) && !location.search.includes('sw=1');
+const devNoSW = true; // archived copy: never registers a worker
 if ('serviceWorker' in navigator && !devNoSW) {
   // A new worker that skipped waiting takes control straight away: reload once so the running
   // page is not left on the previous version. The guard keeps it from looping.
