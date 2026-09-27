@@ -1,4 +1,4 @@
-const VERSION = 'v1.12.1';
+const VERSION = 'v1.12.2';
 const SHELL = `camlist-shell-${VERSION}`;
 const IMAGES = 'camlist-images';
 const ASSETS = [
