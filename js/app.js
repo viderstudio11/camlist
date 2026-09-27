@@ -12,6 +12,7 @@ import * as Catalog from './ui/catalog.js';
 import * as Export from './ui/export.js';
 import * as Tools from './ui/tools.js';
 import { loadCodecs } from './tools/media.js';
+import { SKINS, DEFAULT_SKIN, isSkin } from './skins.js';
 
 const store = createStore();
 setLang(store.state.settings.lang);
@@ -33,6 +34,8 @@ const ctx = {
   setLang(l) { setLang(l); store.setSettings({ lang: l }); applyDir(); render(); },
   theme: () => store.state.settings.theme || 'light',
   toggleTheme() { const next = ctx.theme() === 'dark' ? 'light' : 'dark'; store.setSettings({ theme: next }); applyTheme(); },
+  skin: () => (isSkin(store.state.settings.skin) ? store.state.settings.skin : DEFAULT_SKIN),
+  setSkin(id) { if (!isSkin(id)) return; store.setSettings({ skin: id }); applySkin(); },
   navigate(hash) { if (location.hash === hash) render(); else location.hash = hash; },
   render,
   deptOrder: () => catalog.departments.map(d => ({ id: d.id, key: d.slug })),
@@ -53,6 +56,11 @@ function applyDir() {
 }
 
 // The light palette is the default because the list is read outside; dark is for night work.
+function applySkin() {
+  document.documentElement.dataset.skin = ctx.skin();
+  render();
+}
+
 function applyTheme() {
   const dark = (store.state.settings.theme || 'light') === 'dark';
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
@@ -89,7 +97,7 @@ function render() {
   }
 }
 
-export const APP_VERSION = 'v1.11.1';
+export const APP_VERSION = 'v1.12.0';
 const BUILD_DATE = '25.09.2026';
 
 function renderSettings(ctx, _p, root) {
@@ -100,6 +108,8 @@ function renderSettings(ctx, _p, root) {
     <div class="card form">
       <label>${t('default_tech_manager')}<input name="techManager" value="${esc(s.techManager)}" autocomplete="off"></label>
     </div>
+    <div class="section-title">${t('skin')}</div>
+    <div class="skin-list">${SKINS.map(s => `<button class="skin-opt ${ctx.skin() === s.id ? 'on' : ''}" data-skin="${esc(s.id)}"><span class="skin-swatch">${s.swatch.map(c => `<i style="background:${esc(c)}"></i>`).join('')}</span><span class="skin-main"><b>${esc(getLang() === 'he' ? s.he : s.en)}</b><small>${esc(getLang() === 'he' ? s.descHe : s.descEn)}</small></span><span class="skin-check">${ctx.skin() === s.id ? '\u2713' : ''}</span></button>`).join('')}</div>
     <div class="section-title">${t('backup')}</div>
     <div class="card" style="display:grid;gap:10px">
       <button class="btn" data-export>${t('export_backup')}</button>
@@ -112,10 +122,10 @@ function renderSettings(ctx, _p, root) {
       <div class="kv"><span>${t('products')}</span><b>${catalog.products.length}</b></div>
       <div class="kv"><span>${t('brands')}</span><b>${catalog.brands.length}</b></div>
       <div class="kv"><span>${t('logos_hint')}</span></div>
-      <div class="kv"><span>${t('version')}</span><b>${esc(APP_VERSION)}</b></div>
       <div class="kv"><span>utopiacam.com</span><b>${esc(BUILD_DATE)}</b></div>
     </div>`;
   root.querySelector('[name=techManager]').onchange = (e) => store.setSettings({ techManager: e.target.value.trim() });
+  root.querySelectorAll('[data-skin]').forEach(b => { b.onclick = () => ctx.setSkin(b.dataset.skin); });
   root.querySelector('[data-export]').onclick = () => download(`camlist-backup-${new Date().toISOString().slice(0, 10)}.json`, new Blob([JSON.stringify(store.exportBackup(), null, 1)], { type: 'application/json' }));
   const file = root.querySelector('[data-file]');
   root.querySelector('[data-import]').onclick = () => file.click();
@@ -158,6 +168,7 @@ store.subscribe(() => {
 window.addEventListener('hashchange', render);
 applyDir();
 document.documentElement.dataset.theme = store.state.settings.theme || 'light';
+document.documentElement.dataset.skin = isSkin(store.state.settings.skin) ? store.state.settings.skin : DEFAULT_SKIN;
 render();
 boot();
 

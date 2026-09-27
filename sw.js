@@ -1,8 +1,8 @@
-const VERSION = 'v1.11.1';
+const VERSION = 'v1.12.0';
 const SHELL = `camlist-shell-${VERSION}`;
 const IMAGES = 'camlist-images';
 const ASSETS = [
-  './', './index.html', './css/style.css', './manifest.json', './data/catalog.json',
+  './', './index.html', './css/style.css', './css/skins.css', './js/skins.js', './manifest.json', './data/catalog.json',
   './js/app.js', './js/store.js', './js/catalog.js', './js/list.js', './js/i18n.js', './js/brands.js',
   './js/export-text.js', './js/export-xlsx.js', './js/export-docx.js', './js/export-print.js',
   './js/ui/dom.js', './js/ui/projects.js', './js/ui/list.js', './js/ui/catalog.js', './js/ui/export.js', './logos/index.json', './js/compat.js', './js/lens.js', './js/recency.js', './data/releases.json', './js/ui/icons-dept.js', './data/compat.json', './data/extra.json', './js/power.js', './data/power.json', './js/format.js', './data/codecs.json',
