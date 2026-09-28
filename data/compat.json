@@ -746,7 +746,13 @@
       ],
       "battery": [
         "BP-A"
-      ]
+      ],
+      "sensor": {
+        "w": 24.6,
+        "h": 13.8,
+        "mode": "UHD 3840×2160 · Super 35",
+        "src": "Canon Europe EOS C70 specifications, Effective Sensor Screen Size: 24.6 × 13.8 mm when 3840 × 2160 is selected (26.2 × 13.8 mm at 4096 × 2160)"
+      }
     },
     {
       "id": 30392,

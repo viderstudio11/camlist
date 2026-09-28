@@ -2155,6 +2155,71 @@
       ]
     },
     {
+      "id": "c70",
+      "brand": "Canon",
+      "label": "EOS C70",
+      "formats": [
+        {
+          "id": "raw-st-4k",
+          "codec": "Cinema RAW Light ST",
+          "res": "4K 4096×2160",
+          "mbps": {
+            "24": 398,
+            "25": 414,
+            "23.98": 398,
+            "29.97": 497
+          },
+          "max": true,
+          "src": "Canon EOS C70 Instruction Manual (IM13), \"Video Recording Configuration\" and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/4/0300040134/12/eosc70-im13-en.pdf (the camera records VBR; these are its maximum rates)"
+        },
+        {
+          "id": "raw-lt-4k",
+          "codec": "Cinema RAW Light LT",
+          "res": "4K 4096×2160",
+          "mbps": {
+            "24": 259,
+            "25": 269,
+            "50": 538,
+            "23.98": 259,
+            "29.97": 323,
+            "59.94": 645
+          },
+          "max": true,
+          "src": "Canon EOS C70 Instruction Manual (IM13), \"Video Recording Configuration\" and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/4/0300040134/12/eosc70-im13-en.pdf (the camera records VBR; these are its maximum rates)"
+        },
+        {
+          "id": "xfi-4k",
+          "codec": "XF-AVC Intra",
+          "res": "4K 4096×2160 / UHD",
+          "mbps": {
+            "24": 410,
+            "25": 410,
+            "50": 500,
+            "23.98": 410,
+            "29.97": 410,
+            "59.94": 600
+          },
+          "max": true,
+          "src": "Canon EOS C70 Instruction Manual (IM13), \"Video Recording Configuration\" and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/4/0300040134/12/eosc70-im13-en.pdf (the camera records VBR; these are its maximum rates)"
+        },
+        {
+          "id": "xfl-4k",
+          "codec": "XF-AVC Long GOP",
+          "res": "4K 4096×2160 / UHD",
+          "mbps": {
+            "24": 160,
+            "25": 160,
+            "50": 260,
+            "23.98": 160,
+            "29.97": 160,
+            "59.94": 260
+          },
+          "max": true,
+          "src": "Canon EOS C70 Instruction Manual (IM13), \"Video Recording Configuration\" and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/4/0300040134/12/eosc70-im13-en.pdf (the camera records VBR; these are its maximum rates)"
+        }
+      ]
+    },
+    {
       "id": "c80",
       "brand": "Canon",
       "label": "EOS C80",
