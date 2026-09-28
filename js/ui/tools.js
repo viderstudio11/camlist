@@ -400,36 +400,63 @@ function fovTool(T, lang, ctx) {
     || lenses.filter(l => l.min <= focal && focal <= l.max).sort((x, y) => (x.max / x.min) - (y.max / y.min))[0];
   const lensName = onLens ? (onLens.min === onLens.max ? T('prime_lbl') : `${T('zoom_lbl')} ${onLens.label}`) : '';
 
-  // The frame the chosen lens gives, drawn around a 1.75 m figure so the size reads at a glance.
-  // A tight frame is placed on the upper body, where an operator would put it.
+  // Where the frame sits on a 1.75 m person, in metres above the ground: a frame taller than the
+  // person stands on the ground; a tighter one sits on the upper body with a little headroom,
+  // where an operator would put it. Both drawings below use this, so they always agree.
   const PERSON_M = 1.75;
-  const box = 168;
-  const tallest = Math.max(fr.heightM, PERSON_M) * 1.12;
-  const pxPerM = box / tallest;
-  const fw = fr.widthM * pxPerM;
-  const fh = fr.heightM * pxPerM;
-  const ph = PERSON_M * pxPerM;
-  const vw = Math.max(fw + 34, 230);
-  const cx = vw / 2;
-  const groundY = box - 4;
-  const headY = groundY - ph;
-  const frameY = fh >= ph ? groundY - fh : Math.max(headY - fh * 0.12, 2);
+  const bottomM = fr.heightM >= PERSON_M ? 0 : PERSON_M + fr.heightM * 0.12 - fr.heightM;
   const two = fr.widthM >= PERSON_M * 2.4;
-  const figure = (x, h) => {
+  const figureAt = (x, groundY, h) => {
     const k = h / FIG_H;
     return `<g class="fig" transform="translate(${(x - (FIG_W * k) / 2).toFixed(2)} ${(groundY - h).toFixed(2)}) scale(${k.toFixed(4)})">${FIG}</g>`;
   };
 
+  // 1. The monitor: exactly what the camera sees, in the sensor's own aspect ratio.
+  const MW = 320, MH = Math.round((MW * sn.h) / sn.w);
+  const mpx = MW / fr.widthM;
+  const mGround = MH + bottomM * mpx;
+  const people = two ? [MW / 2 - fr.widthM * 0.22 * mpx, MW / 2 + fr.widthM * 0.22 * mpx] : [MW / 2];
+  const monitor = `<svg viewBox="0 0 ${MW} ${MH}" class="fov-monitor" role="img" aria-label="${esc(T('framing'))}">
+    <defs><clipPath id="fov-clip"><rect width="${MW}" height="${MH}" rx="6"/></clipPath></defs>
+    <rect width="${MW}" height="${MH}" rx="6" class="mon-bg"/>
+    <g clip-path="url(#fov-clip)"><rect y="${mGround.toFixed(1)}" width="${MW}" height="${MH}" class="mon-floor"/>${people.map(x => figureAt(x, mGround, PERSON_M * mpx)).join('')}</g>
+    <rect x="${MW * 0.05}" y="${MH * 0.05}" width="${MW * 0.9}" height="${MH * 0.9}" class="mon-safe"/>
+    <path d="M${MW / 2 - 8} ${MH / 2}h16M${MW / 2} ${MH / 2 - 8}v16" class="mon-cross"/>
+    <text x="10" y="${MH - 10}" class="mon-mm">${focal}mm</text>
+    <rect width="${MW}" height="${MH}" rx="6" class="mon-edge"/>
+  </svg>`;
+
+  // 2. The measurement: the same frame on the person against a height scale, with its real size.
+  const box = 150, top = 18, L = 28;
+  const tallest = Math.max(fr.heightM + bottomM, PERSON_M) * 1.08;
+  const px = (box - top) / tallest;
+  const fw = fr.widthM * px, fh = fr.heightM * px, ph = PERSON_M * px;
+  const vw = Math.max(fw + 30, 200) + L + 40;
+  const cx = L + (vw - L - 40) / 2;
+  const gy = box - 2;
+  const fx0 = cx - fw / 2, fx1 = cx + fw / 2, fy = gy - (bottomM + fr.heightM) * px;
+  const step = unit === 'ft' ? 0.6096 : 0.5; // a tick every 2 ft or every half metre
+  const ticks = [];
+  for (let m = 0; m <= tallest + 1e-9; m += step) {
+    const y = gy - m * px;
+    ticks.push(`<line x1="${L - 6}" y1="${y.toFixed(1)}" x2="${L}" y2="${y.toFixed(1)}" class="ms-tick"/><text x="${L - 8}" y="${(y + 3.5).toFixed(1)}" class="ms-num" text-anchor="end">${num(toUnit(m, unit), unit === 'ft' ? 0 : 1)}</text>`);
+  }
+  const measured = `<svg viewBox="0 0 ${vw.toFixed(0)} ${box}" class="fov-measure" role="img">
+    <line x1="${L}" y1="${top - 6}" x2="${L}" y2="${gy}" class="ms-tick"/>${ticks.join('')}
+    <line x1="${L}" y1="${gy}" x2="${vw}" y2="${gy}" class="ms-ground"/>
+    ${(two ? [cx - fw * 0.22, cx + fw * 0.22] : [cx]).map(x => figureAt(x, gy, ph)).join('')}
+    <rect x="${fx0.toFixed(1)}" y="${fy.toFixed(1)}" width="${fw.toFixed(1)}" height="${fh.toFixed(1)}" class="ms-frame"/>
+    <path d="M${(fx1 + 8).toFixed(1)} ${fy.toFixed(1)}v${fh.toFixed(1)}M${(fx1 + 4).toFixed(1)} ${fy.toFixed(1)}h8M${(fx1 + 4).toFixed(1)} ${(fy + fh).toFixed(1)}h8" class="ms-dim"/>
+    <text x="${(fx1 + 13).toFixed(1)}" y="${(fy + fh / 2 + 4).toFixed(1)}" class="ms-lbl">${num(toUnit(fr.heightM, unit), 2)}</text>
+    <path d="M${fx0.toFixed(1)} ${(fy - 7).toFixed(1)}h${fw.toFixed(1)}M${fx0.toFixed(1)} ${(fy - 11).toFixed(1)}v8M${fx1.toFixed(1)} ${(fy - 11).toFixed(1)}v8" class="ms-dim"/>
+    <text x="${cx.toFixed(1)}" y="${(fy - 12).toFixed(1)}" class="ms-lbl" text-anchor="middle">${num(toUnit(fr.widthM, unit), 2)} ${esc(uLabel)}</text>
+  </svg>`;
+
   const answer = `<div class="card sh-answer ok" data-part="answer">
     <div class="fov-top"><b class="sh-big">${focal}<small>mm</small></b>${lensName ? `<span class="sh-small">${esc(lensName)}</span>` : ''}${isRec ? `<span class="sh-rec">${esc(T('recommended'))}</span>` : `<button class="linkbtn" data-lens-reset>${esc(Tp('back_to_rec', { mm: rec.focal }))}</button>`}</div>
     <p class="sh-line">${esc(Tp('need_sentence', { d: dist(s.distance), u: uLabel, shot: name(shot), cam: cam.product.name, mm: num(need, 1) }))}</p>
-    <svg viewBox="0 0 ${vw.toFixed(0)} ${box}" class="frame-svg" role="img" aria-label="${esc(T('framing'))}">
-      <line x1="0" y1="${groundY}" x2="${vw.toFixed(0)}" y2="${groundY}" class="ground"/>
-      <rect x="${(cx - fw / 2).toFixed(1)}" y="${frameY.toFixed(1)}" width="${fw.toFixed(1)}" height="${fh.toFixed(1)}" class="fr"/>
-      ${two ? figure(cx - fw * 0.22, ph) : ''}
-      ${figure(two ? cx + fw * 0.22 : cx, ph)}
-      <rect x="${(cx - fw / 2).toFixed(1)}" y="${frameY.toFixed(1)}" width="${fw.toFixed(1)}" height="${fh.toFixed(1)}" class="fr-line"/>
-    </svg>
+    ${monitor}
+    ${measured}
     <p class="tnote">${esc(Tp('frame_line', { w: num(toUnit(fr.widthM, unit), 2), h: num(toUnit(fr.heightM, unit), 2), u: uLabel, a: num(fr.hFov, 0) }))}</p>
   </div>`;
 
