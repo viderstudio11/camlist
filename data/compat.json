@@ -62,7 +62,7 @@
       "sensor": {
         "w": 35.6,
         "h": 20,
-        "mode": "UHD 16:9 · עד 60p",
+        "mode": "UHD 16:9 · ≤60p",
         "src": "Sony FX6 spec (35.6×23.8 FF sensor); full width in UHD ≤60p per xdcam-user.com 2020-11-22"
       }
     },
@@ -107,7 +107,7 @@
       "sensor": {
         "w": 35.6,
         "h": 20,
-        "mode": "UHD 16:9 · עד 60p",
+        "mode": "UHD 16:9 · ≤60p",
         "src": "Sony FX3 spec: 35.6×23.8 mm, 10.3 MP effective for movies (16:9 full width)"
       }
     },
