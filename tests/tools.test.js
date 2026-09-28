@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createMedia } from '../js/tools/media.js';
-import { timeFromAngle, angleFromTime, asFraction, flicker, safeAngles, slowMotion } from '../js/tools/shutter.js';
+import { timeFromAngle, angleFromTime, asFraction, flicker, safeAngles, slowMotion, FRAME_RATES, shutterChoices } from '../js/tools/shutter.js';
 import { coverage, focalFor, angleOfView, nearestPrime, sensor } from '../js/tools/fov.js';
 import { sunDay, crossings } from '../js/tools/solar.js';
 import { offload, convert, cToF, fToC, mahToWh } from '../js/tools/convert.js';
@@ -129,4 +129,34 @@ test('unit conversion', () => {
   assert.equal(cToF(0), 32);
   assert.ok(Math.abs(fToC(212) - 100) < 1e-9);
   assert.ok(Math.abs(mahToWh(6600, 14.4) - 95.04) < 0.01);
+});
+
+test('frame rates are the ones cameras offer today, up to 240', () => {
+  assert.deepEqual(FRAME_RATES, [23.98, 24, 25, 29.97, 30, 48, 50, 59.94, 60, 100, 119.88, 120, 150, 180, 200, 240]);
+});
+
+test('shutter speeds: only what the frame allows, flicker-safe marked, 180° recommended', () => {
+  const pal = shutterChoices(25, 50, 'speed');
+  assert.equal(pal.recommended.label, '1/50');
+  assert.ok(pal.anySafe);
+  assert.ok(pal.options.every(o => o.seconds <= 1 / 25 + 1e-9), 'no exposure longer than a frame');
+  assert.ok(pal.options.find(o => o.label === '1/50').safe);
+  assert.equal(pal.options.find(o => o.label === '1/60').safe, false);
+
+  // 24p under 60 Hz light: 1/48 would flicker, the nearest safe speed is 1/60.
+  assert.equal(shutterChoices(24, 60, 'speed').recommended.label, '1/60');
+
+  // 120 fps under 50 Hz: nothing short enough is flicker-free — say so, still recommend 180°.
+  const hs = shutterChoices(120, 50, 'speed');
+  assert.equal(hs.anySafe, false);
+  assert.equal(hs.recommended.label, '1/240');
+});
+
+test('shutter angles: common angles plus the safe ones, 180° recommended at 25p', () => {
+  const a = shutterChoices(25, 50, 'angle');
+  assert.equal(a.recommended.value, 180);
+  assert.ok(a.options.every(o => o.value > 0 && o.value <= 360));
+  assert.ok(a.options.some(o => o.value === 172.8));
+  // 24p under 50 Hz: 180° (1/48) flickers, 172.8° (1/50) is the safe classic.
+  assert.equal(shutterChoices(24, 50, 'angle').recommended.value, 172.8);
 });

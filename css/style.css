@@ -858,3 +858,27 @@ body.split .view { max-width: none; padding: 12px 16px 0; }
 .print .cell i { font-size: 9px; }
 .print tr.dept td { font-size: 12px; }
 .print td.q { font-family: var(--mono); font-weight: 700; font-size: 14px; }
+
+/* ============================================================ FRAME RATE & SHUTTER (v2) ============ */
+.sh-answer { padding: 16px; }
+.sh-top { display: flex; align-items: center; gap: 16px; }
+.sh-top .dial-svg { width: 76px; height: 76px; }
+.sh-main { display: flex; flex-direction: column; gap: 4px; }
+.sh-big { font-family: var(--mono); font-weight: 700; font-size: 44px; line-height: 1; letter-spacing: .01em; }
+.sh-answer.ok .sh-big { color: var(--text); }
+.sh-small { font-family: var(--mono); font-weight: 600; font-size: 15px; color: var(--text-3); letter-spacing: .04em; }
+.sh-line { margin-top: 10px; font-size: 14.5px; color: var(--text-2); line-height: 1.45; }
+.sh-line.ok { color: var(--ok-ink); font-weight: var(--w-strong); }
+.sh-line.warn { color: var(--warn-ink); font-weight: var(--w-strong); }
+.sh-sec { margin-top: 12px; }
+.sh-sec .tsub { font-family: var(--mono); font-weight: 600; font-size: 13px; letter-spacing: .14em; color: var(--text-3); }
+.sh-sec .chips { gap: 7px; }
+.sh-sec .chip.pick { font-family: var(--mono); font-weight: 600; font-size: 15px; padding: 7px 13px; display: inline-flex; align-items: center; gap: 6px; }
+.sh-ok { font-style: normal; color: var(--ok-ink); font-size: 12px; }
+.chip.pick.on .sh-ok { color: inherit; }
+.sh-rec { font-style: normal; font-family: var(--font); font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 5px; background: var(--accent-soft); color: var(--accent-ink); }
+.chip.pick.on .sh-rec { background: rgba(0,0,0,.15); color: inherit; }
+.sh-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.sh-mode { display: inline-flex; background: var(--surface-2); border-radius: 10px; padding: 3px; }
+.sh-mode button { height: 30px; padding: 0 12px; border-radius: 8px; font-weight: var(--w-strong); font-size: 13px; color: var(--text-2); }
+.sh-custom { margin-top: 8px; max-width: 200px; }

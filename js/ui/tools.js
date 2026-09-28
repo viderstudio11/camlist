@@ -2,7 +2,7 @@ import { esc, icons, toast } from './dom.js';
 import { logoHTML } from '../brands.js';
 import { toolIcon } from './icons.js';
 import { createMedia } from '../tools/media.js';
-import { timeFromAngle, angleFromTime, asFraction, flicker, safeAngles, slowMotion, COMMON_ANGLES } from '../tools/shutter.js';
+import { timeFromAngle, angleFromTime, asFraction, flicker, slowMotion, FRAME_RATES, shutterChoices } from '../tools/shutter.js';
 import { SENSORS, SUBJECTS, coverage, focalFor, nearestPrime, sensor } from '../tools/fov.js';
 import { sunDay } from '../tools/solar.js';
 import { offload, DRIVES, UNIT_GROUPS, convert, cToF, fToC, mahToWh, whToMah } from '../tools/convert.js';
@@ -101,6 +101,20 @@ const L = {
   flicker_bad: { he: 'עלול להבהב בתאורת רשת', en: 'May flicker under mains light' },
   safe_angles: { he: 'זוויות בטוחות בפריים רייט הזה', en: 'Safe angles at this frame rate' },
   project_fps: { he: 'פריים רייט של הפרויקט', en: 'Project frame rate' },
+  shutter_lbl: { he: 'שאטר', en: 'Shutter' },
+  speed_short: { he: 'מהירות', en: 'Speed' },
+  angle_short: { he: 'זווית', en: 'Angle' },
+  recommended: { he: 'מומלץ', en: 'best' },
+  other_val:  { he: 'אחר…', en: 'Other…' },
+  mains_50:   { he: '50Hz · ישראל ואירופה', en: '50 Hz · Israel & Europe' },
+  mains_60:   { he: '60Hz · ארה״ב', en: '60 Hz · USA' },
+  sh_safe:    { he: 'לא יהבהב בתאורת חשמל של {hz}Hz', en: 'No flicker under {hz} Hz mains light' },
+  sh_unsafe:  { he: 'עלול להבהב בתאורת חשמל של {hz}Hz — עדיף {rec}', en: 'May flicker under {hz} Hz mains light — use {rec}' },
+  sh_none:    { he: 'בפריים רייט הזה אין שאטר שלא מהבהב ב־{hz}Hz — צריך תאורה בלי הבהוב (LED איכותי או HMI אלקטרוני)', en: 'No shutter at this frame rate avoids {hz} Hz flicker — use flicker-free lights (good LED or electronic HMI)' },
+  sh_realtime: { he: 'מהירות רגילה', en: 'real time' },
+  sh_slow:    { he: 'הילוך איטי פי {n}', en: '{n}× slow motion' },
+  sh_fast:    { he: 'הילוך מהיר פי {n}', en: '{n}× fast motion' },
+  sh_hint:    { he: '✓ = לא מהבהב בתאורת חשמל. "מומלץ" = הכי קרוב ל־180°, התנועה הטבעית שהעין רגילה אליה.', en: '✓ = no mains flicker. "best" = nearest to 180°, the motion blur the eye is used to.' },
   slowmo: { he: 'סלואו מושן', en: 'Slow motion' },
 
   footage: { he: 'כמות חומר (GB)', en: 'Footage (GB)' },
@@ -146,7 +160,7 @@ export const setPlaces = (data) => { placeData = data || placeData; };
 const S = {
   media: { cam: 'fx6', codec: 'xavc-i', res: 'uhd', fps: 25, card: 160, hours: 10 },
   fov: { sensor: 's35', distance: 4, frameW: 2.2, focal: 50, phone: 'main', vf: false, cam: '', camBrand: '' },
-  shutter: { fps: 25, angle: 180, mains: 50, projectFps: 25 },
+  shutter: { fps: 25, mode: 'speed', speed: 50, angle: 180, mains: 50, projectFps: 25, customFps: false },
   offload: { gb: 1000, mbPerSec: 700, copies: 2, verify: true },
   sun: { country: 'IL', city: 0, date: new Date().toISOString().slice(0, 10), lat: null, lon: null },
   units: { group: 'length', from: 'mm', to: 'in', value: 100, c: 20, mah: 6600, volts: 14.4 },
@@ -424,42 +438,65 @@ function fovTool(T, lang, ctx) {
 // ---------- shutter ----------
 function shutterTool(T) {
   const s = S.shutter;
-  const seconds = timeFromAngle(s.fps, s.angle);
+  const Tp = (k, p) => T(k).replace(/\{(\w+)\}/g, (_, x) => p[x] ?? '');
+  const { options, recommended, anySafe } = shutterChoices(s.fps, s.mains, s.mode);
+  const seconds = s.mode === 'angle' ? timeFromAngle(s.fps, s.angle) : 1 / s.speed;
+  const angle = Math.round(angleFromTime(s.fps, seconds) * 10) / 10;
   const f = flicker(seconds, s.mains);
-  const safe = safeAngles(s.fps, s.mains).slice(0, 6);
   const slow = slowMotion(s.fps, s.projectFps);
-  // A rotating shutter drawn as the opening it actually is.
-  const a = Math.max(1, Math.min(s.angle, 360));
+  const fmt = (n) => String(n);
+  const isOn = (o) => (s.mode === 'angle' ? Math.abs(o.value - s.angle) < 0.06 : o.value === s.speed);
+
+  // The answer in words: what you are shooting, whether the lights will flicker, what it plays back as.
+  const flickerLine = f.safe ? Tp('sh_safe', { hz: s.mains })
+    : anySafe ? Tp('sh_unsafe', { hz: s.mains, rec: recommended.label })
+      : Tp('sh_none', { hz: s.mains });
+  const slowLine = Math.abs(slow.factor - 1) < 0.01 ? T('sh_realtime')
+    : slow.factor > 1 ? Tp('sh_slow', { n: Math.round(slow.factor * 100) / 100 })
+      : Tp('sh_fast', { n: Math.round((1 / slow.factor) * 100) / 100 });
+
+  const a = Math.max(1, Math.min(angle, 360));
   const r = 42, cxy = 50;
-  const end = (deg) => [cxy + r * Math.sin((deg * Math.PI) / 180), cxy - r * Math.cos((deg * Math.PI) / 180)];
-  const [ex, ey] = end(a);
+  const [ex, ey] = [cxy + r * Math.sin((a * Math.PI) / 180), cxy - r * Math.cos((a * Math.PI) / 180)];
   const dial = `<svg viewBox="0 0 100 100" class="dial-svg" role="img" aria-label="${a}°">
     <circle cx="${cxy}" cy="${cxy}" r="${r}" class="d-ring"/>
     <path d="M${cxy} ${cxy} L${cxy} ${cxy - r} A${r} ${r} 0 ${a > 180 ? 1 : 0} 1 ${ex.toFixed(2)} ${ey.toFixed(2)} Z" class="d-open"/>
     <circle cx="${cxy}" cy="${cxy}" r="3" class="d-hub"/>
   </svg>`;
 
+  const chip = (attr, val, label, on, extra = '') => `<button class="chip pick ${on ? 'on' : ''}" ${attr}="${val}">${label}${extra}</button>`;
+
   return `
-    ${headline(asFraction(seconds), '', `${s.angle}° · ${s.fps} fps`, f.safe ? 'ok' : 'warn')}
-    <div class="card dial-card">
-      ${dial}
-      <div class="dial-side">
-        <div class="dial-row"><span>${esc(T('angle'))}</span><b>${s.angle}°</b></div>
-        <div class="dial-row"><span>${esc(T('speed'))}</span><b>${asFraction(seconds)}</b></div>
-        <div class="dial-row ${f.safe ? 'ok' : 'warn'}"><span>${esc(f.safe ? T('flicker_ok') : T('flicker_bad'))}</span><b>${f.safe ? '✓' : '⚠'}</b></div>
+    <div class="card sh-answer ${f.safe ? 'ok' : 'warn'}">
+      <div class="sh-top">${dial}
+        <div class="sh-main">
+          <b class="sh-big">${s.mode === 'angle' ? `${fmt(s.angle)}°` : asFraction(seconds)}</b>
+          <span class="sh-small">${s.mode === 'angle' ? asFraction(seconds) : `${angle}°`} · ${fmt(s.fps)} fps</span>
+        </div>
       </div>
+      <p class="sh-line ${f.safe ? 'ok' : 'warn'}">${f.safe ? '✓' : '⚠'} ${esc(flickerLine)}</p>
+      <p class="sh-line">${esc(T('slowmo'))}: ${esc(slowLine)}</p>
     </div>
-    <div class="card tform">
-      ${field(T('fps'), numIn('fps', s.fps, { min: 1, max: 1000, step: 1 }))}
-      ${field(T('angle'), sel('angle', COMMON_ANGLES.map(a => ({ v: a, l: `${a}°` })), s.angle))}
-      ${field(T('mains'), sel('mains', [{ v: 50, l: '50 Hz' }, { v: 60, l: '60 Hz' }], s.mains))}
-      ${field(T('project_fps'), numIn('projectFps', s.projectFps, { min: 1, max: 120, step: 1 }))}
+
+    <div class="card sh-sec">
+      <div class="tsub">${esc(T('fps'))}</div>
+      <div class="chips">${FRAME_RATES.map(x => chip('data-fps', x, fmt(x), !s.customFps && x === s.fps)).join('')}${chip('data-fps-custom', 1, esc(T('other_val')), s.customFps || !FRAME_RATES.includes(s.fps))}</div>
+      ${s.customFps || !FRAME_RATES.includes(s.fps) ? `<div class="sh-custom">${field(T('fps'), numIn('fps', s.fps, { min: 1, max: 1000, step: 'any' }))}</div>` : ''}
     </div>
-    ${out([[T('slowmo'), slow.label]])}
-    <div class="card" style="margin-top:14px;padding:12px 14px">
-      <div class="tsub">${esc(T('safe_angles'))}</div>
-      <div class="chips">${safe.map(a =>
-        `<button class="chip pick ${Math.abs(a.angle - s.angle) < 0.6 ? 'on' : ''}" data-angle="${a.angle}">${a.angle}° · ${a.label}</button>`).join('')}</div>
+
+    <div class="card sh-sec">
+      <div class="sh-head"><div class="tsub">${esc(T('shutter_lbl'))}</div>
+        <div class="seg sh-mode"><button class="${s.mode === 'speed' ? 'active' : ''}" data-shmode="speed">${esc(T('speed_short'))}</button><button class="${s.mode === 'angle' ? 'active' : ''}" data-shmode="angle">${esc(T('angle_short'))}</button></div></div>
+      <div class="chips">${options.map(o => chip('data-shv', o.value, esc(o.label), isOn(o),
+        `${o.safe ? '<i class="sh-ok">✓</i>' : ''}${recommended && o.value === recommended.value ? `<i class="sh-rec">${esc(T('recommended'))}</i>` : ''}`)).join('')}</div>
+      <p class="tnote">${esc(T('sh_hint'))}</p>
+    </div>
+
+    <div class="card sh-sec">
+      <div class="tsub">${esc(T('mains'))}</div>
+      <div class="chips">${chip('data-mains', 50, esc(T('mains_50')), s.mains === 50)}${chip('data-mains', 60, esc(T('mains_60')), s.mains === 60)}</div>
+      <div class="tsub" style="margin-top:14px">${esc(T('project_fps'))}</div>
+      <div class="chips">${[23.98, 24, 25, 29.97, 30].map(x => chip('data-proj', x, fmt(x), x === s.projectFps)).join('')}</div>
     </div>`;
 }
 
@@ -702,6 +739,7 @@ function wire(root, ctx, id, T, lang) {
       if (id === 'fov' && k === 'subject') s.frameW = Number(el.value);
       if (id === 'fov' && k === 'cam') s.cam = el.value;
       if (id === 'fov' && k === 'camBrand') { s.camBrand = el.value; s.cam = ''; }
+      if (id === 'shutter' && k === 'fps') { s.speed = shutterChoices(s.fps, s.mains, 'speed').recommended?.value ?? s.speed; s.angle = shutterChoices(s.fps, s.mains, 'angle').recommended?.value ?? s.angle; }
       if (id === 'offload' && k === 'drive') s.mbPerSec = Number(el.value);
       if (id === 'sun' && (k === 'city' || k === 'country')) { s.lat = null; s.lon = null; if (k === 'country') s.city = 0; }
       if (id === 'units' && k === 'group') {
@@ -714,9 +752,26 @@ function wire(root, ctx, id, T, lang) {
 
   root.querySelectorAll('[data-lutbrand]').forEach(b => { b.onclick = () => { S.luts.brand = b.dataset.lutbrand; S.luts.model = ''; ctx.render(); }; });
   root.querySelectorAll('[data-lens]').forEach(b => { b.onclick = () => { S.fov.focal = Number(b.dataset.lens); ctx.render(); }; });
-  root.querySelectorAll('[data-angle]').forEach(b => {
-    b.onclick = () => { S.shutter.angle = Number(b.dataset.angle); redraw(); };
-  });
+  // Frame rate and shutter. A new frame rate or mains frequency moves the shutter to the recommended
+  // value, so nobody is left on a combination that no longer makes sense.
+  const sh = S.shutter;
+  const recommend = () => {
+    sh.speed = shutterChoices(sh.fps, sh.mains, 'speed').recommended?.value ?? sh.speed;
+    sh.angle = shutterChoices(sh.fps, sh.mains, 'angle').recommended?.value ?? sh.angle;
+  };
+  root.querySelectorAll('[data-fps]').forEach(b => { b.onclick = () => { sh.fps = Number(b.dataset.fps); sh.customFps = false; recommend(); redraw(); }; });
+  root.querySelector('[data-fps-custom]')?.addEventListener('click', () => { sh.customFps = true; redraw(); });
+  root.querySelectorAll('[data-mains]').forEach(b => { b.onclick = () => { sh.mains = Number(b.dataset.mains); recommend(); redraw(); }; });
+  root.querySelectorAll('[data-proj]').forEach(b => { b.onclick = () => { sh.projectFps = Number(b.dataset.proj); redraw(); }; });
+  root.querySelectorAll('[data-shv]').forEach(b => { b.onclick = () => { sh[sh.mode === 'angle' ? 'angle' : 'speed'] = Number(b.dataset.shv); redraw(); }; });
+  root.querySelectorAll('[data-shmode]').forEach(b => { b.onclick = () => {
+    const to = b.dataset.shmode;
+    if (to === sh.mode) return;
+    const secs = sh.mode === 'angle' ? timeFromAngle(sh.fps, sh.angle) : 1 / sh.speed;
+    if (to === 'angle') sh.angle = Math.round(angleFromTime(sh.fps, secs) * 10) / 10;
+    else sh.speed = Math.round(1 / secs);
+    sh.mode = to; redraw();
+  }; });
 
   const video = root.querySelector('.vf-video');
   if (video && vfStream) video.srcObject = vfStream;
