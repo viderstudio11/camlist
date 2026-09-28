@@ -59,44 +59,18 @@
 [data-skin="canon"] .chartbg .wedge { display: block; }
 [data-skin="broadcast"] .chartbg .steps, [data-skin="broadcast"] .chartbg .grid,
 [data-skin="broadcast"] .chartbg .marks { display: block; }
-[data-skin="pixel"] .chartbg .grid, [data-skin="pixel"] .chartbg .steps,
-[data-skin="pixel"] .chartbg .zone { display: block; }
-[data-skin="blueprint"] .chartbg .grid, [data-skin="blueprint"] .chartbg .siemens,
-[data-skin="blueprint"] .chartbg .wedge, [data-skin="blueprint"] .chartbg .marks { display: block; }
-[data-skin="callsheet"] .chartbg .grid, [data-skin="callsheet"] .chartbg .steps,
-[data-skin="callsheet"] .chartbg .marks { display: block; }
-[data-skin="eink"] .chartbg .steps, [data-skin="eink"] .chartbg .grid,
-[data-skin="eink"] .chartbg .wedge { display: block; }
-[data-skin="paper"] .chartbg .grid, [data-skin="paper"] .chartbg .steps { display: block; }
-[data-skin="contrast"] .chartbg .siemens, [data-skin="contrast"] .chartbg .steps { display: block; }
-[data-skin="night"] .chartbg .marks, [data-skin="night"] .chartbg .siemens2,
-[data-skin="night"] .chartbg .grid { display: block; }
 
-/* ============================================================ CLEAN ============== */
-[data-skin="clean"] {
-  --font: "Assistant", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
-  --radius: 16px; --radius-s: 11px;
+/* ============================================================ DEFAULT ============
+   The default look lives in style.css (its tokens are the :root blocks). Nothing to override.
+   The camera skins below still speak the v1 token names; this maps the new names onto them.
+   Every camera skin sets all six source names in both its light and dark block. */
+:root:not([data-skin="clean"]) {
+  --text-2: var(--muted); --text-3: var(--dim); --line: var(--border); --line-2: var(--border-2);
+  --accent-ink: var(--accent-2); --on-accent: var(--amber-ink);
 }
-[data-skin="clean"]:not([data-theme="dark"]) {
-  --bg: #F5F4F1; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #F0EEE9; --surface-3: #E4E1DA;
-  --border: rgba(0,0,0,.11); --border-2: rgba(0,0,0,.17); --hair: rgba(0,0,0,.08);
-  --text: #14171A; --muted: #545A63; --dim: #868C95;
-  --accent: #C4161C; --accent-2: #9E1016; --accent-soft: rgba(196,22,28,.10);
-  --amber: #B26A00; --amber-soft: rgba(178,106,0,.13); --amber-ink: #FFFFFF;
-  --ok: #12703F; --ok-soft: rgba(18,112,63,.13); --warn: #9A5B00;
-  --tint: rgba(0,0,0,.035); --tint-2: rgba(0,0,0,.07); --glass: rgba(255,255,255,.86);
-  --chart: rgba(20,23,26,.13);
-}
-[data-skin="clean"][data-theme="dark"] {
-  --bg: #14161A; --bg-2: #0F1115; --surface: #1A1D23; --surface-2: #22262E; --surface-3: #2C313A;
-  --border: rgba(255,255,255,.08); --border-2: rgba(255,255,255,.15); --hair: rgba(255,255,255,.07);
-  --text: #F2F4F7; --muted: #9BA3B0; --dim: #6B7380;
-  --accent: #E0262B; --accent-2: #FF4A4F; --accent-soft: rgba(224,38,43,.16);
-  --amber: #FFB020; --amber-soft: rgba(255,176,32,.16); --amber-ink: #14161A;
-  --ok: #3DDC97; --ok-soft: rgba(61,220,151,.15); --warn: #FBBF24;
-  --tint: rgba(255,255,255,.05); --tint-2: rgba(255,255,255,.09); --glass: rgba(20,22,26,.8);
-  --chart: rgba(255,255,255,.115);
-}
+/* Sun mode on a camera skin: the skin keeps its light palette, but lines get heavier,
+   nothing is translucent and the background plates go away. */
+:root[data-theme="sun"]:not([data-skin="clean"]) { --glass: var(--surface); --chart: transparent; --shadow: none; --shadow-s: none; }
 
 /* ============================================================ ARRI ==============
    An ALEXA labels everything in small caps and keeps its values in a monospaced column. */
@@ -318,197 +292,6 @@
 [data-skin="broadcast"] .row .name { font-size: 13px; letter-spacing: -.01em; }
 [data-skin="broadcast"] .btn.primary { background: var(--accent); color: var(--amber-ink); }
 [data-skin="broadcast"] .row.is-build { box-shadow: inset 0 0 0 2px var(--accent); }
-
-/* ============================================================ 8-BIT =============
-   Pixel type on the numerals and the Latin labels; Hebrew stays readable.
-   Borders step instead of curving, and everything casts a hard block shadow. */
-[data-skin="pixel"] {
-  --font: "Heebo", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
-  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
-}
-[data-skin="pixel"]:not([data-theme="dark"]) {
-  --bg: #E9EAF2; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #DDDFEC; --surface-3: #C8CBDE;
-  --border: rgba(18,19,26,.3); --border-2: rgba(18,19,26,.55); --hair: rgba(18,19,26,.16);
-  --text: #12131A; --muted: #444862; --dim: #757A92;
-  --accent: #157F3D; --accent-2: #0E6030; --accent-soft: rgba(21,127,61,.14);
-  --amber: #8A5A00; --amber-soft: rgba(138,90,0,.15); --amber-ink: #FFFFFF;
-  --ok: #157F3D; --ok-soft: rgba(21,127,61,.14);
-  --chart: rgba(18,19,26,.15);
-}
-[data-skin="pixel"][data-theme="dark"] {
-  --bg: #12131A; --bg-2: #0D0E14; --surface: #1B1D28; --surface-2: #252838; --surface-3: #323648;
-  --border: rgba(232,234,242,.2); --border-2: rgba(232,234,242,.4); --hair: rgba(232,234,242,.12);
-  --text: #E8EAF2; --muted: #A2A7C0; --dim: #737892;
-  --accent: #4BE07C; --accent-2: #7CF0A2; --accent-soft: rgba(75,224,124,.18);
-  --amber: #FFC233; --amber-soft: rgba(255,194,51,.18); --amber-ink: #12131A;
-  --ok: #4BE07C; --ok-soft: rgba(75,224,124,.18);
-  --tint: rgba(232,234,242,.05); --tint-2: rgba(232,234,242,.1); --glass: rgba(18,19,26,.94);
-  --chart: rgba(232,234,242,.13);
-}
-[data-skin="pixel"] .row .q, [data-skin="pixel"] .stepper .q, [data-skin="pixel"] .group-head .count,
-[data-skin="pixel"] .torow b, [data-skin="pixel"] .pill {
-  font-family: "Press Start 2P", var(--mono); font-size: 9px; line-height: 1.6; letter-spacing: 0; }
-[data-skin="pixel"] .torow.big b { font-size: 13px; }
-[data-skin="pixel"] .row, [data-skin="pixel"] .card, [data-skin="pixel"] .btn, [data-skin="pixel"] .thumb {
-  border-width: 2px; box-shadow: 3px 3px 0 var(--border); }
-[data-skin="pixel"] .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--border); }
-[data-skin="pixel"] .group-head h2 { text-transform: uppercase; letter-spacing: .1em; font-size: 13px; }
-[data-skin="pixel"] .seg i { box-shadow: inset -3px -3px 0 rgba(0,0,0,.35); }
-[data-skin="pixel"] img { image-rendering: pixelated; }
-
-/* ============================================================ BLUEPRINT =========
-   A drafting sheet: cyan lines on deep blue, dashed rows, title-block headings. */
-[data-skin="blueprint"] {
-  --font: "IBM Plex Mono", "Noto Sans Hebrew", ui-monospace, monospace;
-  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
-}
-[data-skin="blueprint"], [data-skin="blueprint"][data-theme="dark"],
-[data-skin="blueprint"]:not([data-theme="dark"]) {
-  --bg: #0B1B33; --bg-2: #0E2140; --surface: #102647; --surface-2: #14304F; --surface-3: #1B3D62;
-  --border: rgba(90,200,255,.28); --border-2: rgba(90,200,255,.48); --hair: rgba(90,200,255,.16);
-  --text: #CFE6FF; --muted: #8FB9E0; --dim: #5F87AE;
-  --accent: #5AC8FF; --accent-2: #8FDCFF; --accent-soft: rgba(90,200,255,.16);
-  --amber: #FFD98A; --amber-soft: rgba(255,217,138,.16); --amber-ink: #0B1B33;
-  --ok: #7BE5B0; --ok-soft: rgba(123,229,176,.16); --warn: #FFD98A;
-  --tint: rgba(90,200,255,.06); --tint-2: rgba(90,200,255,.12); --glass: rgba(11,27,51,.94);
-  --chart: rgba(90,200,255,.14);
-  color-scheme: dark;
-}
-[data-skin="blueprint"] .group-head { border-block-end: 1px solid var(--border-2); padding-block-end: 7px; }
-[data-skin="blueprint"] .group-head h2 { text-transform: uppercase; letter-spacing: .18em; font-size: 12px; font-weight: 500; }
-[data-skin="blueprint"] .row { border-style: dashed; }
-[data-skin="blueprint"] .thumb img { filter: grayscale(1) brightness(1.1) sepia(1) hue-rotate(175deg) saturate(2.2) opacity(.85); }
-[data-skin="blueprint"] .btn.primary { background: var(--accent); color: #0B1B33; }
-
-/* ============================================================ CALL SHEET ========
-   The document that lands in your inbox at 22:00: typewriter on cream. */
-[data-skin="callsheet"] {
-  --font: "Courier Prime", "Noto Sans Hebrew", ui-monospace, monospace;
-  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
-}
-[data-skin="callsheet"]:not([data-theme="dark"]) {
-  --bg: #FBF7EC; --bg-2: #FFFDF6; --surface: #FFFDF6; --surface-2: #F2ECDC; --surface-3: #E4DCC6;
-  --border: rgba(26,23,18,.28); --border-2: rgba(26,23,18,.5); --hair: rgba(26,23,18,.16);
-  --text: #1A1712; --muted: #4E4639; --dim: #837A68;
-  --accent: #8A2B12; --accent-2: #6B200C; --accent-soft: rgba(138,43,18,.1);
-  --amber: #8A6A00; --amber-soft: rgba(138,106,0,.12); --amber-ink: #FFFDF6;
-  --chart: rgba(26,23,18,.14);
-}
-[data-skin="callsheet"][data-theme="dark"] {
-  --bg: #1A1712; --bg-2: #211D17; --surface: #241F19; --surface-2: #2E2820; --surface-3: #3B3328;
-  --border: rgba(251,247,236,.22); --border-2: rgba(251,247,236,.4); --hair: rgba(251,247,236,.13);
-  --text: #F2ECDC; --muted: #B3A891; --dim: #837A68;
-  --accent: #E0693F; --accent-2: #FF8A5C; --accent-soft: rgba(224,105,63,.16);
-  --amber-ink: #1A1712; --chart: rgba(251,247,236,.12);
-}
-[data-skin="callsheet"] .group-head { border-block: 1px solid var(--text); padding: 5px 10px; }
-[data-skin="callsheet"] .group-head h2 { text-transform: uppercase; letter-spacing: .15em; font-size: 12px; font-weight: 700; }
-[data-skin="callsheet"] .row { border-block-end: 1px dashed var(--hair); background: none; padding: 6px 10px; }
-[data-skin="callsheet"] .row .name { font-weight: 700; font-size: 13px; }
-[data-skin="callsheet"] .btn.primary { background: var(--text); color: var(--bg); }
-
-/* ============================================================ E-INK =============
-   No colour whatsoever, and a serif face with real Hebrew. Reads like a page. */
-[data-skin="eink"] {
-  --font: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
-  --radius: 2px; --radius-s: 2px; --shadow: none; --shadow-s: none;
-}
-[data-skin="eink"]:not([data-theme="dark"]) {
-  --bg: #F7F6F3; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #EDECE8; --surface-3: #DCDBD6;
-  --border: rgba(0,0,0,.26); --border-2: rgba(0,0,0,.46); --hair: rgba(0,0,0,.15);
-  --text: #111111; --muted: #444444; --dim: #767676;
-  --accent: #111111; --accent-2: #000000; --accent-soft: rgba(0,0,0,.08);
-  --amber: #555555; --amber-soft: rgba(85,85,85,.12); --amber-ink: #FFFFFF;
-  --ok: #333333; --ok-soft: rgba(51,51,51,.1); --warn: #555555;
-  --chart: rgba(0,0,0,.15);
-}
-[data-skin="eink"][data-theme="dark"] {
-  --bg: #121212; --bg-2: #171717; --surface: #1B1B1B; --surface-2: #242424; --surface-3: #303030;
-  --border: rgba(255,255,255,.26); --border-2: rgba(255,255,255,.46); --hair: rgba(255,255,255,.15);
-  --text: #F2F2F2; --muted: #B5B5B5; --dim: #868686;
-  --accent: #F2F2F2; --accent-2: #FFFFFF; --accent-soft: rgba(255,255,255,.1);
-  --amber: #C9C9C9; --amber-soft: rgba(201,201,201,.12); --amber-ink: #121212;
-  --ok: #DDDDDD; --warn: #BBBBBB; --chart: rgba(255,255,255,.14);
-}
-[data-skin="eink"] .row .name { font-size: 15.5px; font-weight: 500; }
-[data-skin="eink"] .group-head h2 { font-weight: 700; font-size: 16px; letter-spacing: -.01em; }
-[data-skin="eink"] .thumb img { filter: grayscale(1) contrast(1.1); }
-[data-skin="eink"] .btn.primary { background: var(--text); color: var(--bg); }
-[data-skin="eink"] .row.is-build { box-shadow: inset 3px 0 0 var(--text); }
-
-/* ============================================================ PAPER ============= */
-[data-skin="paper"] {
-  --font: "Noto Sans Hebrew", -apple-system, "Segoe UI", Roboto, sans-serif;
-  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
-}
-[data-skin="paper"]:not([data-theme="dark"]) {
-  --bg: #FFFDF8; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #F6F3EC; --surface-3: #EAE6DC;
-  --border: rgba(0,0,0,.22); --border-2: rgba(0,0,0,.42); --hair: rgba(0,0,0,.14);
-  --text: #111111; --muted: #4A4A46; --dim: #7B7B74;
-  --accent: #111111; --accent-2: #000000; --accent-soft: rgba(0,0,0,.07);
-  --amber: #8A6A00; --amber-soft: rgba(138,106,0,.12); --amber-ink: #FFFFFF;
-  --chart: rgba(0,0,0,.14);
-}
-[data-skin="paper"][data-theme="dark"] {
-  --bg: #17171A; --bg-2: #1D1D21; --surface: #1D1D21; --surface-2: #26262B; --surface-3: #313138;
-  --border: rgba(255,255,255,.2); --border-2: rgba(255,255,255,.34); --hair: rgba(255,255,255,.12);
-  --text: #F4F3EF; --muted: #A8A8A2; --dim: #7A7A75;
-  --accent: #F4F3EF; --accent-2: #FFFFFF; --accent-soft: rgba(255,255,255,.1);
-  --amber-ink: #17171A; --chart: rgba(255,255,255,.07);
-}
-[data-skin="paper"] .group-head { border-block-start: 2px solid var(--text); border-block-end: 1px solid var(--text);
-  background: none; padding: 7px 10px; }
-[data-skin="paper"] .group-head h2 { text-transform: uppercase; letter-spacing: .14em; font-size: 11.5px; }
-[data-skin="paper"] .row { border-block-end: 1px solid var(--hair); background: none; padding: 7px 10px; }
-[data-skin="paper"] .card, [data-skin="paper"] .kit { border: 1px solid var(--border); }
-[data-skin="paper"] .btn.primary { background: var(--text); color: var(--bg); }
-
-/* ============================================================ SUN =============== */
-[data-skin="contrast"] {
-  --font: "Heebo", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
-  --radius: 4px; --radius-s: 4px; --shadow: none; --shadow-s: none;
-}
-[data-skin="contrast"]:not([data-theme="dark"]) {
-  --bg: #FFFFFF; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #F0F0F0; --surface-3: #DCDCDC;
-  --border: rgba(0,0,0,.4); --border-2: rgba(0,0,0,.72); --hair: rgba(0,0,0,.24);
-  --text: #000000; --muted: #2B2B2B; --dim: #565656;
-  --accent: #B00016; --accent-2: #86000F; --accent-soft: rgba(176,0,22,.12);
-  --ok: #005F2E; --ok-soft: rgba(0,95,46,.14); --warn: #7A4300;
-  --chart: rgba(0,0,0,.1);
-}
-[data-skin="contrast"][data-theme="dark"] {
-  --bg: #000000; --bg-2: #000000; --surface: #0A0A0A; --surface-2: #161616; --surface-3: #242424;
-  --border: rgba(255,255,255,.4); --border-2: rgba(255,255,255,.72); --hair: rgba(255,255,255,.24);
-  --text: #FFFFFF; --muted: #E0E0E0; --dim: #ABABAB;
-  --accent: #FF5A5F; --accent-2: #FF8A8E; --accent-soft: rgba(255,90,95,.2);
-  --ok: #4DFF9F; --warn: #FFC233; --chart: rgba(255,255,255,.12);
-}
-[data-skin="contrast"] { font-size: 106%; }
-[data-skin="contrast"] .row .name { font-size: 16px; font-weight: 800; }
-[data-skin="contrast"] .row .sub { font-size: 13px; }
-[data-skin="contrast"] .group-head h2 { font-size: 17px; font-weight: 900; }
-[data-skin="contrast"] .row { border: 1px solid var(--border); }
-[data-skin="contrast"] .btn, [data-skin="contrast"] .stepper button { font-weight: 800; }
-
-/* ============================================================ NIGHT =============
-   Red light does not bleach rhodopsin, which is why a set runs red torches after dark.
-   Red only, on black, and it ignores the light/dark switch on purpose. */
-[data-skin="night"], [data-skin="night"][data-theme="dark"], [data-skin="night"]:not([data-theme="dark"]) {
-  --font: "Heebo", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
-  --radius: 4px; --radius-s: 4px; --shadow: none; --shadow-s: none;
-  --bg: #0A0201; --bg-2: #120403; --surface: #1A0605; --surface-2: #260907; --surface-3: #380D0A;
-  --border: rgba(255,138,117,.34); --border-2: rgba(255,138,117,.58); --hair: rgba(255,138,117,.2);
-  --text: #FF8A75; --muted: #E0634E; --dim: #A8402F;
-  --accent: #FF3B28; --accent-2: #FF6B5A; --accent-soft: rgba(255,59,40,.2);
-  --amber: #FF7A3D; --amber-soft: rgba(255,122,61,.2); --amber-ink: #140302;
-  --ok: #FF9F73; --ok-soft: rgba(255,159,115,.18); --warn: #FFB07A;
-  --tint: rgba(255,138,117,.07); --tint-2: rgba(255,138,117,.13); --glass: rgba(10,2,1,.95);
-  --chart: rgba(255,138,117,.12);
-  color-scheme: dark;
-}
-[data-skin="night"] .btn.primary { background: var(--accent); color: #140302; }
-[data-skin="night"] .thumb img, [data-skin="night"] .dept-card {
-  filter: grayscale(1) sepia(1) saturate(7) hue-rotate(-18deg) brightness(.92); }
 
 /* ---------- The skin bank in settings ---------- */
 .skin-group { font-size: 11px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
