@@ -1875,6 +1875,93 @@
       ]
     },
     {
+      "id": "eva1",
+      "brand": "Panasonic",
+      "label": "AU-EVA1",
+      "formats": [
+        {
+          "id": "alli400-uhd",
+          "codec": "422 ALL-I 400M",
+          "res": "UHD 3840×2160 / 4K",
+          "mbps": {
+            "24": 400,
+            "25": 400,
+            "23.98": 400,
+            "29.97": 400
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop150-uhd",
+          "codec": "422 LongGOP 150M",
+          "res": "UHD 3840×2160 / 4K",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "23.98": 150,
+            "29.97": 150
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "hevc150-uhd",
+          "codec": "HEVC LongGOP 150M",
+          "res": "UHD 3840×2160 / 4K",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "50": 150,
+            "23.98": 150,
+            "29.97": 150,
+            "59.94": 150
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop100-uhd",
+          "codec": "420 LongGOP 100M",
+          "res": "UHD 3840×2160 / 4K",
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 100,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 100
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "alli100-hd",
+          "codec": "422 ALL-I 100M",
+          "res": "FHD 1920×1080 / 2K",
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 100,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 100
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop50-hd",
+          "codec": "422 LongGOP 50M",
+          "res": "FHD 1920×1080 / 2K",
+          "mbps": {
+            "24": 50,
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        }
+      ]
+    },
+    {
       "id": "other",
       "brand": "—",
       "label": "אחר / ידני",
