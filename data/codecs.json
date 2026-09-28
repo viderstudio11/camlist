@@ -518,20 +518,329 @@
     {
       "id": "fx3",
       "brand": "Sony",
-      "label": "FX3 / FX30",
+      "label": "ILME-FX3",
       "formats": [
-        [
-          "xavc-i",
-          "uhd"
-        ],
-        [
-          "xavc-hs",
-          "uhd"
-        ],
-        [
-          "xavc-l",
-          "uhd"
-        ]
+        {
+          "id": "xavc-s-i-4k",
+          "codec": "XAVC S-I",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        },
+        {
+          "id": "xavc-s-i-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 93,
+            "50": 185,
+            "59.94": 222,
+            "29.97": 111,
+            "23.98": 89
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        },
+        {
+          "id": "xavc-hs-4k",
+          "codec": "XAVC HS",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        },
+        {
+          "id": "xavc-s-4k",
+          "codec": "XAVC S",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 140,
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "29.97": 140,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        },
+        {
+          "id": "xavc-s-hd",
+          "codec": "XAVC S",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "100": 100,
+            "59.94": 50,
+            "29.97": 50,
+            "23.98": 50,
+            "119.88": 100
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        }
+      ]
+    },
+    {
+      "id": "fx30",
+      "brand": "Sony",
+      "label": "ILME-FX30",
+      "formats": [
+        {
+          "id": "xavc-s-i-dci-4k",
+          "codec": "XAVC S-I",
+          "res": "DCI 4K 4096×2160",
+          "mbps": {
+            "24": 240,
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-s-i-4k",
+          "codec": "XAVC S-I",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-s-i-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 93,
+            "50": 185,
+            "59.94": 222,
+            "29.97": 111,
+            "23.98": 89
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-hs-4k",
+          "codec": "XAVC HS",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-s-4k",
+          "codec": "XAVC S",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 140,
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "29.97": 140,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-s-hd",
+          "codec": "XAVC S",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "100": 100,
+            "59.94": 50,
+            "29.97": 50,
+            "23.98": 50,
+            "119.88": 100
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        }
+      ]
+    },
+    {
+      "id": "fx2",
+      "brand": "Sony",
+      "label": "ILME-FX2",
+      "formats": [
+        {
+          "id": "xavc-s-i-dci-4k",
+          "codec": "XAVC S-I",
+          "res": "DCI 4K 4096×2160",
+          "mbps": {
+            "24": 240,
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-i-4k",
+          "codec": "XAVC S-I",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-i-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 93,
+            "50": 185,
+            "59.94": 222,
+            "29.97": 111,
+            "23.98": 89
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-hs-4k",
+          "codec": "XAVC HS",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "50": 200,
+            "59.94": 200,
+            "23.98": 100
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-4k",
+          "codec": "XAVC S",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 140,
+            "50": 200,
+            "59.94": 200,
+            "29.97": 140,
+            "23.98": 100
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-hd",
+          "codec": "XAVC S",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "100": 100,
+            "59.94": 50,
+            "29.97": 50,
+            "23.98": 50,
+            "119.88": 100
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        }
+      ]
+    },
+    {
+      "id": "a7s3",
+      "brand": "Sony",
+      "label": "Alpha 7S III",
+      "formats": [
+        {
+          "id": "xavc-s-i-4k",
+          "codec": "XAVC S-I",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-i-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 93,
+            "50": 185,
+            "59.94": 222,
+            "29.97": 111,
+            "23.98": 89
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-hs-4k",
+          "codec": "XAVC HS",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-4k",
+          "codec": "XAVC S",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 140,
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "29.97": 140,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-hd",
+          "codec": "XAVC S",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "100": 100,
+            "59.94": 50,
+            "29.97": 50,
+            "23.98": 50,
+            "119.88": 100
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        }
       ]
     },
     {
