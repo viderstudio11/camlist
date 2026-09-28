@@ -1509,18 +1509,207 @@
       "brand": "Blackmagic",
       "label": "URSA Mini Pro 12K",
       "formats": [
-        [
-          "braw-12",
-          "12k"
-        ],
-        [
-          "braw-8",
-          "8k"
-        ],
-        [
-          "braw-5",
-          "6k"
-        ]
+        {
+          "id": "braw-12k-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "12K 12288×6480",
+          "card": 1000,
+          "minutes": {
+            "24": 28,
+            "25": 27,
+            "30": 23,
+            "23.98": 28,
+            "29.97": 23
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-12k-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "12K 12288×6480",
+          "card": 1000,
+          "minutes": {
+            "24": 46,
+            "25": 44,
+            "30": 36,
+            "50": 22,
+            "60": 18,
+            "23.98": 46,
+            "29.97": 37,
+            "59.94": 18
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-12k-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "12K 12288×6480",
+          "card": 1000,
+          "minutes": {
+            "24": 72,
+            "25": 66,
+            "30": 55,
+            "50": 33,
+            "60": 27,
+            "23.98": 72,
+            "29.97": 55,
+            "59.94": 27
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-12k-18-1",
+          "codec": "Blackmagic RAW 18:1",
+          "res": "12K 12288×6480",
+          "card": 1000,
+          "minutes": {
+            "24": 102,
+            "25": 102,
+            "30": 84,
+            "50": 49,
+            "60": 41,
+            "23.98": 102,
+            "29.97": 84,
+            "59.94": 41
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-8k-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "8K 8192×4320",
+          "card": 1000,
+          "minutes": {
+            "24": 66,
+            "25": 60,
+            "30": 51,
+            "50": 31,
+            "60": 25,
+            "23.98": 66,
+            "29.97": 51,
+            "59.94": 25
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-8k-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "8K 8192×4320",
+          "card": 1000,
+          "minutes": {
+            "24": 102,
+            "25": 102,
+            "30": 84,
+            "50": 49,
+            "60": 41,
+            "23.98": 102,
+            "29.97": 84,
+            "59.94": 41
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-8k-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "8K 8192×4320",
+          "card": 1000,
+          "minutes": {
+            "24": 156,
+            "25": 150,
+            "30": 126,
+            "50": 72,
+            "60": 60,
+            "23.98": 156,
+            "29.97": 126,
+            "59.94": 60
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-8k-18-1",
+          "codec": "Blackmagic RAW 18:1",
+          "res": "8K 8192×4320",
+          "card": 1000,
+          "minutes": {
+            "24": 234,
+            "25": 222,
+            "30": 186,
+            "50": 114,
+            "60": 96,
+            "23.98": 234,
+            "29.97": 186,
+            "59.94": 96
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-6k-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "6K 6144×3240",
+          "card": 1000,
+          "minutes": {
+            "24": 114,
+            "25": 108,
+            "30": 90,
+            "50": 55,
+            "60": 46,
+            "23.98": 114,
+            "29.97": 90,
+            "59.94": 46
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-6k-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "6K 6144×3240",
+          "card": 1000,
+          "minutes": {
+            "24": 186,
+            "25": 174,
+            "30": 144,
+            "50": 90,
+            "60": 72,
+            "23.98": 186,
+            "29.97": 144,
+            "59.94": 72
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-6k-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "6K 6144×3240",
+          "card": 1000,
+          "minutes": {
+            "24": 276,
+            "25": 264,
+            "30": 222,
+            "50": 132,
+            "60": 108,
+            "23.98": 276,
+            "29.97": 222,
+            "59.94": 108
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-6k-18-1",
+          "codec": "Blackmagic RAW 18:1",
+          "res": "6K 6144×3240",
+          "card": 1000,
+          "minutes": {
+            "24": 414,
+            "25": 396,
+            "30": 330,
+            "50": 198,
+            "60": 162,
+            "23.98": 414,
+            "29.97": 330,
+            "59.94": 162
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        }
       ]
     },
     {
