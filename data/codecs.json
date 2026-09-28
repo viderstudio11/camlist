@@ -1098,10 +1098,12 @@
           "card": 128,
           "minutes": {
             "24": 124,
+            "25": 124,
             "30": 124,
+            "50": 123,
             "60": 123
           },
-          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "high-4k",
@@ -1110,11 +1112,14 @@
           "card": 128,
           "minutes": {
             "24": 197,
+            "25": 165,
             "30": 165,
+            "50": 123,
             "60": 123,
+            "100": 122,
             "120": 122
           },
-          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "high-2-7k",
@@ -1122,9 +1127,10 @@
           "res": "2.7K 16:9",
           "card": 128,
           "minutes": {
+            "200": 122,
             "240": 122
           },
-          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "high-1080p",
@@ -1132,12 +1138,16 @@
           "res": "1080p 16:9",
           "card": 128,
           "minutes": {
+            "25": 361,
             "30": 361,
+            "50": 223,
             "60": 223,
+            "100": 160,
             "120": 160,
+            "200": 123,
             "240": 123
           },
-          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "standard-5-3k",
@@ -1146,10 +1156,12 @@
           "card": 128,
           "minutes": {
             "24": 291,
+            "25": 266,
             "30": 266,
+            "50": 240,
             "60": 240
           },
-          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "standard-4k",
@@ -1158,11 +1170,14 @@
           "card": 128,
           "minutes": {
             "24": 473,
+            "25": 322,
             "30": 322,
+            "50": 261,
             "60": 261,
+            "100": 191,
             "120": 191
           },
-          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "standard-2-7k",
@@ -1170,9 +1185,10 @@
           "res": "2.7K 16:9",
           "card": 128,
           "minutes": {
+            "200": 203,
             "240": 203
           },
-          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "standard-1080p",
@@ -1180,12 +1196,16 @@
           "res": "1080p 16:9",
           "card": 128,
           "minutes": {
+            "25": 687,
             "30": 687,
+            "50": 459,
             "60": 459,
+            "100": 306,
             "120": 306,
+            "200": 223,
             "240": 223
           },
-          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         }
       ]
     },
@@ -1201,10 +1221,12 @@
           "card": 128,
           "minutes": {
             "24": 146,
+            "25": 123,
             "30": 123,
+            "50": 121,
             "60": 121
           },
-          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "high-4k",
@@ -1213,11 +1235,14 @@
           "card": 128,
           "minutes": {
             "24": 193,
+            "25": 162,
             "30": 162,
+            "50": 121,
             "60": 121,
+            "100": 120,
             "120": 120
           },
-          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "high-2-7k",
@@ -1225,9 +1250,10 @@
           "res": "2.7K 16:9",
           "card": 128,
           "minutes": {
+            "200": 120,
             "240": 120
           },
-          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "high-1080p",
@@ -1236,12 +1262,16 @@
           "card": 128,
           "minutes": {
             "24": 395,
+            "25": 349,
             "30": 349,
+            "50": 217,
             "60": 217,
+            "100": 157,
             "120": 157,
+            "200": 125,
             "240": 125
           },
-          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "standard-5-3k",
@@ -1250,10 +1280,12 @@
           "card": 128,
           "minutes": {
             "24": 284,
+            "25": 259,
             "30": 259,
+            "50": 234,
             "60": 234
           },
-          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "standard-4k",
@@ -1262,11 +1294,14 @@
           "card": 128,
           "minutes": {
             "24": 454,
+            "25": 395,
             "30": 395,
+            "50": 276,
             "60": 276,
+            "100": 186,
             "120": 186
           },
-          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "standard-2-7k",
@@ -1274,9 +1309,10 @@
           "res": "2.7K 16:9",
           "card": 128,
           "minutes": {
+            "200": 186,
             "240": 186
           },
-          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         },
         {
           "id": "standard-1080p",
@@ -1285,12 +1321,16 @@
           "card": 128,
           "minutes": {
             "24": 647,
+            "25": 647,
             "30": 647,
+            "50": 434,
             "60": 434,
+            "100": 296,
             "120": 296,
+            "200": 229,
             "240": 229
           },
-          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
         }
       ]
     },
