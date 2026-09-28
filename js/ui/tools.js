@@ -123,6 +123,7 @@ const L = {
   media_sentence: { he: '{h} שעות {fmt} ב־{fps} על {cam} = {total}. כרטיס אחד מחזיק {per}.', en: '{h} hours of {fmt} at {fps} on {cam} = {total}. One card holds {per}.' },
   src_official: { he: 'נתון רשמי', en: 'Official' },
   src_estimate: { he: 'הערכה', en: 'Estimate' },
+  eff_rate:   { he: '≈{r} Mbps בפועל, לפי זמני ההקלטה של היצרן', en: '≈{r} Mbps effective, from the maker’s recording times' },
   speed_short: { he: 'מהירות', en: 'Speed' },
   angle_short: { he: 'זווית', en: 'Angle' },
   recommended: { he: 'מומלץ', en: 'best' },
@@ -293,7 +294,7 @@ function mediaTool(T) {
       const part = i === cards - 1 ? (s.hours / onCard) % 1 || 1 : 1;
       return `<span class="cardchip"><i style="height:${(part * 100).toFixed(0)}%"></i><em>${gb(s.card)}</em></span>`;
     }).join('')}${cards > 24 ? `<span class="cardmore">+${cards - 24}</span>` : ''}</div>` : ''}
-    <p class="tnote"><span class="src-badge ${fmt.official ? 'ok' : 'est'}">${esc(T(fmt.official ? 'src_official' : 'src_estimate'))}</span> ${num(rate, 0)} Mbps${fmt.src ? ` · ${esc(fmt.src)}` : ''}</p>
+    <p class="tnote"><span class="src-badge ${fmt.official ? 'ok' : 'est'}">${esc(T(fmt.official ? 'src_official' : 'src_estimate'))}</span> ${fmt.fromTimes ? esc(Tp('eff_rate', { r: num(rate, 0) })) : `${num(rate, 0)} Mbps`}${fmt.src ? ` · ${esc(fmt.src)}` : ''}</p>
   </div>`;
 
   return `${answer}${pick}

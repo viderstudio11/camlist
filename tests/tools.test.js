@@ -219,3 +219,9 @@ test('camera formats: official recording times become rates that give the same t
   assert.equal(fx6[0].label, 'XAVC-I · UHD 3840×2160');
   assert.equal(fx6[0].official, true);
 });
+
+test('the tools screen module parses and loads', async () => {
+  const mod = await import('../js/ui/tools.js');
+  assert.equal(typeof mod.render, 'function');
+  assert.equal(mod.toolLabel('media', 'en'), 'Media');
+});

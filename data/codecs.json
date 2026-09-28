@@ -916,6 +916,214 @@
       ]
     },
     {
+      "id": "hero13",
+      "brand": "GoPro",
+      "label": "HERO13 Black",
+      "formats": [
+        {
+          "id": "high-5-3k",
+          "codec": "HEVC High bit rate",
+          "res": "5.3K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 124,
+            "30": 124,
+            "60": 123
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "high-4k",
+          "codec": "HEVC High bit rate",
+          "res": "4K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 197,
+            "30": 165,
+            "60": 123,
+            "120": 122
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "high-2-7k",
+          "codec": "HEVC High bit rate",
+          "res": "2.7K 16:9",
+          "card": 128,
+          "minutes": {
+            "240": 122
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "high-1080p",
+          "codec": "HEVC High bit rate",
+          "res": "1080p 16:9",
+          "card": 128,
+          "minutes": {
+            "30": 361,
+            "60": 223,
+            "120": 160,
+            "240": 123
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "standard-5-3k",
+          "codec": "HEVC Standard bit rate",
+          "res": "5.3K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 291,
+            "30": 266,
+            "60": 240
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "standard-4k",
+          "codec": "HEVC Standard bit rate",
+          "res": "4K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 473,
+            "30": 322,
+            "60": 261,
+            "120": 191
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "standard-2-7k",
+          "codec": "HEVC Standard bit rate",
+          "res": "2.7K 16:9",
+          "card": 128,
+          "minutes": {
+            "240": 203
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "standard-1080p",
+          "codec": "HEVC Standard bit rate",
+          "res": "1080p 16:9",
+          "card": 128,
+          "minutes": {
+            "30": 687,
+            "60": 459,
+            "120": 306,
+            "240": 223
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com"
+        }
+      ]
+    },
+    {
+      "id": "hero12",
+      "brand": "GoPro",
+      "label": "HERO12 Black",
+      "formats": [
+        {
+          "id": "high-5-3k",
+          "codec": "HEVC High bit rate",
+          "res": "5.3K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 146,
+            "30": 123,
+            "60": 121
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "high-4k",
+          "codec": "HEVC High bit rate",
+          "res": "4K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 193,
+            "30": 162,
+            "60": 121,
+            "120": 120
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "high-2-7k",
+          "codec": "HEVC High bit rate",
+          "res": "2.7K 16:9",
+          "card": 128,
+          "minutes": {
+            "240": 120
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "high-1080p",
+          "codec": "HEVC High bit rate",
+          "res": "1080p 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 395,
+            "30": 349,
+            "60": 217,
+            "120": 157,
+            "240": 125
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "standard-5-3k",
+          "codec": "HEVC Standard bit rate",
+          "res": "5.3K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 284,
+            "30": 259,
+            "60": 234
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "standard-4k",
+          "codec": "HEVC Standard bit rate",
+          "res": "4K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 454,
+            "30": 395,
+            "60": 276,
+            "120": 186
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "standard-2-7k",
+          "codec": "HEVC Standard bit rate",
+          "res": "2.7K 16:9",
+          "card": 128,
+          "minutes": {
+            "240": 186
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+        },
+        {
+          "id": "standard-1080p",
+          "codec": "HEVC Standard bit rate",
+          "res": "1080p 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 647,
+            "30": 647,
+            "60": 434,
+            "120": 296,
+            "240": 229
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com"
+        }
+      ]
+    },
+    {
       "id": "other",
       "brand": "—",
       "label": "אחר / ידני",
