@@ -929,6 +929,33 @@
       ]
     },
     {
+      "id": "alexamini",
+      "brand": "ARRI",
+      "label": "ALEXA Mini",
+      "formats": [
+        [
+          "prores-xq",
+          "uhd"
+        ],
+        [
+          "prores-hq",
+          "uhd"
+        ],
+        [
+          "prores-422",
+          "uhd"
+        ],
+        [
+          "prores-hq",
+          "hd"
+        ],
+        [
+          "prores-422",
+          "hd"
+        ]
+      ]
+    },
+    {
       "id": "amira",
       "brand": "ARRI",
       "label": "AMIRA",
