@@ -2092,14 +2092,66 @@
       "brand": "Canon",
       "label": "EOS C300 Mark III",
       "formats": [
-        [
-          "craw-st",
-          "uhd"
-        ],
-        [
-          "xf-avc-i",
-          "uhd"
-        ]
+        {
+          "id": "crm-4k",
+          "codec": "Cinema RAW Light",
+          "res": "4K 4096×2160",
+          "card": 512,
+          "minutes": {
+            "24": 64,
+            "25": 64,
+            "50": 64,
+            "23.98": 64,
+            "29.97": 64,
+            "59.94": 64
+          },
+          "src": "Canon USA EOS C300 Mark III specifications, recording time on a 512 GB CFexpress card; Canon Europe specifications give the 50.00P/25.00P split (NTSC rates take the same class: 59.94P as 50P, 23.98P–29.97P as 25P)"
+        },
+        {
+          "id": "xfi-4k",
+          "codec": "XF-AVC Intra",
+          "res": "4K 4096×2160 / UHD",
+          "card": 512,
+          "minutes": {
+            "24": 156,
+            "25": 156,
+            "50": 79,
+            "23.98": 156,
+            "29.97": 156,
+            "59.94": 79
+          },
+          "src": "Canon USA EOS C300 Mark III specifications, recording time on a 512 GB CFexpress card; Canon Europe specifications give the 50.00P/25.00P split (NTSC rates take the same class: 59.94P as 50P, 23.98P–29.97P as 25P)"
+        },
+        {
+          "id": "crm-2k",
+          "codec": "Cinema RAW Light",
+          "res": "2K 2048×1080",
+          "card": 512,
+          "minutes": {
+            "24": 256,
+            "25": 256,
+            "50": 256,
+            "23.98": 256,
+            "29.97": 256,
+            "59.94": 256
+          },
+          "src": "Canon USA EOS C300 Mark III specifications, recording time on a 512 GB CFexpress card; Canon Europe specifications give the 50.00P/25.00P split (NTSC rates take the same class: 59.94P as 50P, 23.98P–29.97P as 25P)"
+        },
+        {
+          "id": "xfi-2k",
+          "codec": "XF-AVC Intra",
+          "res": "2K / HD 1920×1080",
+          "card": 512,
+          "minutes": {
+            "24": 401,
+            "25": 401,
+            "50": 207,
+            "23.98": 401,
+            "29.97": 401,
+            "59.94": 207
+          },
+          "src": "Canon USA EOS C300 Mark III specifications, recording time on a 512 GB CFexpress card; Canon Europe specifications give the 50.00P/25.00P split (NTSC rates take the same class: 59.94P as 50P, 23.98P–29.97P as 25P)"
+        }
       ]
     },
     {
