@@ -8,6 +8,17 @@ export const normalize = (s = '') => String(s).toLowerCase()
 export function createCatalog(data, manual = [], extra = null) {
   const departments = [...(data.departments || [])].sort((a, b) => a.order - b.order);
   const deptMap = new Map(departments.map(d => [d.id, d]));
+  // Utopia nests some subcategories (Follow Focus → Wireless / Manual, Filters → 4X5.6 …) and files
+  // products only on the deepest one. A subcategory therefore stands for itself plus everything under it.
+  const children = new Map();
+  for (const d of departments) for (const sc of d.subcategories || []) {
+    if (sc.parent != null) children.set(sc.parent, [...(children.get(sc.parent) || []), sc.id]);
+  }
+  const withDescendants = (id) => {
+    const out = new Set([id]);
+    for (const x of out) for (const c of children.get(x) || []) out.add(c);
+    return out;
+  };
   const subcatMap = new Map();
   for (const d of departments) for (const s of d.subcategories || []) subcatMap.set(s.id, { ...s, dept: d.id });
   const brandNames = new Map((data.brands || []).map(b => [b.id, b.name]));
@@ -76,7 +87,7 @@ export function createCatalog(data, manual = [], extra = null) {
     departments, brands, products,
     byId: (id) => byIdMap.get(id),
     byDept: (deptId) => all().filter(p => p.dept === deptId),
-    bySubcat: (id) => all().filter(p => p.subcats.includes(id)),
+    bySubcat: (id) => { const ids = withDescendants(id); return all().filter(p => p.subcats.some(x => ids.has(x))); },
     byBrand: (slug) => all().filter(p => p.brand === slug),
     subcatsOf: (deptId) => (deptMap.get(deptId)?.subcategories || []).filter(s => s.parent === null),
     deptById: (id) => deptMap.get(id),
