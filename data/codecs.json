@@ -916,6 +916,93 @@
       ]
     },
     {
+      "id": "c80",
+      "brand": "Canon",
+      "label": "EOS C80",
+      "formats": [
+        {
+          "id": "xfavc-i-4k-hi",
+          "codec": "XF-AVC Intra (high)",
+          "res": "4K / UHD",
+          "mbps": {
+            "24": 480,
+            "25": 500,
+            "50": 500,
+            "23.98": 480,
+            "29.97": 600,
+            "59.94": 600
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+        },
+        {
+          "id": "xfavc-i-4k-mid",
+          "codec": "XF-AVC Intra (medium)",
+          "res": "4K / UHD",
+          "mbps": {
+            "24": 360,
+            "25": 375,
+            "23.98": 360,
+            "29.97": 450
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+        },
+        {
+          "id": "xfavc-i-4k-lo",
+          "codec": "XF-AVC Intra (low)",
+          "res": "4K / UHD",
+          "mbps": {
+            "24": 240,
+            "25": 250,
+            "23.98": 240,
+            "29.97": 300
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+        },
+        {
+          "id": "xfavc-lgop-4k",
+          "codec": "XF-AVC Long GOP",
+          "res": "4K / UHD",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "50": 250,
+            "23.98": 150,
+            "29.97": 150,
+            "59.94": 250
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+        },
+        {
+          "id": "xfavc-i-hd",
+          "codec": "XF-AVC Intra",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "24": 120,
+            "25": 125,
+            "50": 250,
+            "23.98": 120,
+            "29.97": 150,
+            "59.94": 300
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+        },
+        {
+          "id": "xfavc-lgop-hd",
+          "codec": "XF-AVC Long GOP",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "24": 50,
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+        }
+      ]
+    },
+    {
       "id": "hero13",
       "brand": "GoPro",
       "label": "HERO13 Black",
