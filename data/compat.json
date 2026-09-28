@@ -63,7 +63,8 @@
         "w": 35.6,
         "h": 20,
         "mode": "UHD 16:9 · ≤60p",
-        "src": "Sony FX6 spec (35.6×23.8 FF sensor); full width in UHD ≤60p per xdcam-user.com 2020-11-22"
+        "src": "Sony FX6 spec (35.6×23.8 FF sensor); full width in UHD ≤60p per xdcam-user.com 2020-11-22",
+        "pending": "official manufacturer page not yet reached (sony.com blocked 2026-09-28) — confirm per official-sources rule"
       }
     },
     {
@@ -258,7 +259,8 @@
         "w": 32,
         "h": 18,
         "mode": "7.6K 16:9 → UHD",
-        "src": "Sony VENICE 2 8K format poster: 7.6K 16:9, 7680×4320, 32.0×18.0 mm"
+        "src": "Sony VENICE 2 8K format poster: 7.6K 16:9, 7680×4320, 32.0×18.0 mm",
+        "pending": "official manufacturer page not yet reached (sony.com blocked 2026-09-28) — confirm per official-sources rule"
       }
     },
     {
@@ -1269,7 +1271,8 @@
         "w": 35.9,
         "h": 20.2,
         "mode": "FF 16:9 → UHD · ≤60p",
-        "src": "Sony spec 35.9×24.0 mm, 4992 px wide; XAVC 4K from FF 16:9 (4992×2808) per Newsshooter/RedShark 2026-07-22"
+        "src": "Sony spec 35.9×24.0 mm, 4992 px wide; XAVC 4K from FF 16:9 (4992×2808) per Newsshooter/RedShark 2026-07-22",
+        "pending": "official manufacturer page not yet reached (sony.com blocked 2026-09-28) — confirm per official-sources rule"
       }
     }
   ],

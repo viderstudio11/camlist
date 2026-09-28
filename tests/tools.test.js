@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createMedia } from '../js/tools/media.js';
 import { timeFromAngle, angleFromTime, asFraction, flicker, safeAngles, slowMotion, FRAME_RATES, shutterChoices } from '../js/tools/shutter.js';
-import { coverage, focalFor, angleOfView, nearestPrime, sensor, SHOTS, lensFor, frameAt, pickLens } from '../js/tools/fov.js';
+import { coverage, focalFor, angleOfView, nearestPrime, sensor, SHOTS, lensFor, frameAt, pickLens, toUnit, fromUnit } from '../js/tools/fov.js';
 import { sunDay, crossings } from '../js/tools/solar.js';
 import { offload, convert, cToF, fToC, mahToWh } from '../js/tools/convert.js';
 
@@ -183,4 +183,11 @@ test('pickLens names a real lens: a zoom that covers it, else the nearest prime'
   assert.deepEqual(pickLens(40, lenses), { min: 35, max: 35, focal: 35 });
   assert.deepEqual(pickLens(72.7, [...lenses, { min: 24, max: 70 }, { min: 70, max: 200 }]), { min: 70, max: 200, focal: 73 });
   assert.equal(pickLens(50, []), null);
+});
+
+test('distances read in metres or feet', () => {
+  assert.ok(Math.abs(toUnit(4, 'ft') - 13.1234) < 0.001);
+  assert.equal(toUnit(4, 'm'), 4);
+  assert.ok(Math.abs(fromUnit(10, 'ft') - 3.048) < 1e-9);
+  assert.equal(fromUnit(3, 'm'), 3);
 });

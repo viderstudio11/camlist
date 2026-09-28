@@ -3,7 +3,7 @@ import { logoHTML } from '../brands.js';
 import { toolIcon } from './icons.js';
 import { createMedia } from '../tools/media.js';
 import { timeFromAngle, angleFromTime, asFraction, flicker, slowMotion, FRAME_RATES, shutterChoices } from '../tools/shutter.js';
-import { PRIME_SET, SHOTS, lensFor, frameAt, pickLens } from '../tools/fov.js';
+import { PRIME_SET, SHOTS, lensFor, frameAt, pickLens, toUnit, fromUnit } from '../tools/fov.js';
 import { sunDay } from '../tools/solar.js';
 import { offload, DRIVES, UNIT_GROUPS, convert, cToF, fToC, mahToWh, whToMah } from '../tools/convert.js';
 import { num, hm } from '../format.js';
@@ -97,11 +97,12 @@ const L = {
   distance_step: { he: 'מרחק מהמצולם', en: 'Distance to subject' },
   shot_step: { he: 'סוג שוט', en: 'Shot size' },
   meters: { he: 'מ׳', en: 'm' },
+  feet: { he: 'רגל', en: 'ft' },
   verified_only: { he: 'מופיעות רק מצלמות שגודל החיישן שלהן אומת מול היצרן', en: 'Only cameras whose sensor size has been verified with the maker are listed' },
   sensor_line: { he: 'חיישן {w}×{h} מ״מ · {mode}', en: 'Sensor {w}×{h} mm · {mode}' },
   choose_camera_first: { he: 'בחר מצלמה — לפי החיישן שלה נחשב איזו עדשה צריך', en: 'Pick a camera — its sensor decides which lens you need' },
-  need_sentence: { he: 'מ־{d} מ׳, שוט {shot} על {cam} — מדויק: {mm} מ״מ', en: 'From {d} m, a {shot} on {cam} — exactly {mm} mm' },
-  frame_line: { he: 'הפריים: {w}×{h} מ׳ · זווית {a}°', en: 'Frame: {w}×{h} m · {a}° wide' },
+  need_sentence: { he: 'מ־{d} {u}, שוט {shot} על {cam} — מדויק: {mm} מ״מ', en: 'From {d} {u}, a {shot} on {cam} — exactly {mm} mm' },
+  frame_line: { he: 'הפריים: {w}×{h} {u} · זווית {a}°', en: 'Frame: {w}×{h} {u} · {a}° wide' },
   lenses_for: { he: 'עדשות מהמאגר שמתאימות ל־{cam}', en: 'Lenses in the catalog that fit {cam}' },
   standard_primes: { he: 'פריימים סטנדרטיים', en: 'Standard primes' },
   tap_lens_hint: { he: 'לחיצה על עדשה מראה בציור מה היא נותנת', en: 'Tap a lens to see what it gives in the drawing' },
@@ -174,7 +175,7 @@ export const setPlaces = (data) => { placeData = data || placeData; };
 // Everything the user typed, kept while the app is open so switching tools does not reset the work.
 const S = {
   media: { cam: 'fx6', codec: 'xavc-i', res: 'uhd', fps: 25, card: 160, hours: 10 },
-  fov: { distance: 4, shot: 'waist', focal: 0, phone: 'main', vf: false, cam: '', camBrand: '' },
+  fov: { distance: 4, unit: 'm', shot: 'waist', focal: 0, phone: 'main', vf: false, cam: '', camBrand: '' },
   shutter: { fps: 25, mode: 'speed', speed: 50, angle: 180, mains: 50, projectFps: 25, customFps: false },
   offload: { gb: 1000, mbPerSec: 700, copies: 2, verify: true },
   sun: { country: 'IL', city: 0, date: new Date().toISOString().slice(0, 10), lat: null, lon: null },
@@ -325,6 +326,10 @@ function fovTool(T, lang, ctx) {
   const s = S.fov;
   const Tp = (k, p) => T(k).replace(/\{(\w+)\}/g, (_, x) => p[x] ?? '');
   const name = (o) => (lang === 'he' ? o.he : o.en);
+  const unit = s.unit === 'ft' ? 'ft' : 'm';
+  const uLabel = T(unit === 'ft' ? 'feet' : 'meters');
+  // A distance in the chosen unit, rounded the way a tape measure is read.
+  const dist = (m) => { const v = toUnit(m, unit); return num(v, v < 10 ? 1 : 0); };
 
   // Only cameras whose recording sensor area has been verified are offered — the answer is only
   // as right as that number, so a camera without it is left out rather than guessed.
@@ -349,9 +354,10 @@ function fovTool(T, lang, ctx) {
   </div>`;
 
   const distCard = `<div class="card sh-sec" data-part="dist">
-    <div class="tsub">2 · ${esc(T('distance_step'))}</div>
+    <div class="sh-head"><div class="tsub">2 · ${esc(T('distance_step'))}</div>
+      <div class="seg sh-mode"><button class="${unit === 'm' ? 'active' : ''}" data-unit="m">${esc(T('meters'))}</button><button class="${unit === 'ft' ? 'active' : ''}" data-unit="ft">${esc(T('feet'))}</button></div></div>
     <div class="fov-dist"><input type="range" min="0" max="1000" step="1" value="${distToSlider(s.distance)}" data-dist aria-label="${esc(T('distance_step'))}">
-      <label class="fov-dnum"><input type="number" data-f="distance" value="${esc(s.distance)}" min="0.2" max="200" step="0.1" inputmode="decimal"><span>${esc(T('meters'))}</span></label></div>
+      <label class="fov-dnum"><input type="number" data-fdist value="${esc(dist(s.distance))}" min="0.2" max="600" step="0.1" inputmode="decimal"><span>${esc(uLabel)}</span></label></div>
   </div>`;
 
   const shotCard = `<div class="card sh-sec" data-part="shot">
@@ -416,7 +422,7 @@ function fovTool(T, lang, ctx) {
 
   const answer = `<div class="card sh-answer ok" data-part="answer">
     <div class="fov-top"><b class="sh-big">${focal}<small>mm</small></b>${lensName ? `<span class="sh-small">${esc(lensName)}</span>` : ''}${isRec ? `<span class="sh-rec">${esc(T('recommended'))}</span>` : `<button class="linkbtn" data-lens-reset>${esc(Tp('back_to_rec', { mm: rec.focal }))}</button>`}</div>
-    <p class="sh-line">${esc(Tp('need_sentence', { d: num(s.distance, 1), shot: name(shot), cam: cam.product.name, mm: num(need, 1) }))}</p>
+    <p class="sh-line">${esc(Tp('need_sentence', { d: dist(s.distance), u: uLabel, shot: name(shot), cam: cam.product.name, mm: num(need, 1) }))}</p>
     <svg viewBox="0 0 ${vw.toFixed(0)} ${box}" class="frame-svg" role="img" aria-label="${esc(T('framing'))}">
       <line x1="0" y1="${groundY}" x2="${vw.toFixed(0)}" y2="${groundY}" class="ground"/>
       <rect x="${(cx - fw / 2).toFixed(1)}" y="${frameY.toFixed(1)}" width="${fw.toFixed(1)}" height="${fh.toFixed(1)}" class="fr"/>
@@ -424,7 +430,7 @@ function fovTool(T, lang, ctx) {
       ${figure(two ? cx + fw * 0.22 : cx, ph)}
       <rect x="${(cx - fw / 2).toFixed(1)}" y="${frameY.toFixed(1)}" width="${fw.toFixed(1)}" height="${fh.toFixed(1)}" class="fr-line"/>
     </svg>
-    <p class="tnote">${esc(Tp('frame_line', { w: num(fr.widthM, 2), h: num(fr.heightM, 2), a: num(fr.hFov, 0) }))}</p>
+    <p class="tnote">${esc(Tp('frame_line', { w: num(toUnit(fr.widthM, unit), 2), h: num(toUnit(fr.heightM, unit), 2), u: uLabel, a: num(fr.hFov, 0) }))}</p>
   </div>`;
 
   const lensCard = `<div class="card sh-sec" data-part="lenses">
@@ -783,6 +789,9 @@ function wire(root, ctx, id, T, lang) {
   root.querySelector('[data-lens-reset]')?.addEventListener('click', () => { S.fov.focal = 0; ctx.render(); });
   root.querySelectorAll('[data-cbrand]').forEach(b => { b.onclick = () => { S.fov.camBrand = b.dataset.cbrand; S.fov.cam = ''; S.fov.focal = 0; ctx.render(); }; });
   root.querySelectorAll('[data-cmodel]').forEach(b => { b.onclick = () => { S.fov.cam = b.dataset.cmodel; S.fov.focal = 0; ctx.render(); }; });
+  root.querySelectorAll('[data-unit]').forEach(b => { b.onclick = () => { S.fov.unit = b.dataset.unit; ctx.render(); }; });
+  const fdist = root.querySelector('[data-fdist]');
+  if (fdist) fdist.onchange = () => { const v = Number(fdist.value); if (v > 0) { S.fov.distance = fromUnit(v, S.fov.unit); S.fov.focal = 0; } ctx.render(); };
   root.querySelectorAll('[data-shot]').forEach(b => { b.onclick = () => { S.fov.shot = b.dataset.shot; S.fov.focal = 0; ctx.render(); }; });
   // Dragging the distance redraws everything but the slider itself, so the drag is never interrupted.
   const dist = root.querySelector('[data-dist]');
@@ -793,7 +802,7 @@ function wire(root, ctx, id, T, lang) {
     tpl.innerHTML = fovTool(T, lang, ctx);
     tpl.content.querySelectorAll('[data-part]').forEach(fresh => {
       const part = fresh.dataset.part;
-      if (part === 'dist') { const n = root.querySelector('[data-part="dist"] [data-f="distance"]'); if (n) n.value = S.fov.distance; return; }
+      if (part === 'dist') { const n = root.querySelector('[data-part="dist"] [data-fdist]'); const v = toUnit(S.fov.distance, S.fov.unit); if (n) n.value = num(v, v < 10 ? 1 : 0); return; }
       root.querySelector(`[data-part="${part}"]`)?.replaceWith(fresh);
     });
     wire(root, ctx, id, T, lang);

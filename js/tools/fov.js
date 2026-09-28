@@ -99,3 +99,7 @@ export function pickLens(needMm, lenses) {
   }
   return { ...best.l, focal: best.end };
 }
+
+// Metres are the working unit; feet are for crews who think in them. 1 ft = 0.3048 m exactly.
+export const toUnit = (m, unit) => (unit === 'ft' ? m / 0.3048 : m);
+export const fromUnit = (v, unit) => (unit === 'ft' ? v * 0.3048 : v);
