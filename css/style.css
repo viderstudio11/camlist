@@ -563,7 +563,6 @@ body.print-mode .view { padding: 0; max-width: none; }
 :root:not([data-theme="dark"]) .dept-card h3 { color: var(--text); text-shadow: none; }
 :root:not([data-theme="dark"]) .dept-card .n { color: var(--muted); font-weight: 700; }
 :root:not([data-theme="dark"]) .dept-card .emoji { filter: none; }
-:root:not([data-theme="dark"]) .dept-card .dept-ico { color: var(--accent); opacity: 1; }
 
 /* ---------- Behave like an app, not a web page ----------
    A long press on a phone was opening the browser's selection callout ("copy", "search Google"),
@@ -836,3 +835,18 @@ body:not(.home) .chartbg, :root[data-theme="sun"] .chartbg { display: none; }
 :root:not([data-skin="clean"]) .phero-name, :root:not([data-skin="clean"]) .home-empty h2 { font-family: var(--font); font-weight: 800; }
 :root:not([data-skin="clean"]) .phead h1, :root:not([data-skin="clean"]) .phero-name { font-size: 28px; line-height: 1.1; }
 :root:not([data-skin="clean"]) .tool-tile b, :root:not([data-skin="clean"]) .dept-card h3 { font-size: 17px; line-height: 1.2; }
+
+/* ============================================================ DESKTOP SPLIT (v2) ============
+   ≥1024px on a project: the list and the catalog side by side, each scrolling on its own. */
+body.split .topbar { max-width: none; width: calc(100% - 32px); }
+body.split .view { max-width: none; padding: 12px 16px 0; }
+.split-panes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 0;
+  height: calc(100dvh - var(--sat) - 92px); border: var(--stroke) solid var(--line); border-radius: 18px; overflow: hidden; background: var(--surface); }
+.split-panes .pane { overflow: auto; padding: 16px 22px 24px; position: relative; }
+.split-panes .pane-cat { background: var(--surface-2); border-inline-start: var(--stroke) solid var(--line); }
+.split-panes .pane-cat { padding-top: 0; }
+.split-panes .search { top: 0; background: var(--surface-2); margin: 0 -22px 8px; padding: 14px 22px 10px; }
+.split-panes .bgroup-head { top: calc(var(--search-h, 66px) - 16px); background: var(--surface-2); }
+.split-panes .rail { position: sticky; top: calc(var(--search-h, 66px) + 10px); float: inline-end; bottom: auto; max-height: calc(100dvh - 260px); margin-inline-start: 10px; }
+.split-panes .pane-cat .bottombar, .split-panes [data-add] { display: none; }
+.split-panes .bottombar { position: sticky; bottom: 0; inset-inline: auto; margin: 16px 0 0; max-width: none; }

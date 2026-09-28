@@ -12,6 +12,7 @@ import * as Catalog from './ui/catalog.js';
 import * as Export from './ui/export.js';
 import * as Tools from './ui/tools.js';
 import { loadCodecs } from './tools/media.js';
+import { isSplitRoute, splitProjectId } from './layout.js';
 import { SKINS, GROUPS, DEFAULT_SKIN, isSkin, loadSkinFonts, skin, nextTheme, migrateSettings } from './skins.js';
 
 const store = createStore();
@@ -108,12 +109,49 @@ function render() {
   document.body.classList.toggle('home', screen === Projects);
   if (params.id && !store.getProject(params.id)) { location.hash = '#/'; return; }
   window.scrollTo(0, 0);
-  screen.render(ctx, params, root);
+  ctx.split = isSplitRoute(location.hash || '#/', window.innerWidth);
+  document.body.classList.toggle('split', ctx.split);
+  if (ctx.split) renderSplit(root, splitProjectId(location.hash));
+  else screen.render(ctx, params, root);
   if (catalogError && !document.getElementById('catalog-error')) {
     root.insertAdjacentHTML('afterbegin', `<div class="card" id="catalog-error" style="border-color:var(--accent);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:12px"><b>${t('catalog_error')}</b><button class="btn sm" data-retry>${t('retry')}</button></div>`);
     root.querySelector('[data-retry]').onclick = boot;
   }
 }
+
+// Desktop: the list and the catalog side by side. The catalog renders first so the list owns the
+// top bar. Each pane scrolls on its own.
+// The catalog pane gets a ctx whose setTopbar does nothing, so its own redraws (every search
+// keystroke) never take the top bar away from the list.
+const catCtx = Object.create(ctx, { setTopbar: { value: () => {} } });
+function renderSplit(root, id) {
+  root.innerHTML = '<div class="split-panes"><section class="pane pane-list" data-pane="list"></section><section class="pane pane-cat" data-pane="cat"></section></div>';
+  Catalog.render(catCtx, { id }, root.querySelector('[data-pane="cat"]'));
+  List.render(ctx, { id }, root.querySelector('[data-pane="list"]'));
+}
+
+// A change made in one pane shows up in the other. The pane that holds focus redraws itself,
+// so a search box keeps its caret and a stepper its place.
+let splitQueued = false;
+function refreshSplit() {
+  if (!ctx.split || splitQueued) return;
+  splitQueued = true;
+  queueMicrotask(() => {
+    splitQueued = false;
+    const id = splitProjectId(location.hash);
+    const list = document.querySelector('[data-pane="list"]');
+    const cat = document.querySelector('[data-pane="cat"]');
+    if (!ctx.split || !id || !list || !cat || !store.getProject(id)) return;
+    if (!cat.contains(document.activeElement)) { const top = cat.scrollTop; Catalog.render(catCtx, { id }, cat); cat.scrollTop = top; }
+    const top = list.scrollTop; List.render(ctx, { id }, list); list.scrollTop = top;
+  });
+}
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { if (isSplitRoute(location.hash || '#/', window.innerWidth) !== !!ctx.split) render(); }, 150);
+});
 
 const BUILD_DATE = '28.09.2026';
 
@@ -186,6 +224,7 @@ async function boot() {
 let warned = false;
 store.subscribe(() => {
   catalog.setManual(store.state.manualProducts);
+  refreshSplit();
   if (!store.storageOk && !warned) { warned = true; toast(t('storage_warning'), { kind: 'err', ms: 4000 }); }
 });
 window.addEventListener('hashchange', render);
