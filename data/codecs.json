@@ -3705,6 +3705,147 @@
       ]
     },
     {
+      "id": "s1h",
+      "brand": "Panasonic",
+      "label": "LUMIX S1H",
+      "formats": [
+        {
+          "id": "6k-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "6K 5952×3968",
+          "mbps": {
+            "24": 200,
+            "23.98": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "5-9k-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "5.9K 5888×3312",
+          "mbps": {
+            "24": 200,
+            "25": 200,
+            "29.97": 200,
+            "23.98": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "c4k-422-10-i-avc",
+          "codec": "H.264 4:2:2 10-bit ALL-I",
+          "res": "C4K 4096×2160",
+          "mbps": {
+            "24": 400,
+            "25": 400,
+            "29.97": 400,
+            "23.98": 400
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "c4k-422-10-l-avc",
+          "codec": "H.264 4:2:2 10-bit LongGOP",
+          "res": "C4K 4096×2160",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "29.97": 150,
+            "23.98": 150
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "c4k-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "C4K 4096×2160",
+          "mbps": {
+            "48": 200,
+            "50": 200,
+            "59.94": 200,
+            "47.95": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "4k-422-10-i-avc",
+          "codec": "H.264 4:2:2 10-bit ALL-I",
+          "res": "4K UHD 3840×2160",
+          "mbps": {
+            "24": 400,
+            "25": 400,
+            "29.97": 400,
+            "23.98": 400
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "4k-422-10-l-avc",
+          "codec": "H.264 4:2:2 10-bit LongGOP",
+          "res": "4K UHD 3840×2160",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "29.97": 150,
+            "23.98": 150
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "4k-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "4K UHD 3840×2160",
+          "mbps": {
+            "48": 200,
+            "50": 200,
+            "59.94": 200,
+            "47.95": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "fhd-422-10-i-avc",
+          "codec": "H.264 4:2:2 10-bit ALL-I",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "24": 200,
+            "25": 200,
+            "50": 200,
+            "59.94": 200,
+            "29.97": 200,
+            "23.98": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "fhd-422-10-l-avc",
+          "codec": "H.264 4:2:2 10-bit LongGOP",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 100,
+            "59.94": 100,
+            "29.97": 100,
+            "23.98": 100
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "fhd-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "48": 100,
+            "100": 150,
+            "119.88": 150,
+            "47.95": 100
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        }
+      ]
+    },
+    {
       "id": "other",
       "brand": "—",
       "label": "אחר / ידני",
