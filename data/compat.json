@@ -63,8 +63,8 @@
         "w": 35.6,
         "h": 20,
         "mode": "UHD 16:9 · ≤60p",
-        "src": "Sony FX6 spec (35.6×23.8 FF sensor); full width in UHD ≤60p per xdcam-user.com 2020-11-22",
-        "pending": "official manufacturer page not yet reached (sony.com blocked 2026-09-28) — confirm per official-sources rule"
+        "src": "Sony FX6 manual (Help Guide PDF, p.12): in FF, cropping only at UHD 100/120 fps S&Q or RAW UHD — regular UHD uses the full width. p.161: 35 mm full-frame, 10.2M effective (16:9). Sony does not publish the width in mm; 35.6 mm is the official FX3 figure for the same 12.9M sensor.",
+        "pending": "width derived from the FX3 official spec — Sony publishes no mm figure for the FX6"
       }
     },
     {
@@ -259,8 +259,7 @@
         "w": 32,
         "h": 18,
         "mode": "7.6K 16:9 → UHD",
-        "src": "Sony VENICE 2 8K format poster: 7.6K 16:9, 7680×4320, 32.0×18.0 mm",
-        "pending": "official manufacturer page not yet reached (sony.com blocked 2026-09-28) — confirm per official-sources rule"
+        "src": "Sony pro.sony VENICE 2 specifications: 7.6K 16:9, 7680 × 4320, 32.0 × 18.0 mm, 1–60 fps"
       }
     },
     {
@@ -1266,13 +1265,12 @@
       "battery": [
         "NP-SA100"
       ],
-      "_verified": "2026-09-28 Sony spec (35.9×24.0 mm FF, E-mount) + B&H (CFexpress Type A / SDXC UHS-II, NP-SA100)",
+      "_verified": "2026-09-28 sony.com ILME-FX5 specifications + helpguide.sony.net/ilc/2630 (rec_format, clip_recordingplayback_time)",
       "sensor": {
         "w": 35.9,
         "h": 20.2,
-        "mode": "FF 16:9 → UHD · ≤60p",
-        "src": "Sony spec 35.9×24.0 mm, 4992 px wide; XAVC 4K from FF 16:9 (4992×2808) per Newsshooter/RedShark 2026-07-22",
-        "pending": "official manufacturer page not yet reached (sony.com blocked 2026-09-28) — confirm per official-sources rule"
+        "mode": "FF 5K 16:9 → UHD",
+        "src": "Sony spec page (35-mm full frame 35.9 × 24.0 mm); Sony Help Guide ILME-FX5 \"Clip Recording/Playback Time\": XAVC 3840×2160 recorded in imager mode FF 5K 16:9 at 23.98–119.88p. Height = 16:9 of the width (derived)."
       }
     }
   ],
