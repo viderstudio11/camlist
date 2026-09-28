@@ -1124,6 +1124,119 @@
       ]
     },
     {
+      "id": "osmo-action5",
+      "brand": "DJI",
+      "label": "Osmo Action 5 Pro",
+      "formats": [
+        {
+          "id": "uhd",
+          "codec": "H.264 / H.265",
+          "res": "4K 16:9 3840×2160",
+          "max": true,
+          "mbps": {
+            "24": 120,
+            "25": 120,
+            "30": 120,
+            "48": 120,
+            "50": 120,
+            "60": 120,
+            "100": 120,
+            "120": 120
+          },
+          "src": "DJI Osmo Action 5 Pro specs (Max Video Bitrate 120 Mbps; standard recording modes) — dji.com/osmo-action-5-pro/specs"
+        },
+        {
+          "id": "27k",
+          "codec": "H.264 / H.265",
+          "res": "2.7K 16:9 2688×1512",
+          "max": true,
+          "mbps": {
+            "24": 120,
+            "25": 120,
+            "30": 120,
+            "48": 120,
+            "50": 120,
+            "60": 120,
+            "100": 120,
+            "120": 120
+          },
+          "src": "DJI Osmo Action 5 Pro specs (Max Video Bitrate 120 Mbps; standard recording modes) — dji.com/osmo-action-5-pro/specs"
+        },
+        {
+          "id": "hd",
+          "codec": "H.264 / H.265",
+          "res": "1080p 16:9 1920×1080",
+          "max": true,
+          "mbps": {
+            "24": 120,
+            "25": 120,
+            "30": 120,
+            "48": 120,
+            "50": 120,
+            "60": 120,
+            "100": 120,
+            "120": 120,
+            "200": 120,
+            "240": 120
+          },
+          "src": "DJI Osmo Action 5 Pro specs (Max Video Bitrate 120 Mbps; standard recording modes) — dji.com/osmo-action-5-pro/specs"
+        }
+      ]
+    },
+    {
+      "id": "osmo-pocket3",
+      "brand": "DJI",
+      "label": "Osmo Pocket 3",
+      "formats": [
+        {
+          "id": "uhd",
+          "codec": "H.264 / H.265",
+          "res": "4K 16:9 3840×2160",
+          "max": true,
+          "mbps": {
+            "24": 130,
+            "25": 130,
+            "30": 130,
+            "48": 130,
+            "50": 130,
+            "60": 130,
+            "120": 130
+          },
+          "src": "DJI Osmo Pocket 3 specs (Max Video Bitrate 130 Mbps; normal video and slow-motion modes) — dji.com/osmo-pocket-3/specs"
+        },
+        {
+          "id": "27k",
+          "codec": "H.264 / H.265",
+          "res": "2.7K 16:9 2688×1512",
+          "max": true,
+          "mbps": {
+            "24": 130,
+            "25": 130,
+            "30": 130,
+            "48": 130,
+            "50": 130,
+            "60": 130
+          },
+          "src": "DJI Osmo Pocket 3 specs (Max Video Bitrate 130 Mbps; normal video and slow-motion modes) — dji.com/osmo-pocket-3/specs"
+        },
+        {
+          "id": "hd",
+          "codec": "H.264 / H.265",
+          "res": "1080p 16:9 1920×1080",
+          "max": true,
+          "mbps": {
+            "24": 130,
+            "25": 130,
+            "30": 130,
+            "48": 130,
+            "50": 130,
+            "60": 130
+          },
+          "src": "DJI Osmo Pocket 3 specs (Max Video Bitrate 130 Mbps; normal video and slow-motion modes) — dji.com/osmo-pocket-3/specs"
+        }
+      ]
+    },
+    {
       "id": "other",
       "brand": "—",
       "label": "אחר / ידני",

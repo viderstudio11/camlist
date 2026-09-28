@@ -78,7 +78,7 @@ export function createMedia(data = {}) {
         key: f.id || String(i), label: `${f.codec} · ${f.res}`,
         fps: Object.keys(table).map(Number).sort((a, b) => a - b),
         rate: (fps) => Number(table[String(fps)] ?? 0),
-        official: true, fromTimes: !!f.minutes, src: f.src || '',
+        official: true, fromTimes: !!f.minutes, maxOnly: !!f.max, src: f.src || '',
       };
     });
   }
