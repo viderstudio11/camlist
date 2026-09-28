@@ -494,7 +494,7 @@
             "29.97": 300,
             "59.94": 600
           },
-          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting)"
+          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting: 600/500/300/250/240)"
         },
         {
           "id": "xavci-qfhd",
@@ -507,20 +507,20 @@
             "29.97": 300,
             "59.94": 600
           },
-          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting)"
+          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting: 600/500/300/250/240)"
         },
         {
           "id": "xavci-hd",
           "codec": "XAVC-I",
           "res": "HD 1920×1080",
           "mbps": {
-            "25": 93,
-            "50": 185,
+            "25": 111,
+            "50": 222,
             "23.98": 89,
             "29.97": 111,
             "59.94": 222
           },
-          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting)"
+          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC-I HD rates from Sony’s PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time”: 222 Mbps at 59.94P/50P, 111 at 29.97P/25P, 89 at 23.98P"
         },
         {
           "id": "xavcl-qfhd",
@@ -569,7 +569,7 @@
             "29.97": 300,
             "59.94": 600
           },
-          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting)"
+          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting: 600/500/300/250/240)"
         },
         {
           "id": "xavci-qfhd",
@@ -582,20 +582,20 @@
             "29.97": 300,
             "59.94": 600
           },
-          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting)"
+          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting: 600/500/300/250/240)"
         },
         {
           "id": "xavci-hd",
           "codec": "XAVC-I",
           "res": "HD 1920×1080",
           "mbps": {
-            "25": 93,
-            "50": 185,
+            "25": 111,
+            "50": 222,
             "23.98": 89,
             "29.97": 111,
             "59.94": 222
           },
-          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting)"
+          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC-I HD rates from Sony’s PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time”: 222 Mbps at 59.94P/50P, 111 at 29.97P/25P, 89 at 23.98P"
         },
         {
           "id": "xavcl-qfhd",
