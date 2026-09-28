@@ -79,3 +79,25 @@ test('extra products merge with dept/subcat resolution, brand added, flagged ext
   assert.equal(c.brands.find(b => b.id === 'prograde').count, 1);
   assert.equal(c.search('cfexpress')[0].id, 'x_1');
 });
+
+test('a subcategory includes the products filed in its sub-subcategories', () => {
+  // Utopia files e.g. wireless follow focus under "Follow Focus"; browsing the parent must show them.
+  const nested = {
+    departments: [{ id: 9, slug: 'accessories', he: 'אביזרים', en: 'Accessories', order: 1, subcategories: [
+      { id: 244, parent: null, he: 'פולופוקוס', en: 'Follow Focus', count: 3 },
+      { id: 246, parent: 244, he: 'פולופוקוס אלחוטי', en: 'Wireless Follow Focus', count: 1 },
+      { id: 900, parent: 246, he: 'x', en: 'x', count: 1 },
+    ] }],
+    brands: [],
+    products: [
+      { id: 1, name: 'Direct', brand: null, dept: 9, subcats: [244], image: null, url: '', sku: '' },
+      { id: 2, name: 'Wireless', brand: null, dept: 9, subcats: [246], image: null, url: '', sku: '' },
+      { id: 3, name: 'Deeper', brand: null, dept: 9, subcats: [900], image: null, url: '', sku: '' },
+      { id: 4, name: 'Both', brand: null, dept: 9, subcats: [244, 246], image: null, url: '', sku: '' },
+    ],
+  };
+  const c = createCatalog(nested);
+  assert.deepEqual(c.bySubcat(244).map(p => p.id).sort(), [1, 2, 3, 4]);
+  assert.deepEqual(c.bySubcat(246).map(p => p.id).sort(), [2, 3, 4]);
+  assert.deepEqual(c.subcatsOf(9).map(s => s.id), [244]);
+});
