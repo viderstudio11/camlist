@@ -34,6 +34,9 @@ async function trimImages(max = 500) {
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
+  // The version archive (v/…) is always fetched fresh and never cached: a preview that was opened once
+  // must still show its latest build, and an archived page must never replace the live app's shell.
+  if (url.origin === location.origin && url.pathname.includes('/v/')) return;
   if (e.request.mode === 'navigate') {
     e.respondWith(fetch(e.request)
       .then(res => { if (res.ok) caches.open(SHELL).then(c => c.put('./index.html', res.clone())); return res; })
