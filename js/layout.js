@@ -6,3 +6,7 @@ export const SPLIT_MIN = 1024;
 export const splitProjectId = (hash) => hash.match(/^#\/p\/([^/]+)(?:\/add)?$/)?.[1] ?? null;
 
 export const isSplitRoute = (hash, width) => width >= SPLIT_MIN && splitProjectId(hash) !== null;
+
+// After a store change, redraw only the pane you are not working in. Each pane already updates
+// itself in place; redrawing the one under your finger would swallow the click that caused it.
+export const panesToRefresh = ({ inList, inCat }) => ({ list: !inList, cat: !inCat });

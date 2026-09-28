@@ -12,7 +12,7 @@ import * as Catalog from './ui/catalog.js';
 import * as Export from './ui/export.js';
 import * as Tools from './ui/tools.js';
 import { loadCodecs } from './tools/media.js';
-import { isSplitRoute, splitProjectId } from './layout.js';
+import { isSplitRoute, splitProjectId, panesToRefresh } from './layout.js';
 import { SKINS, GROUPS, DEFAULT_SKIN, isSkin, loadSkinFonts, skin, nextTheme, migrateSettings } from './skins.js';
 
 const store = createStore();
@@ -130,8 +130,7 @@ function renderSplit(root, id) {
   List.render(ctx, { id }, root.querySelector('[data-pane="list"]'));
 }
 
-// A change made in one pane shows up in the other. The pane that holds focus redraws itself,
-// so a search box keeps its caret and a stepper its place.
+// A change made in one pane shows up in the other.
 let splitQueued = false;
 function refreshSplit() {
   if (!ctx.split || splitQueued) return;
@@ -142,8 +141,9 @@ function refreshSplit() {
     const list = document.querySelector('[data-pane="list"]');
     const cat = document.querySelector('[data-pane="cat"]');
     if (!ctx.split || !id || !list || !cat || !store.getProject(id)) return;
-    if (!cat.contains(document.activeElement)) { const top = cat.scrollTop; Catalog.render(catCtx, { id }, cat); cat.scrollTop = top; }
-    const top = list.scrollTop; List.render(ctx, { id }, list); list.scrollTop = top;
+    const go = panesToRefresh({ inList: list.contains(document.activeElement), inCat: cat.contains(document.activeElement) });
+    if (go.cat) { const top = cat.scrollTop; Catalog.render(catCtx, { id }, cat); cat.scrollTop = top; }
+    if (go.list) { const top = list.scrollTop; List.render(ctx, { id }, list); list.scrollTop = top; }
   });
 }
 
