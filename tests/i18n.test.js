@@ -23,3 +23,11 @@ test('setLang switches active language', () => {
 test('every key exists in both languages', () => {
   assert.deepEqual(Object.keys(dict.he).sort(), Object.keys(dict.en).sort());
 });
+
+test('v2 home and settings labels exist in both languages', () => {
+  for (const k of ['active_project', 'open_list', 'design']) {
+    assert.ok(dict.he[k] && dict.en[k], `missing ${k}`);
+  }
+  assert.equal(dict.en.design, 'Design');
+  assert.equal(dict.he.design, 'עיצוב');
+});

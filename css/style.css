@@ -84,10 +84,10 @@ img { display: block; }
     linear-gradient(transparent calc(100% - 1px), var(--chart) 0),
     linear-gradient(90deg, transparent calc(100% - 1px), var(--chart) 0);
   background-size: 34px 34px; }
-.chartbg::before { content: ""; position: absolute; inset-block-start: -20vmin; inset-inline-end: -16vmin;
+.chartbg::before { content: none; position: absolute; inset-block-start: -20vmin; inset-inline-end: -16vmin;
   width: 64vmin; height: 64vmin; border-radius: 50%;
   background: repeating-conic-gradient(var(--chart) 0 3deg, transparent 3deg 6deg); }
-.chartbg::after { content: ""; position: absolute; inset-block-end: 8vmin; inset-inline-start: -4vmin;
+.chartbg::after { content: none; position: absolute; inset-block-end: 8vmin; inset-inline-start: -4vmin;
   width: 42vmin; height: 16vmin;
   background: repeating-linear-gradient(90deg, var(--chart) 0 2px, transparent 2px 6px);
   -webkit-mask-image: linear-gradient(60deg, #000, transparent 85%);
@@ -704,3 +704,67 @@ img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; }
 .tool-ico .ico { width: 26px; height: 26px; }
 .dept-ico .ico { width: 34px; height: 34px; }
 .dept-ico.sm .ico { width: 19px; height: 19px; }
+
+/* ============================================================ HOME (v2) ============
+   Projects first: the active project as a hero card, the field tools, then every project. */
+.brandmark { font-family: var(--font-head); font-weight: 700; font-size: 28px; letter-spacing: .03em; line-height: .9; }
+.brandmark b { color: var(--accent); font-weight: 700; }
+:root[data-theme="sun"] .brandmark b { color: var(--accent-ink); }
+.home-sec { display: flex; align-items: baseline; justify-content: space-between; margin: 22px 2px 10px; }
+.home-count { color: var(--text-3); font-size: 15px; }
+.linkbtn { color: var(--accent-ink); font-weight: var(--w-strong); font-size: 14px; }
+.tag { font-family: var(--mono); font-weight: 700; font-size: 12px; letter-spacing: .1em; padding: 3px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-ink); }
+
+.phero { background: var(--surface); border: var(--stroke) solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-s); }
+.phero-in { padding: 14px 18px 18px; }
+.phero-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.phero-dates { color: var(--text-3); font-size: 15px; }
+.phero-name { font-size: 40px; margin-bottom: 6px; overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.phero-sub { color: var(--text-2); font-size: 14px; }
+.camchips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.camchip { display: inline-flex; align-items: baseline; gap: 6px; padding: 6px 10px; border-radius: 9px; background: var(--surface-2); font-weight: var(--w-strong); font-size: 13.5px; }
+.camchip .num { color: var(--text-3); }
+.dstrip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin: 16px 0; }
+.ds { text-align: center; color: var(--text-2); }
+.ds.nil { color: var(--text-3); opacity: .7; }
+.ds-ico { display: inline-block; width: 20px; height: 20px; }
+.ds i { display: block; height: 4px; border-radius: 2px; background: var(--surface-2); margin: 7px 3px 4px; overflow: hidden; }
+.ds u { display: block; height: 100%; background: var(--accent); }
+.ds .num { font-size: 14px; color: var(--text-3); }
+.phero-acts { display: flex; gap: 10px; }
+.phero-acts .btn.primary { flex: 1; min-height: 50px; font-size: 16px; }
+.phero-acts .btn.sq { width: 50px; min-height: 50px; padding: 0; background: transparent; }
+.fwd { display: inline-grid; width: 18px; height: 18px; }
+.fwd svg { width: 18px; height: 18px; }
+[dir="ltr"] .fwd { transform: scaleX(-1); }
+.phero-meta { display: flex; gap: 8px; margin-top: 12px; font-size: 12.5px; color: var(--text-3); }
+
+.toolrow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.tr-t { background: var(--surface); border: var(--stroke) solid var(--line); border-radius: 14px; padding: 12px 2px 10px; text-align: center; color: var(--text-2); transition: transform .4s var(--spring), border-color .2s; }
+.tr-t:hover { border-color: var(--line-2); }
+.tr-t:active { transform: scale(.96); }
+.tr-t .tool-ico { display: inline-block; color: var(--accent); }
+:root[data-theme="sun"] .tr-t .tool-ico { color: var(--text); }
+.tr-n { display: block; font-size: 11px; line-height: 1.2; margin-top: 6px; }
+
+.plist { background: var(--surface); border: var(--stroke) solid var(--line); border-radius: 16px; overflow: hidden; }
+.prow { display: flex; align-items: center; gap: 12px; padding: 10px 12px 10px 16px; border-bottom: var(--stroke) solid var(--line); cursor: pointer; }
+[dir="rtl"] .prow { padding: 10px 16px 10px 12px; }
+.prow:last-child { border-bottom: 0; }
+.prow:hover { background: var(--tint); }
+.prow-main { flex: 1; min-width: 0; }
+.prow-main b { display: block; font-weight: var(--w-strong); font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prow-main small { display: block; color: var(--text-3); font-size: 12px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prow-n { font-size: 16px; color: var(--text-2); }
+.prow .more { width: 36px; height: 36px; background: transparent; border: 0; }
+.home-empty { text-align: center; padding: 34px 18px; }
+.home-empty h2 { font-size: 34px; margin-bottom: 8px; }
+.home-empty p { color: var(--text-2); }
+
+.bottombar.fabbar { background: none; border: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 0; }
+.btn.fab { flex: 1; min-height: 56px; border-radius: 15px; background: var(--text); color: var(--bg); border: 0; font-size: 16px; box-shadow: 0 10px 30px -8px rgba(0,0,0,.35); }
+.btn.fab svg { stroke: var(--accent); }
+
+/* The calibration background belongs to the home screen only, and never in direct sun. */
+body:not(.home) .chartbg, :root[data-theme="sun"] .chartbg { display: none; }

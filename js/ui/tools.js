@@ -167,6 +167,9 @@ const phoneLens = (id) => PHONE_LENSES.find(p => p.id === id) || PHONE_LENSES[1]
 // Horizontal angle of view of a 35 mm-equivalent focal length, on a 36 mm-wide frame.
 const eqHFov = (eq) => (2 * Math.atan(18 / eq) * 180) / Math.PI;
 
+// Short labels for places outside the tools screen (the home screen's tool row).
+export const toolLabel = (k, lang) => L[k]?.[lang] ?? L[k]?.he ?? k;
+
 const TOOLS = ['media', 'fov', 'shutter', 'hours', 'offload', 'sun', 'luts', 'units'];
 
 const fmtTime = (d, lang) => (d instanceof Date && !Number.isNaN(+d)

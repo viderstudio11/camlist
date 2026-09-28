@@ -105,6 +105,7 @@ function render() {
   const sheet = document.getElementById('sheet');
   if (sheet.open) { sheet.close(); sheet.innerHTML = ''; }
   const { screen, params } = route();
+  document.body.classList.toggle('home', screen === Projects);
   if (params.id && !store.getProject(params.id)) { location.hash = '#/'; return; }
   window.scrollTo(0, 0);
   screen.render(ctx, params, root);

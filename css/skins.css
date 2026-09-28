@@ -43,8 +43,9 @@
     linear-gradient(0deg, #000 0 14%, transparent 14% 86%, #000 86%);
   -webkit-mask-composite: source-in; mask-composite: intersect; }
 
-[data-skin="clean"] .chartbg .siemens, [data-skin="clean"] .chartbg .grid,
-[data-skin="clean"] .chartbg .wedge, [data-skin="clean"] .chartbg .steps { display: block; }
+.chartbg .iris { inset-block-start: -22vmin; inset-inline-start: -26vmin; width: 78vmin; height: 78vmin; color: var(--text); opacity: .07; }
+.chartbg .iris svg { width: 100%; height: 100%; display: block; }
+[data-skin="clean"] .chartbg .iris, [data-skin="clean"] .chartbg .siemens2 { display: block; }
 [data-skin="arri"] .chartbg .siemens, [data-skin="arri"] .chartbg .grid,
 [data-skin="arri"] .chartbg .steps, [data-skin="arri"] .chartbg .wedgev { display: block; }
 [data-skin="sony"] .chartbg .zone, [data-skin="sony"] .chartbg .grid,
