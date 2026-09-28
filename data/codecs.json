@@ -2224,6 +2224,149 @@
       ]
     },
     {
+      "id": "ursa46g2",
+      "brand": "Blackmagic",
+      "label": "URSA Mini Pro 4.6K G2",
+      "formats": [
+        {
+          "id": "braw-46k-3-1",
+          "codec": "Blackmagic RAW 3:1",
+          "res": "4.6K 4608×2592",
+          "card": 256,
+          "minutes": {
+            "24": 28,
+            "25": 27,
+            "30": 23,
+            "50": 13,
+            "60": 11,
+            "23.98": 28,
+            "29.97": 23,
+            "59.94": 11
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-46k-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "4.6K 4608×2592",
+          "card": 256,
+          "minutes": {
+            "24": 48,
+            "25": 46,
+            "30": 38,
+            "50": 23,
+            "60": 19,
+            "23.98": 48,
+            "29.97": 38,
+            "59.94": 19
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-46k-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "4.6K 4608×2592",
+          "card": 256,
+          "minutes": {
+            "24": 76,
+            "25": 73,
+            "30": 61,
+            "50": 36,
+            "60": 30,
+            "23.98": 76,
+            "29.97": 61,
+            "59.94": 30
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-46k-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "4.6K 4608×2592",
+          "card": 256,
+          "minutes": {
+            "24": 114,
+            "25": 110,
+            "30": 92,
+            "50": 55,
+            "60": 46,
+            "23.98": 115,
+            "29.97": 92,
+            "59.94": 46
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-uhd-3-1",
+          "codec": "Blackmagic RAW 3:1",
+          "res": "UHD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 41,
+            "25": 39,
+            "30": 33,
+            "50": 19,
+            "60": 16,
+            "23.98": 41,
+            "29.97": 33,
+            "59.94": 16
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-uhd-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "UHD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 68,
+            "25": 66,
+            "30": 55,
+            "50": 33,
+            "60": 27,
+            "23.98": 68,
+            "29.97": 55,
+            "59.94": 27
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-uhd-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "UHD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 109,
+            "25": 105,
+            "30": 88,
+            "50": 52,
+            "60": 44,
+            "23.98": 110,
+            "29.97": 88,
+            "59.94": 44
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-uhd-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "UHD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 164,
+            "25": 157,
+            "30": 131,
+            "50": 79,
+            "60": 66,
+            "23.98": 164,
+            "29.97": 131,
+            "59.94": 66
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        }
+      ]
+    },
+    {
       "id": "pocket6",
       "brand": "Blackmagic",
       "label": "Pocket Cinema Camera 6K",
