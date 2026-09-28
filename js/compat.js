@@ -39,7 +39,7 @@ export const BATTERY = {
   'BP-U': /bp-?u\s?\d*|\bu\d{2,3}\b|bc-?u\d/i,
   'V-Mount': /v[-\s]?mount|v[-\s]?lock|bp-?gl\d|\bbp-?\d{2,3}s\b|\bv\d{2,3}\b|\bd-?3004|\bsc-?302|fx-?m2s/i,
   'Gold': /gold|anton|\bab-?mount|\bg\d{2,3}\b/i, 'B-Mount': /\bb-?mount/i,
-  'NP-F': /np-?f\d{3}|ac-?vl1|bc-?l1/i, 'NP-FV': /np-?fv|bc-?qm1/i, 'NP-FZ100': /np-?fz|fz-?100|bc-?qz1/i, 'NP-FW50': /fw-?50|bc-?trw/i,
+  'NP-F': /np-?f\d{3}|ac-?vl1|bc-?l1/i, 'NP-FV': /np-?fv|bc-?qm1/i, 'NP-FZ100': /np-?fz|fz-?100|bc-?qz1/i, 'NP-FW50': /fw-?50|bc-?trw/i, 'NP-SA100': /np-?sa\d{2,3}/i,
   'LP-E6': /lp-?e6|lc-?e6/i, 'BP-A': /bp-?a\d{2}|cg-?a\d{2}/i, 'BP-9': /bp-?9\d{2}|ca-?930|cg-?940/i,
   'VBR': /\bvbr|\bvbd|ag-?vb[rd]|vw-?vb[rd]|vw-?ad20|ag-?b23|s-?8d58/i, 'VBG': /vbg\d|vw-?vbg/i, 'VBT': /vbt\d|vw-?vbt|vw-?bc10/i, 'CGA-D54': /cga-?d54|de-?a20|ag-?b23/i,
   'DMW-BLF19': /blf-?19/i, 'DMW-BLK22': /blk-?22/i, 'DMW-BLJ31': /blj-?31/i, 'NP-W235': /w-?235/i, 'TB50': /tb-?50/i, 'BP-FL': /bp-?fl/i,

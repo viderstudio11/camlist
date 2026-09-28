@@ -1248,6 +1248,29 @@
       "battery": [
         "Insta360"
       ]
+    },
+    {
+      "id": "x_sony_fx5",
+      "match": "ILME-FX5\b",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "battery": [
+        "NP-SA100"
+      ],
+      "_verified": "2026-09-28 Sony spec (35.9×24.0 mm FF, E-mount) + B&H (CFexpress Type A / SDXC UHS-II, NP-SA100)",
+      "sensor": {
+        "w": 35.9,
+        "h": 20.2,
+        "mode": "FF 16:9 → UHD · ≤60p",
+        "src": "Sony spec 35.9×24.0 mm, 4992 px wide; XAVC 4K from FF 16:9 (4992×2808) per Newsshooter/RedShark 2026-07-22"
+      }
     }
   ],
   "kits": {
