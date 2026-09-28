@@ -1030,20 +1030,279 @@
     {
       "id": "pocket6",
       "brand": "Blackmagic",
-      "label": "Pocket 6K",
+      "label": "Pocket Cinema Camera 6K",
       "formats": [
-        [
-          "braw-8",
-          "6k"
-        ],
-        [
-          "braw-5",
-          "6k"
-        ],
-        [
-          "prores-hq",
-          "uhd"
-        ]
+        {
+          "id": "braw3-6k",
+          "codec": "Blackmagic RAW 3:1",
+          "res": "6K 6144×3456",
+          "card": 256,
+          "minutes": {
+            "24": 17,
+            "25": 16,
+            "30": 13,
+            "50": 8,
+            "23.98": 17,
+            "29.97": 13
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw5-6k",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "6K 6144×3456",
+          "card": 256,
+          "minutes": {
+            "24": 28,
+            "25": 27,
+            "30": 22,
+            "50": 13,
+            "23.98": 28,
+            "29.97": 22
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw8-6k",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "6K 6144×3456",
+          "card": 256,
+          "minutes": {
+            "24": 45,
+            "25": 43,
+            "30": 36,
+            "50": 21,
+            "23.98": 45,
+            "29.97": 36
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw12-6k",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "6K 6144×3456",
+          "card": 256,
+          "minutes": {
+            "24": 67,
+            "25": 64,
+            "30": 54,
+            "50": 32,
+            "23.98": 67,
+            "29.97": 54
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prhq-uhd",
+          "codec": "ProRes 422 HQ",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 47,
+            "25": 45,
+            "30": 38,
+            "50": 22,
+            "60": 18,
+            "23.98": 47,
+            "29.97": 38,
+            "59.94": 18
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "pr422-uhd",
+          "codec": "ProRes 422",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 71,
+            "25": 68,
+            "30": 57,
+            "50": 34,
+            "60": 28,
+            "23.98": 71,
+            "29.97": 57,
+            "59.94": 28
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prlt-uhd",
+          "codec": "ProRes 422 LT",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 101,
+            "25": 97,
+            "30": 81,
+            "50": 48,
+            "60": 40,
+            "23.98": 101,
+            "29.97": 81,
+            "59.94": 40
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prpx-uhd",
+          "codec": "ProRes 422 Proxy",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 230,
+            "25": 221,
+            "30": 184,
+            "50": 111,
+            "60": 92,
+            "23.98": 230,
+            "29.97": 184,
+            "59.94": 92
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        }
+      ]
+    },
+    {
+      "id": "pocket4",
+      "brand": "Blackmagic",
+      "label": "Pocket Cinema Camera 4K",
+      "formats": [
+        {
+          "id": "braw3-uhd",
+          "codec": "Blackmagic RAW 3:1",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 41,
+            "25": 39,
+            "30": 33,
+            "50": 19,
+            "60": 16,
+            "23.98": 41,
+            "29.97": 33,
+            "59.94": 16
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw5-uhd",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 68,
+            "25": 66,
+            "30": 55,
+            "50": 33,
+            "60": 27,
+            "23.98": 68,
+            "29.97": 55,
+            "59.94": 27
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw8-uhd",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 109,
+            "25": 105,
+            "30": 88,
+            "50": 52,
+            "60": 44,
+            "23.98": 110,
+            "29.97": 88,
+            "59.94": 44
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw12-uhd",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 164,
+            "25": 157,
+            "30": 131,
+            "50": 79,
+            "60": 66,
+            "23.98": 164,
+            "29.97": 131,
+            "59.94": 66
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prhq-uhd",
+          "codec": "ProRes 422 HQ",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 47,
+            "25": 45,
+            "30": 38,
+            "50": 22,
+            "60": 18,
+            "23.98": 47,
+            "29.97": 38,
+            "59.94": 18
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "pr422-uhd",
+          "codec": "ProRes 422",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 71,
+            "25": 68,
+            "30": 57,
+            "50": 34,
+            "60": 28,
+            "23.98": 71,
+            "29.97": 57,
+            "59.94": 28
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prlt-uhd",
+          "codec": "ProRes 422 LT",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 101,
+            "25": 97,
+            "30": 81,
+            "50": 48,
+            "60": 40,
+            "23.98": 101,
+            "29.97": 81,
+            "59.94": 40
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prpx-uhd",
+          "codec": "ProRes 422 Proxy",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 230,
+            "25": 221,
+            "30": 184,
+            "50": 111,
+            "60": 92,
+            "23.98": 230,
+            "29.97": 184,
+            "59.94": 92
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        }
       ]
     },
     {
