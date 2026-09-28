@@ -711,22 +711,239 @@
       "brand": "Sony",
       "label": "VENICE 2",
       "formats": [
-        [
-          "xocn-lt",
-          "8.6k"
-        ],
-        [
-          "xocn-st",
-          "8.6k"
-        ],
-        [
-          "xocn-xt",
-          "8.6k"
-        ],
-        [
-          "xavc-i",
-          "uhd"
-        ]
+        {
+          "id": "xocnlt-1",
+          "codec": "X-OCN LT",
+          "res": "8.6K 3:2",
+          "card": 1000,
+          "minutes": {
+            "24": 58,
+            "25": 55,
+            "23.98": 58,
+            "29.97": 46
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnst-2",
+          "codec": "X-OCN ST",
+          "res": "8.6K 3:2",
+          "card": 1000,
+          "minutes": {
+            "24": 34,
+            "25": 32,
+            "23.98": 34,
+            "29.97": 27
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnxt-3",
+          "codec": "X-OCN XT",
+          "res": "8.6K 3:2",
+          "card": 1000,
+          "minutes": {
+            "24": 23,
+            "25": 22,
+            "23.98": 23,
+            "29.97": 18
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnlt-4",
+          "codec": "X-OCN LT",
+          "res": "8.6K 17:9 / 8.1K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 73,
+            "25": 70,
+            "23.98": 73,
+            "29.97": 58,
+            "47.95": 36
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnst-5",
+          "codec": "X-OCN ST",
+          "res": "8.6K 17:9 / 8.1K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 43,
+            "25": 41,
+            "23.98": 43,
+            "29.97": 34,
+            "47.95": 21
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnxt-6",
+          "codec": "X-OCN XT",
+          "res": "8.6K 17:9 / 8.1K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 29,
+            "25": 28,
+            "23.98": 29,
+            "29.97": 23
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnlt-7",
+          "codec": "X-OCN LT",
+          "res": "8.2K 17:9 / 7.6K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 80,
+            "25": 77,
+            "50": 38,
+            "23.98": 80,
+            "29.97": 64,
+            "47.95": 40,
+            "59.94": 32
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnst-8",
+          "codec": "X-OCN ST",
+          "res": "8.2K 17:9 / 7.6K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 47,
+            "25": 45,
+            "50": 22,
+            "23.98": 47,
+            "29.97": 37,
+            "47.95": 23,
+            "59.94": 18
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnxt-9",
+          "codec": "X-OCN XT",
+          "res": "8.2K 17:9 / 7.6K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 32,
+            "25": 31,
+            "23.98": 32,
+            "29.97": 25
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnlt-10",
+          "codec": "X-OCN LT",
+          "res": "5.8K 17:9 / 5.4K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 160,
+            "25": 154,
+            "50": 77,
+            "23.98": 160,
+            "29.97": 128,
+            "47.95": 80,
+            "59.94": 64
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnst-11",
+          "codec": "X-OCN ST",
+          "res": "5.8K 17:9 / 5.4K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 95,
+            "25": 91,
+            "50": 45,
+            "23.98": 95,
+            "29.97": 76,
+            "47.95": 47,
+            "59.94": 38
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnxt-12",
+          "codec": "X-OCN XT",
+          "res": "5.8K 17:9 / 5.4K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 65,
+            "25": 62,
+            "50": 31,
+            "23.98": 65,
+            "29.97": 52,
+            "47.95": 32,
+            "59.94": 26
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "pr-qfhd-hq",
+          "codec": "ProRes 422 HQ",
+          "res": "QFHD 3840×2160",
+          "card": 1000,
+          "minutes": {
+            "24": 156,
+            "25": 150,
+            "50": 75,
+            "23.98": 156,
+            "29.97": 125,
+            "59.94": 62
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "pr-qfhd-4444",
+          "codec": "ProRes 4444",
+          "res": "QFHD 3840×2160",
+          "card": 1000,
+          "minutes": {
+            "24": 104,
+            "25": 100,
+            "50": 50,
+            "23.98": 104,
+            "29.97": 83,
+            "59.94": 41
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "pr-qfhd-xq",
+          "codec": "ProRes 4444 XQ",
+          "res": "QFHD 3840×2160",
+          "card": 1000,
+          "minutes": {
+            "24": 69,
+            "25": 67,
+            "50": 33,
+            "23.98": 69,
+            "29.97": 55,
+            "59.94": 27
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "pr-4k-hq",
+          "codec": "ProRes 422 HQ",
+          "res": "4K 4096×2160",
+          "card": 1000,
+          "minutes": {
+            "24": 146,
+            "25": 140,
+            "50": 70,
+            "23.98": 146,
+            "29.97": 117,
+            "59.94": 58
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        }
       ]
     },
     {
