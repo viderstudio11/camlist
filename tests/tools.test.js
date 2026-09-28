@@ -191,3 +191,31 @@ test('distances read in metres or feet', () => {
   assert.ok(Math.abs(fromUnit(10, 'ft') - 3.048) < 1e-9);
   assert.equal(fromUnit(3, 'm'), 3);
 });
+
+test('camera formats: official recording times become rates that give the same times back', () => {
+  const m = createMedia({
+    frameRates: [25, 50],
+    codecs: [{ id: 'xavc-i', label: 'XAVC-I', model: 'points', src: 'published', points: { uhd: { 25: 240, 50: 500 } } }],
+    resolutions: [{ id: 'uhd', label: 'UHD 3840×2160', w: 3840, h: 2160, tier: 'uhd' }],
+    cameras: [
+      { id: 'fx5', brand: 'Sony', label: 'FX5', formats: [
+        { id: 'si-uhd', codec: 'XAVC S-I', res: 'UHD 3840×2160', card: 960, minutes: { '59.94': 205, 25: 488, '23.98': 508 }, src: 'Sony Help Guide' },
+      ] },
+      { id: 'fx6', brand: 'Sony', label: 'PXW-FX6', formats: [['xavc-i', 'uhd']] },
+    ],
+  });
+  const fx5 = m.formatsOf(m.cameras[0]);
+  assert.equal(fx5.length, 1);
+  assert.deepEqual(fx5[0].fps, [23.98, 25, 59.94]);
+  assert.equal(fx5[0].official, true);
+  const r = fx5[0].rate(25);
+  assert.ok(Math.abs(r - 262.3) < 0.1, r);
+  assert.ok(Math.abs(m.hoursOn(960, r) * 60 - 488) < 1e-6, 'gives Sony\'s 488 minutes back');
+  assert.equal(fx5[0].rate(30), 0, 'a frame rate the format does not record gives nothing');
+
+  const fx6 = m.formatsOf(m.cameras[1]);
+  assert.deepEqual(fx6[0].fps, [25, 50]);
+  assert.equal(fx6[0].rate(25), 240);
+  assert.equal(fx6[0].label, 'XAVC-I · UHD 3840×2160');
+  assert.equal(fx6[0].official, true);
+});

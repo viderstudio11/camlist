@@ -535,6 +535,178 @@
       ]
     },
     {
+      "id": "fx5",
+      "brand": "Sony",
+      "label": "ILME-FX5",
+      "formats": [
+        {
+          "id": "si-uhd",
+          "codec": "XAVC S-I",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "25": 488,
+            "50": 246,
+            "23.98": 508,
+            "29.97": 408,
+            "59.94": 205
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "si-dci",
+          "codec": "XAVC S-I",
+          "res": "DCI 4K 4096×2160",
+          "card": 960,
+          "minutes": {
+            "24": 508,
+            "25": 488,
+            "50": 246,
+            "23.98": 508,
+            "29.97": 408,
+            "59.94": 205
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "si-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "card": 960,
+          "minutes": {
+            "25": 1225,
+            "50": 630,
+            "23.98": 1277,
+            "29.97": 1034,
+            "59.94": 528
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "sl422-uhd",
+          "codec": "XAVC S-L 422",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "25": 843,
+            "50": 587,
+            "100": 412,
+            "23.98": 1150,
+            "29.97": 837,
+            "59.94": 580,
+            "119.88": 406
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "sl420-uhd",
+          "codec": "XAVC S-L 420",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "25": 1147,
+            "50": 763,
+            "100": 556,
+            "23.98": 1150,
+            "29.97": 1135,
+            "59.94": 752,
+            "119.88": 545
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "hsl422-uhd",
+          "codec": "XAVC HS-L 422",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "50": 587,
+            "100": 412,
+            "23.98": 1150,
+            "59.94": 580,
+            "119.88": 406
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "sl420-hd",
+          "codec": "XAVC S-L 420",
+          "res": "HD 1920×1080",
+          "card": 960,
+          "minutes": {
+            "25": 2087,
+            "50": 1902,
+            "100": 988,
+            "23.98": 2095,
+            "29.97": 2047,
+            "59.94": 1837,
+            "119.88": 953
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "xocn-lt-169",
+          "codec": "X-OCN LT",
+          "res": "FF 5K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 205,
+            "25": 197,
+            "50": 99,
+            "23.98": 205,
+            "29.97": 164,
+            "59.94": 82
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "xocn-c1-169",
+          "codec": "X-OCN C1",
+          "res": "FF 5K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 274,
+            "25": 263,
+            "50": 132,
+            "23.98": 274,
+            "29.97": 220,
+            "59.94": 110
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "xocn-c2-169",
+          "codec": "X-OCN C2",
+          "res": "FF 5K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 341,
+            "25": 327,
+            "50": 164,
+            "23.98": 341,
+            "29.97": 273,
+            "59.94": 137
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "xocn-lt-og",
+          "codec": "X-OCN LT",
+          "res": "FF 5K 3:2 Open Gate",
+          "card": 960,
+          "minutes": {
+            "24": 174,
+            "25": 167,
+            "50": 83,
+            "23.98": 174,
+            "29.97": 139,
+            "59.94": 69
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        }
+      ]
+    },
+    {
       "id": "venice2",
       "brand": "Sony",
       "label": "VENICE 2",

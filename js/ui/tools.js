@@ -13,8 +13,8 @@ import { num, hm } from '../format.js';
 const L = {
   tools:      { he: 'כלי עזר', en: 'Tools' },
   tools_sub:  { he: 'מחשבונים לשטח — לא נכנסים לרשימה ולא להדפסה', en: 'Field calculators — they stay out of the list and out of the print' },
-  media:      { he: 'מדיה וסוללות', en: 'Media & power' },
-  media_sub:  { he: 'כמה נכנס לכרטיס, כמה כרטיסים ליום', en: 'What fits on a card, how many a day needs' },
+  media:      { he: 'מדיה', en: 'Media' },
+  media_sub:  { he: 'כמה כרטיסים ליום צילום', en: 'How many cards a shoot day needs' },
   fov:        { he: 'בחירת עדשה', en: 'Lens choice' },
   fov_sub:    { he: 'איזה מוקד מכסה את הפריים מהמרחק הזה', en: 'Which focal length covers the frame from there' },
   shutter:    { he: 'פריים רייט ושאטר', en: 'Frame rate & shutter' },
@@ -118,6 +118,11 @@ const L = {
   safe_angles: { he: 'זוויות בטוחות בפריים רייט הזה', en: 'Safe angles at this frame rate' },
   project_fps: { he: 'פריים רייט של הפרויקט', en: 'Project frame rate' },
   shutter_lbl: { he: 'שאטר', en: 'Shutter' },
+  media_pick_first: { he: 'בחר מצלמה — הפורמטים והקצבים מגיעים מהיצרן שלה', en: 'Pick a camera — its formats and rates come from its maker' },
+  cards_of:   { he: 'כרטיסים של {card}', en: 'cards of {card}' },
+  media_sentence: { he: '{h} שעות {fmt} ב־{fps} על {cam} = {total}. כרטיס אחד מחזיק {per}.', en: '{h} hours of {fmt} at {fps} on {cam} = {total}. One card holds {per}.' },
+  src_official: { he: 'נתון רשמי', en: 'Official' },
+  src_estimate: { he: 'הערכה', en: 'Estimate' },
   speed_short: { he: 'מהירות', en: 'Speed' },
   angle_short: { he: 'זווית', en: 'Angle' },
   recommended: { he: 'מומלץ', en: 'best' },
@@ -174,7 +179,7 @@ export const setPlaces = (data) => { placeData = data || placeData; };
 
 // Everything the user typed, kept while the app is open so switching tools does not reset the work.
 const S = {
-  media: { cam: 'fx6', codec: 'xavc-i', res: 'uhd', fps: 25, card: 160, hours: 10 },
+  media: { brand: 'Sony', cam: 'fx6', fmt: '', fps: 25, card: 160, hours: 10, customHours: false },
   fov: { distance: 4, unit: 'm', shot: 'waist', focal: 0, phone: 'main', vf: false, cam: '', camBrand: '' },
   shutter: { fps: 25, mode: 'speed', speed: 50, angle: 180, mains: 50, projectFps: 25, customFps: false },
   offload: { gb: 1000, mbPerSec: 700, copies: 2, verify: true },
@@ -253,48 +258,62 @@ const headline = (value, unit, caption, cls = '') => `<div class="thead ${cls}">
 // ---------- media ----------
 function mediaTool(T) {
   const s = S.media;
-  // A body records a handful of formats, not the whole catalogue. Picking the camera first
-  // turns a list of twenty-odd codecs into a list of three or four real choices.
-  const cam = media.cameras.find(x => x.id === s.cam);
-  const fmtList = (cam?.formats || []).map(([codecId, resId]) => {
-    const cd = media.codec(codecId), rs = media.resolution(resId);
-    return { codecId, resId, label: `${cd?.label || codecId} · ${rs?.label || resId}` };
-  });
-  const fmtIndex = Math.max(0, fmtList.findIndex(f => f.codecId === s.codec && f.resId === s.res));
-  if (fmtList.length) { s.codec = fmtList[fmtIndex].codecId; s.res = fmtList[fmtIndex].resId; }
-  const rate = media.mbps(s.codec, s.res, s.fps);
-  const perHour = media.gbPerHour(rate);
+  const Tp = (k, p) => T(k).replace(/\{(\w+)\}/g, (_, x) => p[x] ?? '');
+  const chip = (attr, val, label, on, extra = '') => `<button class="chip pick ${on ? 'on' : ''}" ${attr}="${esc(val)}">${label}${extra}</button>`;
+  const gb = (x) => (x >= 1000 ? `${num(x / 1000, x % 1000 ? 2 : 0)} TB` : `${x} GB`);
+
+  // Maker first, then the body, then what that body records: three short lists, never a long one.
+  const cams = media.cameras.filter(c => c.brand && c.brand !== '—' && c.formats?.length);
+  const brands = [...new Set(cams.map(c => c.brand))];
+  const cam = cams.find(c => c.id === s.cam) || null;
+  if (cam && !s.brand) s.brand = cam.brand;
+  const models = cams.filter(c => c.brand === s.brand);
+  const fmts = cam ? media.formatsOf(cam) : [];
+  const fmt = fmts.find(f => f.key === s.fmt) || fmts[0] || null;
+  if (fmt) {
+    s.fmt = fmt.key;
+    if (!fmt.fps.includes(s.fps)) s.fps = [...fmt.fps].sort((a, b) => Math.abs(a - 25) - Math.abs(b - 25))[0];
+  }
+  const rate = fmt ? fmt.rate(s.fps) : 0;
   const onCard = media.hoursOn(s.card, rate);
   const cards = media.cardsFor(s.hours, s.card, rate);
-  const c = media.codec(s.codec);
-  return `
-    ${headline(cards || '—', T('cards_needed'), `${esc(c?.label || '')} · ${num(rate, 0)} Mbps · ${hm(onCard)} ${esc(T('on_card'))}`)}
-    <div class="card tform">
-      ${field(T('camera_pick'), sel('cam', [
-        ...media.cameras.map(x => ({ v: x.id, l: x.brand === '—' ? x.label : `${x.brand} ${x.label}` })),
-      ], s.cam))}
-      ${fmtList.length
-        ? field(T('format_pick'), sel('fmt', fmtList.map((f, i) => ({ v: i, l: f.label })), fmtIndex))
-        : `${field(T('codec'), sel('codec', media.codecs.map(x => ({ v: x.id, l: `${x.label}${x.brand && x.brand !== '—' ? ` · ${x.brand}` : ''}` })), s.codec))}
-           ${field(T('res'), sel('res', media.resolutions.map(x => ({ v: x.id, l: x.label })), s.res))}`}
-      ${field(T('fps'), sel('fps', media.frameRates.map(x => ({ v: x, l: `${x} fps` })), s.fps))}
-      ${field(T('card'), sel('card', media.cards.map(x => ({ v: x, l: x >= 1000 ? `${x / 1000} TB` : `${x} GB` })), s.card))}
-      ${field(T('shoot_hours'), numIn('hours', s.hours, { min: 1, max: 24, step: 1 }))}
+  const totalGb = media.gbPerHour(rate) * s.hours;
+
+  const pick = `<div class="card sh-sec" data-part="cam">
+    <div class="tsub">1 · ${esc(T('camera_step'))}</div>
+    <div class="chips">${brands.map(b => chip('data-mbrand', b, esc(b), b === s.brand)).join('')}</div>
+    ${models.length ? `<div class="chips fov-models">${models.map(c => chip('data-mcam', c.id, esc(c.label), cam && c.id === cam.id)).join('')}</div>` : ''}
+  </div>`;
+  if (!cam) return `<div class="card sh-answer warn"><p class="sh-line">${esc(T('media_pick_first'))}</p></div>${pick}`;
+
+  const answer = `<div class="card sh-answer ok">
+    <div class="fov-top"><b class="sh-big">${cards || '—'}</b><span class="sh-small">${esc(Tp('cards_of', { card: gb(s.card) }))}</span></div>
+    <p class="sh-line">${esc(Tp('media_sentence', { h: s.hours, fmt: fmt.label, fps: s.fps, cam: cam.label, total: gb(Math.round(totalGb)), per: hm(onCard) }))}</p>
+    ${cards ? `<div class="cards">${Array.from({ length: Math.min(cards, 24) }, (_, i) => {
+      const part = i === cards - 1 ? (s.hours / onCard) % 1 || 1 : 1;
+      return `<span class="cardchip"><i style="height:${(part * 100).toFixed(0)}%"></i><em>${gb(s.card)}</em></span>`;
+    }).join('')}${cards > 24 ? `<span class="cardmore">+${cards - 24}</span>` : ''}</div>` : ''}
+    <p class="tnote"><span class="src-badge ${fmt.official ? 'ok' : 'est'}">${esc(T(fmt.official ? 'src_official' : 'src_estimate'))}</span> ${num(rate, 0)} Mbps${fmt.src ? ` · ${esc(fmt.src)}` : ''}</p>
+  </div>`;
+
+  return `${answer}${pick}
+    <div class="card sh-sec">
+      <div class="tsub">2 · ${esc(T('format_pick'))}</div>
+      <div class="chips">${fmts.map(f => chip('data-mfmt', f.key, esc(f.label), f.key === fmt.key)).join('')}</div>
     </div>
-    ${out([
-      [T('bitrate'), `${num(rate, 0)} Mbps`],
-      [T('per_hour'), `${num(perHour, 0)} GB`],
-      [T('on_card'), hm(onCard), onCard < 0.5 ? 'warn' : ''],
-    ])}
-    ${cards ? `<div class="card cardrow">
-      <div class="tsub">${esc(T('cards_needed'))}</div>
-      <div class="cards">${Array.from({ length: Math.min(cards, 24) }, (_, i) => {
-        const last = i === cards - 1;
-        const part = last ? (s.hours / onCard) % 1 || 1 : 1;
-        return `<span class="cardchip"><i style="height:${(part * 100).toFixed(0)}%"></i><em>${s.card >= 1000 ? s.card / 1000 + 'TB' : s.card + 'GB'}</em></span>`;
-      }).join('')}${cards > 24 ? `<span class="cardmore">+${cards - 24}</span>` : ''}</div>
-    </div>` : ''}
-    ${c?.note ? `<p class="tnote"><b>${esc(T('source'))}:</b> ${esc(c.note)}</p>` : ''}`;
+    <div class="card sh-sec">
+      <div class="tsub">3 · ${esc(T('fps'))}</div>
+      <div class="chips">${fmt.fps.map(x => chip('data-mfps', x, String(x), x === s.fps)).join('')}</div>
+    </div>
+    <div class="card sh-sec">
+      <div class="tsub">4 · ${esc(T('card'))}</div>
+      <div class="chips">${media.cards.map(x => chip('data-mcard', x, gb(x), x === s.card)).join('')}</div>
+    </div>
+    <div class="card sh-sec">
+      <div class="tsub">5 · ${esc(T('shoot_hours'))}</div>
+      <div class="chips">${[2, 4, 6, 8, 10, 12, 14].map(x => chip('data-mhours', x, String(x), x === s.hours)).join('')}${chip('data-mhours-custom', 1, esc(T('other_val')), ![2, 4, 6, 8, 10, 12, 14].includes(s.hours))}</div>
+      ${![2, 4, 6, 8, 10, 12, 14].includes(s.hours) || s.customHours ? `<div class="sh-custom">${field(T('shoot_hours'), numIn('hours', s.hours, { min: 0.5, max: 48, step: 0.5 }))}</div>` : ''}
+    </div>`;
 }
 
 // ---------- field of view ----------
@@ -787,16 +806,6 @@ function wire(root, ctx, id, T, lang) {
       else s[k] = el.type === 'number' || !Number.isNaN(Number(el.value)) ? Number(el.value) : el.value;
 
       if (id === 'luts' && k === 'lutmodel') s.model = el.value;
-      if (id === 'media' && k === 'cam') {
-        const cam2 = media.cameras.find(x => x.id === s.cam);
-        const first = cam2?.formats?.[0];
-        if (first) { s.codec = first[0]; s.res = first[1]; }
-      }
-      if (id === 'media' && k === 'fmt') {
-        const cam2 = media.cameras.find(x => x.id === s.cam);
-        const pick = cam2?.formats?.[Number(el.value)];
-        if (pick) { s.codec = pick[0]; s.res = pick[1]; }
-      }
       if (id === 'fov' && k === 'distance') s.focal = 0;
       if (id === 'fov' && k === 'cam') s.cam = el.value;
       if (id === 'fov' && k === 'camBrand') { s.camBrand = el.value; s.cam = ''; }
@@ -816,6 +825,13 @@ function wire(root, ctx, id, T, lang) {
   root.querySelector('[data-lens-reset]')?.addEventListener('click', () => { S.fov.focal = 0; ctx.render(); });
   root.querySelectorAll('[data-cbrand]').forEach(b => { b.onclick = () => { S.fov.camBrand = b.dataset.cbrand; S.fov.cam = ''; S.fov.focal = 0; ctx.render(); }; });
   root.querySelectorAll('[data-cmodel]').forEach(b => { b.onclick = () => { S.fov.cam = b.dataset.cmodel; S.fov.focal = 0; ctx.render(); }; });
+  root.querySelectorAll('[data-mbrand]').forEach(b => { b.onclick = () => { S.media.brand = b.dataset.mbrand; S.media.cam = ''; S.media.fmt = ''; ctx.render(); }; });
+  root.querySelectorAll('[data-mcam]').forEach(b => { b.onclick = () => { S.media.cam = b.dataset.mcam; S.media.fmt = ''; ctx.render(); }; });
+  root.querySelectorAll('[data-mfmt]').forEach(b => { b.onclick = () => { S.media.fmt = b.dataset.mfmt; ctx.render(); }; });
+  root.querySelectorAll('[data-mfps]').forEach(b => { b.onclick = () => { S.media.fps = Number(b.dataset.mfps); ctx.render(); }; });
+  root.querySelectorAll('[data-mcard]').forEach(b => { b.onclick = () => { S.media.card = Number(b.dataset.mcard); ctx.render(); }; });
+  root.querySelectorAll('[data-mhours]').forEach(b => { b.onclick = () => { S.media.hours = Number(b.dataset.mhours); S.media.customHours = false; ctx.render(); }; });
+  root.querySelector('[data-mhours-custom]')?.addEventListener('click', () => { S.media.customHours = true; ctx.render(); });
   root.querySelectorAll('[data-unit]').forEach(b => { b.onclick = () => { S.fov.unit = b.dataset.unit; ctx.render(); }; });
   const fdist = root.querySelector('[data-fdist]');
   if (fdist) fdist.onchange = () => { const v = Number(fdist.value); if (v > 0) { S.fov.distance = fromUnit(v, S.fov.unit); S.fov.focal = 0; } ctx.render(); };

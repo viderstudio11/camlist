@@ -54,7 +54,37 @@ export function createMedia(data = {}) {
     return per > 0 ? Math.ceil(hours / per) : 0;
   };
 
+  // A camera's recordable formats, each with the frame rates it offers and a rate for each.
+  // Two ways a format can be described in data/codecs.json:
+  //   { codec, res, card, minutes: { fps: min } } — the maker's own recording-time table (the
+  //       rate is worked back from it, so the tool gives exactly the maker's times back), or
+  //       { codec, res, mbps: { fps: Mbps } } — the maker's published bitrates;
+  //   [codecId, resId] — the older generic codec models above.
+  function formatsOf(cam) {
+    return (cam?.formats || []).map((f, i) => {
+      if (Array.isArray(f)) {
+        const [codecId, resId] = f;
+        const c = codec(codecId), r = resolution(resId);
+        return {
+          key: `${codecId}:${resId}`, label: `${c?.label || codecId} · ${r?.label || resId}`,
+          fps: [...(data.frameRates || [])], rate: (fps) => mbps(codecId, resId, fps),
+          official: c?.src === 'published', src: c?.note || '',
+        };
+      }
+      const table = f.minutes
+        ? Object.fromEntries(Object.entries(f.minutes).map(([fps, min]) => [fps, (f.card * 8000) / (min * 60)]))
+        : f.mbps || {};
+      return {
+        key: f.id || String(i), label: `${f.codec} · ${f.res}`,
+        fps: Object.keys(table).map(Number).sort((a, b) => a - b),
+        rate: (fps) => Number(table[String(fps)] ?? 0),
+        official: true, src: f.src || '',
+      };
+    });
+  }
+
   return {
+    formatsOf,
     codecs, resolutions, codec, resolution,
     frameRates: data.frameRates || [24, 25, 30, 50, 60],
     cards: data.cards || [128, 256, 512, 1000],
