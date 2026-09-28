@@ -914,3 +914,13 @@ body.split .view { max-width: none; padding: 12px 16px 0; }
 .src-badge { display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 1px 7px; border-radius: 5px; margin-inline-end: 4px; }
 .src-badge.ok { background: var(--ok-soft); color: var(--ok-ink); }
 .src-badge.est { background: var(--warn-soft); color: var(--warn-ink); }
+
+/* Media: the source sits one tap away; backup cards come in pairs; the day's footage hands over to offload. */
+.src-more { margin-top: 10px; font-size: 13px; color: var(--text-3); }
+.src-more summary { cursor: pointer; list-style: none; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; color: var(--text-2); }
+.src-more summary::-webkit-details-marker { display: none; }
+.src-more .src-i { font-size: 14px; color: var(--text-3); margin-inline-start: 2px; }
+.src-more[open] .src-i { color: var(--accent-ink); }
+.src-more p { margin-top: 6px; line-height: 1.45; overflow-wrap: anywhere; }
+.cardchip.twin { margin-inline-start: -8px; opacity: .8; }
+.to-offload { margin-top: 12px; font-weight: var(--w-strong); font-size: 14px; color: var(--accent-ink); background: var(--accent-soft); padding: 8px 12px; border-radius: 10px; }

@@ -259,3 +259,66 @@ test('camera formats: a frame size never goes past the camera’s top write spee
   assert.equal(f.capped(60), true);
   assert.equal(f.capped(24), false);
 });
+
+test('camera formats: interlaced rates stay apart from progressive ones', () => {
+  const m = createMedia({ cameras: [{ id: 'x400', brand: 'Sony', label: 'PXW-X400', formats: [
+    { id: 'xavci-hd', codec: 'XAVC-I', res: 'HD 1920×1080', mbps: { 25: 111, 50: 222, '50i': 111, '59.94i': 111 }, src: 'Sony' },
+  ] }] });
+  const [f] = m.formatsOf(m.cameras[0]);
+  assert.deepEqual(f.fps, [25, 50, '50i', '59.94i']);
+  assert.equal(f.rate('50i'), 111);
+  assert.equal(f.rate(50), 222);
+  assert.equal(f.codec, 'XAVC-I');
+  assert.equal(f.res, 'HD 1920×1080');
+});
+
+test('camera formats: grouped by frame size, in the maker’s order', () => {
+  const m = createMedia({
+    codecs: [{ id: 'prores-hq', label: 'ProRes 422 HQ', model: 'bpp', bpp: 3.6, src: 'published' }],
+    resolutions: [{ id: 'uhd', label: 'UHD 3840×2160', w: 3840, h: 2160, tier: 'uhd' }],
+    cameras: [{ id: 'c', brand: 'X', label: 'C', formats: [
+      { id: 'a', codec: 'RAW', res: '8K', mbps: { 25: 1 } },
+      { id: 'b', codec: 'X-OCN', res: '6K', mbps: { 25: 1 } },
+      { id: 'c', codec: 'X-OCN', res: '8K', mbps: { 25: 1 } },
+      ['prores-hq', 'uhd'],
+    ] }],
+  });
+  const groups = m.groupFormats(m.formatsOf(m.cameras[0]));
+  assert.deepEqual(groups.map(g => g.res), ['8K', '6K', 'UHD 3840×2160']);
+  assert.deepEqual(groups[0].formats.map(f => f.codec), ['RAW', 'X-OCN']);
+  assert.equal(groups[2].formats[0].codec, 'ProRes 422 HQ');
+});
+
+test('camera media: the cards a camera takes, and the one its maker’s table used', () => {
+  const m = createMedia({
+    media: {
+      'CFexpress B': { sizes: [128, 256, 512, 960, 1920], src: 'Sony CEB-G' },
+      SD: { sizes: [64, 128, 256], src: 'Sony SF-G' },
+      'Codex Compact Drive': { sizes: [1000, 2000], usable: { 1000: 960, 2000: 1920 }, src: 'Codex' },
+    },
+    cameras: [
+      { id: 'burano', brand: 'Sony', label: 'BURANO', media: ['CFexpress B'], formats: [
+        { id: 'x', codec: 'X-OCN LT', res: '8.6K', card: 960, minutes: { 25: 100 } },
+        { id: 'y', codec: 'XAVC-I', res: 'UHD', mbps: { 25: 240 } },
+      ] },
+      { id: 'c70', brand: 'Canon', label: 'EOS C70', media: ['SD'], formats: [{ id: 'z', codec: 'XF-AVC', res: '4K', mbps: { 25: 410 } }] },
+      { id: 'a35', brand: 'ARRI', label: 'ALEXA 35', media: ['Codex Compact Drive'], formats: [] },
+    ],
+  });
+  const [burano, c70, a35] = m.cameras;
+  assert.deepEqual(m.mediaOf(burano).map(x => x.type), ['CFexpress B']);
+  const [x, y] = m.formatsOf(burano);
+  assert.deepEqual(m.defaultCard(burano, x), { type: 'CFexpress B', size: 960 }, 'the card the maker timed');
+  assert.deepEqual(m.defaultCard(burano, y), { type: 'CFexpress B', size: 512 }, 'else the middle size');
+  assert.deepEqual(m.defaultCard(c70, m.formatsOf(c70)[0]), { type: 'SD', size: 128 });
+  assert.equal(m.usableGb('Codex Compact Drive', 1000), 960, 'a 1TB Compact Drive holds 960 GB');
+  assert.equal(m.usableGb('SD', 128), 128);
+  assert.equal(m.usableGb('SD', 100), 100, 'a size typed by hand is taken as is');
+  assert.equal(m.mediaOf(a35)[0].sizes.length, 2);
+});
+
+test('a backup copy on a second card doubles the cards', () => {
+  const m = createMedia({});
+  assert.equal(m.cardsFor(10, 160, 240), 7);
+  assert.equal(m.cardsFor(10, 160, 240, 2), 14);
+});

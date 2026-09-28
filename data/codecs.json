@@ -1,5 +1,8 @@
 {
-  "_readme": "Recording formats for the media calculator. Three models, all editable: 'bpp' = bits per pixel per frame (the codec scales with resolution AND frame rate — ProRes and the raw codecs work this way); 'points' = manufacturer-published Mbps at specific frame rates per resolution tier, interpolated in between; 'fixed' = a constant Mbps per resolution tier regardless of frame rate (long-GOP codecs). 'src' says where the number comes from: 'published' = manufacturer figure, 'derived' = calculated from a published anchor or from the codec's own bit depth. Correct anything that differs from what you measure on set.",
+  "_readme": [
+    "Recording formats for the media calculator. Three models, all editable: 'bpp' = bits per pixel per frame (the codec scales with resolution AND frame rate — ProRes and the raw codecs work this way); 'points' = manufacturer-published Mbps at specific frame rates per resolution tier, interpolated in between; 'fixed' = a constant Mbps per resolution tier regardless of frame rate (long-GOP codecs). 'src' says where the number comes from: 'published' = manufacturer figure, 'derived' = calculated from a published anchor or from the codec's own bit depth. Correct anything that differs from what you measure on set.",
+    "cameras[].media: the card types a camera takes, in slot order (keys of \"media\"); oneSlot: a single card slot, so no mirrored backup recording"
+  ],
   "resolutions": [
     {
       "id": "hd",
@@ -426,6 +429,104 @@
     1024,
     2000
   ],
+  "media": {
+    "CFexpress A": {
+      "sizes": [
+        80,
+        160,
+        320,
+        640,
+        960,
+        1920
+      ],
+      "src": "Sony CEA-G TOUGH CFexpress Type A range (80 GB – 1920 GB) — sony.com"
+    },
+    "CFexpress B": {
+      "sizes": [
+        128,
+        256,
+        512,
+        960,
+        1920
+      ],
+      "src": "Sony CEB-G TOUGH CFexpress Type B range (128 GB – 1920 GB) — sony.com"
+    },
+    "RED PRO CFexpress": {
+      "sizes": [
+        660,
+        1300,
+        2000,
+        4000
+      ],
+      "src": "RED V-RAPTOR operation guide, “CFexpress Type B Media”: 660 GB, 1.3 TB, 2 TB, 4 TB — docs.red.com"
+    },
+    "XQD": {
+      "sizes": [
+        64,
+        120,
+        240
+      ],
+      "src": "Sony XQD G series (QD-G64F / G120F / G240F) — sony.com"
+    },
+    "AXS": {
+      "sizes": [
+        512,
+        1000
+      ],
+      "src": "Sony AXS Memory A series: 512 GB and 1 TB (AXS-A1TS66) — pro.sony"
+    },
+    "SxS": {
+      "sizes": [
+        64,
+        128,
+        240
+      ],
+      "src": "Sony PXW-X400 Operating Instructions: SxS-1 SBS-128G1C and SxS PRO X SBP-240F; 64 GB SxS in the X400 specifications — pro.sony"
+    },
+    "Codex Compact Drive": {
+      "sizes": [
+        1000,
+        2000
+      ],
+      "usable": {
+        "1000": 960,
+        "2000": 1920
+      },
+      "src": "Codex Compact Drive: 1 TB gives 960 GB usable, 2 TB gives 1920 GB — help.codex.online / arri.com"
+    },
+    "CFast 2.0": {
+      "sizes": [
+        256,
+        512,
+        1000
+      ],
+      "src": "Angelbird AV PRO CF (CFast 2.0): 256 GB, 512 GB, 1 TB — angelbird.com"
+    },
+    "SD": {
+      "sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "src": "Sony TOUGH SD range: SF-G 32/64/128 GB, SF-M 256 GB — sony.com"
+    },
+    "microSD": {
+      "sizes": [
+        64,
+        128,
+        256,
+        512
+      ],
+      "src": "SanDisk Extreme microSDXC range — sandisk.com"
+    },
+    "DJI PROSSD": {
+      "sizes": [
+        1000
+      ],
+      "src": "DJI PROSSD 1TB — store.dji.com / dji.com/ronin-4d/specs"
+    }
+  },
   "presets": [
     {
       "label": "Sony FX6 · XAVC-I 4K 25p",
@@ -481,6 +582,10 @@
       "id": "fx6",
       "brand": "Sony",
       "label": "PXW-FX6",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
       "formats": [
         {
           "id": "xavci-dci4k",
@@ -556,6 +661,10 @@
       "id": "fx9",
       "brand": "Sony",
       "label": "PXW-FX9",
+      "media": [
+        "XQD",
+        "CFexpress B"
+      ],
       "formats": [
         {
           "id": "xavci-dci4k",
@@ -631,6 +740,10 @@
       "id": "fx3",
       "brand": "Sony",
       "label": "ILME-FX3",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
       "formats": [
         {
           "id": "xavc-s-i-4k",
@@ -707,6 +820,10 @@
       "id": "fx30",
       "brand": "Sony",
       "label": "ILME-FX30",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
       "formats": [
         {
           "id": "xavc-s-i-dci-4k",
@@ -797,6 +914,10 @@
       "id": "fx2",
       "brand": "Sony",
       "label": "ILME-FX2",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
       "formats": [
         {
           "id": "xavc-s-i-dci-4k",
@@ -883,6 +1004,10 @@
       "id": "a7s3",
       "brand": "Sony",
       "label": "Alpha 7S III",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
       "formats": [
         {
           "id": "xavc-s-i-4k",
@@ -959,6 +1084,10 @@
       "id": "fx5",
       "brand": "Sony",
       "label": "ILME-FX5",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
       "formats": [
         {
           "id": "si-uhd",
@@ -1131,6 +1260,10 @@
       "id": "venice2",
       "brand": "Sony",
       "label": "VENICE 2",
+      "media": [
+        "AXS"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "xocnlt-1",
@@ -1371,6 +1504,10 @@
       "id": "burano",
       "brand": "Sony",
       "label": "BURANO",
+      "media": [
+        "CFexpress B"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "xocnlt-86-169",
@@ -1448,6 +1585,10 @@
       "id": "x400",
       "brand": "Sony",
       "label": "PXW-X400",
+      "media": [
+        "SxS",
+        "SD"
+      ],
       "formats": [
         {
           "id": "xavci-hd",
@@ -1458,9 +1599,11 @@
             "50": 222,
             "23.98": 89,
             "29.97": 111,
-            "59.94": 222
+            "59.94": 222,
+            "50i": 111,
+            "59.94i": 111
           },
-          "src": "Sony PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time” and Specifications (recording frame rates) — sony.com"
+          "src": "Sony PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time”: 222 Mbps at 59.94P/50P (firmware 2.0), 111 Mbps at 29.97P/25P/59.94i/50i, 89 Mbps at 23.98P — sony.com"
         },
         {
           "id": "xavcl50-hd",
@@ -1471,10 +1614,39 @@
             "50": 50,
             "23.98": 50,
             "29.97": 50,
-            "59.94": 50
+            "59.94": 50,
+            "50i": 50,
+            "59.94i": 50
           },
           "max": true,
           "src": "Sony PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time” and Specifications (recording frame rates) — sony.com"
+        },
+        {
+          "id": "xavcl35-hd",
+          "codec": "XAVC-L 35",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 35,
+            "50": 35,
+            "23.98": 35,
+            "29.97": 35,
+            "59.94": 35,
+            "50i": 35,
+            "59.94i": 35
+          },
+          "max": true,
+          "src": "Sony PXW-X400 specifications, “Recording Format (Video)” and “Recording Frame Rate” — pro.sony/ue_US/products/shoulder-camcorders/pxw-x400 (VBR, max. 35 Mbps)"
+        },
+        {
+          "id": "xavcl25-hd",
+          "codec": "XAVC-L 25",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "50i": 25,
+            "59.94i": 25
+          },
+          "max": true,
+          "src": "Sony PXW-X400 specifications, “Recording Format (Video)” and “Recording Frame Rate” — pro.sony/ue_US/products/shoulder-camcorders/pxw-x400 (VBR, max. 25 Mbps; 1080 interlaced only)"
         },
         {
           "id": "mpeg-hd422",
@@ -1483,9 +1655,25 @@
           "mbps": {
             "25": 50,
             "23.98": 50,
-            "29.97": 50
+            "29.97": 50,
+            "50i": 50,
+            "59.94i": 50
           },
-          "src": "Sony PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time” and Specifications (recording frame rates) — sony.com (CBR 50 Mbps; interlaced 50i/59.94i also recorded)"
+          "src": "Sony PXW-X400 specifications, “Recording Format (Video)” and “Recording Frame Rate” — pro.sony/ue_US/products/shoulder-camcorders/pxw-x400 (MPEG-2 422P@HL, CBR 50 Mbps)"
+        },
+        {
+          "id": "mpeg-hd420",
+          "codec": "MPEG HD420 HQ",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 35,
+            "23.98": 35,
+            "29.97": 35,
+            "50i": 35,
+            "59.94i": 35
+          },
+          "max": true,
+          "src": "Sony PXW-X400 specifications, “Recording Format (Video)” and “Recording Frame Rate” — pro.sony/ue_US/products/shoulder-camcorders/pxw-x400 (MPEG-2 MP@HL, VBR, max. 35 Mbps)"
         }
       ]
     },
@@ -1493,10 +1681,13 @@
       "id": "z150",
       "brand": "Sony",
       "label": "PXW-Z150",
+      "media": [
+        "SD"
+      ],
       "formats": [
         {
           "id": "xavc-qfhd",
-          "codec": "XAVC Long",
+          "codec": "XAVC Long 100",
           "res": "QFHD 3840×2160",
           "mbps": {
             "25": 100,
@@ -1504,21 +1695,114 @@
             "29.97": 100
           },
           "max": true,
-          "src": "Sony PXW-Z150 Operating Instructions (45868031M), recording format / proxy table (bit rate per frame rate) — sony.com. XAVC Long records VBR; these are its maximum rates"
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "xavc-qfhd60",
+          "codec": "XAVC Long 60",
+          "res": "QFHD 3840×2160",
+          "mbps": {
+            "25": 60,
+            "23.98": 60,
+            "29.97": 60
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
         },
         {
           "id": "xavc-hd",
-          "codec": "XAVC Long",
+          "codec": "XAVC Long 50",
           "res": "HD 1920×1080",
           "mbps": {
             "25": 50,
             "50": 50,
             "23.98": 50,
             "29.97": 50,
-            "59.94": 50
+            "59.94": 50,
+            "50i": 50,
+            "59.94i": 50
           },
           "max": true,
-          "src": "Sony PXW-Z150 Operating Instructions (45868031M), recording format / proxy table (bit rate per frame rate) — sony.com. XAVC Long records VBR; these are its maximum rates"
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "xavc-hd35",
+          "codec": "XAVC Long 35",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 35,
+            "50": 35,
+            "23.98": 35,
+            "29.97": 35,
+            "59.94": 35,
+            "50i": 35,
+            "59.94i": 35
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "xavc-hd25",
+          "codec": "XAVC Long 25",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "50i": 25,
+            "59.94i": 25
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "mpeg-hd422",
+          "codec": "MPEG HD422",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "50i": 50,
+            "59.94i": 50
+          },
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "mpeg-hd420",
+          "codec": "MPEG HD420 HQ",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 35,
+            "23.98": 35,
+            "29.97": 35,
+            "50i": 35,
+            "59.94i": 35
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "avchd-ps",
+          "codec": "AVCHD PS",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "50": 28,
+            "59.94": 28
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "avchd-fx",
+          "codec": "AVCHD FX",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 24,
+            "23.98": 24,
+            "29.97": 24,
+            "50i": 24,
+            "59.94i": 24
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
         }
       ]
     },
@@ -1526,6 +1810,10 @@
       "id": "a35",
       "brand": "ARRI",
       "label": "ALEXA 35",
+      "media": [
+        "Codex Compact Drive"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "raw-46og",
@@ -1626,6 +1914,10 @@
       "id": "minilf",
       "brand": "ARRI",
       "label": "ALEXA Mini LF",
+      "media": [
+        "Codex Compact Drive"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "raw-45og",
@@ -1711,6 +2003,10 @@
       "id": "alexamini",
       "brand": "ARRI",
       "label": "ALEXA Mini",
+      "media": [
+        "CFast 2.0"
+      ],
+      "oneSlot": true,
       "formats": [
         [
           "prores-xq",
@@ -1743,6 +2039,9 @@
       "id": "amira",
       "brand": "ARRI",
       "label": "AMIRA",
+      "media": [
+        "CFast 2.0"
+      ],
       "formats": [
         [
           "prores-hq",
@@ -1760,6 +2059,10 @@
       "id": "raptor",
       "brand": "RED",
       "label": "V-RAPTOR 8K",
+      "media": [
+        "RED PRO CFexpress"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "r3d-8k-hq",
@@ -1956,6 +2259,10 @@
       "id": "komodo",
       "brand": "RED",
       "label": "KOMODO 6K",
+      "media": [
+        "CFast 2.0"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "r3d-6k-hq",
@@ -2019,6 +2326,10 @@
       "id": "ursa",
       "brand": "Blackmagic",
       "label": "URSA Mini Pro 12K",
+      "media": [
+        "CFast 2.0",
+        "SD"
+      ],
       "formats": [
         {
           "id": "braw-12k-5-1",
@@ -2227,6 +2538,10 @@
       "id": "ursa46g2",
       "brand": "Blackmagic",
       "label": "URSA Mini Pro 4.6K G2",
+      "media": [
+        "CFast 2.0",
+        "SD"
+      ],
       "formats": [
         {
           "id": "braw-46k-3-1",
@@ -2370,6 +2685,10 @@
       "id": "pocket6",
       "brand": "Blackmagic",
       "label": "Pocket Cinema Camera 6K",
+      "media": [
+        "CFast 2.0",
+        "SD"
+      ],
       "formats": [
         {
           "id": "braw3-6k",
@@ -2505,6 +2824,10 @@
       "id": "pocket4",
       "brand": "Blackmagic",
       "label": "Pocket Cinema Camera 4K",
+      "media": [
+        "CFast 2.0",
+        "SD"
+      ],
       "formats": [
         {
           "id": "braw3-uhd",
@@ -2648,6 +2971,10 @@
       "id": "c400",
       "brand": "Canon",
       "label": "EOS C400",
+      "media": [
+        "CFexpress B",
+        "SD"
+      ],
       "formats": [
         {
           "id": "xfavcs-lgop422-4k",
@@ -2745,6 +3072,10 @@
       "id": "c500ii",
       "brand": "Canon",
       "label": "EOS C500 Mark II",
+      "media": [
+        "CFexpress B",
+        "SD"
+      ],
       "formats": [
         {
           "id": "crm-lt-ff",
@@ -2847,6 +3178,10 @@
       "id": "c300iii",
       "brand": "Canon",
       "label": "EOS C300 Mark III",
+      "media": [
+        "CFexpress B",
+        "SD"
+      ],
       "formats": [
         {
           "id": "crm-4k",
@@ -2914,6 +3249,9 @@
       "id": "c70",
       "brand": "Canon",
       "label": "EOS C70",
+      "media": [
+        "SD"
+      ],
       "formats": [
         {
           "id": "raw-st-4k",
@@ -2979,6 +3317,9 @@
       "id": "c80",
       "brand": "Canon",
       "label": "EOS C80",
+      "media": [
+        "SD"
+      ],
       "formats": [
         {
           "id": "xfavc-i-4k-hi",
@@ -3072,6 +3413,10 @@
       "id": "hero13",
       "brand": "GoPro",
       "label": "HERO13 Black",
+      "media": [
+        "microSD"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "high-5-3k",
@@ -3195,6 +3540,10 @@
       "id": "hero12",
       "brand": "GoPro",
       "label": "HERO12 Black",
+      "media": [
+        "microSD"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "high-5-3k",
@@ -3320,6 +3669,10 @@
       "id": "ronin4d",
       "brand": "DJI",
       "label": "Ronin 4D 6K",
+      "media": [
+        "DJI PROSSD",
+        "CFexpress B"
+      ],
       "formats": [
         [
           "prores-hq",
@@ -3337,6 +3690,10 @@
       "id": "osmo-action5",
       "brand": "DJI",
       "label": "Osmo Action 5 Pro",
+      "media": [
+        "microSD"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "uhd",
@@ -3397,6 +3754,10 @@
       "id": "osmo-pocket3",
       "brand": "DJI",
       "label": "Osmo Pocket 3",
+      "media": [
+        "microSD"
+      ],
+      "oneSlot": true,
       "formats": [
         {
           "id": "uhd",
@@ -3453,6 +3814,9 @@
       "id": "eva1",
       "brand": "Panasonic",
       "label": "AU-EVA1",
+      "media": [
+        "SD"
+      ],
       "formats": [
         {
           "id": "alli400-uhd",
@@ -3540,6 +3904,9 @@
       "id": "cx350",
       "brand": "Panasonic",
       "label": "AG-CX350",
+      "media": [
+        "SD"
+      ],
       "formats": [
         {
           "id": "alli400-uhd",
@@ -3559,6 +3926,16 @@
           "mbps": {
             "50": 200,
             "59.94": 200
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "hevc100-uhd",
+          "codec": "HEVC LongGOP 100M",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "50": 100,
+            "59.94": 100
           },
           "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
         },
@@ -3616,13 +3993,25 @@
           "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
         },
         {
+          "id": "lgop100-hd",
+          "codec": "422 LongGOP 100M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "50": 100,
+            "59.94": 100
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
           "id": "alli100-hd",
           "codec": "422 ALL-I 100M",
           "res": "FHD 1920×1080",
           "mbps": {
             "25": 100,
             "23.98": 100,
-            "29.97": 100
+            "29.97": 100,
+            "50i": 100,
+            "59.94i": 100
           },
           "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
         },
@@ -3633,7 +4022,9 @@
           "mbps": {
             "25": 50,
             "23.98": 50,
-            "29.97": 50
+            "29.97": 50,
+            "50i": 50,
+            "59.94i": 50
           },
           "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
         }
@@ -3643,6 +4034,9 @@
       "id": "ux180",
       "brand": "Panasonic",
       "label": "AG-UX180",
+      "media": [
+        "SD"
+      ],
       "formats": [
         {
           "id": "uhd-lgop",
@@ -3698,7 +4092,40 @@
             "50": 50,
             "23.98": 50,
             "29.97": 50,
-            "59.94": 50
+            "59.94": 50,
+            "50i": 50,
+            "59.94i": 50
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "avchd-ps",
+          "codec": "AVCHD 25M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "50": 25,
+            "59.94": 25
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "avchd-21",
+          "codec": "AVCHD 21M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "23.98": 21,
+            "50i": 21,
+            "59.94i": 21
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "avchd-17",
+          "codec": "AVCHD 17M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "50i": 17,
+            "59.94i": 17
           },
           "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
         }
@@ -3708,6 +4135,9 @@
       "id": "s1h",
       "brand": "Panasonic",
       "label": "LUMIX S1H",
+      "media": [
+        "SD"
+      ],
       "formats": [
         {
           "id": "6k-420-10-l-hevc",
