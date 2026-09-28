@@ -12,11 +12,12 @@
 export const SKINS = [
   {
     id: 'clean', group: 'plain',
-    he: 'נקי', en: 'Clean',
-    descHe: 'אוויר, טיפוגרפיה חזקה, צבע רק איפה שהוא נושא מידע',
-    descEn: 'Air, strong typography, colour only where it carries meaning',
-    swatch: ['#F5F4F1', '#14171A', '#C4161C'],
-    fonts: ['Assistant:wght@400;500;600;700;800'],
+    he: 'ברירת מחדל', en: 'Default',
+    descHe: 'מכשיר מדידה: ענבר, שנתות סקאלה ומספרים טבלאיים',
+    descEn: 'Measuring instrument: amber, scale ticks and tabular numerals',
+    swatch: ['#F4F3EF', '#16171A', '#E88A00'],
+    // Karantina, Heebo and Barlow Condensed are loaded by style.css for every skin.
+    fonts: [],
   },
   {
     id: 'arri', group: 'camera',
@@ -74,71 +75,26 @@ export const SKINS = [
     swatch: ['#000000', '#FFFFFF', '#FFD400'],
     fonts: ['IBM+Plex+Mono:wght@400;500;600;700', 'Noto+Sans+Hebrew:wght@400;500;700;800'],
   },
-
-  {
-    id: 'pixel', group: 'fun',
-    he: '8 ביט', en: '8-bit',
-    descHe: 'מספרים ותוויות בפיקסלים, מדים בבלוקים, מסגרות מדורגות',
-    descEn: 'Pixel numerals and labels, block meters, stepped borders',
-    swatch: ['#12131A', '#E8EAF2', '#4BE07C'],
-    fonts: ['Press+Start+2P', 'Heebo:wght@400;500;700;800;900'],
-  },
-  {
-    id: 'blueprint', group: 'fun',
-    he: 'שרטוט', en: 'Blueprint',
-    descHe: 'תכלת על כחול כהה, קווי רשת וכותרות שרטוט',
-    descEn: 'Cyan on deep blue, grid lines and drafting headings',
-    swatch: ['#0B1B33', '#CFE6FF', '#5AC8FF'],
-    fonts: ['IBM+Plex+Mono:wght@400;500;600', 'Noto+Sans+Hebrew:wght@400;500;700;800'],
-  },
-  {
-    id: 'callsheet', group: 'fun',
-    he: 'דף קריאה', en: 'Call sheet',
-    descHe: 'קלידנית על נייר קרם — כמו קול שיט שמגיע בבוקר',
-    descEn: 'Typewriter on cream paper — like the call sheet that lands in the morning',
-    swatch: ['#FBF7EC', '#1A1712', '#8A2B12'],
-    fonts: ['Courier+Prime:wght@400;700', 'Noto+Sans+Hebrew:wght@400;500;700;800'],
-  },
-  {
-    id: 'eink', group: 'fun',
-    he: 'נייר אלקטרוני', en: 'E-ink',
-    descHe: 'אפור־שחור בלבד עם גופן סריפי — אפס צבע, קריאוּת מקסימלית',
-    descEn: 'Greyscale only with a serif face — no colour at all, maximum legibility',
-    swatch: ['#F7F6F3', '#111111', '#555555'],
-    fonts: ['Frank+Ruhl+Libre:wght@400;500;700;900'],
-  },
-
-  {
-    id: 'paper', group: 'plain',
-    he: 'נייר', en: 'Paper',
-    descHe: 'המסך נראה כמו הרשימה המודפסת — קווי שיער ופסי מחלקה',
-    descEn: 'The screen looks like the printed list — hairlines and department rules',
-    swatch: ['#FFFDF8', '#111111', '#111111'],
-    fonts: ['Noto+Sans+Hebrew:wght@400;500;700;800'],
-  },
-  {
-    id: 'contrast', group: 'plain',
-    he: 'שמש', en: 'Sun',
-    descHe: 'ניגודיות מקסימלית וטקסט גדול — לקריאה באור ישיר',
-    descEn: 'Maximum contrast and larger type — for reading in direct sun',
-    swatch: ['#FFFFFF', '#000000', '#B00016'],
-    fonts: ['Heebo:wght@400;500;700;800;900'],
-  },
-  {
-    id: 'night', group: 'plain',
-    he: 'לילה', en: 'Night',
-    descHe: 'אדום על שחור — לא הורס הסתגלות לחושך בצילומי לילה',
-    descEn: 'Red on black — keeps your dark adaptation on a night shoot',
-    swatch: ['#000000', '#FF6B5A', '#FF3B28'],
-    fonts: ['Heebo:wght@400;500;700;800;900'],
-  },
 ];
 
 export const GROUPS = [
+  { id: 'plain', he: 'ברירת מחדל', en: 'Default' },
   { id: 'camera', he: 'מצלמות', en: 'Cameras' },
-  { id: 'fun', he: 'סגנונות', en: 'Styles' },
-  { id: 'plain', he: 'שימושי', en: 'Utility' },
 ];
+
+// Lighting is separate from the skin: day for most work, sun for reading outside in direct light,
+// night for dark sets. The top-bar button steps through them in this order.
+export const THEMES = ['light', 'sun', 'dark'];
+export const nextTheme = (t) => THEMES[(Math.max(THEMES.indexOf(t), 0) + 1) % THEMES.length];
+
+// v1 had fifteen skins. The ones that were really lighting modes become lighting; the rest fall
+// back to the default so nobody opens the app on a look that no longer exists.
+const SKIN_TO_THEME = { night: 'dark', contrast: 'sun' };
+export function migrateSettings(s = {}) {
+  const known = SKINS.some(k => k.id === s.skin);
+  const theme = SKIN_TO_THEME[s.skin] || (THEMES.includes(s.theme) ? s.theme : 'light');
+  return { skin: known ? s.skin : 'clean', theme };
+}
 
 export const DEFAULT_SKIN = 'clean';
 export const isSkin = (id) => SKINS.some(s => s.id === id);
