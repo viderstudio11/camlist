@@ -37,7 +37,7 @@ export function renderPrint(ctx, project, groups, root, { includeNotes = true, i
   const dates = formatDateRange(project.dateFrom, project.dateTo);
   const contact = [project.phone, project.email].filter(Boolean).join(' · ');
   root.innerHTML = `<div class="print" dir="${document.documentElement.dir}">
-    <div class="screen-only card"><b>${t('pdf_hint')}</b><button class="btn sm primary" data-print>🖨️ ${t('pdf')}</button></div>
+    <div class="screen-only card"><b>${t('pdf_hint')}</b><button class="btn sm primary" data-print>${t('pdf')}</button></div>
     <div class="slate">
       <div class="sticks"><span class="mark">CAM<b>LIST</b></span></div>
       ${grid([

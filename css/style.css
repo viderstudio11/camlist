@@ -850,3 +850,11 @@ body.split .view { max-width: none; padding: 12px 16px 0; }
 .split-panes .rail { position: sticky; top: calc(var(--search-h, 66px) + 10px); float: inline-end; bottom: auto; max-height: calc(100dvh - 260px); margin-inline-start: 10px; }
 .split-panes .pane-cat .bottombar, .split-panes [data-add] { display: none; }
 .split-panes .bottombar { position: sticky; bottom: 0; inset-inline: auto; margin: 16px 0 0; max-width: none; }
+
+/* ============================================================ PRINT (v2) ============
+   The slate keeps its layout; it now speaks the same type as the app. */
+.print .cell:first-child b, .print .cell.mid b { font-family: var(--font-head); font-weight: 700; font-size: 30px; line-height: .95; letter-spacing: 0; }
+.print .cell i, .print .sticks .mark, .print tr.dept td { font-family: var(--mono); font-weight: 600; }
+.print .cell i { font-size: 9px; }
+.print tr.dept td { font-size: 12px; }
+.print td.q { font-family: var(--mono); font-weight: 700; font-size: 14px; }

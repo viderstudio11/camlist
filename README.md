@@ -95,3 +95,10 @@ vendor/                        xlsx.full.min.js, docx.umd.js (offline)
 sw.js, manifest.json, icons/   PWA
 tests/                         node --test
 ```
+
+## Icon credits
+
+The department and tool icons are copied into `js/ui/icons.js` by `scripts/build-icons.js`, one glyph per slot:
+[Bootstrap Icons](https://icons.getbootstrap.com/) (MIT), [Font Awesome Free](https://fontawesome.com/) (CC BY 4.0),
+[Material Symbols](https://fonts.google.com/icons) (Apache 2.0) and [Phosphor](https://phosphoricons.com/) (MIT).
+The lens, tripod and dolly are drawn for CamList.
