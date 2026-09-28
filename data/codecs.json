@@ -886,18 +886,96 @@
       "brand": "Canon",
       "label": "EOS C400",
       "formats": [
-        [
-          "craw-st",
-          "6k"
-        ],
-        [
-          "craw-lt",
-          "6k"
-        ],
-        [
-          "xf-avc-i",
-          "uhd"
-        ]
+        {
+          "id": "xfavcs-lgop422-4k",
+          "codec": "XF-AVC S Long GOP 4:2:2 10-bit",
+          "res": "4K / UHD",
+          "max": true,
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "50": 250,
+            "23.98": 150,
+            "29.97": 150,
+            "59.94": 250
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfavcs-lgop420-4k",
+          "codec": "XF-AVC S Long GOP 4:2:0 8-bit",
+          "res": "4K / UHD",
+          "max": true,
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 150,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 150
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfhevcs-422-4k",
+          "codec": "XF-HEVC S 4:2:2 10-bit",
+          "res": "4K / UHD",
+          "max": true,
+          "mbps": {
+            "24": 135,
+            "25": 135,
+            "50": 255,
+            "23.98": 135,
+            "29.97": 135,
+            "59.94": 255
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfhevcs-420-4k",
+          "codec": "XF-HEVC S 4:2:0 10-bit",
+          "res": "4K / UHD",
+          "max": true,
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 150,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 150
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfavcs-lgop422-hd",
+          "codec": "XF-AVC S Long GOP 4:2:2 10-bit",
+          "res": "HD / 2K",
+          "max": true,
+          "mbps": {
+            "24": 50,
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfhevcs-422-hd",
+          "codec": "XF-HEVC S 4:2:2 10-bit",
+          "res": "HD / 2K",
+          "max": true,
+          "mbps": {
+            "24": 50,
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        }
       ]
     },
     {
@@ -932,7 +1010,8 @@
             "29.97": 600,
             "59.94": 600
           },
-          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
         },
         {
           "id": "xfavc-i-4k-mid",
@@ -944,7 +1023,8 @@
             "23.98": 360,
             "29.97": 450
           },
-          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
         },
         {
           "id": "xfavc-i-4k-lo",
@@ -956,7 +1036,8 @@
             "23.98": 240,
             "29.97": 300
           },
-          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
         },
         {
           "id": "xfavc-lgop-4k",
@@ -970,7 +1051,8 @@
             "29.97": 150,
             "59.94": 250
           },
-          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
         },
         {
           "id": "xfavc-i-hd",
@@ -984,7 +1066,8 @@
             "29.97": 150,
             "59.94": 300
           },
-          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
         },
         {
           "id": "xfavc-lgop-hd",
@@ -998,7 +1081,8 @@
             "29.97": 50,
             "59.94": 50
           },
-          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf"
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
         }
       ]
     },
