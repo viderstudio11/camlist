@@ -734,18 +734,76 @@
       "brand": "Sony",
       "label": "BURANO",
       "formats": [
-        [
-          "xocn-lt",
-          "8k"
-        ],
-        [
-          "xocn-st",
-          "8k"
-        ],
-        [
-          "xavc-i",
-          "uhd"
-        ]
+        {
+          "id": "xocnlt-86-169",
+          "codec": "X-OCN LT",
+          "res": "FF 8.6K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 69,
+            "25": 66,
+            "23.98": 69,
+            "29.97": 55
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        },
+        {
+          "id": "xocnlt-86-179",
+          "codec": "X-OCN LT",
+          "res": "FF 8.6K 17:9",
+          "card": 960,
+          "minutes": {
+            "24": 74,
+            "25": 71,
+            "23.98": 74,
+            "29.97": 59
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        },
+        {
+          "id": "xocnlt-6k-169",
+          "codec": "X-OCN LT",
+          "res": "FFc 6K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 140,
+            "25": 134,
+            "50": 67,
+            "23.98": 140,
+            "29.97": 112,
+            "59.94": 56
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        },
+        {
+          "id": "xocnlt-6k-179",
+          "codec": "X-OCN LT",
+          "res": "FFc 6K 17:9",
+          "card": 960,
+          "minutes": {
+            "24": 149,
+            "25": 143,
+            "50": 71,
+            "23.98": 149,
+            "29.97": 119,
+            "59.94": 60
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        },
+        {
+          "id": "xavci-uhd",
+          "codec": "XAVC-I",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "25": 473,
+            "50": 241,
+            "23.98": 494,
+            "29.97": 397,
+            "59.94": 201
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        }
       ]
     },
     {
