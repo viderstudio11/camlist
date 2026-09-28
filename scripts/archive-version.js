@@ -125,7 +125,7 @@ function writeIndex(list) {
 }
 
 const dir = archive();
-const list = readIndex().filter(v => v.version !== version);
+const list = readIndex().filter(v => v.version !== (name || version));
 list.unshift({ version: name || version, date: new Date().toISOString().slice(0, 10), label });
 writeIndex(list);
 
@@ -139,4 +139,4 @@ const size = (() => {
   return Math.round(total / 1024);
 })();
 
-console.log(`archived ${version} (${size} KB) → v/${version}/  ·  ${list.length} versions in the index`);
+console.log(`archived ${version} (${size} KB) → v/${name || version}/  ·  ${list.length} versions in the index`);
