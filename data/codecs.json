@@ -1529,15 +1529,18 @@
         },
         [
           "prores-xq",
-          "uhd"
+          "uhd",
+          105
         ],
         [
           "prores-hq",
-          "uhd"
+          "uhd",
+          120
         ],
         [
           "prores-422",
-          "uhd"
+          "uhd",
+          120
         ]
       ]
     },
@@ -1616,11 +1619,13 @@
         },
         [
           "prores-xq",
-          "uhd"
+          "uhd",
+          60
         ],
         [
           "prores-hq",
-          "uhd"
+          "uhd",
+          60
         ]
       ]
     },
@@ -1631,23 +1636,28 @@
       "formats": [
         [
           "prores-xq",
-          "uhd"
+          "uhd",
+          60
         ],
         [
           "prores-hq",
-          "uhd"
+          "uhd",
+          60
         ],
         [
           "prores-422",
-          "uhd"
+          "uhd",
+          60
         ],
         [
           "prores-hq",
-          "hd"
+          "hd",
+          200
         ],
         [
           "prores-422",
-          "hd"
+          "hd",
+          200
         ]
       ]
     },
@@ -1658,11 +1668,13 @@
       "formats": [
         [
           "prores-hq",
-          "uhd"
+          "uhd",
+          60
         ],
         [
           "prores-422",
-          "hd"
+          "hd",
+          200
         ]
       ]
     },
