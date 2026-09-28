@@ -697,12 +697,10 @@ img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; }
 .lut-brandname { font-size: 10px; font-weight: 800; color: var(--muted); line-height: 1.15; text-align: center; }
 .lut-brand .logo-mini { width: 44px; height: 36px; }
 
-/* ---------- Icon set: two weights from one sheet ---------- */
+/* ---------- Icon set: one solid weight; size and colour tell list from tools ---------- */
 .ico { width: 100%; height: 100%; display: block; }
-.ico-s .knock { fill: var(--surface); }
+/* Solid glyphs: beat the outline defaults that .iconbtn / .btn set on plain svgs. */
+.iconbtn svg.ico, .btn svg.ico, svg.ico { fill: currentColor; stroke: none; }
 .tool-ico .ico { width: 26px; height: 26px; }
 .dept-ico .ico { width: 34px; height: 34px; }
 .dept-ico.sm .ico { width: 19px; height: 19px; }
-/* The knocked-out detail has to match whatever the icon is sitting on. */
-.tool-tile .ico-s .knock { fill: var(--surface); }
-.card .ico-s .knock, .torow .ico-s .knock { fill: var(--surface); }
