@@ -3317,6 +3317,23 @@
       ]
     },
     {
+      "id": "ronin4d",
+      "brand": "DJI",
+      "label": "Ronin 4D 6K",
+      "formats": [
+        [
+          "prores-hq",
+          "dci4k",
+          120
+        ],
+        [
+          "prores-lt",
+          "dci4k",
+          120
+        ]
+      ]
+    },
+    {
       "id": "osmo-action5",
       "brand": "DJI",
       "label": "Osmo Action 5 Pro",
