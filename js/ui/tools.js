@@ -3,7 +3,7 @@ import { logoHTML } from '../brands.js';
 import { toolIcon } from './icons.js';
 import { createMedia } from '../tools/media.js';
 import { timeFromAngle, angleFromTime, asFraction, flicker, slowMotion, FRAME_RATES, shutterChoices } from '../tools/shutter.js';
-import { SENSORS, SUBJECTS, coverage, focalFor, nearestPrime, sensor } from '../tools/fov.js';
+import { PRIME_SET, SHOTS, lensFor, frameAt, pickLens } from '../tools/fov.js';
 import { sunDay } from '../tools/solar.js';
 import { offload, DRIVES, UNIT_GROUPS, convert, cToF, fToC, mahToWh, whToMah } from '../tools/convert.js';
 import { num, hm } from '../format.js';
@@ -93,6 +93,21 @@ const L = {
   vf_denied: { he: 'אין גישה למצלמה. צריך לאשר הרשאה בדפדפן.', en: 'No camera access. The browser needs permission.' },
   vf_approx: { he: 'הערכה — מבוססת על שדה הראייה האופייני של עדשת הטלפון שבחרת', en: 'Approximate — based on the typical field of view of the phone lens you picked' },
   focal: { he: 'מוקד (מ״מ)', en: 'Focal length (mm)' },
+  camera_step: { he: 'מצלמה', en: 'Camera' },
+  distance_step: { he: 'מרחק מהמצולם', en: 'Distance to subject' },
+  shot_step: { he: 'סוג שוט', en: 'Shot size' },
+  meters: { he: 'מ׳', en: 'm' },
+  verified_only: { he: 'מופיעות רק מצלמות שגודל החיישן שלהן אומת מול היצרן', en: 'Only cameras whose sensor size has been verified with the maker are listed' },
+  sensor_line: { he: 'חיישן {w}×{h} מ״מ · {mode}', en: 'Sensor {w}×{h} mm · {mode}' },
+  choose_camera_first: { he: 'בחר מצלמה — לפי החיישן שלה נחשב איזו עדשה צריך', en: 'Pick a camera — its sensor decides which lens you need' },
+  need_sentence: { he: 'מ־{d} מ׳, שוט {shot} על {cam} — מדויק: {mm} מ״מ', en: 'From {d} m, a {shot} on {cam} — exactly {mm} mm' },
+  frame_line: { he: 'הפריים: {w}×{h} מ׳ · זווית {a}°', en: 'Frame: {w}×{h} m · {a}° wide' },
+  lenses_for: { he: 'עדשות מהמאגר שמתאימות ל־{cam}', en: 'Lenses in the catalog that fit {cam}' },
+  standard_primes: { he: 'פריימים סטנדרטיים', en: 'Standard primes' },
+  tap_lens_hint: { he: 'לחיצה על עדשה מראה בציור מה היא נותנת', en: 'Tap a lens to see what it gives in the drawing' },
+  prime_lbl: { he: 'פריים', en: 'Prime' },
+  zoom_lbl: { he: 'זום', en: 'Zoom' },
+  back_to_rec: { he: 'חזרה להמלצה ({mm} מ״מ)', en: 'Back to the pick ({mm} mm)' },
 
   angle: { he: 'זווית תריס', en: 'Shutter angle' },
   speed: { he: 'מהירות תריס', en: 'Shutter speed' },
@@ -159,7 +174,7 @@ export const setPlaces = (data) => { placeData = data || placeData; };
 // Everything the user typed, kept while the app is open so switching tools does not reset the work.
 const S = {
   media: { cam: 'fx6', codec: 'xavc-i', res: 'uhd', fps: 25, card: 160, hours: 10 },
-  fov: { sensor: 's35', distance: 4, frameW: 2.2, focal: 50, phone: 'main', vf: false, cam: '', camBrand: '' },
+  fov: { distance: 4, shot: 'waist', focal: 0, phone: 'main', vf: false, cam: '', camBrand: '' },
   shutter: { fps: 25, mode: 'speed', speed: 50, angle: 180, mains: 50, projectFps: 25, customFps: false },
   offload: { gb: 1000, mbPerSec: 700, copies: 2, verify: true },
   sun: { country: 'IL', city: 0, date: new Date().toISOString().slice(0, 10), lat: null, lon: null },
@@ -282,89 +297,126 @@ function mediaTool(T) {
 }
 
 // ---------- field of view ----------
+// A 1.75 m figure drawn once in a 60 × 175 box — one unit to the centimetre — then placed with a
+// transform, so the proportions hold at any size. Seven and a half heads tall.
+const FIG_W = 60, FIG_H = 175;
+const FIG = [
+  '<ellipse cx="30" cy="14" rx="8.6" ry="11"/>',
+  '<path d="M26.6 24.6 L26.6 29 L33.4 29 L33.4 24.6"/>',
+  '<path d="M13 33 Q13 29.4 16.6 29 L43.4 29 Q47 29.4 47 33 L44.6 67 L46.4 90 L13.6 90 L15.4 67 Z"/>',
+  '<path d="M13.4 33.4 L8.6 35.6 L5.6 88 L10.8 89 L15.2 66"/>',
+  '<path d="M46.6 33.4 L51.4 35.6 L54.4 88 L49.2 89 L44.8 66"/>',
+  '<path d="M15.6 90 L28.4 90 L27.6 128 L26.4 168 L17.6 168 L18.2 128 Z"/>',
+  '<path d="M44.4 90 L31.6 90 L32.4 128 L33.6 168 L42.4 168 L41.8 128 Z"/>',
+  '<path d="M16.4 168 L11.6 172 L11.6 174.4 L27 174.4 L27 168"/>',
+  '<path d="M43.6 168 L48.4 172 L48.4 174.4 L33 174.4 L33 168"/>',
+].join('');
+
+// Distance slider: logarithmic, 0.5 m to 30 m, so the short distances where a step matters get
+// most of the travel.
+const DIST_MIN = 0.5, DIST_MAX = 30;
+const distToSlider = (d) => Math.round((Math.log(d / DIST_MIN) / Math.log(DIST_MAX / DIST_MIN)) * 1000);
+const sliderToDist = (v) => {
+  const d = DIST_MIN * (DIST_MAX / DIST_MIN) ** (v / 1000);
+  return d < 3 ? Math.round(d * 10) / 10 : d < 10 ? Math.round(d * 4) / 4 : Math.round(d);
+};
+
 function fovTool(T, lang, ctx) {
   const s = S.fov;
+  const Tp = (k, p) => T(k).replace(/\{(\w+)\}/g, (_, x) => p[x] ?? '');
+  const name = (o) => (lang === 'he' ? o.he : o.en);
 
-  // Pick a body from the catalog and the sensor follows from its profile; the lens list then
-  // narrows to what actually mounts and covers it. Sensor sizes come from SENSORS, the mount
-  // and coverage from the same compatibility rules the gear list uses.
-  const FORMAT_TO_SENSOR = { FF: 'ff', S35: 's35', MFT: 'mft', MF: 'mf', '2/3': '23', '1in': '1in', 16: 's16', action: 's16' };
-  const allCams = (ctx?.compat?.profiles || [])
-    .map(p => ctx.catalog.byId(p.id))
-    .filter(Boolean)
-    .sort((a, b) => (a.brandName || '').localeCompare(b.brandName || '') || a.name.localeCompare(b.name));
-  // Brand first, then the models that brand makes: seventy bodies in one list is not a choice,
-  // it is a search. Two short lists is a choice.
-  const camBrands = [...new Map(allCams.map(c => [c.brand, c.brandName || c.brand])).entries()]
-    .sort((a, b) => String(a[1]).localeCompare(String(b[1])));
-  const cameras = s.camBrand ? allCams.filter(c => c.brand === s.camBrand) : [];
-  const camProduct = s.cam ? ctx?.catalog?.byId(Number(s.cam) || s.cam) : null;
-  const camProf = camProduct ? ctx.compat.profileFor(camProduct) : null;
-  if (camProf?.format && FORMAT_TO_SENSOR[camProf.format]) s.sensor = FORMAT_TO_SENSOR[camProf.format];
+  // Only cameras whose recording sensor area has been verified are offered — the answer is only
+  // as right as that number, so a camera without it is left out rather than guessed.
+  const cams = (ctx?.compat?.profiles || [])
+    .filter(p => p.sensor)
+    .map(p => { const product = ctx.catalog.byId(p.id); return { prof: product ? ctx.compat.profileFor(product) : null, product }; })
+    .filter(x => x.product && x.prof)
+    .sort((a, b) => (a.product.brandName || '').localeCompare(b.product.brandName || '') || a.product.name.localeCompare(b.product.name));
+  const brands = [...new Map(cams.map(c => [c.product.brand, c.product.brandName || c.product.brand])).entries()];
+  if (!s.camBrand && brands.length === 1) s.camBrand = brands[0][0];
+  const models = cams.filter(c => c.product.brand === s.camBrand);
+  const cam = cams.find(c => String(c.prof.id) === String(s.cam)) || null;
+  const shot = SHOTS.find(x => x.id === s.shot) || SHOTS[3];
+  const chip = (attr, val, label, on, extra = '') => `<button class="chip pick ${on ? 'on' : ''}" ${attr}="${esc(val)}">${label}${extra}</button>`;
 
-  // Focal length read off the product name: a prime gives one number, a zoom gives its long end,
-  // which is the reach that decides whether it can hold the frame from where you are standing.
-  const focalOf = (name = '') => {
-    const zoom = name.match(/(\d{1,4})\s*[-–]\s*(\d{1,4})\s*mm/i);
+  const pickCard = `<div class="card sh-sec" data-part="cam">
+    <div class="tsub">1 · ${esc(T('camera_step'))}</div>
+    <div class="chips">${brands.map(([slug, n]) => chip('data-cbrand', slug, esc(n), slug === s.camBrand)).join('')}</div>
+    ${models.length ? `<div class="chips fov-models">${models.map(c => chip('data-cmodel', c.prof.id, esc(c.product.name), cam && c.prof.id === cam.prof.id)).join('')}</div>` : ''}
+    ${cam ? `<p class="tnote">${esc(Tp('sensor_line', { w: cam.prof.sensor.w, h: cam.prof.sensor.h, mode: cam.prof.sensor.mode }))}</p>`
+      : `<p class="tnote">${esc(T('verified_only'))}</p>`}
+  </div>`;
+
+  const distCard = `<div class="card sh-sec" data-part="dist">
+    <div class="tsub">2 · ${esc(T('distance_step'))}</div>
+    <div class="fov-dist"><input type="range" min="0" max="1000" step="1" value="${distToSlider(s.distance)}" data-dist aria-label="${esc(T('distance_step'))}">
+      <label class="fov-dnum"><input type="number" data-f="distance" value="${esc(s.distance)}" min="0.2" max="200" step="0.1" inputmode="decimal"><span>${esc(T('meters'))}</span></label></div>
+  </div>`;
+
+  const shotCard = `<div class="card sh-sec" data-part="shot">
+    <div class="tsub">3 · ${esc(T('shot_step'))}</div>
+    <div class="chips">${SHOTS.map(x => chip('data-shot', x.id, esc(name(x)), x.id === shot.id)).join('')}</div>
+  </div>`;
+
+  if (!cam) {
+    return `<div class="card sh-answer warn" data-part="answer"><p class="sh-line">${esc(T('choose_camera_first'))}</p></div>${pickCard}${distCard}${shotCard}`;
+  }
+
+  const sn = cam.prof.sensor;
+  const need = lensFor(sn, s.distance, shot.height);
+
+  // The lenses in the catalog that mount on this camera, read as focal ranges off their names.
+  const focalOf = (nm = '') => {
+    const zoom = nm.match(/(\d{1,4})\s*[-–]\s*(\d{1,4})\s*mm/i);
     if (zoom) return { min: Number(zoom[1]), max: Number(zoom[2]) };
-    const prime = name.match(/(\d{1,4}(?:\.\d)?)\s*mm/i);
+    const prime = nm.match(/(\d{1,4}(?:\.\d)?)\s*mm/i);
     return prime ? { min: Number(prime[1]), max: Number(prime[1]) } : null;
   };
-  const lensMatches = (() => {
-    if (!camProf || !ctx?.catalog) return [];
-    return ctx.catalog.products
-      .filter(p => ctx.catalog.deptKey(p.dept) === 'lenses')
-      .map(p => ({ p, f: focalOf(p.name), v: ctx.compat.verdict(p, camProf) }))
-      .filter(x => x.f && (x.v.status === 'native' || x.v.status === 'adapter'))
-      .sort((a, b) => a.f.min - b.f.min);
-  })();
-
-  const sn = sensor(s.sensor);
-  const need = focalFor(sn.w, s.frameW, s.distance);
-  const prime = nearestPrime(need);
-  const cov = coverage(s.sensor, s.focal, s.distance);
+  const byLabel = new Map();
+  for (const p of ctx.catalog.products) {
+    if (ctx.catalog.deptKey(p.dept) !== 'lenses') continue;
+    const f = focalOf(p.name);
+    if (!f) continue;
+    const v = ctx.compat.verdict(p, cam.prof);
+    if (v.status !== 'native' && v.status !== 'adapter') continue;
+    const label = f.min === f.max ? `${f.min}` : `${f.min}-${f.max}`;
+    if (!byLabel.has(label)) byLabel.set(label, { ...f, label, adapter: v.status === 'adapter' });
+  }
+  const catalogLenses = [...byLabel.values()].sort((a, b) => a.min - b.min || a.max - b.max);
+  const lenses = catalogLenses.length ? catalogLenses : PRIME_SET.map(x => ({ min: x, max: x, label: `${x}` }));
+  const rec = pickLens(need, lenses);
+  const focal = s.focal > 0 ? s.focal : rec.focal;
+  const fr = frameAt(sn, focal, s.distance);
+  const isRec = !(s.focal > 0) || s.focal === rec.focal;
+  // Which lens that focal length is on: a prime of exactly that length, else the narrowest zoom holding it.
+  const onLens = lenses.find(l => l.min === l.max && l.min === focal)
+    || lenses.filter(l => l.min <= focal && focal <= l.max).sort((x, y) => (x.max / x.min) - (y.max / y.min))[0];
+  const lensName = onLens ? (onLens.min === onLens.max ? T('prime_lbl') : `${T('zoom_lbl')} ${onLens.label}`) : '';
 
   // The frame the chosen lens gives, drawn around a 1.75 m figure so the size reads at a glance.
-  // A tight frame is placed where an operator would actually put it — on the upper body — rather
-  // than resting on the ground, which is what makes a close-up look like a shot of someone's shins.
+  // A tight frame is placed on the upper body, where an operator would put it.
   const PERSON_M = 1.75;
   const box = 168;
-  const tallest = Math.max(cov.heightM, PERSON_M) * 1.12;
+  const tallest = Math.max(fr.heightM, PERSON_M) * 1.12;
   const pxPerM = box / tallest;
-  const fw = cov.widthM * pxPerM;
-  const fh = cov.heightM * pxPerM;
+  const fw = fr.widthM * pxPerM;
+  const fh = fr.heightM * pxPerM;
   const ph = PERSON_M * pxPerM;
   const vw = Math.max(fw + 34, 230);
   const cx = vw / 2;
   const groundY = box - 4;
   const headY = groundY - ph;
-  // Frames shorter than the subject sit around the head and chest; taller ones stand on the ground.
   const frameY = fh >= ph ? groundY - fh : Math.max(headY - fh * 0.12, 2);
-  const two = cov.widthM >= PERSON_M * 1.7;
-
-  // Drawn once in a 60 × 175 box — one unit to the centimetre — then placed with a transform,
-  // so the proportions hold at any size. Seven and a half heads tall, shoulders a quarter of
-  // the height across: the figure a scale drawing would use, in the same line as the charts.
-  const FIG_W = 60, FIG_H = 175;
-  const FIG = [
-    '<ellipse cx="30" cy="14" rx="8.6" ry="11"/>',
-    '<path d="M26.6 24.6 L26.6 29 L33.4 29 L33.4 24.6"/>',
-    '<path d="M13 33 Q13 29.4 16.6 29 L43.4 29 Q47 29.4 47 33 L44.6 67 L46.4 90 L13.6 90 L15.4 67 Z"/>',
-    '<path d="M13.4 33.4 L8.6 35.6 L5.6 88 L10.8 89 L15.2 66"/>',
-    '<path d="M46.6 33.4 L51.4 35.6 L54.4 88 L49.2 89 L44.8 66"/>',
-    '<path d="M15.6 90 L28.4 90 L27.6 128 L26.4 168 L17.6 168 L18.2 128 Z"/>',
-    '<path d="M44.4 90 L31.6 90 L32.4 128 L33.6 168 L42.4 168 L41.8 128 Z"/>',
-    '<path d="M16.4 168 L11.6 172 L11.6 174.4 L27 174.4 L27 168"/>',
-    '<path d="M43.6 168 L48.4 172 L48.4 174.4 L33 174.4 L33 168"/>',
-  ].join('');
-
+  const two = fr.widthM >= PERSON_M * 2.4;
   const figure = (x, h) => {
     const k = h / FIG_H;
     return `<g class="fig" transform="translate(${(x - (FIG_W * k) / 2).toFixed(2)} ${(groundY - h).toFixed(2)}) scale(${k.toFixed(4)})">${FIG}</g>`;
   };
 
-  const framing = `<div class="card framing">
-    <div class="tsub">${esc(T('framing'))}</div>
+  const answer = `<div class="card sh-answer ok" data-part="answer">
+    <div class="fov-top"><b class="sh-big">${focal}<small>mm</small></b>${lensName ? `<span class="sh-small">${esc(lensName)}</span>` : ''}${isRec ? `<span class="sh-rec">${esc(T('recommended'))}</span>` : `<button class="linkbtn" data-lens-reset>${esc(Tp('back_to_rec', { mm: rec.focal }))}</button>`}</div>
+    <p class="sh-line">${esc(Tp('need_sentence', { d: num(s.distance, 1), shot: name(shot), cam: cam.product.name, mm: num(need, 1) }))}</p>
     <svg viewBox="0 0 ${vw.toFixed(0)} ${box}" class="frame-svg" role="img" aria-label="${esc(T('framing'))}">
       <line x1="0" y1="${groundY}" x2="${vw.toFixed(0)}" y2="${groundY}" class="ground"/>
       <rect x="${(cx - fw / 2).toFixed(1)}" y="${frameY.toFixed(1)}" width="${fw.toFixed(1)}" height="${fh.toFixed(1)}" class="fr"/>
@@ -372,67 +424,43 @@ function fovTool(T, lang, ctx) {
       ${figure(two ? cx + fw * 0.22 : cx, ph)}
       <rect x="${(cx - fw / 2).toFixed(1)}" y="${frameY.toFixed(1)}" width="${fw.toFixed(1)}" height="${fh.toFixed(1)}" class="fr-line"/>
     </svg>
-    <div class="frame-cap"><b>${num(cov.widthM, 2)} × ${num(cov.heightM, 2)} m</b><span>${esc(T('person_note'))}</span></div>
+    <p class="tnote">${esc(Tp('frame_line', { w: num(fr.widthM, 2), h: num(fr.heightM, 2), a: num(fr.hFov, 0) }))}</p>
+  </div>`;
+
+  const lensCard = `<div class="card sh-sec" data-part="lenses">
+    <div class="tsub">${esc(catalogLenses.length ? Tp('lenses_for', { cam: cam.product.name }) : T('standard_primes'))}</div>
+    <div class="chips">${lenses.map(l => {
+      const on = l.min <= focal && focal <= l.max;
+      const recd = l.min === rec.min && l.max === rec.max;
+      return chip('data-lens', l.min === l.max ? l.min : Math.min(Math.max(Math.round(need), l.min), l.max), `${esc(l.label)}`, on, recd ? `<i class="sh-rec">${esc(T('recommended'))}</i>` : '');
+    }).join('')}</div>
+    <p class="tnote">${esc(T('tap_lens_hint'))}</p>
   </div>`;
 
   const ph2 = phoneLens(s.phone);
   const phoneFov = eqHFov(ph2.eq);
-  const ratio = Math.tan((cov.hFov / 2) * Math.PI / 180) / Math.tan((phoneFov / 2) * Math.PI / 180);
-  const viewfinder = `<div class="card vf-card">
-    <div class="pw-head"><b>${esc(T('viewfinder'))}</b><span class="pchip">${num(cov.hFov, 1)}°</span></div>
+  const ratio = Math.tan((fr.hFov / 2) * Math.PI / 180) / Math.tan((phoneFov / 2) * Math.PI / 180);
+  const viewfinder = `<div class="card vf-card" data-part="vf">
+    <div class="pw-head"><b>${esc(T('viewfinder'))}</b><span class="pchip">${num(fr.hFov, 1)}°</span></div>
     ${s.vf ? `
       <div class="vf-stage">
         <video class="vf-video" playsinline autoplay muted></video>
         <div class="vf-overlay">
           ${ratio <= 1
-            ? `<div class="vf-frame" style="width:${(ratio * 100).toFixed(1)}%;aspect-ratio:${(sn.w / sn.h).toFixed(3)}"><span>${esc(s.focal)}mm</span></div>`
+            ? `<div class="vf-frame" style="width:${(ratio * 100).toFixed(1)}%;aspect-ratio:${(sn.w / sn.h).toFixed(3)}"><span>${esc(focal)}mm</span></div>`
             : `<div class="vf-wide">${esc(T('vf_wider'))}</div>`}
         </div>
       </div>
-      <div class="tform" style="padding:12px 14px">
-        ${field(T('vf_lens'), sel('phone', PHONE_LENSES.map(x => ({ v: x.id, l: `${lang === 'he' ? x.he : x.en} · ${x.eq}mm` })), s.phone))}
-        ${field(T('focal'), numIn('focal', s.focal, { min: 4, max: 2000, step: 1 }))}
-      </div>
+      <div class="tform" style="padding:12px 14px">${field(T('vf_lens'), sel('phone', PHONE_LENSES.map(x => ({ v: x.id, l: `${lang === 'he' ? x.he : x.en} · ${x.eq}mm` })), s.phone))}</div>
       <div class="tnote" style="padding:0 14px 12px">${esc(T('vf_approx'))}</div>
       <div style="padding:0 14px 14px"><button class="btn sm" data-vf-stop>${esc(T('vf_stop'))}</button></div>`
       : `<div style="padding:12px 14px">
-          <button class="btn primary" data-vf-start style="width:100%">${esc(T('vf_start'))}</button>
+          <button class="btn" data-vf-start style="width:100%">${esc(T('vf_start'))}</button>
           <div class="tnote" style="margin-top:9px">${esc(T('vf_hint'))}</div>
         </div>`}
   </div>`;
 
-  return `
-    ${headline(`${prime}`, 'mm', `${esc(T('nearest'))} · ${num(need,1)} mm ${esc(T('need_lens'))} · ${num(cov.hFov,1)}°`)}
-    <div class="card tform">
-      ${field(T('brand_pick'), sel('camBrand', [{ v: '', l: T('any_camera') }, ...camBrands.map(([slug, name]) => ({ v: slug, l: name }))], s.camBrand))}
-      ${cameras.length ? field(T('from_camera'), sel('cam', [{ v: '', l: T('all_models') }, ...cameras.map(c => ({ v: c.id, l: c.name }))], s.cam)) : ''}
-      ${field(T('sensor_f'), sel('sensor', SENSORS.map(x => ({ v: x.id, l: x.label })), s.sensor))}
-      ${field(T('distance'), numIn('distance', s.distance, { min: 0.2, max: 200, step: 0.1 }))}
-      ${field(T('subject'), sel('subject', SUBJECTS.map(x => ({ v: x.width, l: `${lang === 'he' ? x.he : x.en} · ${x.width} m` })), s.frameW))}
-      ${field(T('frame_w'), numIn('frameW', s.frameW, { min: 0.1, max: 100, step: 0.05 }))}
-    </div>
-    ${out([
-      [T('need_lens'), `${num(need, 1)} mm`],
-      [T('nearest'), `${prime} mm`, 'big'],
-    ])}
-    <div class="card tform" style="margin-top:14px">
-      <div class="tsub">${esc(T('check_lens'))}</div>
-      ${field(T('focal'), numIn('focal', s.focal, { min: 4, max: 2000, step: 1 }))}
-    </div>
-    ${out([
-      [T('covers'), `${num(cov.widthM, 2)} × ${num(cov.heightM, 2)} m`],
-      [T('angle_h'), `${num(cov.hFov, 1)}°`],
-    ])}
-    ${framing}
-    ${lensMatches.length ? `<div class="card lenslist">
-      <div class="pw-head"><b>${esc(T('matching_lenses'))}</b><span class="pchip">${esc(T('lens_count', { n: lensMatches.length }))}</span></div>
-      <div class="chips">${lensMatches.slice(0, 40).map(({ p, f, v }) => {
-        const covers = f.min <= need && need <= f.max;
-        return `<button class="chip pick ${covers ? 'on' : ''} ${v.status === 'adapter' ? 'adp' : ''}" data-lens="${f.max}" title="${esc(p.name)}">${f.min === f.max ? f.min : `${f.min}-${f.max}`}mm</button>`;
-      }).join('')}</div>
-      <div class="tnote">${esc(T('nearest'))}: ${num(need, 1)} mm — ${esc(T('lens_note'))}</div>
-    </div>` : (s.cam ? `<p class="tnote">${esc(T('no_lenses'))}</p>` : '')}
-    ${viewfinder}`;
+  return `${answer}${pickCard}${distCard}${shotCard}${lensCard}${viewfinder}`;
 }
 
 // ---------- shutter ----------
@@ -736,7 +764,7 @@ function wire(root, ctx, id, T, lang) {
         const pick = cam2?.formats?.[Number(el.value)];
         if (pick) { s.codec = pick[0]; s.res = pick[1]; }
       }
-      if (id === 'fov' && k === 'subject') s.frameW = Number(el.value);
+      if (id === 'fov' && k === 'distance') s.focal = 0;
       if (id === 'fov' && k === 'cam') s.cam = el.value;
       if (id === 'fov' && k === 'camBrand') { s.camBrand = el.value; s.cam = ''; }
       if (id === 'shutter' && k === 'fps') { s.speed = shutterChoices(s.fps, s.mains, 'speed').recommended?.value ?? s.speed; s.angle = shutterChoices(s.fps, s.mains, 'angle').recommended?.value ?? s.angle; }
@@ -752,6 +780,24 @@ function wire(root, ctx, id, T, lang) {
 
   root.querySelectorAll('[data-lutbrand]').forEach(b => { b.onclick = () => { S.luts.brand = b.dataset.lutbrand; S.luts.model = ''; ctx.render(); }; });
   root.querySelectorAll('[data-lens]').forEach(b => { b.onclick = () => { S.fov.focal = Number(b.dataset.lens); ctx.render(); }; });
+  root.querySelector('[data-lens-reset]')?.addEventListener('click', () => { S.fov.focal = 0; ctx.render(); });
+  root.querySelectorAll('[data-cbrand]').forEach(b => { b.onclick = () => { S.fov.camBrand = b.dataset.cbrand; S.fov.cam = ''; S.fov.focal = 0; ctx.render(); }; });
+  root.querySelectorAll('[data-cmodel]').forEach(b => { b.onclick = () => { S.fov.cam = b.dataset.cmodel; S.fov.focal = 0; ctx.render(); }; });
+  root.querySelectorAll('[data-shot]').forEach(b => { b.onclick = () => { S.fov.shot = b.dataset.shot; S.fov.focal = 0; ctx.render(); }; });
+  // Dragging the distance redraws everything but the slider itself, so the drag is never interrupted.
+  const dist = root.querySelector('[data-dist]');
+  if (dist) dist.oninput = () => {
+    S.fov.distance = sliderToDist(Number(dist.value));
+    S.fov.focal = 0;
+    const tpl = document.createElement('template');
+    tpl.innerHTML = fovTool(T, lang, ctx);
+    tpl.content.querySelectorAll('[data-part]').forEach(fresh => {
+      const part = fresh.dataset.part;
+      if (part === 'dist') { const n = root.querySelector('[data-part="dist"] [data-f="distance"]'); if (n) n.value = S.fov.distance; return; }
+      root.querySelector(`[data-part="${part}"]`)?.replaceWith(fresh);
+    });
+    wire(root, ctx, id, T, lang);
+  };
   // Frame rate and shutter. A new frame rate or mains frequency moves the shutter to the recommended
   // value, so nobody is left on a combination that no longer makes sense.
   const sh = S.shutter;

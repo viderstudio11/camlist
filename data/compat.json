@@ -1,5 +1,5 @@
 {
-  "_readme": "Camera profiles for 'build around a camera'. mount = native mount(s); adapters = lens mounts usable via an adapter; format = FF | S35 | MFT | MF | 2/3 | 1in | 16; media / battery = families matched by name patterns in js/compat.js; kit = key into kits. Edit freely — ids are Utopia product ids, match is a fallback regex on the product name.",
+  "_readme": "Camera profiles for 'build around a camera'. mount = native mount(s); adapters = lens mounts usable via an adapter; format = FF | S35 | MFT | MF | 2/3 | 1in | 16; media / battery = families matched by name patterns in js/compat.js; kit = key into kits. Edit freely — ids are Utopia product ids, match is a fallback regex on the product name. sensor = the sensor area a camera actually uses for UHD 16:9 recording (w × h mm, the mode, and the source it was verified against). Cameras without it are not offered in the lens tool.",
   "adapters": {
     "E": [
       "EF",
@@ -58,7 +58,13 @@
       ],
       "battery": [
         "BP-U"
-      ]
+      ],
+      "sensor": {
+        "w": 35.6,
+        "h": 20,
+        "mode": "UHD 16:9 · עד 60p",
+        "src": "Sony FX6 spec (35.6×23.8 FF sensor); full width in UHD ≤60p per xdcam-user.com 2020-11-22"
+      }
     },
     {
       "id": 14868,
@@ -75,7 +81,13 @@
       "battery": [
         "BP-U"
       ],
-      "_verified": "B&H / manufacturer 2026-09-18"
+      "_verified": "B&H / manufacturer 2026-09-18",
+      "sensor": {
+        "w": 33.4,
+        "h": 18.8,
+        "mode": "FF 6K → UHD",
+        "src": "Sony: FF 6K scan 35.7×18.8 mm (17:9); UHD 16:9 crops the sides at full height"
+      }
     },
     {
       "id": 17205,
@@ -91,7 +103,13 @@
       ],
       "battery": [
         "NP-FZ100"
-      ]
+      ],
+      "sensor": {
+        "w": 35.6,
+        "h": 20,
+        "mode": "UHD 16:9 · עד 60p",
+        "src": "Sony FX3 spec: 35.6×23.8 mm, 10.3 MP effective for movies (16:9 full width)"
+      }
     },
     {
       "id": 28981,
@@ -235,7 +253,13 @@
         "V-Mount",
         "B-Mount"
       ],
-      "_verified": "B&H / manufacturer 2026-09-18"
+      "_verified": "B&H / manufacturer 2026-09-18",
+      "sensor": {
+        "w": 32,
+        "h": 18,
+        "mode": "7.6K 16:9 → UHD",
+        "src": "Sony VENICE 2 8K format poster: 7.6K 16:9, 7680×4320, 32.0×18.0 mm"
+      }
     },
     {
       "id": 24920,
@@ -505,7 +529,13 @@
         "B-Mount",
         "V-Mount"
       ],
-      "_verified": "B&H / manufacturer 2026-09-18"
+      "_verified": "B&H / manufacturer 2026-09-18",
+      "sensor": {
+        "w": 24.88,
+        "h": 14,
+        "mode": "4K 16:9 → UHD",
+        "src": "ARRI ALEXA 35 recording format poster: 4K 16:9 24.88×14.00 mm, records UHD"
+      }
     },
     {
       "id": 30380,
@@ -538,7 +568,13 @@
         "V-Mount",
         "Gold"
       ],
-      "_verified": "B&H / manufacturer 2026-09-18"
+      "_verified": "B&H / manufacturer 2026-09-18",
+      "sensor": {
+        "w": 31.68,
+        "h": 17.82,
+        "mode": "3.8K LF 16:9 UHD",
+        "src": "ARRI Formats and Resolutions Overview v6.1: 3.8K LF 16:9-UHD 31.68×17.82 mm"
+      }
     },
     {
       "id": 493,

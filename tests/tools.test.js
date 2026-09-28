@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createMedia } from '../js/tools/media.js';
 import { timeFromAngle, angleFromTime, asFraction, flicker, safeAngles, slowMotion, FRAME_RATES, shutterChoices } from '../js/tools/shutter.js';
-import { coverage, focalFor, angleOfView, nearestPrime, sensor } from '../js/tools/fov.js';
+import { coverage, focalFor, angleOfView, nearestPrime, sensor, SHOTS, lensFor, frameAt, pickLens } from '../js/tools/fov.js';
 import { sunDay, crossings } from '../js/tools/solar.js';
 import { offload, convert, cToF, fToC, mahToWh } from '../js/tools/convert.js';
 
@@ -159,4 +159,28 @@ test('shutter angles: common angles plus the safe ones, 180° recommended at 25p
   assert.ok(a.options.some(o => o.value === 172.8));
   // 24p under 50 Hz: 180° (1/48) flickers, 172.8° (1/50) is the safe classic.
   assert.equal(shutterChoices(24, 50, 'angle').recommended.value, 172.8);
+});
+
+test('shot sizes are framed by height, like an operator frames a person', () => {
+  assert.deepEqual(SHOTS.map(s => s.id), ['ecu', 'cu', 'chest', 'waist', 'knees', 'full', 'wide']);
+  assert.ok(SHOTS.every((s, i) => i === 0 || s.height > SHOTS[i - 1].height), 'tighter to wider');
+  assert.equal(SHOTS.find(s => s.id === 'full').height, 2.0);
+});
+
+test('lens for a shot: sensor height × distance ÷ frame height', () => {
+  // FX6 in UHD (20.0 mm high), 4 m away, waist shot (1.1 m of person): 72.7 mm.
+  const fx6 = { w: 35.6, h: 20.0 };
+  assert.ok(Math.abs(lensFor(fx6, 4, 1.1) - 72.73) < 0.01);
+  // What that lens then shows: the frame height comes back to 1.1 m, the width follows 16:9.
+  const f = frameAt(fx6, lensFor(fx6, 4, 1.1), 4);
+  assert.ok(Math.abs(f.heightM - 1.1) < 1e-9);
+  assert.ok(Math.abs(f.widthM - 1.958) < 0.001);
+});
+
+test('pickLens names a real lens: a zoom that covers it, else the nearest prime', () => {
+  const lenses = [{ min: 25, max: 25 }, { min: 35, max: 35 }, { min: 50, max: 50 }, { min: 85, max: 85 }];
+  assert.deepEqual(pickLens(72.7, lenses), { min: 85, max: 85, focal: 85 });
+  assert.deepEqual(pickLens(40, lenses), { min: 35, max: 35, focal: 35 });
+  assert.deepEqual(pickLens(72.7, [...lenses, { min: 24, max: 70 }, { min: 70, max: 200 }]), { min: 70, max: 200, focal: 73 });
+  assert.equal(pickLens(50, []), null);
 });
