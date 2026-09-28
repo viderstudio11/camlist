@@ -1,0 +1,527 @@
+/* ============================================================
+   SKINS
+   A skin is a whole language: typeface, density, how a selected row is marked, how a
+   department heading is drawn, what a button looks like, whether numerals are monospaced.
+   Loaded after style.css so these win on equal specificity.
+   Typefaces are fetched per skin by js/skins.js, so fifteen families never load at once.
+   ============================================================ */
+
+/* ---------- The calibration chart behind everything ----------
+   Plates from a real lens test. Each skin lights a different set. */
+.chartbg { background-image: none; }
+.chartbg span { position: absolute; display: none; pointer-events: none; }
+
+.chartbg .siemens { inset-block-start: -18vmin; inset-inline-end: -14vmin; width: 58vmin; height: 58vmin;
+  border-radius: 50%; background: repeating-conic-gradient(var(--chart) 0 3deg, transparent 3deg 6deg); }
+.chartbg .siemens2 { inset-block-end: 22vmin; inset-inline-start: -20vmin; width: 38vmin; height: 38vmin;
+  border-radius: 50%; background: repeating-conic-gradient(var(--chart) 0 4.5deg, transparent 4.5deg 9deg); }
+.chartbg .grid { inset: 0;
+  background-image: linear-gradient(transparent calc(100% - 1px), var(--chart) 0),
+    linear-gradient(90deg, transparent calc(100% - 1px), var(--chart) 0);
+  background-size: 34px 34px; }
+.chartbg .wedge { inset-block-end: 6vmin; inset-inline-start: 4vmin; width: 34vmin; height: 13vmin;
+  background: repeating-linear-gradient(90deg, var(--chart) 0 2px, transparent 2px 6px);
+  -webkit-mask-image: linear-gradient(72deg, #000 10%, transparent 85%);
+  mask-image: linear-gradient(72deg, #000 10%, transparent 85%); }
+.chartbg .wedgev { inset-block-start: 28vmin; inset-inline-end: 5vmin; width: 17vmin; height: 21vmin;
+  background: repeating-linear-gradient(0deg, var(--chart) 0 2px, transparent 2px 6px);
+  -webkit-mask-image: linear-gradient(200deg, #000, transparent 80%);
+  mask-image: linear-gradient(200deg, #000, transparent 80%); }
+.chartbg .steps { inset-block-end: 0; inset-inline: 0; height: 5vmin;
+  background: repeating-linear-gradient(90deg, var(--chart) 0 9%, transparent 9% 18%);
+  -webkit-mask-image: linear-gradient(0deg, #000, transparent);
+  mask-image: linear-gradient(0deg, #000, transparent); }
+.chartbg .zone { inset-block-start: 10vmin; inset-inline-start: -10vmin; width: 46vmin; height: 46vmin;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, var(--chart) 0 2px, transparent 2px 9px);
+  -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 72%);
+  mask-image: radial-gradient(circle, #000 35%, transparent 72%); }
+.chartbg .marks { inset: 3vmin; border: 1px solid var(--chart);
+  -webkit-mask-image: linear-gradient(90deg, #000 0 12%, transparent 12% 88%, #000 88%),
+    linear-gradient(0deg, #000 0 14%, transparent 14% 86%, #000 86%);
+  mask-image: linear-gradient(90deg, #000 0 12%, transparent 12% 88%, #000 88%),
+    linear-gradient(0deg, #000 0 14%, transparent 14% 86%, #000 86%);
+  -webkit-mask-composite: source-in; mask-composite: intersect; }
+
+[data-skin="clean"] .chartbg .siemens, [data-skin="clean"] .chartbg .grid,
+[data-skin="clean"] .chartbg .wedge, [data-skin="clean"] .chartbg .steps { display: block; }
+[data-skin="arri"] .chartbg .siemens, [data-skin="arri"] .chartbg .grid,
+[data-skin="arri"] .chartbg .steps, [data-skin="arri"] .chartbg .wedgev { display: block; }
+[data-skin="sony"] .chartbg .zone, [data-skin="sony"] .chartbg .grid,
+[data-skin="sony"] .chartbg .wedge { display: block; }
+[data-skin="blackmagic"] .chartbg .siemens2, [data-skin="blackmagic"] .chartbg .grid,
+[data-skin="blackmagic"] .chartbg .zone { display: block; }
+[data-skin="red"] .chartbg .marks, [data-skin="red"] .chartbg .grid,
+[data-skin="red"] .chartbg .wedgev { display: block; }
+[data-skin="panasonic"] .chartbg .grid, [data-skin="panasonic"] .chartbg .wedgev,
+[data-skin="panasonic"] .chartbg .steps { display: block; }
+[data-skin="canon"] .chartbg .siemens2, [data-skin="canon"] .chartbg .grid,
+[data-skin="canon"] .chartbg .wedge { display: block; }
+[data-skin="broadcast"] .chartbg .steps, [data-skin="broadcast"] .chartbg .grid,
+[data-skin="broadcast"] .chartbg .marks { display: block; }
+[data-skin="pixel"] .chartbg .grid, [data-skin="pixel"] .chartbg .steps,
+[data-skin="pixel"] .chartbg .zone { display: block; }
+[data-skin="blueprint"] .chartbg .grid, [data-skin="blueprint"] .chartbg .siemens,
+[data-skin="blueprint"] .chartbg .wedge, [data-skin="blueprint"] .chartbg .marks { display: block; }
+[data-skin="callsheet"] .chartbg .grid, [data-skin="callsheet"] .chartbg .steps,
+[data-skin="callsheet"] .chartbg .marks { display: block; }
+[data-skin="eink"] .chartbg .steps, [data-skin="eink"] .chartbg .grid,
+[data-skin="eink"] .chartbg .wedge { display: block; }
+[data-skin="paper"] .chartbg .grid, [data-skin="paper"] .chartbg .steps { display: block; }
+[data-skin="contrast"] .chartbg .siemens, [data-skin="contrast"] .chartbg .steps { display: block; }
+[data-skin="night"] .chartbg .marks, [data-skin="night"] .chartbg .siemens2,
+[data-skin="night"] .chartbg .grid { display: block; }
+
+/* ============================================================ CLEAN ============== */
+[data-skin="clean"] {
+  --font: "Assistant", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
+  --radius: 16px; --radius-s: 11px;
+}
+[data-skin="clean"]:not([data-theme="dark"]) {
+  --bg: #F5F4F1; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #F0EEE9; --surface-3: #E4E1DA;
+  --border: rgba(0,0,0,.11); --border-2: rgba(0,0,0,.17); --hair: rgba(0,0,0,.08);
+  --text: #14171A; --muted: #545A63; --dim: #868C95;
+  --accent: #C4161C; --accent-2: #9E1016; --accent-soft: rgba(196,22,28,.10);
+  --amber: #B26A00; --amber-soft: rgba(178,106,0,.13); --amber-ink: #FFFFFF;
+  --ok: #12703F; --ok-soft: rgba(18,112,63,.13); --warn: #9A5B00;
+  --tint: rgba(0,0,0,.035); --tint-2: rgba(0,0,0,.07); --glass: rgba(255,255,255,.86);
+  --chart: rgba(20,23,26,.13);
+}
+[data-skin="clean"][data-theme="dark"] {
+  --bg: #14161A; --bg-2: #0F1115; --surface: #1A1D23; --surface-2: #22262E; --surface-3: #2C313A;
+  --border: rgba(255,255,255,.08); --border-2: rgba(255,255,255,.15); --hair: rgba(255,255,255,.07);
+  --text: #F2F4F7; --muted: #9BA3B0; --dim: #6B7380;
+  --accent: #E0262B; --accent-2: #FF4A4F; --accent-soft: rgba(224,38,43,.16);
+  --amber: #FFB020; --amber-soft: rgba(255,176,32,.16); --amber-ink: #14161A;
+  --ok: #3DDC97; --ok-soft: rgba(61,220,151,.15); --warn: #FBBF24;
+  --tint: rgba(255,255,255,.05); --tint-2: rgba(255,255,255,.09); --glass: rgba(20,22,26,.8);
+  --chart: rgba(255,255,255,.115);
+}
+
+/* ============================================================ ARRI ==============
+   An ALEXA labels everything in small caps and keeps its values in a monospaced column. */
+[data-skin="arri"] {
+  --font: "Heebo", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
+  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
+}
+[data-skin="arri"]:not([data-theme="dark"]) {
+  --bg: #E7E7E5; --bg-2: #F2F2F0; --surface: #F4F4F2; --surface-2: #E2E2DF; --surface-3: #D3D3CF;
+  --border: rgba(0,0,0,.16); --border-2: rgba(0,0,0,.26); --hair: rgba(0,0,0,.11);
+  --text: #16181A; --muted: #4E5257; --dim: #7C8186;
+  --accent: #8A5200; --accent-2: #6E4100; --accent-soft: rgba(138,82,0,.13);
+  --amber: #8A5200; --amber-soft: rgba(138,82,0,.14); --amber-ink: #FFFFFF;
+  --tint: rgba(0,0,0,.05); --tint-2: rgba(0,0,0,.09); --glass: rgba(244,244,242,.92);
+  --chart: rgba(0,0,0,.14);
+}
+[data-skin="arri"][data-theme="dark"] {
+  --bg: #262626; --bg-2: #1E1E1E; --surface: #303030; --surface-2: #3A3A3A; --surface-3: #474747;
+  --border: rgba(255,255,255,.13); --border-2: rgba(255,255,255,.22); --hair: rgba(255,255,255,.09);
+  --text: #EFEFEF; --muted: #AFAFAF; --dim: #808080;
+  --accent: #FFB020; --accent-2: #FFC85C; --accent-soft: rgba(255,176,32,.18);
+  --amber: #FFB020; --amber-soft: rgba(255,176,32,.18); --amber-ink: #1A1A1A;
+  --ok: #5FD39B; --ok-soft: rgba(95,211,155,.17);
+  --tint: rgba(255,255,255,.06); --tint-2: rgba(255,255,255,.11); --glass: rgba(38,38,38,.93);
+  --chart: rgba(255,255,255,.12);
+}
+[data-skin="arri"] .group-head { background: var(--surface-2); border-block-end: 1px solid var(--border); padding: 9px 12px; }
+[data-skin="arri"] .group-head h2, [data-skin="arri"] .section-title,
+[data-skin="arri"] .row .sub { text-transform: uppercase; letter-spacing: .13em; font-size: 11.5px; }
+[data-skin="arri"] .row .q, [data-skin="arri"] .stepper .q, [data-skin="arri"] .torow b,
+[data-skin="arri"] .group-head .count { font-family: "IBM Plex Mono", var(--mono); font-weight: 600; }
+[data-skin="arri"] .row.is-build { background: var(--amber); }
+[data-skin="arri"] .row.is-build .name, [data-skin="arri"] .row.is-build .sub,
+[data-skin="arri"] .row.is-build .q { color: var(--amber-ink); }
+[data-skin="arri"] .btn.primary { background: var(--amber); color: var(--amber-ink); }
+
+/* ============================================================ SONY ==============
+   A VENICE fits a great many parameters on one page: condensed type, tight rows,
+   and a solid blue bar on whatever is selected. */
+[data-skin="sony"] {
+  --font: "Barlow Condensed", "Noto Sans Hebrew", -apple-system, sans-serif;
+  --radius: 2px; --radius-s: 2px; --shadow: none; --shadow-s: none;
+}
+[data-skin="sony"]:not([data-theme="dark"]) {
+  --bg: #EDEEF0; --bg-2: #F7F8F9; --surface: #FFFFFF; --surface-2: #E6E8EB; --surface-3: #D5D8DD;
+  --border: rgba(0,0,0,.15); --border-2: rgba(0,0,0,.25); --hair: rgba(0,0,0,.1);
+  --text: #101214; --muted: #4A5057; --dim: #7A8189;
+  --accent: #0B57B5; --accent-2: #083F84; --accent-soft: rgba(11,87,181,.12);
+  --amber: #0B57B5; --amber-soft: rgba(11,87,181,.12); --amber-ink: #FFFFFF;
+  --chart: rgba(0,0,0,.14);
+}
+[data-skin="sony"][data-theme="dark"] {
+  --bg: #0B0B0B; --bg-2: #101010; --surface: #141414; --surface-2: #1C1C1C; --surface-3: #282828;
+  --border: rgba(255,255,255,.12); --border-2: rgba(255,255,255,.2); --hair: rgba(255,255,255,.08);
+  --text: #EDEDED; --muted: #9A9A9A; --dim: #6E6E6E;
+  --accent: #1273E6; --accent-2: #4A9BFF; --accent-soft: rgba(18,115,230,.2);
+  --amber: #1273E6; --amber-soft: rgba(18,115,230,.2); --amber-ink: #FFFFFF;
+  --tint: rgba(255,255,255,.05); --tint-2: rgba(255,255,255,.1); --glass: rgba(11,11,11,.93);
+  --chart: rgba(255,255,255,.12);
+}
+[data-skin="sony"] { font-size: 104%; }
+[data-skin="sony"] .row { padding: 5px 11px; gap: 9px; }
+[data-skin="sony"] .row .thumb { width: 32px; height: 32px; }
+[data-skin="sony"] .row .name { font-size: 16px; font-weight: 600; letter-spacing: .008em; }
+[data-skin="sony"] .row .sub { font-size: 13px; margin-top: 1px; }
+[data-skin="sony"] .group-head { padding: 5px 11px; background: var(--surface-2); }
+[data-skin="sony"] .group-head h2 { font-size: 14px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+[data-skin="sony"] .row.is-build { background: var(--accent); }
+[data-skin="sony"] .row.is-build .name, [data-skin="sony"] .row.is-build .sub,
+[data-skin="sony"] .row.is-build .q { color: #fff; }
+
+/* ============================================================ BLACKMAGIC ========
+   Roomy, rounded, generous touch targets — the friendliest of the camera skins. */
+[data-skin="blackmagic"] {
+  --font: "Assistant", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
+  --radius: 14px; --radius-s: 10px;
+}
+[data-skin="blackmagic"]:not([data-theme="dark"]) {
+  --bg: #F2F2F5; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #EAEAEF; --surface-3: #DCDCE3;
+  --border: rgba(0,0,0,.1); --border-2: rgba(0,0,0,.17); --hair: rgba(0,0,0,.07);
+  --text: #111114; --muted: #55555F; --dim: #8A8A93;
+  --accent: #0B62CC; --accent-2: #0850A8; --accent-soft: rgba(11,98,204,.12);
+  --amber: #0B62CC; --amber-soft: rgba(11,98,204,.12); --amber-ink: #FFFFFF;
+  --chart: rgba(0,0,0,.14);
+}
+[data-skin="blackmagic"][data-theme="dark"] {
+  --bg: #1B1B1D; --bg-2: #232326; --surface: #2C2C2E; --surface-2: #38383C; --surface-3: #46464B;
+  --border: rgba(255,255,255,.1); --border-2: rgba(255,255,255,.18); --hair: rgba(255,255,255,.07);
+  --text: #F5F5F7; --muted: #A5A5AE; --dim: #7B7B85;
+  --accent: #0A84FF; --accent-2: #4BA7FF; --accent-soft: rgba(10,132,255,.2);
+  --amber: #0A84FF; --amber-soft: rgba(10,132,255,.2); --amber-ink: #FFFFFF;
+  --tint: rgba(255,255,255,.06); --tint-2: rgba(255,255,255,.11); --glass: rgba(27,27,29,.9);
+  --chart: rgba(255,255,255,.12);
+}
+[data-skin="blackmagic"] .row { padding: 13px 14px; }
+[data-skin="blackmagic"] .row .thumb { border-radius: 9px; width: 46px; height: 46px; }
+[data-skin="blackmagic"] .group-head { padding: 14px 6px 9px; }
+[data-skin="blackmagic"] .group-head h2 { font-weight: 700; letter-spacing: -.01em; }
+[data-skin="blackmagic"] .btn { border-radius: 10px; }
+[data-skin="blackmagic"] .row.is-build { background: var(--accent-soft); border-color: var(--accent); }
+
+/* ============================================================ RED ===============
+   Narrow uppercase headings and numerals that read from across the truck. */
+[data-skin="red"] {
+  --font: "Oswald", "Noto Sans Hebrew", -apple-system, sans-serif;
+  --radius: 3px; --radius-s: 3px; --shadow: none; --shadow-s: none;
+}
+[data-skin="red"]:not([data-theme="dark"]) {
+  --bg: #EFEFEF; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #E6E6E6; --surface-3: #D6D6D6;
+  --border: rgba(0,0,0,.14); --border-2: rgba(0,0,0,.24); --hair: rgba(0,0,0,.09);
+  --text: #0F0F0F; --muted: #4C4C4C; --dim: #7D7D7D;
+  --accent: #A50D25; --accent-2: #7E0A1C; --accent-soft: rgba(165,13,37,.11);
+  --amber: #A50D25; --amber-soft: rgba(165,13,37,.11); --amber-ink: #FFFFFF;
+  --chart: rgba(0,0,0,.14);
+}
+[data-skin="red"][data-theme="dark"] {
+  --bg: #0D0D0D; --bg-2: #131313; --surface: #171717; --surface-2: #202020; --surface-3: #2C2C2C;
+  --border: rgba(255,255,255,.12); --border-2: rgba(255,255,255,.2); --hair: rgba(255,255,255,.08);
+  --text: #F2F2F2; --muted: #9C9C9C; --dim: #6F6F6F;
+  --accent: #C8102E; --accent-2: #F2415C; --accent-soft: rgba(200,16,46,.2);
+  --amber: #C8102E; --amber-soft: rgba(200,16,46,.2); --amber-ink: #FFFFFF;
+  --tint: rgba(255,255,255,.05); --tint-2: rgba(255,255,255,.1); --glass: rgba(13,13,13,.92);
+  --chart: rgba(255,255,255,.12);
+}
+[data-skin="red"] .group-head h2, [data-skin="red"] .section-title {
+  text-transform: uppercase; letter-spacing: .14em; font-size: 13px; font-weight: 500; }
+[data-skin="red"] .row .name { font-weight: 500; letter-spacing: .01em; font-size: 15.5px; }
+[data-skin="red"] .row .q, [data-skin="red"] .stepper .q, [data-skin="red"] .torow b {
+  font-size: 19px; font-weight: 600; }
+[data-skin="red"] .torow.big b { font-size: 27px; }
+[data-skin="red"] .row { background: var(--tint); }
+[data-skin="red"] .row.is-build { border-color: var(--accent); background: var(--accent-soft); }
+[data-skin="red"] .group-head { border-block-end: 2px solid var(--accent); }
+
+/* ============================================================ PANASONIC =========
+   Technical and cool: squared rows, engineering type, values in a steady column. */
+[data-skin="panasonic"] {
+  --font: "IBM Plex Sans", "Noto Sans Hebrew", -apple-system, sans-serif;
+  --radius: 3px; --radius-s: 3px; --shadow: none; --shadow-s: none;
+}
+[data-skin="panasonic"]:not([data-theme="dark"]) {
+  --bg: #EEF1F4; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #E4E8EE; --surface-3: #D2D8E1;
+  --border: rgba(16,24,36,.15); --border-2: rgba(16,24,36,.26); --hair: rgba(16,24,36,.1);
+  --text: #101822; --muted: #48535F; --dim: #78838F;
+  --accent: #0B57C7; --accent-2: #083F94; --accent-soft: rgba(11,87,199,.12);
+  --amber: #0B57C7; --amber-soft: rgba(11,87,199,.12); --amber-ink: #FFFFFF;
+  --chart: rgba(16,24,36,.14);
+}
+[data-skin="panasonic"][data-theme="dark"] {
+  --bg: #1E2126; --bg-2: #171A1E; --surface: #262A30; --surface-2: #30353C; --surface-3: #3D434B;
+  --border: rgba(255,255,255,.12); --border-2: rgba(255,255,255,.2); --hair: rgba(255,255,255,.08);
+  --text: #E9EDF2; --muted: #9DA6B1; --dim: #6F7883;
+  --accent: #3D8BFF; --accent-2: #6FA9FF; --accent-soft: rgba(61,139,255,.2);
+  --amber: #3D8BFF; --amber-soft: rgba(61,139,255,.2); --amber-ink: #0F1318;
+  --tint: rgba(255,255,255,.05); --tint-2: rgba(255,255,255,.1); --glass: rgba(30,33,38,.93);
+  --chart: rgba(255,255,255,.12);
+}
+[data-skin="panasonic"] .row { padding: 8px 12px; }
+[data-skin="panasonic"] .group-head { background: var(--surface-2); border-block-end: 1px solid var(--border); padding: 8px 12px; }
+[data-skin="panasonic"] .group-head h2 { font-size: 13px; font-weight: 600; letter-spacing: .05em; }
+[data-skin="panasonic"] .row .q, [data-skin="panasonic"] .torow b { font-family: "IBM Plex Mono", var(--mono); }
+[data-skin="panasonic"] .row.is-build { box-shadow: inset 3px 0 0 var(--accent); background: var(--accent-soft); }
+
+/* ============================================================ CANON =============
+   Cinema EOS: tiny uppercase labels over compact rows, a red rule under each heading. */
+[data-skin="canon"] {
+  --font: "Barlow", "Noto Sans Hebrew", -apple-system, sans-serif;
+  --radius: 5px; --radius-s: 5px; --shadow: none; --shadow-s: none;
+}
+[data-skin="canon"]:not([data-theme="dark"]) {
+  --bg: #F4F1ED; --bg-2: #FFFDFA; --surface: #FFFDFA; --surface-2: #EBE6DF; --surface-3: #DCD5CB;
+  --border: rgba(40,32,26,.16); --border-2: rgba(40,32,26,.28); --hair: rgba(40,32,26,.1);
+  --text: #221C17; --muted: #554C43; --dim: #877C70;
+  --accent: #B02019; --accent-2: #8A1710; --accent-soft: rgba(176,32,25,.11);
+  --amber: #B02019; --amber-soft: rgba(176,32,25,.11); --amber-ink: #FFFFFF;
+  --chart: rgba(40,32,26,.14);
+}
+[data-skin="canon"][data-theme="dark"] {
+  --bg: #2A2724; --bg-2: #221F1D; --surface: #332F2B; --surface-2: #3E3935; --surface-3: #4B4540;
+  --border: rgba(255,255,255,.12); --border-2: rgba(255,255,255,.21); --hair: rgba(255,255,255,.08);
+  --text: #F0EBE6; --muted: #AEA49B; --dim: #7E756D;
+  --accent: #E03A36; --accent-2: #FF6B63; --accent-soft: rgba(224,58,54,.2);
+  --amber: #E03A36; --amber-soft: rgba(224,58,54,.2); --amber-ink: #FFFFFF;
+  --tint: rgba(255,255,255,.05); --tint-2: rgba(255,255,255,.1); --glass: rgba(42,39,36,.93);
+  --chart: rgba(255,255,255,.12);
+}
+[data-skin="canon"] .row { padding: 7px 12px; }
+[data-skin="canon"] .row .sub { font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase; }
+[data-skin="canon"] .group-head { border-block-end: 2px solid var(--accent); padding: 9px 12px; }
+[data-skin="canon"] .group-head h2 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .11em; font-weight: 600; }
+[data-skin="canon"] .row.is-build { background: var(--accent-soft); }
+
+/* ============================================================ BROADCAST =========
+   Engineering gear: everything monospaced, headings in a solid yellow bar. */
+[data-skin="broadcast"] {
+  --font: "IBM Plex Mono", "Noto Sans Hebrew", ui-monospace, monospace;
+  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
+}
+[data-skin="broadcast"]:not([data-theme="dark"]) {
+  --bg: #FFFFFF; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #F4F1E2; --surface-3: #E7E1C4;
+  --border: rgba(0,0,0,.32); --border-2: rgba(0,0,0,.6); --hair: rgba(0,0,0,.2);
+  --text: #000000; --muted: #333333; --dim: #5E5E5E;
+  --accent: #7A5A00; --accent-2: #5C4400; --accent-soft: rgba(122,90,0,.14);
+  --amber: #7A5A00; --amber-soft: rgba(122,90,0,.14); --amber-ink: #FFFFFF;
+  --chart: rgba(0,0,0,.1);
+}
+[data-skin="broadcast"][data-theme="dark"] {
+  --bg: #000000; --bg-2: #050505; --surface: #0C0C0C; --surface-2: #161616; --surface-3: #242424;
+  --border: rgba(255,255,255,.22); --border-2: rgba(255,255,255,.42); --hair: rgba(255,255,255,.14);
+  --text: #FFFFFF; --muted: #CFCFCF; --dim: #8F8F8F;
+  --accent: #FFD400; --accent-2: #FFE566; --accent-soft: rgba(255,212,0,.2);
+  --amber: #FFD400; --amber-soft: rgba(255,212,0,.2); --amber-ink: #000000;
+  --tint: rgba(255,255,255,.05); --tint-2: rgba(255,255,255,.1); --glass: rgba(0,0,0,.94);
+  --chart: rgba(255,255,255,.14);
+}
+[data-skin="broadcast"] .group-head { background: var(--accent); padding: 6px 11px; }
+[data-skin="broadcast"] .group-head h2 { color: var(--amber-ink); text-transform: uppercase; letter-spacing: .14em; font-size: 12px; }
+[data-skin="broadcast"] .group-head .count, [data-skin="broadcast"] .group-head .chev { color: var(--amber-ink); }
+[data-skin="broadcast"] .row .name { font-size: 13px; letter-spacing: -.01em; }
+[data-skin="broadcast"] .btn.primary { background: var(--accent); color: var(--amber-ink); }
+[data-skin="broadcast"] .row.is-build { box-shadow: inset 0 0 0 2px var(--accent); }
+
+/* ============================================================ 8-BIT =============
+   Pixel type on the numerals and the Latin labels; Hebrew stays readable.
+   Borders step instead of curving, and everything casts a hard block shadow. */
+[data-skin="pixel"] {
+  --font: "Heebo", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
+  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
+}
+[data-skin="pixel"]:not([data-theme="dark"]) {
+  --bg: #E9EAF2; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #DDDFEC; --surface-3: #C8CBDE;
+  --border: rgba(18,19,26,.3); --border-2: rgba(18,19,26,.55); --hair: rgba(18,19,26,.16);
+  --text: #12131A; --muted: #444862; --dim: #757A92;
+  --accent: #157F3D; --accent-2: #0E6030; --accent-soft: rgba(21,127,61,.14);
+  --amber: #8A5A00; --amber-soft: rgba(138,90,0,.15); --amber-ink: #FFFFFF;
+  --ok: #157F3D; --ok-soft: rgba(21,127,61,.14);
+  --chart: rgba(18,19,26,.15);
+}
+[data-skin="pixel"][data-theme="dark"] {
+  --bg: #12131A; --bg-2: #0D0E14; --surface: #1B1D28; --surface-2: #252838; --surface-3: #323648;
+  --border: rgba(232,234,242,.2); --border-2: rgba(232,234,242,.4); --hair: rgba(232,234,242,.12);
+  --text: #E8EAF2; --muted: #A2A7C0; --dim: #737892;
+  --accent: #4BE07C; --accent-2: #7CF0A2; --accent-soft: rgba(75,224,124,.18);
+  --amber: #FFC233; --amber-soft: rgba(255,194,51,.18); --amber-ink: #12131A;
+  --ok: #4BE07C; --ok-soft: rgba(75,224,124,.18);
+  --tint: rgba(232,234,242,.05); --tint-2: rgba(232,234,242,.1); --glass: rgba(18,19,26,.94);
+  --chart: rgba(232,234,242,.13);
+}
+[data-skin="pixel"] .row .q, [data-skin="pixel"] .stepper .q, [data-skin="pixel"] .group-head .count,
+[data-skin="pixel"] .torow b, [data-skin="pixel"] .pill {
+  font-family: "Press Start 2P", var(--mono); font-size: 9px; line-height: 1.6; letter-spacing: 0; }
+[data-skin="pixel"] .torow.big b { font-size: 13px; }
+[data-skin="pixel"] .row, [data-skin="pixel"] .card, [data-skin="pixel"] .btn, [data-skin="pixel"] .thumb {
+  border-width: 2px; box-shadow: 3px 3px 0 var(--border); }
+[data-skin="pixel"] .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--border); }
+[data-skin="pixel"] .group-head h2 { text-transform: uppercase; letter-spacing: .1em; font-size: 13px; }
+[data-skin="pixel"] .seg i { box-shadow: inset -3px -3px 0 rgba(0,0,0,.35); }
+[data-skin="pixel"] img { image-rendering: pixelated; }
+
+/* ============================================================ BLUEPRINT =========
+   A drafting sheet: cyan lines on deep blue, dashed rows, title-block headings. */
+[data-skin="blueprint"] {
+  --font: "IBM Plex Mono", "Noto Sans Hebrew", ui-monospace, monospace;
+  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
+}
+[data-skin="blueprint"], [data-skin="blueprint"][data-theme="dark"],
+[data-skin="blueprint"]:not([data-theme="dark"]) {
+  --bg: #0B1B33; --bg-2: #0E2140; --surface: #102647; --surface-2: #14304F; --surface-3: #1B3D62;
+  --border: rgba(90,200,255,.28); --border-2: rgba(90,200,255,.48); --hair: rgba(90,200,255,.16);
+  --text: #CFE6FF; --muted: #8FB9E0; --dim: #5F87AE;
+  --accent: #5AC8FF; --accent-2: #8FDCFF; --accent-soft: rgba(90,200,255,.16);
+  --amber: #FFD98A; --amber-soft: rgba(255,217,138,.16); --amber-ink: #0B1B33;
+  --ok: #7BE5B0; --ok-soft: rgba(123,229,176,.16); --warn: #FFD98A;
+  --tint: rgba(90,200,255,.06); --tint-2: rgba(90,200,255,.12); --glass: rgba(11,27,51,.94);
+  --chart: rgba(90,200,255,.14);
+  color-scheme: dark;
+}
+[data-skin="blueprint"] .group-head { border-block-end: 1px solid var(--border-2); padding-block-end: 7px; }
+[data-skin="blueprint"] .group-head h2 { text-transform: uppercase; letter-spacing: .18em; font-size: 12px; font-weight: 500; }
+[data-skin="blueprint"] .row { border-style: dashed; }
+[data-skin="blueprint"] .thumb img { filter: grayscale(1) brightness(1.1) sepia(1) hue-rotate(175deg) saturate(2.2) opacity(.85); }
+[data-skin="blueprint"] .btn.primary { background: var(--accent); color: #0B1B33; }
+
+/* ============================================================ CALL SHEET ========
+   The document that lands in your inbox at 22:00: typewriter on cream. */
+[data-skin="callsheet"] {
+  --font: "Courier Prime", "Noto Sans Hebrew", ui-monospace, monospace;
+  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
+}
+[data-skin="callsheet"]:not([data-theme="dark"]) {
+  --bg: #FBF7EC; --bg-2: #FFFDF6; --surface: #FFFDF6; --surface-2: #F2ECDC; --surface-3: #E4DCC6;
+  --border: rgba(26,23,18,.28); --border-2: rgba(26,23,18,.5); --hair: rgba(26,23,18,.16);
+  --text: #1A1712; --muted: #4E4639; --dim: #837A68;
+  --accent: #8A2B12; --accent-2: #6B200C; --accent-soft: rgba(138,43,18,.1);
+  --amber: #8A6A00; --amber-soft: rgba(138,106,0,.12); --amber-ink: #FFFDF6;
+  --chart: rgba(26,23,18,.14);
+}
+[data-skin="callsheet"][data-theme="dark"] {
+  --bg: #1A1712; --bg-2: #211D17; --surface: #241F19; --surface-2: #2E2820; --surface-3: #3B3328;
+  --border: rgba(251,247,236,.22); --border-2: rgba(251,247,236,.4); --hair: rgba(251,247,236,.13);
+  --text: #F2ECDC; --muted: #B3A891; --dim: #837A68;
+  --accent: #E0693F; --accent-2: #FF8A5C; --accent-soft: rgba(224,105,63,.16);
+  --amber-ink: #1A1712; --chart: rgba(251,247,236,.12);
+}
+[data-skin="callsheet"] .group-head { border-block: 1px solid var(--text); padding: 5px 10px; }
+[data-skin="callsheet"] .group-head h2 { text-transform: uppercase; letter-spacing: .15em; font-size: 12px; font-weight: 700; }
+[data-skin="callsheet"] .row { border-block-end: 1px dashed var(--hair); background: none; padding: 6px 10px; }
+[data-skin="callsheet"] .row .name { font-weight: 700; font-size: 13px; }
+[data-skin="callsheet"] .btn.primary { background: var(--text); color: var(--bg); }
+
+/* ============================================================ E-INK =============
+   No colour whatsoever, and a serif face with real Hebrew. Reads like a page. */
+[data-skin="eink"] {
+  --font: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+  --radius: 2px; --radius-s: 2px; --shadow: none; --shadow-s: none;
+}
+[data-skin="eink"]:not([data-theme="dark"]) {
+  --bg: #F7F6F3; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #EDECE8; --surface-3: #DCDBD6;
+  --border: rgba(0,0,0,.26); --border-2: rgba(0,0,0,.46); --hair: rgba(0,0,0,.15);
+  --text: #111111; --muted: #444444; --dim: #767676;
+  --accent: #111111; --accent-2: #000000; --accent-soft: rgba(0,0,0,.08);
+  --amber: #555555; --amber-soft: rgba(85,85,85,.12); --amber-ink: #FFFFFF;
+  --ok: #333333; --ok-soft: rgba(51,51,51,.1); --warn: #555555;
+  --chart: rgba(0,0,0,.15);
+}
+[data-skin="eink"][data-theme="dark"] {
+  --bg: #121212; --bg-2: #171717; --surface: #1B1B1B; --surface-2: #242424; --surface-3: #303030;
+  --border: rgba(255,255,255,.26); --border-2: rgba(255,255,255,.46); --hair: rgba(255,255,255,.15);
+  --text: #F2F2F2; --muted: #B5B5B5; --dim: #868686;
+  --accent: #F2F2F2; --accent-2: #FFFFFF; --accent-soft: rgba(255,255,255,.1);
+  --amber: #C9C9C9; --amber-soft: rgba(201,201,201,.12); --amber-ink: #121212;
+  --ok: #DDDDDD; --warn: #BBBBBB; --chart: rgba(255,255,255,.14);
+}
+[data-skin="eink"] .row .name { font-size: 15.5px; font-weight: 500; }
+[data-skin="eink"] .group-head h2 { font-weight: 700; font-size: 16px; letter-spacing: -.01em; }
+[data-skin="eink"] .thumb img { filter: grayscale(1) contrast(1.1); }
+[data-skin="eink"] .btn.primary { background: var(--text); color: var(--bg); }
+[data-skin="eink"] .row.is-build { box-shadow: inset 3px 0 0 var(--text); }
+
+/* ============================================================ PAPER ============= */
+[data-skin="paper"] {
+  --font: "Noto Sans Hebrew", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --radius: 0px; --radius-s: 0px; --shadow: none; --shadow-s: none;
+}
+[data-skin="paper"]:not([data-theme="dark"]) {
+  --bg: #FFFDF8; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #F6F3EC; --surface-3: #EAE6DC;
+  --border: rgba(0,0,0,.22); --border-2: rgba(0,0,0,.42); --hair: rgba(0,0,0,.14);
+  --text: #111111; --muted: #4A4A46; --dim: #7B7B74;
+  --accent: #111111; --accent-2: #000000; --accent-soft: rgba(0,0,0,.07);
+  --amber: #8A6A00; --amber-soft: rgba(138,106,0,.12); --amber-ink: #FFFFFF;
+  --chart: rgba(0,0,0,.14);
+}
+[data-skin="paper"][data-theme="dark"] {
+  --bg: #17171A; --bg-2: #1D1D21; --surface: #1D1D21; --surface-2: #26262B; --surface-3: #313138;
+  --border: rgba(255,255,255,.2); --border-2: rgba(255,255,255,.34); --hair: rgba(255,255,255,.12);
+  --text: #F4F3EF; --muted: #A8A8A2; --dim: #7A7A75;
+  --accent: #F4F3EF; --accent-2: #FFFFFF; --accent-soft: rgba(255,255,255,.1);
+  --amber-ink: #17171A; --chart: rgba(255,255,255,.07);
+}
+[data-skin="paper"] .group-head { border-block-start: 2px solid var(--text); border-block-end: 1px solid var(--text);
+  background: none; padding: 7px 10px; }
+[data-skin="paper"] .group-head h2 { text-transform: uppercase; letter-spacing: .14em; font-size: 11.5px; }
+[data-skin="paper"] .row { border-block-end: 1px solid var(--hair); background: none; padding: 7px 10px; }
+[data-skin="paper"] .card, [data-skin="paper"] .kit { border: 1px solid var(--border); }
+[data-skin="paper"] .btn.primary { background: var(--text); color: var(--bg); }
+
+/* ============================================================ SUN =============== */
+[data-skin="contrast"] {
+  --font: "Heebo", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
+  --radius: 4px; --radius-s: 4px; --shadow: none; --shadow-s: none;
+}
+[data-skin="contrast"]:not([data-theme="dark"]) {
+  --bg: #FFFFFF; --bg-2: #FFFFFF; --surface: #FFFFFF; --surface-2: #F0F0F0; --surface-3: #DCDCDC;
+  --border: rgba(0,0,0,.4); --border-2: rgba(0,0,0,.72); --hair: rgba(0,0,0,.24);
+  --text: #000000; --muted: #2B2B2B; --dim: #565656;
+  --accent: #B00016; --accent-2: #86000F; --accent-soft: rgba(176,0,22,.12);
+  --ok: #005F2E; --ok-soft: rgba(0,95,46,.14); --warn: #7A4300;
+  --chart: rgba(0,0,0,.1);
+}
+[data-skin="contrast"][data-theme="dark"] {
+  --bg: #000000; --bg-2: #000000; --surface: #0A0A0A; --surface-2: #161616; --surface-3: #242424;
+  --border: rgba(255,255,255,.4); --border-2: rgba(255,255,255,.72); --hair: rgba(255,255,255,.24);
+  --text: #FFFFFF; --muted: #E0E0E0; --dim: #ABABAB;
+  --accent: #FF5A5F; --accent-2: #FF8A8E; --accent-soft: rgba(255,90,95,.2);
+  --ok: #4DFF9F; --warn: #FFC233; --chart: rgba(255,255,255,.12);
+}
+[data-skin="contrast"] { font-size: 106%; }
+[data-skin="contrast"] .row .name { font-size: 16px; font-weight: 800; }
+[data-skin="contrast"] .row .sub { font-size: 13px; }
+[data-skin="contrast"] .group-head h2 { font-size: 17px; font-weight: 900; }
+[data-skin="contrast"] .row { border: 1px solid var(--border); }
+[data-skin="contrast"] .btn, [data-skin="contrast"] .stepper button { font-weight: 800; }
+
+/* ============================================================ NIGHT =============
+   Red light does not bleach rhodopsin, which is why a set runs red torches after dark.
+   Red only, on black, and it ignores the light/dark switch on purpose. */
+[data-skin="night"], [data-skin="night"][data-theme="dark"], [data-skin="night"]:not([data-theme="dark"]) {
+  --font: "Heebo", -apple-system, "Segoe UI", Roboto, "Noto Sans Hebrew", sans-serif;
+  --radius: 4px; --radius-s: 4px; --shadow: none; --shadow-s: none;
+  --bg: #0A0201; --bg-2: #120403; --surface: #1A0605; --surface-2: #260907; --surface-3: #380D0A;
+  --border: rgba(255,138,117,.34); --border-2: rgba(255,138,117,.58); --hair: rgba(255,138,117,.2);
+  --text: #FF8A75; --muted: #E0634E; --dim: #A8402F;
+  --accent: #FF3B28; --accent-2: #FF6B5A; --accent-soft: rgba(255,59,40,.2);
+  --amber: #FF7A3D; --amber-soft: rgba(255,122,61,.2); --amber-ink: #140302;
+  --ok: #FF9F73; --ok-soft: rgba(255,159,115,.18); --warn: #FFB07A;
+  --tint: rgba(255,138,117,.07); --tint-2: rgba(255,138,117,.13); --glass: rgba(10,2,1,.95);
+  --chart: rgba(255,138,117,.12);
+  color-scheme: dark;
+}
+[data-skin="night"] .btn.primary { background: var(--accent); color: #140302; }
+[data-skin="night"] .thumb img, [data-skin="night"] .dept-card {
+  filter: grayscale(1) sepia(1) saturate(7) hue-rotate(-18deg) brightness(.92); }
+
+/* ---------- The skin bank in settings ---------- */
+.skin-group { font-size: 11px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--dim); margin: 16px 0 8px; }
+.skin-list { display: grid; gap: 9px; }
+.skin-opt { display: flex; align-items: center; gap: 12px; padding: 11px 13px; width: 100%; text-align: start;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-s); color: var(--text);
+  transition: border-color .2s, background .2s; }
+.skin-opt:hover { border-color: var(--border-2); }
+.skin-opt.on { border-color: var(--accent); background: var(--accent-soft); }
+.skin-swatch { display: flex; flex: 0 0 auto; border: 1px solid var(--border-2); border-radius: 5px; overflow: hidden; }
+.skin-swatch i { width: 15px; height: 34px; display: block; }
+.skin-main { flex: 1; min-width: 0; }
+.skin-main b { display: block; font-size: 14.5px; font-weight: 800; }
+.skin-main small { color: var(--muted); font-size: 12px; line-height: 1.45; }
+.skin-check { flex: 0 0 auto; color: var(--accent); font-weight: 900; font-size: 17px; }
