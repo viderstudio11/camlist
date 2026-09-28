@@ -709,12 +709,18 @@
       ],
       "format": "FF",
       "media": [
-        "CFast",
+        "CFexpress B",
         "SD"
       ],
       "battery": [
         "BP-A"
-      ]
+      ],
+      "sensor": {
+        "w": 35.7,
+        "h": 20.1,
+        "mode": "UHD 3840×2160 · Full Frame",
+        "src": "Canon Europe EOS C500 Mark II specifications, Effective Sensor Screen Size: 35.7 × 20.1 mm at 3840 × 2160 (38.1 × 20.1 mm at 5952 × 3140 / 4096 × 2160); media: CFexpress card x2, SD for proxy"
+      }
     },
     {
       "id": 28559,

@@ -2088,6 +2088,108 @@
       ]
     },
     {
+      "id": "c500ii",
+      "brand": "Canon",
+      "label": "EOS C500 Mark II",
+      "formats": [
+        {
+          "id": "crm-lt-ff",
+          "codec": "Cinema RAW Light LT",
+          "res": "5.9K FF 5952×3140",
+          "mbps": {
+            "25": 556,
+            "50": 1140
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-st-ff",
+          "codec": "Cinema RAW Light ST",
+          "res": "5.9K FF 5952×3140",
+          "mbps": {
+            "25": 871,
+            "50": 1750
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-hq-ff",
+          "codec": "Cinema RAW Light HQ",
+          "res": "5.9K FF 5952×3140",
+          "mbps": {
+            "25": 1770
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-lt-s35",
+          "codec": "Cinema RAW Light LT",
+          "res": "4K S35 4096×2160",
+          "mbps": {
+            "25": 269,
+            "50": 538
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-st-s35",
+          "codec": "Cinema RAW Light ST",
+          "res": "4K S35 4096×2160",
+          "mbps": {
+            "25": 414,
+            "50": 828
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-hq-s35",
+          "codec": "Cinema RAW Light HQ",
+          "res": "4K S35 4096×2160",
+          "mbps": {
+            "25": 841,
+            "50": 1690
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "xfi-4k",
+          "codec": "XF-AVC Intra",
+          "res": "4K 4096×2160 / UHD",
+          "mbps": {
+            "24": 410,
+            "25": 410,
+            "50": 810,
+            "23.98": 410,
+            "29.97": 410,
+            "59.94": 810
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "xfl-4k",
+          "codec": "XF-AVC Long GOP",
+          "res": "4K 4096×2160 / UHD",
+          "mbps": {
+            "24": 160,
+            "25": 160,
+            "50": 260,
+            "23.98": 160,
+            "29.97": 160,
+            "59.94": 260
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        }
+      ]
+    },
+    {
       "id": "c300iii",
       "brand": "Canon",
       "label": "EOS C300 Mark III",
