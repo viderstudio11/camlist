@@ -73,7 +73,10 @@ export function createMedia(data = {}) {
       }
       const table = f.minutes
         ? Object.fromEntries(Object.entries(f.minutes).map(([fps, min]) => [fps, (f.card * 8000) / (min * 60)]))
-        : f.mbps || {};
+        : f.frameMB
+          // the maker's frame size (ARRI publishes MB per frame): MB × 8 bits × frames per second
+          ? Object.fromEntries((f.fps || []).map(fps => [String(fps), f.frameMB * 8 * fps]))
+          : f.mbps || {};
       return {
         key: f.id || String(i), label: `${f.codec} · ${f.res}`,
         fps: Object.keys(table).map(Number).sort((a, b) => a - b),

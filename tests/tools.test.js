@@ -225,3 +225,14 @@ test('the tools screen module parses and loads', async () => {
   assert.equal(typeof mod.render, 'function');
   assert.equal(mod.toolLabel('media', 'en'), 'Media');
 });
+
+test('camera formats: a frame size in MB gives the rate at every frame rate', () => {
+  const m = createMedia({ cameras: [{ id: 'a35', brand: 'ARRI', label: 'ALEXA 35', formats: [
+    { id: 'raw-4k', codec: 'ARRIRAW', res: '4K 16:9', frameMB: 15.4, fps: [24, 25, 50], src: 'ARRI AFRO' },
+  ] }] });
+  const [f] = m.formatsOf(m.cameras[0]);
+  assert.deepEqual(f.fps, [24, 25, 50]);
+  assert.ok(Math.abs(f.rate(25) - 3080) < 1e-9, f.rate(25)); // 15.4 MB × 8 × 25
+  assert.equal(f.rate(30), 0);
+  assert.equal(f.official, true);
+});

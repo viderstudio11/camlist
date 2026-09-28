@@ -1426,7 +1426,8 @@
             "30": 130,
             "48": 130,
             "50": 130,
-            "60": 130
+            "60": 130,
+            "120": 130
           },
           "src": "DJI Osmo Pocket 3 specs (Max Video Bitrate 130 Mbps; normal video and slow-motion modes) — dji.com/osmo-pocket-3/specs"
         },
@@ -1441,7 +1442,9 @@
             "30": 130,
             "48": 130,
             "50": 130,
-            "60": 130
+            "60": 130,
+            "120": 130,
+            "240": 130
           },
           "src": "DJI Osmo Pocket 3 specs (Max Video Bitrate 130 Mbps; normal video and slow-motion modes) — dji.com/osmo-pocket-3/specs"
         }
