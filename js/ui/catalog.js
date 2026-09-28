@@ -1,7 +1,6 @@
 import { esc, icons, openSheet, toast } from './dom.js';
 import { addItem, setQty, getQty, totalQty } from '../list.js';
 import { logoHTML, slugify } from '../brands.js';
-import { DEPT_EMOJI } from '../i18n.js';
 import { thumbHTML, parseId, profileChips } from './list.js';
 import { lensTypes, LENS_TYPES } from '../lens.js';
 import { deptIcon } from './icons-dept.js';
@@ -180,7 +179,7 @@ export function render(ctx, { id }, root) {
     const depts = catalog.departments.filter(d => visible(all).some(p => p.dept === d.id));
     const prods = recency.sort(shown(all.filter(p => !st.dept || p.dept === st.dept)));
     crumbs = `<div class="crumbs"><button data-crumb="brands">${t('brands')}</button>${arrow}<span>${esc(catalog.brandName(st.brand))}</span></div>`;
-    content = `${depts.length > 1 ? `<div class="chips"><button class="${st.dept ? '' : 'active'}" data-chip="">${t('all')}</button>${depts.map(d => `<button class="${st.dept === d.id ? 'active' : ''}" data-chip="${d.id}">${DEPT_EMOJI[d.slug]} ${esc(deptName(d))}</button>`).join('')}</div>` : ''}
+    content = `${depts.length > 1 ? `<div class="chips"><button class="${st.dept ? '' : 'active'}" data-chip="">${t('all')}</button>${depts.map(d => `<button class="${st.dept === d.id ? 'active' : ''}" data-chip="${d.id}"><span class="ci">${deptIcon(d.slug)}</span> ${esc(deptName(d))}</button>`).join('')}</div>` : ''}
       <div class="brand-hero">${logoHTML(st.brand, catalog.brandName(st.brand), 'tile')}<div><small>${t('models_count', { n: prods.length })}</small></div></div>
       ${prods.map(p => productRow(p, { showBrand: false })).join('')}${manualCTA}`;
   } else if (!st.dept) {
@@ -218,8 +217,8 @@ export function render(ctx, { id }, root) {
   }
 
   root.innerHTML = `
-    <div class="search"><div class="field"><span>🔍</span><input type="search" value="${esc(st.q)}" placeholder="${t('search_placeholder')}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" data-q>${st.q ? `<button class="clear" data-clear aria-label="clear">×</button>` : ''}</div>
-      ${prof ? `<div class="cbar"><div class="thumb">${active.image ? `<img src="${esc(active.image)}" alt="">` : '📷'}</div><div class="cbar-body"><small>${t('building_around')}</small><b dir="auto">${esc(active.name)}</b><div class="pchips">${profileChips(prof, t)}</div></div><label class="cbar-toggle"><input type="checkbox" data-compat-only ${compatOnly ? 'checked' : ''}><span>${t('compat_only')}</span></label></div>` : ''}
+    <div class="search"><div class="field"><span class="sico">${icons.search}</span><input type="search" value="${esc(st.q)}" placeholder="${t('search_placeholder')}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" data-q>${st.q ? `<button class="clear" data-clear aria-label="clear">×</button>` : ''}</div>
+      ${prof ? `<div class="cbar"><div class="thumb">${active.image ? `<img src="${esc(active.image)}" alt="">` : `<span class="ci">${deptIcon('cameras')}</span>`}</div><div class="cbar-body"><small>${t('building_around')}</small><b dir="auto">${esc(active.name)}</b><div class="pchips">${profileChips(prof, t)}</div></div><label class="cbar-toggle"><input type="checkbox" data-compat-only ${compatOnly ? 'checked' : ''}><span>${t('compat_only')}</span></label></div>` : ''}
       ${st.q || st.dept || st.brand ? '' : `<div class="tabs"><button class="${st.view === 'depts' ? 'active' : ''}" data-tab="depts">${t('departments')}</button><button class="${st.view === 'brands' ? 'active' : ''}" data-tab="brands">${t('all_brands')}</button></div>`}
     </div>
     ${crumbs}
@@ -260,7 +259,7 @@ export function render(ctx, { id }, root) {
     rerender();
   }; });
   root.querySelector('[data-done]').onclick = () => ctx.navigate(`#/p/${id}`);
-  root.querySelectorAll('[data-jump]').forEach(b => { b.onclick = () => { const h = document.getElementById(b.dataset.jump); if (!h) return; const y = h.getBoundingClientRect().top + window.scrollY - (document.getElementById('topbar').offsetHeight + 70); window.scrollTo({ top: y, behavior: 'smooth' }); }; });
+  root.querySelectorAll('[data-jump]').forEach(b => { b.onclick = () => { const h = document.getElementById(b.dataset.jump); if (h) h.scrollIntoView({ behavior: 'smooth', block: 'start' }); }; });
 
   const bindRow = (row) => {
     const productId = parseId(row.dataset.pid);

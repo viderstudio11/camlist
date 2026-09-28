@@ -104,10 +104,11 @@ export function render(ctx, { id }, root) {
   root.classList.toggle('pickup', pickup);
   // A quiet project header: who it is for and what is in it, with the iris ring behind it.
   const headHTML = `<header class="phead">
-    <div class="phead-iris" aria-hidden="true"></div>
+    <span class="lbl">${t('gear_list')}</span>
     <h1 dir="auto">${esc(p.name || t('untitled'))}</h1>
     <p>${[p.productionCo, p.techManager, formatDateRange(p.dateFrom, p.dateTo)].filter(Boolean).map(esc).join(' · ')}</p>
     <div class="phead-n">${t('items_count', { n })}</div>
+    <div class="ticks"></div>
   </header>`;
   const listHTML = groups.length ? body
     : `<div class="empty"><div class="big">🧰</div><h2>${t('list_empty')}</h2><p>${t('list_empty_hint')}</p></div>`;

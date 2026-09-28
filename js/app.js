@@ -60,7 +60,7 @@ function applyDir() {
 }
 
 function renderSkins(ctx, _p, root) {
-  ctx.setTopbar({ title: t('skin'), back: '#/settings' });
+  ctx.setTopbar({ title: t('design'), back: '#/settings' });
   root.innerHTML = GROUPS.map(g => {
     const list = SKINS.filter(s => s.group === g.id);
     if (!list.length) return '';
@@ -126,7 +126,7 @@ function renderSettings(ctx, _p, root) {
       <label>${t('default_tech_manager')}<input name="techManager" value="${esc(s.techManager)}" autocomplete="off"></label>
     </div>
     <div class="section-title">${t('appearance')}</div>
-    <div class="card"><button class="kv linkrow" data-open-skins><span>${t('skin')}</span><b>${esc(getLang() === 'he' ? skin(ctx.skin()).he : skin(ctx.skin()).en)} \u203A</b></button></div>
+    <div class="card"><button class="kv linkrow" data-open-skins><span>${t('design')}</span><b>${esc(getLang() === 'he' ? skin(ctx.skin()).he : skin(ctx.skin()).en)} \u203A</b></button></div>
     <div class="section-title">${t('backup')}</div>
     <div class="card" style="display:grid;gap:10px">
       <button class="btn" data-export>${t('export_backup')}</button>

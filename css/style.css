@@ -768,3 +768,71 @@ img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; }
 
 /* The calibration background belongs to the home screen only, and never in direct sun. */
 body:not(.home) .chartbg, :root[data-theme="sun"] .chartbg { display: none; }
+
+/* ============================================================ LIST · CATALOG · TOOLS (v2) ============ */
+.phead { position: relative; padding: 6px 2px 0; margin-bottom: 4px; }
+.phead .lbl { display: block; margin-bottom: 4px; }
+.phead h1 { font-family: var(--font-head); font-weight: 700; font-size: 40px; line-height: .95; overflow-wrap: anywhere; }
+.phead p { color: var(--text-2); font-size: 14px; margin-top: 6px; }
+.phead .phead-n { font-family: var(--mono); font-weight: 600; color: var(--text-3); font-size: 14px; letter-spacing: .04em; margin-top: 2px; }
+.phead .ticks { margin-top: 12px; }
+.phead-iris { display: none; }
+
+.group-head { padding: 18px 2px 8px; gap: 9px; }
+.group-head .dept-ico.sm { color: var(--text-2); }
+.group-head h2 { font-family: var(--font-head); font-weight: 700; font-size: 28px; line-height: 1; letter-spacing: 0; }
+.group-head .count { background: none; padding: 0; font-family: var(--mono); font-weight: 600; font-size: 15px; color: var(--text-3); }
+
+.row { border-radius: 14px; margin-bottom: 6px; box-shadow: none; }
+.row .name { font-weight: var(--w-strong); }
+.row .sub .chip, .chip { font-family: var(--mono); font-weight: 600; font-size: 12px; letter-spacing: .06em; background: transparent; border: var(--stroke) solid var(--line-2); color: var(--text-2); border-radius: 5px; padding: 0 6px; }
+.chip.lt { background: transparent; color: var(--text); border-color: var(--text-3); }
+.chip.lt.alt, .chip.extra { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+.stepper { background: transparent; border-color: var(--line); border-radius: 11px; }
+.stepper button { background: transparent; color: var(--text-2); font-weight: 500; }
+.stepper button.plus { background: transparent; color: var(--text-2); }
+.stepper .q { font-family: var(--mono); font-weight: 600; font-size: 18px; }
+.addbtn { color: var(--on-accent); font-weight: 600; }
+.buildbtn { background: transparent; border-color: var(--line-2); color: var(--text-2); font-weight: var(--w-strong); }
+.buildbtn.active { background: var(--ok-soft); color: var(--ok-ink); border-color: transparent; }
+.row.is-build { border-color: var(--ok); box-shadow: none; }
+.row.in-list { border-color: var(--ok); background: var(--surface); }
+
+/* False colour: green fits, yellow needs an adapter or crops, red is out. */
+.row.fc-adp::before, .row.fc-warn::before { background: var(--warn); }
+.row.fc-bad::before { background: var(--no); }
+.fcode { font-family: var(--mono); font-weight: 700; font-size: 11.5px; }
+.fcode.ok, .ctag.ok { background: var(--ok-soft); color: var(--ok-ink); }
+.fcode.adp, .fcode.warn, .ctag.adp, .ctag.warn { background: var(--warn-soft); color: var(--warn-ink); }
+.fcode.bad, .ctag.bad { background: color-mix(in srgb, var(--no) 14%, transparent); color: var(--no-ink); }
+
+.search .field { box-shadow: none; }
+.search .field > .sico { display: grid; width: 20px; height: 20px; color: var(--text-3); }
+.search .field > .sico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.tabs button.active { background: var(--text); color: var(--bg); }
+.chips button.active, .seg button.active { background: var(--text); color: var(--bg); }
+.chips button .dept-ico, .chips button .ci { display: inline-grid; width: 16px; height: 16px; vertical-align: -3px; }
+.cbar .thumb .ci { width: 26px; height: 26px; color: var(--text-2); }
+
+.dept-card::before { background: linear-gradient(180deg, transparent 0%, rgba(14,16,20,.25) 45%, rgba(14,16,20,.9) 100%); }
+.dept-card h3 { font-family: var(--font-head); font-weight: 700; font-size: 30px; line-height: .95; }
+.dept-card .dept-ico { color: var(--text-2); opacity: 1; }
+
+.tool-tile { border-radius: 16px; min-height: 124px; display: flex; flex-direction: column; }
+.tool-tile .tool-ico { color: var(--accent); }
+:root[data-theme="sun"] .tool-tile .tool-ico { color: var(--text); }
+.tool-tile b { font-family: var(--font-head); font-weight: 700; font-size: 27px; line-height: .95; margin-top: auto; padding-top: 10px; }
+.tool-tile small { color: var(--text-3); }
+
+.section-title { font-family: var(--mono); font-weight: 600; font-size: 13px; letter-spacing: .14em; color: var(--text-3); }
+.section-title .count { background: none; font-family: var(--mono); color: var(--text-3); font-size: 13px; }
+.skin-opt.on { border-color: var(--accent); background: var(--accent-soft); }
+.skin-check { color: var(--accent-ink); }
+.bottombar .btn.primary { min-height: 50px; }
+/* Karantina is the default look's display face. A camera skin is its own typographic language,
+   so its headings go back to the skin's font (ARRI, for one, sets department heads at 11.5px). */
+:root:not([data-skin="clean"]) .group-head h2, :root:not([data-skin="clean"]) .phead h1,
+:root:not([data-skin="clean"]) .tool-tile b, :root:not([data-skin="clean"]) .dept-card h3,
+:root:not([data-skin="clean"]) .phero-name, :root:not([data-skin="clean"]) .home-empty h2 { font-family: var(--font); font-weight: 800; }
+:root:not([data-skin="clean"]) .phead h1, :root:not([data-skin="clean"]) .phero-name { font-size: 28px; line-height: 1.1; }
+:root:not([data-skin="clean"]) .tool-tile b, :root:not([data-skin="clean"]) .dept-card h3 { font-size: 17px; line-height: 1.2; }
