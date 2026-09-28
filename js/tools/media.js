@@ -59,28 +59,30 @@ export function createMedia(data = {}) {
   //   { codec, res, card, minutes: { fps: min } } — the maker's own recording-time table (the
   //       rate is worked back from it, so the tool gives exactly the maker's times back), or
   //       { codec, res, mbps: { fps: Mbps } } — the maker's published bitrates;
-  //   [codecId, resId] — the older generic codec models above.
+  //   [codecId, resId, maxFps?] — the older generic codec models above, up to the camera's top frame rate.
   function formatsOf(cam) {
     return (cam?.formats || []).map((f, i) => {
       if (Array.isArray(f)) {
-        const [codecId, resId] = f;
+        const [codecId, resId, maxFps = Infinity] = f;
         const c = codec(codecId), r = resolution(resId);
         return {
           key: `${codecId}:${resId}`, label: `${c?.label || codecId} · ${r?.label || resId}`,
-          fps: [...(data.frameRates || [])], rate: (fps) => mbps(codecId, resId, fps),
+          fps: (data.frameRates || []).filter(x => x <= maxFps), rate: (fps) => mbps(codecId, resId, fps),
           official: c?.src === 'published', src: c?.note || '',
         };
       }
       const table = f.minutes
         ? Object.fromEntries(Object.entries(f.minutes).map(([fps, min]) => [fps, (f.card * 8000) / (min * 60)]))
         : f.frameMB
-          // the maker's frame size (ARRI publishes MB per frame): MB × 8 bits × frames per second
-          ? Object.fromEntries((f.fps || []).map(fps => [String(fps), f.frameMB * 8 * fps]))
+          // the maker's frame size (ARRI publishes MB per frame): MB × 8 bits × frames per second,
+          // held at the camera's top write speed where the maker gives one (RED: "up to 800 MB/s")
+          ? Object.fromEntries((f.fps || []).map(fps => [String(fps), Math.min(f.frameMB * 8 * fps, f.capMBs ? f.capMBs * 8 : Infinity)]))
           : f.mbps || {};
       return {
         key: f.id || String(i), label: `${f.codec} · ${f.res}`,
         fps: Object.keys(table).map(Number).sort((a, b) => a - b),
         rate: (fps) => Number(table[String(fps)] ?? 0),
+        capped: (fps) => !!f.capMBs && f.frameMB * 8 * fps > f.capMBs * 8,
         official: true, fromTimes: !!f.minutes, maxOnly: !!f.max, src: f.src || '',
       };
     });

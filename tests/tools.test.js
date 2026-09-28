@@ -220,6 +220,18 @@ test('camera formats: official recording times become rates that give the same t
   assert.equal(fx6[0].official, true);
 });
 
+test('camera formats: a generic format can carry the camera’s top frame rate', () => {
+  const m = createMedia({
+    frameRates: [24, 25, 50, 60, 120],
+    codecs: [{ id: 'prores-hq', label: 'ProRes 422 HQ', model: 'bpp', bpp: 3.6, src: 'published' }],
+    resolutions: [{ id: 'dci4k', label: '4K 4096×2160', w: 4096, h: 2160, tier: 'dci4k' }],
+    cameras: [{ id: 'komodo', brand: 'RED', label: 'KOMODO 6K', formats: [['prores-hq', 'dci4k', 60]] }],
+  });
+  const [f] = m.formatsOf(m.cameras[0]);
+  assert.deepEqual(f.fps, [24, 25, 50, 60]);
+  assert.equal(f.key, 'prores-hq:dci4k');
+});
+
 test('the tools screen module parses and loads', async () => {
   const mod = await import('../js/ui/tools.js');
   assert.equal(typeof mod.render, 'function');
@@ -235,4 +247,15 @@ test('camera formats: a frame size in MB gives the rate at every frame rate', ()
   assert.ok(Math.abs(f.rate(25) - 3080) < 1e-9, f.rate(25)); // 15.4 MB × 8 × 25
   assert.equal(f.rate(30), 0);
   assert.equal(f.official, true);
+});
+
+test('camera formats: a frame size never goes past the camera’s top write speed', () => {
+  const m = createMedia({ cameras: [{ id: 'raptor', brand: 'RED', label: 'V-RAPTOR', formats: [
+    { id: 'hq', codec: 'REDCODE HQ', res: '8K', frameMB: 446 / 24, fps: [24, 60], capMBs: 800, src: 'RED' },
+  ] }] });
+  const [f] = m.formatsOf(m.cameras[0]);
+  assert.ok(Math.abs(f.rate(24) - 3568) < 1e-9, f.rate(24));
+  assert.equal(f.rate(60), 6400, 'held at 800 MB/s');
+  assert.equal(f.capped(60), true);
+  assert.equal(f.capped(24), false);
 });

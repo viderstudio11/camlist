@@ -1250,17 +1250,194 @@
       "brand": "RED",
       "label": "V-RAPTOR 8K",
       "formats": [
+        {
+          "id": "r3d-8k-hq",
+          "codec": "REDCODE HQ",
+          "res": "8K 17:9 8192×4320",
+          "frameMB": 18.5833,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-8k-mq",
+          "codec": "REDCODE MQ",
+          "res": "8K 17:9 8192×4320",
+          "frameMB": 13,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-8k-lq",
+          "codec": "REDCODE LQ",
+          "res": "8K 17:9 8192×4320",
+          "frameMB": 8.125,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-8k-elq",
+          "codec": "REDCODE ELQ",
+          "res": "8K 17:9 8192×4320",
+          "frameMB": 4.3333,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-6k-hq",
+          "codec": "REDCODE HQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 10.4583,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-6k-mq",
+          "codec": "REDCODE MQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 7.3333,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120,
+            150,
+            160
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-6k-lq",
+          "codec": "REDCODE LQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 4.5833,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120,
+            150,
+            160
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-6k-elq",
+          "codec": "REDCODE ELQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 2.8333,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120,
+            150,
+            160
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
         [
-          "r3d-8",
-          "8k"
+          "prores-hq",
+          "dci4k",
+          120
         ],
         [
-          "r3d-5",
-          "8k"
-        ],
-        [
-          "r3d-12",
-          "8k"
+          "prores-422",
+          "dci4k",
+          120
         ]
       ]
     },
@@ -1269,17 +1446,61 @@
       "brand": "RED",
       "label": "KOMODO 6K",
       "formats": [
-        [
-          "r3d-8",
-          "6k"
-        ],
-        [
-          "r3d-5",
-          "6k"
-        ],
+        {
+          "id": "r3d-6k-hq",
+          "codec": "REDCODE HQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 11.6783,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30
+          ],
+          "src": "RED KOMODO 6K Operation Guide (955-0196 v1.6), \"R3D Quality\" — RED’s 23.98p data rate, per frame (HQ is RED’s “up to” figure); up to 40 fps at 6K 17:9 per RED’s specs; held at RED’s “up to 280 MB/s” on CFast 2.0",
+          "max": true,
+          "capMBs": 280
+        },
+        {
+          "id": "r3d-6k-mq",
+          "codec": "REDCODE MQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 7.299,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30
+          ],
+          "src": "RED KOMODO 6K Operation Guide (955-0196 v1.6), \"R3D Quality\" — RED’s 23.98p data rate, per frame (HQ is RED’s “up to” figure); up to 40 fps at 6K 17:9 per RED’s specs; held at RED’s “up to 280 MB/s” on CFast 2.0",
+          "capMBs": 280
+        },
+        {
+          "id": "r3d-6k-lq",
+          "codec": "REDCODE LQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 4.5879,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30
+          ],
+          "src": "RED KOMODO 6K Operation Guide (955-0196 v1.6), \"R3D Quality\" — RED’s 23.98p data rate, per frame (HQ is RED’s “up to” figure); up to 40 fps at 6K 17:9 per RED’s specs; held at RED’s “up to 280 MB/s” on CFast 2.0",
+          "capMBs": 280
+        },
         [
           "prores-hq",
-          "uhd"
+          "dci4k",
+          60
+        ],
+        [
+          "prores-422",
+          "dci4k",
+          60
         ]
       ]
     },
