@@ -1445,6 +1445,84 @@
       ]
     },
     {
+      "id": "x400",
+      "brand": "Sony",
+      "label": "PXW-X400",
+      "formats": [
+        {
+          "id": "xavci-hd",
+          "codec": "XAVC-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 111,
+            "50": 222,
+            "23.98": 89,
+            "29.97": 111,
+            "59.94": 222
+          },
+          "src": "Sony PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time” and Specifications (recording frame rates) — sony.com"
+        },
+        {
+          "id": "xavcl50-hd",
+          "codec": "XAVC-L 50",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "max": true,
+          "src": "Sony PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time” and Specifications (recording frame rates) — sony.com"
+        },
+        {
+          "id": "mpeg-hd422",
+          "codec": "MPEG HD422",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "23.98": 50,
+            "29.97": 50
+          },
+          "src": "Sony PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time” and Specifications (recording frame rates) — sony.com (CBR 50 Mbps; interlaced 50i/59.94i also recorded)"
+        }
+      ]
+    },
+    {
+      "id": "z150",
+      "brand": "Sony",
+      "label": "PXW-Z150",
+      "formats": [
+        {
+          "id": "xavc-qfhd",
+          "codec": "XAVC Long",
+          "res": "QFHD 3840×2160",
+          "mbps": {
+            "25": 100,
+            "23.98": 100,
+            "29.97": 100
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 Operating Instructions (45868031M), recording format / proxy table (bit rate per frame rate) — sony.com. XAVC Long records VBR; these are its maximum rates"
+        },
+        {
+          "id": "xavc-hd",
+          "codec": "XAVC Long",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 Operating Instructions (45868031M), recording format / proxy table (bit rate per frame rate) — sony.com. XAVC Long records VBR; these are its maximum rates"
+        }
+      ]
+    },
+    {
       "id": "a35",
       "brand": "ARRI",
       "label": "ALEXA 35",
