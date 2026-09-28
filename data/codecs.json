@@ -3480,6 +3480,71 @@
       ]
     },
     {
+      "id": "ux180",
+      "brand": "Panasonic",
+      "label": "AG-UX180",
+      "formats": [
+        {
+          "id": "uhd-lgop",
+          "codec": "LongGOP",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "25": 100,
+            "50": 150,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 150
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "c4k-lgop",
+          "codec": "LongGOP",
+          "res": "4K 4096×2160",
+          "mbps": {
+            "24": 100
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "fhd-alli200",
+          "codec": "ALL-Intra 200M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "25": 200,
+            "50": 200,
+            "23.98": 200,
+            "29.97": 200,
+            "59.94": 200
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "fhd-lgop100",
+          "codec": "LongGOP 100M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "50": 100,
+            "59.94": 100
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "fhd-lgop50",
+          "codec": "LongGOP 50M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        }
+      ]
+    },
+    {
       "id": "other",
       "brand": "—",
       "label": "אחר / ידני",
