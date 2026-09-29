@@ -5,7 +5,7 @@ import { createMedia } from '../js/tools/media.js';
 import { timeFromAngle, angleFromTime, asFraction, flicker, safeAngles, slowMotion, FRAME_RATES, shutterChoices } from '../js/tools/shutter.js';
 import { coverage, focalFor, angleOfView, nearestPrime, sensor, SHOTS, lensFor, frameAt, pickLens, toUnit, fromUnit } from '../js/tools/fov.js';
 import { sunDay, crossings } from '../js/tools/solar.js';
-import { offload, convert, cToF, fToC, mahToWh } from '../js/tools/convert.js';
+import { offload, transfer, READERS, DRIVES, convert, cToF, fToC, mahToWh } from '../js/tools/convert.js';
 
 const url = (p) => new URL(p, import.meta.url);
 const media = createMedia(JSON.parse(readFileSync(url('../data/codecs.json'), 'utf8')));
@@ -321,4 +321,19 @@ test('a backup copy on a second card doubles the cards', () => {
   const m = createMedia({});
   assert.equal(m.cardsFor(10, 160, 240), 7);
   assert.equal(m.cardsFor(10, 160, 240, 2), 14);
+});
+
+test('offload: the slower of the card reader and the drive sets the pace', () => {
+  const cfa = READERS.find(r => r.id === 'CFexpress A');
+  assert.equal(cfa.mbPerSec, 800, 'Sony CEA-G reads 800 MB/s, under the MRW-G2’s 10 Gb/s link');
+  const t7 = DRIVES.find(d => d.id === 'ssd10');
+  assert.deepEqual(transfer(cfa.mbPerSec, t7.mbPerSec), { mbPerSec: 800, limit: 'source' });
+  const hdd = DRIVES.find(d => d.id === 'hdd');
+  assert.deepEqual(transfer(cfa.mbPerSec, hdd.mbPerSec), { mbPerSec: hdd.mbPerSec, limit: 'dest' });
+  for (const x of [...READERS, ...DRIVES]) assert.ok(x.mbPerSec > 0 && x.src, x.id);
+});
+
+test('offload: every card type the media tool knows has a reader', async () => {
+  const codecs = JSON.parse(readFileSync(url('../data/codecs.json'), 'utf8'));
+  for (const type of Object.keys(codecs.media)) assert.ok(READERS.some(r => r.id === type), type);
 });

@@ -5,7 +5,7 @@ import { createMedia } from '../tools/media.js';
 import { timeFromAngle, angleFromTime, asFraction, flicker, slowMotion, FRAME_RATES, shutterChoices } from '../tools/shutter.js';
 import { PRIME_SET, SHOTS, lensFor, frameAt, pickLens, toUnit, fromUnit } from '../tools/fov.js';
 import { sunDay } from '../tools/solar.js';
-import { offload, DRIVES, UNIT_GROUPS, convert, cToF, fToC, mahToWh, whToMah } from '../tools/convert.js';
+import { offload, transfer, READERS, DRIVES, UNIT_GROUPS, convert, cToF, fToC, mahToWh, whToMah } from '../tools/convert.js';
 import { num, hm } from '../format.js';
 
 // Tool labels live here rather than in the global dictionary: they are only ever used on this screen,
@@ -147,14 +147,21 @@ const L = {
   sh_hint:    { he: '✓ = לא מהבהב בתאורת חשמל. "מומלץ" = הכי קרוב ל־180°, התנועה הטבעית שהעין רגילה אליה.', en: '✓ = no mains flicker. "best" = nearest to 180°, the motion blur the eye is used to.' },
   slowmo: { he: 'סלואו מושן', en: 'Slow motion' },
 
-  footage: { he: 'כמות חומר (GB)', en: 'Footage (GB)' },
+  footage: { he: 'כמות חומר', en: 'Footage' },
+  off_source: { he: 'מקור — הכרטיס בקורא', en: 'Source — the card in its reader' },
+  off_for:    { he: 'שעות לפריקת {gb}', en: 'to offload {gb}' },
+  off_sentence: { he: '{gb} מ־{src} אל {dst}, {n} עותקים אחד אחרי השני.', en: '{gb} from {src} to {dst}, {n} copies one after another.' },
+  off_verify: { he: 'כל עותק נקרא בחזרה לאימות.', en: 'Each copy is read back to verify it.' },
+  off_noverify: { he: 'בלי אימות.', en: 'No verify.' },
+  off_each:   { he: '{n} מעברים × {t} · צריך {space} בכוננים', en: '{n} passes × {t} · needs {space} across the drives' },
+  off_limit_src: { he: 'הקורא הוא צוואר הבקבוק — כונן מהיר יותר לא יקצר.', en: 'The card reader sets the pace — a faster drive won’t help.' },
+  off_limit_dst: { he: 'הכונן הוא צוואר הבקבוק — כונן מהיר יותר יקצר את הזמן.', en: 'The drive sets the pace — a faster drive would cut the time.' },
+  off_maker:  { he: 'נתון יצרן', en: 'Maker spec' },
+  off_caveat: { he: 'המהירות המרבית שהיצרן מפרסם — בפועל זה לרוב קצת יותר לאט', en: 'the top speed the maker publishes — real offloads usually run a little slower' },
+  off_from_media: { he: 'מכלי המדיה: יום הצילום שחישבת', en: 'From the media tool: the shoot day you worked out' },
   drive: { he: 'יעד', en: 'Destination' },
-  speed_mb: { he: 'מהירות (MB/s)', en: 'Speed (MB/s)' },
   copies: { he: 'מספר עותקים', en: 'Copies' },
   verify: { he: 'כולל אימות', en: 'Verify each copy' },
-  per_copy: { he: 'עותק אחד', en: 'One copy' },
-  total_time: { he: 'סה״כ', en: 'Total' },
-  total_space: { he: 'מקום נדרש', en: 'Space needed' },
 
   place: { he: 'מקום', en: 'Place' },
   date: { he: 'תאריך', en: 'Date' },
@@ -191,7 +198,7 @@ const S = {
   media: { brand: 'Sony', cam: 'fx6', fmt: '', fps: 25, mtype: '', card: 0, cardPicked: false, customCard: false, backup: false, hours: 10, customHours: false },
   fov: { distance: 4, unit: 'm', shot: 'waist', focal: 0, phone: 'main', vf: false, cam: '', camBrand: '' },
   shutter: { fps: 25, mode: 'speed', speed: 50, angle: 180, mains: 50, projectFps: 25, customFps: false },
-  offload: { gb: 1000, mbPerSec: 700, copies: 2, verify: true },
+  offload: { gb: 1000, reader: 'CFexpress A', drive: 'ssd10', copies: 2, verify: true, customGb: false, fromMedia: false, readOther: false, readMBs: 800, writeOther: false, writeMBs: 1000 },
   sun: { country: 'IL', city: 0, date: new Date().toISOString().slice(0, 10), lat: null, lon: null },
   units: { group: 'length', from: 'mm', to: 'in', value: 100, c: 20, mah: 6600, volts: 14.4 },
   luts: { brand: '', model: '' },
@@ -629,27 +636,64 @@ function shutterTool(T) {
 }
 
 // ---------- offload ----------
+const GB_CHIPS = [256, 512, 1000, 2000, 4000];
+
 function offloadTool(T, lang) {
   const s = S.offload;
-  const r = offload(s);
-  return `
-    ${headline(hm(r.totalHours), '', `${num(s.gb, 0)} GB · ${s.copies} × ${num(s.mbPerSec, 0)} MB/s`)}
-    <div class="card tform">
-      ${field(T('footage'), numIn('gb', s.gb, { min: 1, max: 200000, step: 1 }))}
-      ${field(T('drive'), sel('drive', DRIVES.map(d => ({ v: d.mbPerSec, l: `${lang === 'he' ? d.he : d.en} · ${d.mbPerSec} MB/s` })), s.mbPerSec))}
-      ${field(T('speed_mb'), numIn('mbPerSec', s.mbPerSec, { min: 1, max: 10000, step: 10 }))}
-      ${field(T('copies'), sel('copies', [{ v: 1, l: '1' }, { v: 2, l: '2' }, { v: 3, l: '3' }], s.copies))}
+  const Tp = (k, p) => T(k).replace(/\{(\w+)\}/g, (_, x) => p[x] ?? '');
+  const chip = (attr, val, label, on) => `<button class="chip pick ${on ? 'on' : ''}" ${attr}="${esc(val)}">${label}</button>`;
+  const gb = (x) => (x >= 1000 ? `${num(x / 1000, x % 1000 ? 2 : 0)} TB` : `${num(x, 0)} GB`);
+  const name = (x) => (lang === 'he' ? x.he : x.en);
+
+  // One end is the card in its reader, the other the drive; the slower one sets the pace.
+  const rd = READERS.find(x => x.id === s.reader) || READERS[0];
+  const dv = DRIVES.find(x => x.id === s.drive) || DRIVES[0];
+  const readMBs = s.readOther ? s.readMBs : rd.mbPerSec;
+  const writeMBs = s.writeOther ? s.writeMBs : dv.mbPerSec;
+  const t = transfer(readMBs, writeMBs);
+  const r = offload({ gb: s.gb, mbPerSec: t.mbPerSec, copies: s.copies, verify: s.verify });
+  const srcName = s.readOther ? `${num(readMBs, 0)} MB/s` : `${name(rd)} (${num(readMBs, 0)} MB/s)`;
+  const dstName = s.writeOther ? `${num(writeMBs, 0)} MB/s` : `${name(dv)} (${num(writeMBs, 0)} MB/s)`;
+  const sources = [!s.readOther && rd.src, !s.writeOther && dv.src].filter(Boolean);
+
+  const gbOther = !GB_CHIPS.includes(s.gb) || s.customGb;
+  const answer = `<div class="card sh-answer ok">
+    <div class="fov-top"><b class="sh-big">${r.totalHours ? hm(r.totalHours) : '—'}</b><span class="sh-small">${esc(Tp('off_for', { gb: gb(s.gb) }))}</span></div>
+    <p class="sh-line">${esc(Tp('off_sentence', { gb: gb(s.gb), src: srcName, dst: dstName, n: s.copies }))} ${esc(T(s.verify ? 'off_verify' : 'off_noverify'))}</p>
+    ${r.passes ? `<div class="passes">${Array.from({ length: r.passes }, (_, i) => {
+      const check = s.verify && i % 2;
+      return `<span class="pass ${check ? 'verify' : ''}">${check ? '✓' : Math.floor(i / (s.verify ? 2 : 1)) + 1}</span>`;
+    }).join('')}</div>
+    <p class="tnote">${esc(Tp('off_each', { n: r.passes, t: hm(r.perCopyHours), space: gb(r.totalGb) }))}</p>` : ''}
+    <p class="sh-line ${t.limit === 'source' ? '' : 'warn'}">${esc(T(t.limit === 'source' ? 'off_limit_src' : 'off_limit_dst'))}</p>
+    <details class="src-more">
+      <summary><span class="src-badge ok">${esc(T('off_maker'))}</span> ${esc(T('off_caveat'))} <span class="src-i">ⓘ</span></summary>
+      ${sources.map(x => `<p>${esc(x)}</p>`).join('')}
+    </details>
+  </div>`;
+
+  return `${answer}
+    <div class="card sh-sec">
+      <div class="tsub">1 · ${esc(T('footage'))}</div>
+      ${s.fromMedia ? `<p class="tnote">${esc(T('off_from_media'))}</p>` : ''}
+      <div class="chips">${GB_CHIPS.map(x => chip('data-ogb', x, gb(x), !gbOther && x === s.gb)).join('')}${chip('data-ogb-custom', 1, esc(T('other_val')), gbOther)}</div>
+      ${gbOther ? `<div class="sh-custom">${field('GB', numIn('gb', s.gb, { min: 1, max: 200000, step: 1 }))}</div>` : ''}
+    </div>
+    <div class="card sh-sec">
+      <div class="tsub">2 · ${esc(T('off_source'))}</div>
+      <div class="chips">${READERS.map(x => chip('data-oread', x.id, esc(name(x)), !s.readOther && x.id === rd.id)).join('')}${chip('data-oread-custom', 1, esc(T('other_val')), s.readOther)}</div>
+      ${s.readOther ? `<div class="sh-custom">${field('MB/s', numIn('readMBs', s.readMBs, { min: 1, max: 10000, step: 10 }))}</div>` : ''}
+    </div>
+    <div class="card sh-sec">
+      <div class="tsub">3 · ${esc(T('drive'))}</div>
+      <div class="chips">${DRIVES.map(x => chip('data-odrive', x.id, esc(name(x)), !s.writeOther && x.id === dv.id)).join('')}${chip('data-odrive-custom', 1, esc(T('other_val')), s.writeOther)}</div>
+      ${s.writeOther ? `<div class="sh-custom">${field('MB/s', numIn('writeMBs', s.writeMBs, { min: 1, max: 10000, step: 10 }))}</div>` : ''}
+    </div>
+    <div class="card sh-sec">
+      <div class="tsub">4 · ${esc(T('copies'))}</div>
+      <div class="chips">${[1, 2, 3].map(x => chip('data-ocopies', x, String(x), x === s.copies)).join('')}</div>
       <label class="switch"><span>${esc(T('verify'))}</span><input type="checkbox" data-f="verify" ${s.verify ? 'checked' : ''}></label>
-    </div>
-    <div class="card">
-      <div class="tsub">${esc(T('total_time'))}</div>
-      <div class="passes">${Array.from({ length: r.passes }, (_, i) => `<span class="pass ${i % 2 && s.verify ? 'verify' : ''}" style="flex:1">${i % 2 && s.verify ? '✓' : (i / (s.verify ? 2 : 1) | 0) + 1}</span>`).join('')}</div>
-      <div class="tnote">${r.passes} × ${hm(r.perCopyHours)}</div>
-    </div>
-    ${out([
-      [T('per_copy'), hm(r.perCopyHours)],
-      [T('total_space'), `${num(r.totalGb, 0)} GB`],
-    ])}`;
+    </div>`;
 }
 
 // ---------- sun ----------
@@ -859,7 +903,7 @@ function wire(root, ctx, id, T, lang) {
       if (id === 'fov' && k === 'cam') s.cam = el.value;
       if (id === 'fov' && k === 'camBrand') { s.camBrand = el.value; s.cam = ''; }
       if (id === 'shutter' && k === 'fps') { s.speed = shutterChoices(s.fps, s.mains, 'speed').recommended?.value ?? s.speed; s.angle = shutterChoices(s.fps, s.mains, 'angle').recommended?.value ?? s.angle; }
-      if (id === 'offload' && k === 'drive') s.mbPerSec = Number(el.value);
+      if (id === 'offload' && k === 'gb') s.fromMedia = false;
       if (id === 'sun' && (k === 'city' || k === 'country')) { s.lat = null; s.lon = null; if (k === 'country') s.city = 0; }
       if (id === 'units' && k === 'group') {
         const g = UNIT_GROUPS.find(x => x.id === s.group);
@@ -895,7 +939,20 @@ function wire(root, ctx, id, T, lang) {
   }; });
   root.querySelectorAll('[data-mcard]').forEach(b => { b.onclick = () => { Object.assign(S.media, { card: Number(b.dataset.mcard), cardPicked: true, customCard: false }); ctx.render(); }; });
   root.querySelector('[data-mcard-custom]')?.addEventListener('click', () => { Object.assign(S.media, { customCard: true, cardPicked: true }); ctx.render(); });
-  root.querySelector('[data-to-offload]')?.addEventListener('click', (e) => { S.offload.gb = Number(e.currentTarget.dataset.toOffload); ctx.navigate('#/tools/offload'); });
+  // The media tool hands over the day's footage and the card it goes on.
+  root.querySelector('[data-to-offload]')?.addEventListener('click', (e) => {
+    Object.assign(S.offload, { gb: Number(e.currentTarget.dataset.toOffload), fromMedia: true, customGb: false });
+    if (READERS.some(x => x.id === S.media.mtype)) Object.assign(S.offload, { reader: S.media.mtype, readOther: false });
+    ctx.navigate('#/tools/offload');
+  });
+  const off = S.offload;
+  root.querySelectorAll('[data-ogb]').forEach(b => { b.onclick = () => { Object.assign(off, { gb: Number(b.dataset.ogb), customGb: false, fromMedia: false }); ctx.render(); }; });
+  root.querySelector('[data-ogb-custom]')?.addEventListener('click', () => { off.customGb = true; ctx.render(); });
+  root.querySelectorAll('[data-oread]').forEach(b => { b.onclick = () => { Object.assign(off, { reader: b.dataset.oread, readOther: false }); ctx.render(); }; });
+  root.querySelector('[data-oread-custom]')?.addEventListener('click', () => { off.readOther = true; ctx.render(); });
+  root.querySelectorAll('[data-odrive]').forEach(b => { b.onclick = () => { Object.assign(off, { drive: b.dataset.odrive, writeOther: false }); ctx.render(); }; });
+  root.querySelector('[data-odrive-custom]')?.addEventListener('click', () => { off.writeOther = true; ctx.render(); });
+  root.querySelectorAll('[data-ocopies]').forEach(b => { b.onclick = () => { off.copies = Number(b.dataset.ocopies); ctx.render(); }; });
   root.querySelectorAll('[data-mhours]').forEach(b => { b.onclick = () => { S.media.hours = Number(b.dataset.mhours); S.media.customHours = false; ctx.render(); }; });
   root.querySelector('[data-mhours-custom]')?.addEventListener('click', () => { S.media.customHours = true; ctx.render(); });
   root.querySelectorAll('[data-unit]').forEach(b => { b.onclick = () => { S.fov.unit = b.dataset.unit; ctx.render(); }; });
