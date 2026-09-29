@@ -936,5 +936,3 @@ body.split .view { max-width: none; padding: 12px 16px 0; }
 .kitchip { margin-inline-start: 6px; }
 .gkit { margin: -4px 0 10px; padding: 10px 12px; border: var(--stroke) solid var(--border); border-radius: var(--radius); background: var(--surface-2); }
 .gkit-head { font-size: 12px; font-weight: 700; color: var(--text-2); margin-bottom: 6px; }
-.look-switch { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 0 0 10px; padding: 8px 10px; border: 1.5px dashed var(--accent); border-radius: 12px; font-size: 12px; color: var(--accent-ink); font-weight: 700; }
-.look-switch .chip.pick { font-size: 12px; padding: 4px 10px; }
