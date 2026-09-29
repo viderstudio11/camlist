@@ -940,3 +940,8 @@ body.split .view { max-width: none; padding: 12px 16px 0; }
 
 /* "Build around" scrolls the kit into view; keep its head clear of the floating top bar. */
 .kit { scroll-margin-top: 96px; }
+
+/* Quick-filter rows: one line each, swiped sideways, so the products stay on screen on a phone. */
+.filterbar .fchips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.filterbar .fchips::-webkit-scrollbar { display: none; }
+.filterbar .fchips > * { flex: none; }
