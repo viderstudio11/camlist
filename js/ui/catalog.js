@@ -8,7 +8,7 @@ import { deptIcon } from './icons-dept.js';
 // Departments that drill Brand → models (the rest drill Subcategory → models grouped by brand).
 const BRAND_FIRST = new Set(['cameras', 'lenses', 'tripods']);
 // Preferred hero image per department (first matching product with an image wins).
-const HERO = { cameras: /alexa 35$|fx6|venice/i, lenses: /supreme prime|cooke|s7/i, video: /smallhd|ultra 7|bolt/i, tripods: /o'?connor|sachtler|fluid head/i, grip: /doorway dolly|dolly|slider/i, power: /v-?mount|battery/i, accessories: /matte ?box|mb-?\d|filter/i };
+const HERO = { cameras: /alexa 35$|fx6|venice/i, lenses: /supreme prime|cooke|s7/i, video: /smallhd|ultra 7|bolt/i, tripods: /o'?connor|sachtler|fluid head/i, grip: /doorway dolly|dolly|slider/i, power: /v-?mount|battery/i, accessories: /matte ?box|mb-?\d|filter/i, media: /cfexpress|memory card/i };
 
 let st = { pid: null, q: '', view: 'depts', dept: null, subcat: null, brand: null, sub: null };
 let preset = null;      // set by the list screen's kit slots before navigating here

@@ -12,7 +12,21 @@ export const GENERAL = 'general';
 const HOUSE_BRANDS = new Set(['utopia']);
 const brandOf = (b) => (!b || HOUSE_BRANDS.has(b) ? GENERAL : b);
 export function createCatalog(data, manual = [], extra = null) {
-  const departments = [...(data.departments || [])].sort((a, b) => a.order - b.order);
+  const departments = (data.departments || []).map(d => ({ ...d })).sort((a, b) => a.order - b.order);
+  // The supplement can add departments of its own (numeric ids, like the source's, so the screens treat
+  // them the same) and slot each one in after a named department.
+  (extra?.departments || []).forEach((x, i) => {
+    const id = 990001 + i;
+    const dept = { id, slug: x.slug, he: x.he, en: x.en, order: 0,
+      subcategories: (x.subcategories || []).map((sc, j) => ({ id: id * 100 + j + 1, parent: null, he: sc.he, en: sc.en })) };
+    const at = departments.findIndex(d => d.slug === x.after);
+    departments.splice(at < 0 ? departments.length : at + 1, 0, dept);
+  });
+  // …and add subcategories to the source's own departments (Power → Power Cables).
+  (extra?.extend || []).forEach((x, i) => {
+    const d = departments.find(dd => dd.slug === x.dept);
+    if (d) d.subcategories = [...d.subcategories, ...(x.subcategories || []).map((sc, j) => ({ id: 995001 + i * 100 + j, parent: null, he: sc.he, en: sc.en }))];
+  });
   const deptMap = new Map(departments.map(d => [d.id, d]));
   // Utopia nests some subcategories (Follow Focus → Wireless / Manual, Filters → 4X5.6 …) and files
   // products only on the deepest one. A subcategory therefore stands for itself plus everything under it.
@@ -30,6 +44,18 @@ export function createCatalog(data, manual = [], extra = null) {
   const brandNames = new Map((data.brands || []).filter(b => !HOUSE_BRANDS.has(b.id)).map(b => [b.id, b.name]));
   brandNames.set(GENERAL, 'General');
   for (const b of extra?.brands || []) brandNames.set(b.id, b.name); // supplement's display names win
+  // Moves re-file source products by name — e.g. cards and readers out of Video into Media & Offload.
+  const subByName = (en) => departments.flatMap(d => d.subcategories.map(sc => ({ ...sc, dept: d.id }))).find(sc => sc.en === en || sc.he === en);
+  const moves = (extra?.moves || []).map(m => {
+    const from = subByName(m.from);
+    const dept = departments.find(d => d.slug === m.to);
+    const to = dept?.subcategories.find(sc => sc.en === m.subcat);
+    return from && dept ? { from: from.id, rx: new RegExp(m.match, 'i'), dept: dept.id, subcats: to ? [to.id] : [] } : null;
+  }).filter(Boolean);
+  const moved = (p) => {
+    const m = moves.find(x => (p.subcats || []).includes(x.from) && x.rx.test(p.name));
+    return m ? { ...p, dept: m.dept, subcats: m.subcats } : p;
+  };
   const extraProducts = (extra?.products || []).map(x => {
     const d = departments.find(dd => dd.slug === x.dept);
     const s = d?.subcategories.find(ss => ss.en === x.subcat || ss.he === x.subcat);
@@ -53,7 +79,7 @@ export function createCatalog(data, manual = [], extra = null) {
     p._all = normalize(`${p.name} ${p.brandName || ''} ${sub}`);
     return p;
   };
-  for (const raw of [...(data.products || []), ...extraProducts]) {
+  for (const raw of [...(data.products || []).map(moved), ...extraProducts]) {
     const p = indexOf(decorate(raw, false));
     if (p.brand && !brandNames.has(p.brand)) brandNames.set(p.brand, p.brandName);
     products.push(p); byIdMap.set(p.id, p);

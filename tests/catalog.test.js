@@ -123,3 +123,38 @@ test('house-brand and unbranded products read as General, and never carry the re
   assert.ok(!cat.brands.some(b => /utopia/i.test(b.name)));
   assert.equal(cat.brands.find(b => b.id === 'general').count, 2);
 });
+
+test('a supplement can add a department and move products into it by name', () => {
+  const cat = createCatalog({
+    departments: [{ id: 900001, slug: 'video', he: 'וידאו', en: 'Video', order: 3, subcategories: [{ id: 260, parent: null, he: 'מקליטים וכרטיסים', en: 'Recorders & Media' }] },
+      { id: 12, slug: 'grip', he: 'גריפ', en: 'Grip', order: 5, subcategories: [] }],
+    brands: [],
+    products: [
+      { id: 1, name: '160GB CFexpress Type A TOUGH Memory Card', brand: 'sony', dept: 900001, subcats: [260] },
+      { id: 2, name: 'AXS-CR1 Card Reader', brand: 'sony', dept: 900001, subcats: [260] },
+      { id: 3, name: 'Ninja 5.2″ 4K HDMI Recording Monitor', brand: 'atomos', dept: 900001, subcats: [260] },
+      { id: 4, name: 'MacBook Pro', brand: 'apple', dept: 900001, subcats: [260] },
+    ],
+  }, [], {
+    departments: [{ slug: 'media', he: 'מדיה ופריקה', en: 'Media & Offload', after: 'video',
+      subcategories: [{ key: 'cards', he: 'כרטיסי זיכרון', en: 'Memory Cards' }, { key: 'readers', he: 'קוראי כרטיסים', en: 'Card Readers' }, { key: 'computers', he: 'מחשבים', en: 'Computers' }] }],
+    moves: [
+      { from: 'Recorders & Media', match: 'reader|dock|station', to: 'media', subcat: 'Card Readers' },
+      { from: 'Recorders & Media', match: 'macbook|laptop', to: 'media', subcat: 'Computers' },
+      { from: 'Recorders & Media', match: 'memory card|\bssd\b', to: 'media', subcat: 'Memory Cards' },
+    ],
+    brands: [],
+    products: [{ id: 'x_laptop_pc', name: 'Laptop — Windows PC', brand: null, dept: 'media', subcat: 'Computers' }],
+  });
+  assert.deepEqual(cat.departments.map(d => d.slug), ['video', 'media', 'grip']);
+  const media = cat.departments.find(d => d.slug === 'media');
+  const sub = (en) => media.subcategories.find(s => s.en === en).id;
+  assert.equal(cat.byId(1).dept, media.id);
+  assert.deepEqual(cat.byId(1).subcats, [sub('Memory Cards')]);
+  assert.deepEqual(cat.byId(2).subcats, [sub('Card Readers')]);
+  assert.deepEqual(cat.byId(4).subcats, [sub('Computers')]);
+  assert.equal(cat.deptKey(cat.byId(3).dept), 'video', 'a recorder stays in Video');
+  assert.equal(cat.byId('x_laptop_pc').dept, media.id);
+  assert.equal(cat.byId('x_laptop_pc').brand, 'general');
+  assert.equal(cat.bySubcat(sub('Computers')).length, 2);
+});

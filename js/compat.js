@@ -122,7 +122,7 @@ export function createCompat(data, catalog) {
       if (partial) return { status: 'partial', reason: 'coverage', via: viaAdapter ? 'adapter' : 'native' };
       return viaAdapter ? { status: 'adapter', reason: 'mount' } : { status: 'native' };
     }
-    if (dept === 'video' && subs.includes('Recorders & Media')) {
+    if (dept === 'media' ? subs.includes('Memory Cards') || subs.includes('Card Readers') : dept === 'video' && subs.includes('Recorders & Media')) {
       if (MEDIA_IGNORE.test(product.name)) return { status: 'neutral', kind: 'other' };
       const fams = mediaFamilies(product.name);
       const kind = READER_RX.test(product.name) ? 'reader' : fams.length ? 'card' : 'other';
@@ -153,16 +153,19 @@ export function createCompat(data, catalog) {
     for (const it of items) { const p = resolve(it.productId); if (!p) continue; const v = verdict(p, prof); if (v.kind === 'card' && v.family && !fams.includes(v.family)) fams.push(v.family); }
     return fams;
   }
-  // Readers in the catalog that cover a family — empty means Utopia has none for it.
-  const readersFor = (family) => catalog.products.filter(p => catalog.deptKey(p.dept) === 'video' && READER_RX.test(p.name) && mediaFamilies(p.name).includes(family));
+  // Readers in the catalog that cover a family — empty means the catalog has none for it.
+  const readersFor = (family) => catalog.products.filter(p => ['media', 'video'].includes(catalog.deptKey(p.dept)) && READER_RX.test(p.name) && mediaFamilies(p.name).includes(family));
 
   // Kit slot progress against the project's items: how many units of matching products are already in the list.
   // A slot with `kind` (card / reader / battery / charger) only counts items of that kind.
   function kitStatus(prof, items, resolve) {
     const chosen = chosenMedia(prof, items, resolve);
     return (prof?.kit || []).map(slot => {
-      const deptId = catalog.departments.find(d => d.slug === slot.dept)?.id;
-      const subId = slot.subcat ? catalog.departments.flatMap(d => d.subcategories).find(s => s.en === slot.subcat)?.id : null;
+      // Cards and readers live in Media & Offload; a catalog without that department keeps them in Video.
+      const hasMedia = catalog.departments.some(d => d.slug === 'media');
+      const where = slot.dept === 'media' && !hasMedia ? { dept: 'video', subcat: 'Recorders & Media' } : slot;
+      const deptId = catalog.departments.find(d => d.slug === where.dept)?.id;
+      const subId = where.subcat ? catalog.departments.flatMap(d => d.subcategories).find(s => s.en === where.subcat)?.id : null;
       const have = items.reduce((n, it) => {
         const p = resolve(it.productId) || { dept: it.snapshot?.dept, subcats: [] };
         if (p.dept !== deptId || (subId && !(p.subcats || []).includes(subId))) return n;

@@ -32,6 +32,8 @@ const TOOLS = {
   viewfinder: ["0 0 16 16", '<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/> <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>'],
 };
 
+// Media & Offload wears the same card the media tool does.
+DEPTS.media = TOOLS.media;
 export const DEPT_ICON = Object.fromEntries(Object.entries(DEPTS).map(([k, v]) => [k, wrap(v)]));
 export const deptIcon = (slug) => DEPT_ICON[slug] || DEPT_ICON.other;
 
