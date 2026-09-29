@@ -1,26 +1,412 @@
 {
-  "_readme": "Supplementary products that Utopia does not carry. Merged into the catalog with source='extra' and shown with a 'not at Utopia' badge. dept = department slug, subcat = subcategory English name. Add entries freely.",
+  "_readme": "Supplementary products that Utopia does not carry. Merged into the catalog with source='extra' and shown with a 'not at Utopia' badge. dept = department slug, subcat = subcategory English name. Add entries freely. departments: new departments (slotted in after `after`); extend: subcategories added to existing departments; moves: re-file source products whose name matches `match` (first match wins) from subcategory `from` into department `to` / `subcat`. A product with brand null reads as General.",
   "brands": [
-    { "id": "prograde", "name": "ProGrade Digital" },
-    { "id": "lexar", "name": "Lexar" },
-    { "id": "sony", "name": "Sony" }
+    {
+      "id": "prograde",
+      "name": "ProGrade Digital"
+    },
+    {
+      "id": "lexar",
+      "name": "Lexar"
+    },
+    {
+      "id": "sony",
+      "name": "Sony"
+    },
+    {
+      "id": "fxlion",
+      "name": "FXLion"
+    },
+    {
+      "id": "schneider",
+      "name": "Schneider"
+    }
   ],
   "products": [
-    { "id": "x_sony_mrw_g2", "name": "MRW-G2 CFexpress Type A / SD Card Reader", "brand": "sony", "dept": "video", "subcat": "Recorders & Media", "url": "https://pro.sony/ue_US/products/memory-card-readers/mrw-g2" },
-    { "id": "x_sony_mrw_g1", "name": "MRW-G1 CFexpress Type B / XQD Card Reader", "brand": "sony", "dept": "video", "subcat": "Recorders & Media", "url": "https://pro.sony/ue_US/products/memory-card-readers/mrw-g1" },
-    { "id": "x_sony_mrw_e90", "name": "MRW-E90 XQD / SD Card Reader", "brand": "sony", "dept": "video", "subcat": "Recorders & Media", "url": "https://pro.sony/ue_US/products/memory-card-readers/mrw-e90" },
-
-    { "id": "x_prograde_cfa_sd", "name": "CFexpress Type A / SD UHS-II Dual-Slot Card Reader (USB 3.2 Gen 2)", "brand": "prograde", "dept": "video", "subcat": "Recorders & Media", "url": "https://progradedigital.com/collections/card-readers" },
-    { "id": "x_prograde_cfb_sd", "name": "CFexpress Type B / SD UHS-II Dual-Slot Card Reader (USB 3.2 Gen 2)", "brand": "prograde", "dept": "video", "subcat": "Recorders & Media", "url": "https://progradedigital.com/collections/card-readers" },
-    { "id": "x_prograde_cfb_usb4", "name": "CFexpress Type B Single-Slot Card Reader (USB4 / Thunderbolt)", "brand": "prograde", "dept": "video", "subcat": "Recorders & Media", "url": "https://progradedigital.com/collections/card-readers" },
-    { "id": "x_prograde_cfast_sd", "name": "CFast 2.0 / SD UHS-II Dual-Slot Card Reader", "brand": "prograde", "dept": "video", "subcat": "Recorders & Media", "url": "https://progradedigital.com/collections/card-readers" },
-    { "id": "x_prograde_sd_dual", "name": "SD UHS-II Dual-Slot Card Reader (USB 3.2 Gen 2)", "brand": "prograde", "dept": "video", "subcat": "Recorders & Media", "url": "https://progradedigital.com/collections/card-readers" },
-    { "id": "x_prograde_cfast", "name": "CFast 2.0 Single-Slot Card Reader", "brand": "prograde", "dept": "video", "subcat": "Recorders & Media", "url": "https://progradedigital.com/collections/card-readers" },
-
-    { "id": "x_lexar_cfa_sd", "name": "Professional CFexpress Type A / SD UHS-II Card Reader (USB 3.2 Gen 2)", "brand": "lexar", "dept": "video", "subcat": "Recorders & Media", "url": "https://www.lexar.com/memory-card-readers/" },
-    { "id": "x_lexar_cfb", "name": "Professional CFexpress Type B Card Reader (USB 3.2 Gen 2x2)", "brand": "lexar", "dept": "video", "subcat": "Recorders & Media", "url": "https://www.lexar.com/memory-card-readers/" },
-    { "id": "x_lexar_cfast", "name": "Professional CFast 2.0 Card Reader (USB 3.0)", "brand": "lexar", "dept": "video", "subcat": "Recorders & Media", "url": "https://www.lexar.com/memory-card-readers/" },
-    { "id": "x_lexar_multi", "name": "Professional Multi-Card 3-in-1 Card Reader (SD / microSD / CF)", "brand": "lexar", "dept": "video", "subcat": "Recorders & Media", "url": "https://www.lexar.com/memory-card-readers/" },
-    { "id": "x_lexar_sd_dual", "name": "Professional Dual-Slot SD UHS-II Card Reader", "brand": "lexar", "dept": "video", "subcat": "Recorders & Media", "url": "https://www.lexar.com/memory-card-readers/" }
+    {
+      "id": "x_sony_mrw_g2",
+      "name": "MRW-G2 CFexpress Type A / SD Card Reader",
+      "brand": "sony",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://pro.sony/ue_US/products/memory-card-readers/mrw-g2"
+    },
+    {
+      "id": "x_sony_mrw_g1",
+      "name": "MRW-G1 CFexpress Type B / XQD Card Reader",
+      "brand": "sony",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://pro.sony/ue_US/products/memory-card-readers/mrw-g1"
+    },
+    {
+      "id": "x_sony_mrw_e90",
+      "name": "MRW-E90 XQD / SD Card Reader",
+      "brand": "sony",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://pro.sony/ue_US/products/memory-card-readers/mrw-e90"
+    },
+    {
+      "id": "x_prograde_cfa_sd",
+      "name": "CFexpress Type A / SD UHS-II Dual-Slot Card Reader (USB 3.2 Gen 2)",
+      "brand": "prograde",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://progradedigital.com/collections/card-readers"
+    },
+    {
+      "id": "x_prograde_cfb_sd",
+      "name": "CFexpress Type B / SD UHS-II Dual-Slot Card Reader (USB 3.2 Gen 2)",
+      "brand": "prograde",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://progradedigital.com/collections/card-readers"
+    },
+    {
+      "id": "x_prograde_cfb_usb4",
+      "name": "CFexpress Type B Single-Slot Card Reader (USB4 / Thunderbolt)",
+      "brand": "prograde",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://progradedigital.com/collections/card-readers"
+    },
+    {
+      "id": "x_prograde_cfast_sd",
+      "name": "CFast 2.0 / SD UHS-II Dual-Slot Card Reader",
+      "brand": "prograde",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://progradedigital.com/collections/card-readers"
+    },
+    {
+      "id": "x_prograde_sd_dual",
+      "name": "SD UHS-II Dual-Slot Card Reader (USB 3.2 Gen 2)",
+      "brand": "prograde",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://progradedigital.com/collections/card-readers"
+    },
+    {
+      "id": "x_prograde_cfast",
+      "name": "CFast 2.0 Single-Slot Card Reader",
+      "brand": "prograde",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://progradedigital.com/collections/card-readers"
+    },
+    {
+      "id": "x_lexar_cfa_sd",
+      "name": "Professional CFexpress Type A / SD UHS-II Card Reader (USB 3.2 Gen 2)",
+      "brand": "lexar",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://www.lexar.com/memory-card-readers/"
+    },
+    {
+      "id": "x_lexar_cfb",
+      "name": "Professional CFexpress Type B Card Reader (USB 3.2 Gen 2x2)",
+      "brand": "lexar",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://www.lexar.com/memory-card-readers/"
+    },
+    {
+      "id": "x_lexar_cfast",
+      "name": "Professional CFast 2.0 Card Reader (USB 3.0)",
+      "brand": "lexar",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://www.lexar.com/memory-card-readers/"
+    },
+    {
+      "id": "x_lexar_multi",
+      "name": "Professional Multi-Card 3-in-1 Card Reader (SD / microSD / CF)",
+      "brand": "lexar",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://www.lexar.com/memory-card-readers/"
+    },
+    {
+      "id": "x_lexar_sd_dual",
+      "name": "Professional Dual-Slot SD UHS-II Card Reader",
+      "brand": "lexar",
+      "dept": "media",
+      "subcat": "Card Readers",
+      "url": "https://www.lexar.com/memory-card-readers/"
+    },
+    {
+      "id": "x_sony_fx5",
+      "name": "ILME-FX5",
+      "brand": "sony",
+      "dept": "cameras",
+      "subcat": "Digital Cinema",
+      "url": "https://www.bhphotovideo.com/c/product/1989701-REG/sony_ilmefx5bb_fx5_cinema_camera.html"
+    },
+    {
+      "id": "x_gen_laptop_mac",
+      "name": "Laptop — Mac",
+      "brand": null,
+      "dept": "media",
+      "subcat": "Computers"
+    },
+    {
+      "id": "x_gen_laptop_pc",
+      "name": "Laptop — Windows PC",
+      "brand": null,
+      "dept": "media",
+      "subcat": "Computers"
+    },
+    {
+      "id": "x_gen_usbc_usbc",
+      "name": "USB-C to USB-C Cable",
+      "brand": null,
+      "dept": "media",
+      "subcat": "Cables & Hubs"
+    },
+    {
+      "id": "x_gen_usbc_usba",
+      "name": "USB-C to USB-A Cable",
+      "brand": null,
+      "dept": "media",
+      "subcat": "Cables & Hubs"
+    },
+    {
+      "id": "x_gen_usbc_hub",
+      "name": "USB-C Hub",
+      "brand": null,
+      "dept": "media",
+      "subcat": "Cables & Hubs"
+    },
+    {
+      "id": "x_gen_ext_cable",
+      "name": "Power Extension Cable",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_power_split",
+      "name": "Power Splitter (Multi-Outlet Strip)",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_monitor_stand",
+      "name": "Monitor Stand",
+      "brand": null,
+      "dept": "grip",
+      "subcat": "Grip Accessories"
+    },
+    {
+      "id": "x_gen_c_stand",
+      "name": "C-Stand",
+      "brand": null,
+      "dept": "grip",
+      "subcat": "Grip Accessories"
+    },
+    {
+      "id": "x_fxlion_nano_4ch",
+      "name": "NANO 4-CH V-Mount Charger",
+      "brand": "fxlion",
+      "dept": "power",
+      "subcat": "Chargers & PSU",
+      "url": "https://fxlion.net/product/nano-4-ch-v-mount-charger/"
+    },
+    {
+      "id": "x_fxlion_4ch_fast",
+      "name": "4 CH Fast Charger 16.8V / 4A V-Mount",
+      "brand": "fxlion",
+      "dept": "power",
+      "subcat": "Chargers & PSU",
+      "url": "https://fxlion.net/product/4-ch-fast-charger-16-8v-4a-v-mount/"
+    },
+    {
+      "id": "x_schneider_hbm_4565_1_8",
+      "name": "Hollywood Black Magic 4X5.6 -1/8",
+      "brand": "schneider",
+      "dept": "accessories",
+      "subcat": "4X5.6"
+    },
+    {
+      "id": "x_schneider_hbm_4565_1_4",
+      "name": "Hollywood Black Magic 4X5.6 -1/4",
+      "brand": "schneider",
+      "dept": "accessories",
+      "subcat": "4X5.6"
+    },
+    {
+      "id": "x_schneider_hbm_4565_1_2",
+      "name": "Hollywood Black Magic 4X5.6 -1/2",
+      "brand": "schneider",
+      "dept": "accessories",
+      "subcat": "4X5.6"
+    },
+    {
+      "id": "x_schneider_hbm_4565_1",
+      "name": "Hollywood Black Magic 4X5.6 -1",
+      "brand": "schneider",
+      "dept": "accessories",
+      "subcat": "4X5.6"
+    },
+    {
+      "id": "x_gen_sunhood",
+      "name": "Monitor Sunhood",
+      "brand": null,
+      "dept": "video",
+      "subcat": "Monitors"
+    },
+    {
+      "id": "x_gen_rain_cover",
+      "name": "Monitor Rain Cover",
+      "brand": null,
+      "dept": "video",
+      "subcat": "Monitors"
+    },
+    {
+      "id": "x_gen_ac_cable",
+      "name": "AC Power Cable",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_xlr4",
+      "name": "4-Pin XLR Power Cable",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_dtap",
+      "name": "D-Tap Power Cable",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_plate_v",
+      "name": "V-Mount Battery Plate",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_plate_gold",
+      "name": "Gold Mount Battery Plate",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_monitor_arm",
+      "name": "Monitor Arm",
+      "brand": null,
+      "dept": "grip",
+      "subcat": "Grip Accessories"
+    },
+    {
+      "id": "x_gen_rods15",
+      "name": "15mm Rods",
+      "brand": null,
+      "dept": "grip",
+      "subcat": "Camera Support & Rigs"
+    },
+    {
+      "id": "x_gen_gear_rings",
+      "name": "Lens Gear Rings Set",
+      "brand": null,
+      "dept": "accessories",
+      "subcat": "Follow Focus"
+    },
+    {
+      "id": "x_gen_top_flag",
+      "name": "Top Flag",
+      "brand": null,
+      "dept": "accessories",
+      "subcat": "Matte Boxes"
+    },
+    {
+      "id": "x_gen_donuts",
+      "name": "Lens Donut Rings",
+      "brand": null,
+      "dept": "accessories",
+      "subcat": "Matte Boxes"
+    },
+    {
+      "id": "x_gen_ssd",
+      "name": "Portable SSD",
+      "brand": null,
+      "dept": "media",
+      "subcat": "Drives & SSD"
+    }
+  ],
+  "departments": [
+    {
+      "slug": "media",
+      "he": "מדיה ופריקה",
+      "en": "Media & Offload",
+      "after": "video",
+      "subcategories": [
+        {
+          "he": "כרטיסי זיכרון",
+          "en": "Memory Cards"
+        },
+        {
+          "he": "קוראי כרטיסים",
+          "en": "Card Readers"
+        },
+        {
+          "he": "דיסקים ו־SSD",
+          "en": "Drives & SSD"
+        },
+        {
+          "he": "מחשבים",
+          "en": "Computers"
+        },
+        {
+          "he": "כבלים ומפצלים",
+          "en": "Cables & Hubs"
+        }
+      ]
+    }
+  ],
+  "extend": [
+    {
+      "dept": "power",
+      "subcategories": [
+        {
+          "he": "כבלי חשמל ופלייטים",
+          "en": "Power Cables"
+        }
+      ]
+    }
+  ],
+  "moves": [
+    {
+      "from": "Recorders & Media",
+      "match": "reader|dock|station",
+      "to": "media",
+      "subcat": "Card Readers"
+    },
+    {
+      "from": "Recorders & Media",
+      "match": "macbook|ipad|vostro|laptop",
+      "to": "media",
+      "subcat": "Computers"
+    },
+    {
+      "from": "Recorders & Media",
+      "match": "^(?!.*(recorder|monitor)).*(mini-?mag|redmag|prossd|compact drive|memory card|\\bcard\\b|axs-a?\\d|\\d+\\s?gb)",
+      "to": "media",
+      "subcat": "Memory Cards"
+    },
+    {
+      "from": "Recorders & Media",
+      "match": "\\bssd\\b|external",
+      "to": "media",
+      "subcat": "Drives & SSD"
+    }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "_readme": "Camera profiles for 'build around a camera'. mount = native mount(s); adapters = lens mounts usable via an adapter; format = FF | S35 | MFT | MF | 2/3 | 1in | 16; media / battery = families matched by name patterns in js/compat.js; kit = key into kits. Edit freely — ids are Utopia product ids, match is a fallback regex on the product name.",
+  "_readme": "Camera profiles for 'build around a camera'. mount = native mount(s); adapters = lens mounts usable via an adapter; format = FF | S35 | MFT | MF | 2/3 | 1in | 16; media / battery = families matched by name patterns in js/compat.js; kit = key into kits. Edit freely — ids are Utopia product ids, match is a fallback regex on the product name. sensor = the sensor area a camera actually uses for UHD 16:9 recording (w × h mm, the mode, and the source it was verified against). Cameras without it are not offered in the lens tool.",
   "adapters": {
     "E": [
       "EF",
@@ -58,7 +58,14 @@
       ],
       "battery": [
         "BP-U"
-      ]
+      ],
+      "sensor": {
+        "w": 35.6,
+        "h": 20,
+        "mode": "UHD 16:9 · ≤60p",
+        "src": "Sony FX6 manual (Help Guide PDF, p.12): in FF, cropping only at UHD 100/120 fps S&Q or RAW UHD — regular UHD uses the full width. p.161: 35 mm full-frame, 10.2M effective (16:9). Sony does not publish the width in mm; 35.6 mm is the official FX3 figure for the same 12.9M sensor.",
+        "pending": "width derived from the FX3 official spec — Sony publishes no mm figure for the FX6"
+      }
     },
     {
       "id": 14868,
@@ -75,7 +82,13 @@
       "battery": [
         "BP-U"
       ],
-      "_verified": "B&H / manufacturer 2026-09-18"
+      "_verified": "B&H / manufacturer 2026-09-18",
+      "sensor": {
+        "w": 33.4,
+        "h": 18.8,
+        "mode": "FF 6K → UHD",
+        "src": "Sony: FF 6K scan 35.7×18.8 mm (17:9); UHD 16:9 crops the sides at full height"
+      }
     },
     {
       "id": 17205,
@@ -91,7 +104,13 @@
       ],
       "battery": [
         "NP-FZ100"
-      ]
+      ],
+      "sensor": {
+        "w": 35.6,
+        "h": 20,
+        "mode": "UHD 16:9 · ≤60p",
+        "src": "Sony FX3 spec: 35.6×23.8 mm, 10.3 MP effective for movies (16:9 full width)"
+      }
     },
     {
       "id": 28981,
@@ -235,7 +254,13 @@
         "V-Mount",
         "B-Mount"
       ],
-      "_verified": "B&H / manufacturer 2026-09-18"
+      "_verified": "B&H / manufacturer 2026-09-18",
+      "sensor": {
+        "w": 32,
+        "h": 18,
+        "mode": "7.6K 16:9 → UHD",
+        "src": "Sony pro.sony VENICE 2 specifications: 7.6K 16:9, 7680 × 4320, 32.0 × 18.0 mm, 1–60 fps"
+      }
     },
     {
       "id": 24920,
@@ -505,7 +530,13 @@
         "B-Mount",
         "V-Mount"
       ],
-      "_verified": "B&H / manufacturer 2026-09-18"
+      "_verified": "B&H / manufacturer 2026-09-18",
+      "sensor": {
+        "w": 24.88,
+        "h": 14,
+        "mode": "4K 16:9 → UHD",
+        "src": "ARRI ALEXA 35 recording format poster: 4K 16:9 24.88×14.00 mm, records UHD"
+      }
     },
     {
       "id": 30380,
@@ -538,7 +569,13 @@
         "V-Mount",
         "Gold"
       ],
-      "_verified": "B&H / manufacturer 2026-09-18"
+      "_verified": "B&H / manufacturer 2026-09-18",
+      "sensor": {
+        "w": 31.68,
+        "h": 17.82,
+        "mode": "3.8K LF 16:9 UHD",
+        "src": "ARRI Formats and Resolutions Overview v6.1: 3.8K LF 16:9-UHD 31.68×17.82 mm"
+      }
     },
     {
       "id": 493,
@@ -672,12 +709,18 @@
       ],
       "format": "FF",
       "media": [
-        "CFast",
+        "CFexpress B",
         "SD"
       ],
       "battery": [
         "BP-A"
-      ]
+      ],
+      "sensor": {
+        "w": 35.7,
+        "h": 20.1,
+        "mode": "UHD 3840×2160 · Full Frame",
+        "src": "Canon Europe EOS C500 Mark II specifications, Effective Sensor Screen Size: 35.7 × 20.1 mm at 3840 × 2160 (38.1 × 20.1 mm at 5952 × 3140 / 4096 × 2160); media: CFexpress card x2, SD for proxy"
+      }
     },
     {
       "id": 28559,
@@ -709,7 +752,13 @@
       ],
       "battery": [
         "BP-A"
-      ]
+      ],
+      "sensor": {
+        "w": 24.6,
+        "h": 13.8,
+        "mode": "UHD 3840×2160 · Super 35",
+        "src": "Canon Europe EOS C70 specifications, Effective Sensor Screen Size: 24.6 × 13.8 mm when 3840 × 2160 is selected (26.2 × 13.8 mm at 4096 × 2160)"
+      }
     },
     {
       "id": 30392,
@@ -1212,6 +1261,29 @@
       "battery": [
         "Insta360"
       ]
+    },
+    {
+      "id": "x_sony_fx5",
+      "match": "ILME-FX5\b",
+      "type": "mirrorless",
+      "mount": [
+        "E"
+      ],
+      "format": "FF",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "battery": [
+        "NP-SA100"
+      ],
+      "_verified": "2026-09-28 sony.com ILME-FX5 specifications + helpguide.sony.net/ilc/2630 (rec_format, clip_recordingplayback_time)",
+      "sensor": {
+        "w": 35.9,
+        "h": 20.2,
+        "mode": "FF 5K 16:9 → UHD",
+        "src": "Sony spec page (35-mm full frame 35.9 × 24.0 mm); Sony Help Guide ILME-FX5 \"Clip Recording/Playback Time\": XAVC 3840×2160 recorded in imager mode FF 5K 16:9 at 23.98–119.88p. Height = 16:9 of the width (derived)."
+      }
     }
   ],
   "kits": {
@@ -1251,8 +1323,8 @@
         "slot": "media",
         "he": "מדיה (כרטיסים)",
         "en": "Media (cards)",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Memory Cards",
         "qty": 4,
         "kind": "card"
       },
@@ -1260,8 +1332,8 @@
         "slot": "reader",
         "he": "קורא כרטיסים",
         "en": "Card reader",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Card Readers",
         "qty": 1,
         "kind": "reader"
       },
@@ -1336,8 +1408,8 @@
         "slot": "media",
         "he": "מדיה (כרטיסים)",
         "en": "Media (cards)",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Memory Cards",
         "qty": 4,
         "kind": "card"
       },
@@ -1345,8 +1417,8 @@
         "slot": "reader",
         "he": "קורא כרטיסים",
         "en": "Card reader",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Card Readers",
         "qty": 1,
         "kind": "reader"
       },
@@ -1420,8 +1492,8 @@
         "slot": "media",
         "he": "מדיה (כרטיסים)",
         "en": "Media (cards)",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Memory Cards",
         "qty": 4,
         "kind": "card"
       },
@@ -1429,8 +1501,8 @@
         "slot": "reader",
         "he": "קורא כרטיסים",
         "en": "Card reader",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Card Readers",
         "qty": 1,
         "kind": "reader"
       },
@@ -1488,8 +1560,8 @@
         "slot": "media",
         "he": "מדיה",
         "en": "Media",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Memory Cards",
         "qty": 4,
         "kind": "card"
       },
@@ -1497,8 +1569,8 @@
         "slot": "reader",
         "he": "קורא כרטיסים",
         "en": "Card reader",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Card Readers",
         "qty": 1,
         "kind": "reader"
       },
@@ -1541,8 +1613,8 @@
         "slot": "media",
         "he": "כרטיסי SD",
         "en": "SD cards",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Memory Cards",
         "qty": 4,
         "kind": "card"
       },
@@ -1550,8 +1622,8 @@
         "slot": "reader",
         "he": "קורא כרטיסים",
         "en": "Card reader",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Card Readers",
         "qty": 1,
         "kind": "reader"
       },
@@ -1586,8 +1658,8 @@
         "slot": "media",
         "he": "כרטיסי microSD",
         "en": "microSD cards",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Memory Cards",
         "qty": 3,
         "kind": "card"
       },
@@ -1595,8 +1667,8 @@
         "slot": "reader",
         "he": "קורא כרטיסים",
         "en": "Card reader",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Card Readers",
         "qty": 1,
         "kind": "reader"
       },
@@ -1620,8 +1692,8 @@
         "slot": "media",
         "he": "מדיה",
         "en": "Media",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Memory Cards",
         "qty": 2,
         "kind": "card"
       },
@@ -1629,8 +1701,8 @@
         "slot": "reader",
         "he": "קורא כרטיסים",
         "en": "Card reader",
-        "dept": "video",
-        "subcat": "Recorders & Media",
+        "dept": "media",
+        "subcat": "Card Readers",
         "qty": 1,
         "kind": "reader"
       },

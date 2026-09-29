@@ -1,5 +1,8 @@
 {
-  "_readme": "Recording formats for the media calculator. Three models, all editable: 'bpp' = bits per pixel per frame (the codec scales with resolution AND frame rate — ProRes and the raw codecs work this way); 'points' = manufacturer-published Mbps at specific frame rates per resolution tier, interpolated in between; 'fixed' = a constant Mbps per resolution tier regardless of frame rate (long-GOP codecs). 'src' says where the number comes from: 'published' = manufacturer figure, 'derived' = calculated from a published anchor or from the codec's own bit depth. Correct anything that differs from what you measure on set.",
+  "_readme": [
+    "Recording formats for the media calculator. Three models, all editable: 'bpp' = bits per pixel per frame (the codec scales with resolution AND frame rate — ProRes and the raw codecs work this way); 'points' = manufacturer-published Mbps at specific frame rates per resolution tier, interpolated in between; 'fixed' = a constant Mbps per resolution tier regardless of frame rate (long-GOP codecs). 'src' says where the number comes from: 'published' = manufacturer figure, 'derived' = calculated from a published anchor or from the codec's own bit depth. Correct anything that differs from what you measure on set.",
+    "cameras[].media: the card types a camera takes, in slot order (keys of \"media\"); oneSlot: a single card slot, so no mirrored backup recording"
+  ],
   "resolutions": [
     {
       "id": "hd",
@@ -426,6 +429,104 @@
     1024,
     2000
   ],
+  "media": {
+    "CFexpress A": {
+      "sizes": [
+        80,
+        160,
+        320,
+        640,
+        960,
+        1920
+      ],
+      "src": "Sony CEA-G TOUGH CFexpress Type A range (80 GB – 1920 GB) — sony.com"
+    },
+    "CFexpress B": {
+      "sizes": [
+        128,
+        256,
+        512,
+        960,
+        1920
+      ],
+      "src": "Sony CEB-G TOUGH CFexpress Type B range (128 GB – 1920 GB) — sony.com"
+    },
+    "RED PRO CFexpress": {
+      "sizes": [
+        660,
+        1300,
+        2000,
+        4000
+      ],
+      "src": "RED V-RAPTOR operation guide, “CFexpress Type B Media”: 660 GB, 1.3 TB, 2 TB, 4 TB — docs.red.com"
+    },
+    "XQD": {
+      "sizes": [
+        64,
+        120,
+        240
+      ],
+      "src": "Sony XQD G series (QD-G64F / G120F / G240F) — sony.com"
+    },
+    "AXS": {
+      "sizes": [
+        512,
+        1000
+      ],
+      "src": "Sony AXS Memory A series: 512 GB and 1 TB (AXS-A1TS66) — pro.sony"
+    },
+    "SxS": {
+      "sizes": [
+        64,
+        128,
+        240
+      ],
+      "src": "Sony PXW-X400 Operating Instructions: SxS-1 SBS-128G1C and SxS PRO X SBP-240F; 64 GB SxS in the X400 specifications — pro.sony"
+    },
+    "Codex Compact Drive": {
+      "sizes": [
+        1000,
+        2000
+      ],
+      "usable": {
+        "1000": 960,
+        "2000": 1920
+      },
+      "src": "Codex Compact Drive: 1 TB gives 960 GB usable, 2 TB gives 1920 GB — help.codex.online / arri.com"
+    },
+    "CFast 2.0": {
+      "sizes": [
+        256,
+        512,
+        1000
+      ],
+      "src": "Angelbird AV PRO CF (CFast 2.0): 256 GB, 512 GB, 1 TB — angelbird.com"
+    },
+    "SD": {
+      "sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "src": "Sony TOUGH SD range: SF-G 32/64/128 GB, SF-M 256 GB — sony.com"
+    },
+    "microSD": {
+      "sizes": [
+        64,
+        128,
+        256,
+        512
+      ],
+      "src": "SanDisk Extreme microSDXC range — sandisk.com"
+    },
+    "DJI PROSSD": {
+      "sizes": [
+        1000
+      ],
+      "src": "DJI PROSSD 1TB — store.dji.com / dji.com/ronin-4d/specs"
+    }
+  },
   "presets": [
     {
       "label": "Sony FX6 · XAVC-I 4K 25p",
@@ -481,121 +582,1331 @@
       "id": "fx6",
       "brand": "Sony",
       "label": "PXW-FX6",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
       "formats": [
-        [
-          "xavc-i",
-          "uhd"
-        ],
-        [
-          "xavc-i",
-          "hd"
-        ],
-        [
-          "xavc-l",
-          "uhd"
-        ]
+        {
+          "id": "xavci-dci4k",
+          "codec": "XAVC-I",
+          "res": "DCI 4K 4096×2160",
+          "mbps": {
+            "24": 240,
+            "25": 250,
+            "50": 500,
+            "23.98": 240,
+            "29.97": 300,
+            "59.94": 600
+          },
+          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting: 600/500/300/250/240)"
+        },
+        {
+          "id": "xavci-qfhd",
+          "codec": "XAVC-I",
+          "res": "QFHD 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "23.98": 240,
+            "29.97": 300,
+            "59.94": 600
+          },
+          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting: 600/500/300/250/240)"
+        },
+        {
+          "id": "xavci-hd",
+          "codec": "XAVC-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 111,
+            "50": 222,
+            "23.98": 89,
+            "29.97": 111,
+            "59.94": 222
+          },
+          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC-I HD rates from Sony’s PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time”: 222 Mbps at 59.94P/50P, 111 at 29.97P/25P, 89 at 23.98P"
+        },
+        {
+          "id": "xavcl-qfhd",
+          "codec": "XAVC-L",
+          "res": "QFHD 3840×2160",
+          "mbps": {
+            "25": 150,
+            "50": 150,
+            "23.98": 150,
+            "29.97": 150,
+            "59.94": 150
+          },
+          "max": true,
+          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com (VBR, 150 Mbps max)"
+        },
+        {
+          "id": "xavcl-hd50",
+          "codec": "XAVC-L 50",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "max": true,
+          "src": "Sony ILME-FX6 Operating Instructions (50244581M), Specifications p.161: recording formats, frame rates and maximum bit rates — sony.com (VBR, 50 Mbps max)"
+        }
       ]
     },
     {
       "id": "fx9",
       "brand": "Sony",
       "label": "PXW-FX9",
+      "media": [
+        "XQD",
+        "CFexpress B"
+      ],
       "formats": [
-        [
-          "xavc-i",
-          "uhd"
-        ],
-        [
-          "xavc-i",
-          "hd"
-        ],
-        [
-          "xavc-l",
-          "uhd"
-        ]
+        {
+          "id": "xavci-dci4k",
+          "codec": "XAVC-I",
+          "res": "DCI 4K 4096×2160",
+          "mbps": {
+            "24": 240,
+            "25": 250,
+            "50": 500,
+            "23.98": 240,
+            "29.97": 300,
+            "59.94": 600
+          },
+          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting: 600/500/300/250/240)"
+        },
+        {
+          "id": "xavci-qfhd",
+          "codec": "XAVC-I",
+          "res": "QFHD 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "23.98": 240,
+            "29.97": 300,
+            "59.94": 600
+          },
+          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC Intra class rates as Sony lists them in its Help Guides (e.g. ILME-FX2 Record Setting: 600/500/300/250/240)"
+        },
+        {
+          "id": "xavci-hd",
+          "codec": "XAVC-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 111,
+            "50": 222,
+            "23.98": 89,
+            "29.97": 111,
+            "59.94": 222
+          },
+          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com; per-frame-rate XAVC-I HD rates from Sony’s PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time”: 222 Mbps at 59.94P/50P, 111 at 29.97P/25P, 89 at 23.98P"
+        },
+        {
+          "id": "xavcl-qfhd",
+          "codec": "XAVC-L",
+          "res": "QFHD 3840×2160",
+          "mbps": {
+            "25": 150,
+            "50": 150,
+            "23.98": 150,
+            "29.97": 150,
+            "59.94": 150
+          },
+          "max": true,
+          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com (VBR, 150 Mbps max)"
+        },
+        {
+          "id": "xavcl-hd50",
+          "codec": "XAVC-L 50",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "max": true,
+          "src": "Sony PXW-FX9 Operating Instructions (50118671M), Specifications p.153: recording formats, frame rates and maximum bit rates — sony.com (VBR, 50 Mbps max)"
+        }
       ]
     },
     {
       "id": "fx3",
       "brand": "Sony",
-      "label": "FX3 / FX30",
+      "label": "ILME-FX3",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
       "formats": [
-        [
-          "xavc-i",
-          "uhd"
-        ],
-        [
-          "xavc-hs",
-          "uhd"
-        ],
-        [
-          "xavc-l",
-          "uhd"
-        ]
+        {
+          "id": "xavc-s-i-4k",
+          "codec": "XAVC S-I",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        },
+        {
+          "id": "xavc-s-i-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 93,
+            "50": 185,
+            "59.94": 222,
+            "29.97": 111,
+            "23.98": 89
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        },
+        {
+          "id": "xavc-hs-4k",
+          "codec": "XAVC HS",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        },
+        {
+          "id": "xavc-s-4k",
+          "codec": "XAVC S",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 140,
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "29.97": 140,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        },
+        {
+          "id": "xavc-s-hd",
+          "codec": "XAVC S",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "100": 100,
+            "59.94": 50,
+            "29.97": 50,
+            "23.98": 50,
+            "119.88": 100
+          },
+          "src": "Sony ILME-FX3 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2035/v1/en/contents/TP1000267898.html"
+        }
+      ]
+    },
+    {
+      "id": "fx30",
+      "brand": "Sony",
+      "label": "ILME-FX30",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "xavc-s-i-dci-4k",
+          "codec": "XAVC S-I",
+          "res": "DCI 4K 4096×2160",
+          "mbps": {
+            "24": 240,
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-s-i-4k",
+          "codec": "XAVC S-I",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-s-i-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 93,
+            "50": 185,
+            "59.94": 222,
+            "29.97": 111,
+            "23.98": 89
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-hs-4k",
+          "codec": "XAVC HS",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-s-4k",
+          "codec": "XAVC S",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 140,
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "29.97": 140,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        },
+        {
+          "id": "xavc-s-hd",
+          "codec": "XAVC S",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "100": 100,
+            "59.94": 50,
+            "29.97": 50,
+            "23.98": 50,
+            "119.88": 100
+          },
+          "src": "Sony ILME-FX30 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2220/v1/en/contents/TP1000868278.html"
+        }
+      ]
+    },
+    {
+      "id": "fx2",
+      "brand": "Sony",
+      "label": "ILME-FX2",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "xavc-s-i-dci-4k",
+          "codec": "XAVC S-I",
+          "res": "DCI 4K 4096×2160",
+          "mbps": {
+            "24": 240,
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-i-4k",
+          "codec": "XAVC S-I",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-i-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 93,
+            "50": 185,
+            "59.94": 222,
+            "29.97": 111,
+            "23.98": 89
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-hs-4k",
+          "codec": "XAVC HS",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "50": 200,
+            "59.94": 200,
+            "23.98": 100
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-4k",
+          "codec": "XAVC S",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 140,
+            "50": 200,
+            "59.94": 200,
+            "29.97": 140,
+            "23.98": 100
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-hd",
+          "codec": "XAVC S",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "100": 100,
+            "59.94": 50,
+            "29.97": 50,
+            "23.98": 50,
+            "119.88": 100
+          },
+          "src": "Sony ILME-FX2 Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2530/v1/en/contents/0412B_movie_setting.html"
+        }
+      ]
+    },
+    {
+      "id": "a7s3",
+      "brand": "Sony",
+      "label": "Alpha 7S III",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "xavc-s-i-4k",
+          "codec": "XAVC S-I",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 250,
+            "50": 500,
+            "59.94": 600,
+            "29.97": 300,
+            "23.98": 240
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-i-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 93,
+            "50": 185,
+            "59.94": 222,
+            "29.97": 111,
+            "23.98": 89
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-hs-4k",
+          "codec": "XAVC HS",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-4k",
+          "codec": "XAVC S",
+          "res": "4K 3840×2160",
+          "mbps": {
+            "25": 140,
+            "50": 200,
+            "100": 280,
+            "59.94": 200,
+            "29.97": 140,
+            "23.98": 100,
+            "119.88": 280
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        },
+        {
+          "id": "xavc-s-hd",
+          "codec": "XAVC S",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "100": 100,
+            "59.94": 50,
+            "29.97": 50,
+            "23.98": 50,
+            "119.88": 100
+          },
+          "src": "Sony Alpha 7S III Help Guide, \"Movie Settings → Record Setting\" (top setting at each frame rate) — helpguide.sony.net/ilc/2410/v1/en/contents/0412B_movie_setting.html"
+        }
+      ]
+    },
+    {
+      "id": "fx5",
+      "brand": "Sony",
+      "label": "ILME-FX5",
+      "media": [
+        "CFexpress A",
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "si-uhd",
+          "codec": "XAVC S-I",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "25": 488,
+            "50": 246,
+            "23.98": 508,
+            "29.97": 408,
+            "59.94": 205
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "si-dci",
+          "codec": "XAVC S-I",
+          "res": "DCI 4K 4096×2160",
+          "card": 960,
+          "minutes": {
+            "24": 508,
+            "25": 488,
+            "50": 246,
+            "23.98": 508,
+            "29.97": 408,
+            "59.94": 205
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "si-hd",
+          "codec": "XAVC S-I",
+          "res": "HD 1920×1080",
+          "card": 960,
+          "minutes": {
+            "25": 1225,
+            "50": 630,
+            "23.98": 1277,
+            "29.97": 1034,
+            "59.94": 528
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "sl422-uhd",
+          "codec": "XAVC S-L 422",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "25": 843,
+            "50": 587,
+            "100": 412,
+            "23.98": 1150,
+            "29.97": 837,
+            "59.94": 580,
+            "119.88": 406
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "sl420-uhd",
+          "codec": "XAVC S-L 420",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "25": 1147,
+            "50": 763,
+            "100": 556,
+            "23.98": 1150,
+            "29.97": 1135,
+            "59.94": 752,
+            "119.88": 545
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "hsl422-uhd",
+          "codec": "XAVC HS-L 422",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "50": 587,
+            "100": 412,
+            "23.98": 1150,
+            "59.94": 580,
+            "119.88": 406
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "sl420-hd",
+          "codec": "XAVC S-L 420",
+          "res": "HD 1920×1080",
+          "card": 960,
+          "minutes": {
+            "25": 2087,
+            "50": 1902,
+            "100": 988,
+            "23.98": 2095,
+            "29.97": 2047,
+            "59.94": 1837,
+            "119.88": 953
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "xocn-lt-169",
+          "codec": "X-OCN LT",
+          "res": "FF 5K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 205,
+            "25": 197,
+            "50": 99,
+            "23.98": 205,
+            "29.97": 164,
+            "59.94": 82
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "xocn-c1-169",
+          "codec": "X-OCN C1",
+          "res": "FF 5K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 274,
+            "25": 263,
+            "50": 132,
+            "23.98": 274,
+            "29.97": 220,
+            "59.94": 110
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "xocn-c2-169",
+          "codec": "X-OCN C2",
+          "res": "FF 5K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 341,
+            "25": 327,
+            "50": 164,
+            "23.98": 341,
+            "29.97": 273,
+            "59.94": 137
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        },
+        {
+          "id": "xocn-lt-og",
+          "codec": "X-OCN LT",
+          "res": "FF 5K 3:2 Open Gate",
+          "card": 960,
+          "minutes": {
+            "24": 174,
+            "25": 167,
+            "50": 83,
+            "23.98": 174,
+            "29.97": 139,
+            "59.94": 69
+          },
+          "src": "Sony Help Guide ILME-FX5 · Clip Recording/Playback Time (Sony CFexpress Type A VPG400 960 GB) — helpguide.sony.net/ilc/2630"
+        }
       ]
     },
     {
       "id": "venice2",
       "brand": "Sony",
       "label": "VENICE 2",
+      "media": [
+        "AXS"
+      ],
+      "oneSlot": true,
       "formats": [
-        [
-          "xocn-lt",
-          "8.6k"
-        ],
-        [
-          "xocn-st",
-          "8.6k"
-        ],
-        [
-          "xocn-xt",
-          "8.6k"
-        ],
-        [
-          "xavc-i",
-          "uhd"
-        ]
+        {
+          "id": "xocnlt-1",
+          "codec": "X-OCN LT",
+          "res": "8.6K 3:2",
+          "card": 1000,
+          "minutes": {
+            "24": 58,
+            "25": 55,
+            "23.98": 58,
+            "29.97": 46
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnst-2",
+          "codec": "X-OCN ST",
+          "res": "8.6K 3:2",
+          "card": 1000,
+          "minutes": {
+            "24": 34,
+            "25": 32,
+            "23.98": 34,
+            "29.97": 27
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnxt-3",
+          "codec": "X-OCN XT",
+          "res": "8.6K 3:2",
+          "card": 1000,
+          "minutes": {
+            "24": 23,
+            "25": 22,
+            "23.98": 23,
+            "29.97": 18
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnlt-4",
+          "codec": "X-OCN LT",
+          "res": "8.6K 17:9 / 8.1K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 73,
+            "25": 70,
+            "23.98": 73,
+            "29.97": 58,
+            "47.95": 36
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnst-5",
+          "codec": "X-OCN ST",
+          "res": "8.6K 17:9 / 8.1K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 43,
+            "25": 41,
+            "23.98": 43,
+            "29.97": 34,
+            "47.95": 21
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnxt-6",
+          "codec": "X-OCN XT",
+          "res": "8.6K 17:9 / 8.1K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 29,
+            "25": 28,
+            "23.98": 29,
+            "29.97": 23
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnlt-7",
+          "codec": "X-OCN LT",
+          "res": "8.2K 17:9 / 7.6K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 80,
+            "25": 77,
+            "50": 38,
+            "23.98": 80,
+            "29.97": 64,
+            "47.95": 40,
+            "59.94": 32
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnst-8",
+          "codec": "X-OCN ST",
+          "res": "8.2K 17:9 / 7.6K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 47,
+            "25": 45,
+            "50": 22,
+            "23.98": 47,
+            "29.97": 37,
+            "47.95": 23,
+            "59.94": 18
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnxt-9",
+          "codec": "X-OCN XT",
+          "res": "8.2K 17:9 / 7.6K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 32,
+            "25": 31,
+            "23.98": 32,
+            "29.97": 25
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnlt-10",
+          "codec": "X-OCN LT",
+          "res": "5.8K 17:9 / 5.4K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 160,
+            "25": 154,
+            "50": 77,
+            "23.98": 160,
+            "29.97": 128,
+            "47.95": 80,
+            "59.94": 64
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnst-11",
+          "codec": "X-OCN ST",
+          "res": "5.8K 17:9 / 5.4K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 95,
+            "25": 91,
+            "50": 45,
+            "23.98": 95,
+            "29.97": 76,
+            "47.95": 47,
+            "59.94": 38
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "xocnxt-12",
+          "codec": "X-OCN XT",
+          "res": "5.8K 17:9 / 5.4K 16:9",
+          "card": 1000,
+          "minutes": {
+            "24": 65,
+            "25": 62,
+            "50": 31,
+            "23.98": 65,
+            "29.97": 52,
+            "47.95": 32,
+            "59.94": 26
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "pr-qfhd-hq",
+          "codec": "ProRes 422 HQ",
+          "res": "QFHD 3840×2160",
+          "card": 1000,
+          "minutes": {
+            "24": 156,
+            "25": 150,
+            "50": 75,
+            "23.98": 156,
+            "29.97": 125,
+            "59.94": 62
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "pr-qfhd-4444",
+          "codec": "ProRes 4444",
+          "res": "QFHD 3840×2160",
+          "card": 1000,
+          "minutes": {
+            "24": 104,
+            "25": 100,
+            "50": 50,
+            "23.98": 104,
+            "29.97": 83,
+            "59.94": 41
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "pr-qfhd-xq",
+          "codec": "ProRes 4444 XQ",
+          "res": "QFHD 3840×2160",
+          "card": 1000,
+          "minutes": {
+            "24": 69,
+            "25": 67,
+            "50": 33,
+            "23.98": 69,
+            "29.97": 55,
+            "59.94": 27
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        },
+        {
+          "id": "pr-4k-hq",
+          "codec": "ProRes 422 HQ",
+          "res": "4K 4096×2160",
+          "card": 1000,
+          "minutes": {
+            "24": 146,
+            "25": 140,
+            "50": 70,
+            "23.98": 146,
+            "29.97": 117,
+            "59.94": 58
+          },
+          "src": "Sony VENICE 2 Operating Instructions, \"AXS Clip Recording/Playback Time\" (AXS-A1TS66 1 TB, minutes, MPC-3628) — pro.sony manual 50372171M"
+        }
       ]
     },
     {
       "id": "burano",
       "brand": "Sony",
       "label": "BURANO",
+      "media": [
+        "CFexpress B"
+      ],
+      "oneSlot": true,
       "formats": [
-        [
-          "xocn-lt",
-          "8k"
-        ],
-        [
-          "xocn-st",
-          "8k"
-        ],
-        [
-          "xavc-i",
-          "uhd"
-        ]
+        {
+          "id": "xocnlt-86-169",
+          "codec": "X-OCN LT",
+          "res": "FF 8.6K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 69,
+            "25": 66,
+            "23.98": 69,
+            "29.97": 55
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        },
+        {
+          "id": "xocnlt-86-179",
+          "codec": "X-OCN LT",
+          "res": "FF 8.6K 17:9",
+          "card": 960,
+          "minutes": {
+            "24": 74,
+            "25": 71,
+            "23.98": 74,
+            "29.97": 59
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        },
+        {
+          "id": "xocnlt-6k-169",
+          "codec": "X-OCN LT",
+          "res": "FFc 6K 16:9",
+          "card": 960,
+          "minutes": {
+            "24": 140,
+            "25": 134,
+            "50": 67,
+            "23.98": 140,
+            "29.97": 112,
+            "59.94": 56
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        },
+        {
+          "id": "xocnlt-6k-179",
+          "codec": "X-OCN LT",
+          "res": "FFc 6K 17:9",
+          "card": 960,
+          "minutes": {
+            "24": 149,
+            "25": 143,
+            "50": 71,
+            "23.98": 149,
+            "29.97": 119,
+            "59.94": 60
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        },
+        {
+          "id": "xavci-uhd",
+          "codec": "XAVC-I",
+          "res": "UHD 3840×2160",
+          "card": 960,
+          "minutes": {
+            "25": 473,
+            "50": 241,
+            "23.98": 494,
+            "29.97": 397,
+            "59.94": 201
+          },
+          "src": "Sony BURANO Operating Instructions, \"Clip Recording/Playback Time\" (Sony CFexpress Type B VPG400 960 GB, minutes) — sony.com manual 50560981M"
+        }
+      ]
+    },
+    {
+      "id": "x400",
+      "brand": "Sony",
+      "label": "PXW-X400",
+      "media": [
+        "SxS",
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "xavci-hd",
+          "codec": "XAVC-I",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 111,
+            "50": 222,
+            "23.98": 89,
+            "29.97": 111,
+            "59.94": 222,
+            "50i": 111,
+            "59.94i": 111
+          },
+          "src": "Sony PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time”: 222 Mbps at 59.94P/50P (firmware 2.0), 111 Mbps at 29.97P/25P/59.94i/50i, 89 Mbps at 23.98P — sony.com"
+        },
+        {
+          "id": "xavcl50-hd",
+          "codec": "XAVC-L 50",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50,
+            "50i": 50,
+            "59.94i": 50
+          },
+          "max": true,
+          "src": "Sony PXW-X400 Operating Instructions (50725921M), “Media Recording and Playback Time” and Specifications (recording frame rates) — sony.com"
+        },
+        {
+          "id": "xavcl35-hd",
+          "codec": "XAVC-L 35",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 35,
+            "50": 35,
+            "23.98": 35,
+            "29.97": 35,
+            "59.94": 35,
+            "50i": 35,
+            "59.94i": 35
+          },
+          "max": true,
+          "src": "Sony PXW-X400 specifications, “Recording Format (Video)” and “Recording Frame Rate” — pro.sony/ue_US/products/shoulder-camcorders/pxw-x400 (VBR, max. 35 Mbps)"
+        },
+        {
+          "id": "xavcl25-hd",
+          "codec": "XAVC-L 25",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "50i": 25,
+            "59.94i": 25
+          },
+          "max": true,
+          "src": "Sony PXW-X400 specifications, “Recording Format (Video)” and “Recording Frame Rate” — pro.sony/ue_US/products/shoulder-camcorders/pxw-x400 (VBR, max. 25 Mbps; 1080 interlaced only)"
+        },
+        {
+          "id": "mpeg-hd422",
+          "codec": "MPEG HD422",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "50i": 50,
+            "59.94i": 50
+          },
+          "src": "Sony PXW-X400 specifications, “Recording Format (Video)” and “Recording Frame Rate” — pro.sony/ue_US/products/shoulder-camcorders/pxw-x400 (MPEG-2 422P@HL, CBR 50 Mbps)"
+        },
+        {
+          "id": "mpeg-hd420",
+          "codec": "MPEG HD420 HQ",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 35,
+            "23.98": 35,
+            "29.97": 35,
+            "50i": 35,
+            "59.94i": 35
+          },
+          "max": true,
+          "src": "Sony PXW-X400 specifications, “Recording Format (Video)” and “Recording Frame Rate” — pro.sony/ue_US/products/shoulder-camcorders/pxw-x400 (MPEG-2 MP@HL, VBR, max. 35 Mbps)"
+        }
+      ]
+    },
+    {
+      "id": "z150",
+      "brand": "Sony",
+      "label": "PXW-Z150",
+      "media": [
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "xavc-qfhd",
+          "codec": "XAVC Long 100",
+          "res": "QFHD 3840×2160",
+          "mbps": {
+            "25": 100,
+            "23.98": 100,
+            "29.97": 100
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "xavc-qfhd60",
+          "codec": "XAVC Long 60",
+          "res": "QFHD 3840×2160",
+          "mbps": {
+            "25": 60,
+            "23.98": 60,
+            "29.97": 60
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "xavc-hd",
+          "codec": "XAVC Long 50",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50,
+            "50i": 50,
+            "59.94i": 50
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "xavc-hd35",
+          "codec": "XAVC Long 35",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 35,
+            "50": 35,
+            "23.98": 35,
+            "29.97": 35,
+            "59.94": 35,
+            "50i": 35,
+            "59.94i": 35
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "xavc-hd25",
+          "codec": "XAVC Long 25",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "50i": 25,
+            "59.94i": 25
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "mpeg-hd422",
+          "codec": "MPEG HD422",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "50i": 50,
+            "59.94i": 50
+          },
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "mpeg-hd420",
+          "codec": "MPEG HD420 HQ",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 35,
+            "23.98": 35,
+            "29.97": 35,
+            "50i": 35,
+            "59.94i": 35
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "avchd-ps",
+          "codec": "AVCHD PS",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "50": 28,
+            "59.94": 28
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        },
+        {
+          "id": "avchd-fx",
+          "codec": "AVCHD FX",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "25": 24,
+            "23.98": 24,
+            "29.97": 24,
+            "50i": 24,
+            "59.94i": 24
+          },
+          "max": true,
+          "src": "Sony PXW-Z150 specifications, “Recording Frame Rate” — pro.sony/ue_US/products/handheld-camcorders/pxw-z150"
+        }
       ]
     },
     {
       "id": "a35",
       "brand": "ARRI",
       "label": "ALEXA 35",
+      "media": [
+        "Codex Compact Drive"
+      ],
+      "oneSlot": true,
       "formats": [
-        [
-          "arriraw",
-          "4.6kog"
-        ],
+        {
+          "id": "raw-46og",
+          "codec": "ARRIRAW",
+          "res": "4.6K 3:2 Open Gate 4608×3164",
+          "frameMB": 23.7,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60
+          ],
+          "src": "ARRI Formats and Resolutions Overview (AFRO) v6.1, ALEXA 35 Premium, SUP 1.3/4.0 — frame size in MB; max fps on Compact Drive 2TB"
+        },
+        {
+          "id": "raw-46-169",
+          "codec": "ARRIRAW",
+          "res": "4.6K 16:9 4608×2592",
+          "frameMB": 19.4,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60
+          ],
+          "src": "ARRI Formats and Resolutions Overview (AFRO) v6.1, ALEXA 35 Premium, SUP 1.3/4.0 — frame size in MB; max fps on Compact Drive 2TB"
+        },
+        {
+          "id": "raw-4k-169",
+          "codec": "ARRIRAW",
+          "res": "4K 16:9 4096×2304",
+          "frameMB": 15.4,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            100,
+            119.88,
+            120
+          ],
+          "src": "ARRI Formats and Resolutions Overview (AFRO) v6.1, ALEXA 35 Premium, SUP 1.3/4.0 — frame size in MB; max fps on Compact Drive 2TB"
+        },
+        {
+          "id": "raw-38-uhd",
+          "codec": "ARRIRAW",
+          "res": "3.8K 16:9 UHD 3840×2160",
+          "frameMB": 13.5,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            100,
+            119.88,
+            120
+          ],
+          "src": "ARRI Formats and Resolutions Overview (AFRO) v6.1, ALEXA 35 Premium, SUP 1.3/4.0 — frame size in MB; max fps on Compact Drive 2TB"
+        },
         [
           "prores-xq",
-          "uhd"
+          "uhd",
+          105
         ],
         [
           "prores-hq",
-          "uhd"
+          "uhd",
+          120
         ],
         [
           "prores-422",
-          "uhd"
+          "uhd",
+          120
         ]
       ]
     },
@@ -603,18 +1914,124 @@
       "id": "minilf",
       "brand": "ARRI",
       "label": "ALEXA Mini LF",
+      "media": [
+        "Codex Compact Drive"
+      ],
+      "oneSlot": true,
       "formats": [
-        [
-          "arriraw",
-          "5k"
-        ],
+        {
+          "id": "raw-45og",
+          "codec": "ARRIRAW",
+          "res": "4.5K LF 3:2 Open Gate 4448×3096",
+          "frameMB": 20.876584,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30
+          ],
+          "src": "ARRI Formats and Resolutions Overview (AFRO) v6.1, ALEXA Mini LF, SUP 7.1 — frame size in bytes; max fps"
+        },
+        {
+          "id": "raw-45-239",
+          "codec": "ARRIRAW",
+          "res": "4.5K LF 2.39:1 4448×1856",
+          "frameMB": 12.603304,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60
+          ],
+          "src": "ARRI Formats and Resolutions Overview (AFRO) v6.1, ALEXA Mini LF, SUP 7.1 — frame size in bytes; max fps"
+        },
+        {
+          "id": "raw-38-uhd",
+          "codec": "ARRIRAW",
+          "res": "3.8K LF 16:9 UHD 3840×2160",
+          "frameMB": 12.661672,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60
+          ],
+          "src": "ARRI Formats and Resolutions Overview (AFRO) v6.1, ALEXA Mini LF, SUP 7.1 — frame size in bytes; max fps"
+        },
+        {
+          "id": "raw-34-s35",
+          "codec": "ARRIRAW",
+          "res": "3.4K S35 3:2 3424×2202",
+          "frameMB": 11.529544,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60
+          ],
+          "src": "ARRI Formats and Resolutions Overview (AFRO) v6.1, ALEXA Mini LF, SUP 7.1 — frame size in bytes; max fps"
+        },
         [
           "prores-xq",
-          "uhd"
+          "uhd",
+          60
         ],
         [
           "prores-hq",
-          "uhd"
+          "uhd",
+          60
+        ]
+      ]
+    },
+    {
+      "id": "alexamini",
+      "brand": "ARRI",
+      "label": "ALEXA Mini",
+      "media": [
+        "CFast 2.0"
+      ],
+      "oneSlot": true,
+      "formats": [
+        [
+          "prores-xq",
+          "uhd",
+          60
+        ],
+        [
+          "prores-hq",
+          "uhd",
+          60
+        ],
+        [
+          "prores-422",
+          "uhd",
+          60
+        ],
+        [
+          "prores-hq",
+          "hd",
+          200
+        ],
+        [
+          "prores-422",
+          "hd",
+          200
         ]
       ]
     },
@@ -622,14 +2039,19 @@
       "id": "amira",
       "brand": "ARRI",
       "label": "AMIRA",
+      "media": [
+        "CFast 2.0"
+      ],
       "formats": [
         [
           "prores-hq",
-          "uhd"
+          "uhd",
+          60
         ],
         [
           "prores-422",
-          "hd"
+          "hd",
+          200
         ]
       ]
     },
@@ -637,18 +2059,199 @@
       "id": "raptor",
       "brand": "RED",
       "label": "V-RAPTOR 8K",
+      "media": [
+        "RED PRO CFexpress"
+      ],
+      "oneSlot": true,
       "formats": [
+        {
+          "id": "r3d-8k-hq",
+          "codec": "REDCODE HQ",
+          "res": "8K 17:9 8192×4320",
+          "frameMB": 18.5833,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-8k-mq",
+          "codec": "REDCODE MQ",
+          "res": "8K 17:9 8192×4320",
+          "frameMB": 13,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-8k-lq",
+          "codec": "REDCODE LQ",
+          "res": "8K 17:9 8192×4320",
+          "frameMB": 8.125,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-8k-elq",
+          "codec": "REDCODE ELQ",
+          "res": "8K 17:9 8192×4320",
+          "frameMB": 4.3333,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-6k-hq",
+          "codec": "REDCODE HQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 10.4583,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-6k-mq",
+          "codec": "REDCODE MQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 7.3333,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120,
+            150,
+            160
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-6k-lq",
+          "codec": "REDCODE LQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 4.5833,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120,
+            150,
+            160
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
+        {
+          "id": "r3d-6k-elq",
+          "codec": "REDCODE ELQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 2.8333,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30,
+            48,
+            50,
+            59.94,
+            60,
+            96,
+            100,
+            119.88,
+            120,
+            150,
+            160
+          ],
+          "src": "RED V-RAPTOR 8K VV Operation Guide (955-0199 v1.3), \"R3D Quality\" — RED’s 24p data rate, per frame; top frame rates from the guide’s technical specifications; held at RED’s “up to 800 MB/s” on CFexpress",
+          "capMBs": 800
+        },
         [
-          "r3d-8",
-          "8k"
+          "prores-hq",
+          "dci4k",
+          120
         ],
         [
-          "r3d-5",
-          "8k"
-        ],
-        [
-          "r3d-12",
-          "8k"
+          "prores-422",
+          "dci4k",
+          120
         ]
       ]
     },
@@ -656,18 +2259,66 @@
       "id": "komodo",
       "brand": "RED",
       "label": "KOMODO 6K",
+      "media": [
+        "CFast 2.0"
+      ],
+      "oneSlot": true,
       "formats": [
-        [
-          "r3d-8",
-          "6k"
-        ],
-        [
-          "r3d-5",
-          "6k"
-        ],
+        {
+          "id": "r3d-6k-hq",
+          "codec": "REDCODE HQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 11.6783,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30
+          ],
+          "src": "RED KOMODO 6K Operation Guide (955-0196 v1.6), \"R3D Quality\" — RED’s 23.98p data rate, per frame (HQ is RED’s “up to” figure); up to 40 fps at 6K 17:9 per RED’s specs; held at RED’s “up to 280 MB/s” on CFast 2.0",
+          "max": true,
+          "capMBs": 280
+        },
+        {
+          "id": "r3d-6k-mq",
+          "codec": "REDCODE MQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 7.299,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30
+          ],
+          "src": "RED KOMODO 6K Operation Guide (955-0196 v1.6), \"R3D Quality\" — RED’s 23.98p data rate, per frame (HQ is RED’s “up to” figure); up to 40 fps at 6K 17:9 per RED’s specs; held at RED’s “up to 280 MB/s” on CFast 2.0",
+          "capMBs": 280
+        },
+        {
+          "id": "r3d-6k-lq",
+          "codec": "REDCODE LQ",
+          "res": "6K 17:9 6144×3240",
+          "frameMB": 4.5879,
+          "fps": [
+            23.98,
+            24,
+            25,
+            29.97,
+            30
+          ],
+          "src": "RED KOMODO 6K Operation Guide (955-0196 v1.6), \"R3D Quality\" — RED’s 23.98p data rate, per frame (HQ is RED’s “up to” figure); up to 40 fps at 6K 17:9 per RED’s specs; held at RED’s “up to 280 MB/s” on CFast 2.0",
+          "capMBs": 280
+        },
         [
           "prores-hq",
-          "uhd"
+          "dci4k",
+          60
+        ],
+        [
+          "prores-422",
+          "dci4k",
+          60
         ]
       ]
     },
@@ -675,72 +2326,1953 @@
       "id": "ursa",
       "brand": "Blackmagic",
       "label": "URSA Mini Pro 12K",
+      "media": [
+        "CFast 2.0",
+        "SD"
+      ],
       "formats": [
-        [
-          "braw-12",
-          "12k"
-        ],
-        [
-          "braw-8",
-          "8k"
-        ],
-        [
-          "braw-5",
-          "6k"
-        ]
+        {
+          "id": "braw-12k-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "12K 12288×6480",
+          "card": 1000,
+          "minutes": {
+            "24": 28,
+            "25": 27,
+            "30": 23,
+            "23.98": 28,
+            "29.97": 23
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-12k-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "12K 12288×6480",
+          "card": 1000,
+          "minutes": {
+            "24": 46,
+            "25": 44,
+            "30": 36,
+            "50": 22,
+            "60": 18,
+            "23.98": 46,
+            "29.97": 37,
+            "59.94": 18
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-12k-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "12K 12288×6480",
+          "card": 1000,
+          "minutes": {
+            "24": 72,
+            "25": 66,
+            "30": 55,
+            "50": 33,
+            "60": 27,
+            "23.98": 72,
+            "29.97": 55,
+            "59.94": 27
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-12k-18-1",
+          "codec": "Blackmagic RAW 18:1",
+          "res": "12K 12288×6480",
+          "card": 1000,
+          "minutes": {
+            "24": 102,
+            "25": 102,
+            "30": 84,
+            "50": 49,
+            "60": 41,
+            "23.98": 102,
+            "29.97": 84,
+            "59.94": 41
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-8k-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "8K 8192×4320",
+          "card": 1000,
+          "minutes": {
+            "24": 66,
+            "25": 60,
+            "30": 51,
+            "50": 31,
+            "60": 25,
+            "23.98": 66,
+            "29.97": 51,
+            "59.94": 25
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-8k-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "8K 8192×4320",
+          "card": 1000,
+          "minutes": {
+            "24": 102,
+            "25": 102,
+            "30": 84,
+            "50": 49,
+            "60": 41,
+            "23.98": 102,
+            "29.97": 84,
+            "59.94": 41
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-8k-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "8K 8192×4320",
+          "card": 1000,
+          "minutes": {
+            "24": 156,
+            "25": 150,
+            "30": 126,
+            "50": 72,
+            "60": 60,
+            "23.98": 156,
+            "29.97": 126,
+            "59.94": 60
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-8k-18-1",
+          "codec": "Blackmagic RAW 18:1",
+          "res": "8K 8192×4320",
+          "card": 1000,
+          "minutes": {
+            "24": 234,
+            "25": 222,
+            "30": 186,
+            "50": 114,
+            "60": 96,
+            "23.98": 234,
+            "29.97": 186,
+            "59.94": 96
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-6k-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "6K 6144×3240",
+          "card": 1000,
+          "minutes": {
+            "24": 114,
+            "25": 108,
+            "30": 90,
+            "50": 55,
+            "60": 46,
+            "23.98": 114,
+            "29.97": 90,
+            "59.94": 46
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-6k-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "6K 6144×3240",
+          "card": 1000,
+          "minutes": {
+            "24": 186,
+            "25": 174,
+            "30": 144,
+            "50": 90,
+            "60": 72,
+            "23.98": 186,
+            "29.97": 144,
+            "59.94": 72
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-6k-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "6K 6144×3240",
+          "card": 1000,
+          "minutes": {
+            "24": 276,
+            "25": 264,
+            "30": 222,
+            "50": 132,
+            "60": 108,
+            "23.98": 276,
+            "29.97": 222,
+            "59.94": 108
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        },
+        {
+          "id": "braw-6k-18-1",
+          "codec": "Blackmagic RAW 18:1",
+          "res": "6K 6144×3240",
+          "card": 1000,
+          "minutes": {
+            "24": 414,
+            "25": 396,
+            "30": 330,
+            "50": 198,
+            "60": 162,
+            "23.98": 414,
+            "29.97": 330,
+            "59.94": 162
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 12K models\" (1TB, high-complexity shots) — documents.blackmagicdesign.com. 59.94 takes the 60 duration"
+        }
+      ]
+    },
+    {
+      "id": "ursa46g2",
+      "brand": "Blackmagic",
+      "label": "URSA Mini Pro 4.6K G2",
+      "media": [
+        "CFast 2.0",
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "braw-46k-3-1",
+          "codec": "Blackmagic RAW 3:1",
+          "res": "4.6K 4608×2592",
+          "card": 256,
+          "minutes": {
+            "24": 28,
+            "25": 27,
+            "30": 23,
+            "50": 13,
+            "60": 11,
+            "23.98": 28,
+            "29.97": 23,
+            "59.94": 11
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-46k-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "4.6K 4608×2592",
+          "card": 256,
+          "minutes": {
+            "24": 48,
+            "25": 46,
+            "30": 38,
+            "50": 23,
+            "60": 19,
+            "23.98": 48,
+            "29.97": 38,
+            "59.94": 19
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-46k-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "4.6K 4608×2592",
+          "card": 256,
+          "minutes": {
+            "24": 76,
+            "25": 73,
+            "30": 61,
+            "50": 36,
+            "60": 30,
+            "23.98": 76,
+            "29.97": 61,
+            "59.94": 30
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-46k-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "4.6K 4608×2592",
+          "card": 256,
+          "minutes": {
+            "24": 114,
+            "25": 110,
+            "30": 92,
+            "50": 55,
+            "60": 46,
+            "23.98": 115,
+            "29.97": 92,
+            "59.94": 46
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-uhd-3-1",
+          "codec": "Blackmagic RAW 3:1",
+          "res": "UHD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 41,
+            "25": 39,
+            "30": 33,
+            "50": 19,
+            "60": 16,
+            "23.98": 41,
+            "29.97": 33,
+            "59.94": 16
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-uhd-5-1",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "UHD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 68,
+            "25": 66,
+            "30": 55,
+            "50": 33,
+            "60": 27,
+            "23.98": 68,
+            "29.97": 55,
+            "59.94": 27
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-uhd-8-1",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "UHD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 109,
+            "25": 105,
+            "30": 88,
+            "50": 52,
+            "60": 44,
+            "23.98": 110,
+            "29.97": 88,
+            "59.94": 44
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        },
+        {
+          "id": "braw-uhd-12-1",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "UHD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 164,
+            "25": 157,
+            "30": 131,
+            "50": 79,
+            "60": 66,
+            "23.98": 164,
+            "29.97": 131,
+            "59.94": 66
+          },
+          "src": "Blackmagic URSA Mini Pro 12K manual, \"Record duration tables for URSA Mini Pro 4.6K G2…\" (256GB CFast 2.0, high-complexity shots) — documents.blackmagicdesign.com. ProRes columns omitted: the table layout there is ambiguous"
+        }
       ]
     },
     {
       "id": "pocket6",
       "brand": "Blackmagic",
-      "label": "Pocket 6K",
+      "label": "Pocket Cinema Camera 6K",
+      "media": [
+        "CFast 2.0",
+        "SD"
+      ],
       "formats": [
-        [
-          "braw-8",
-          "6k"
-        ],
-        [
-          "braw-5",
-          "6k"
-        ],
-        [
-          "prores-hq",
-          "uhd"
-        ]
+        {
+          "id": "braw3-6k",
+          "codec": "Blackmagic RAW 3:1",
+          "res": "6K 6144×3456",
+          "card": 256,
+          "minutes": {
+            "24": 17,
+            "25": 16,
+            "30": 13,
+            "50": 8,
+            "23.98": 17,
+            "29.97": 13
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw5-6k",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "6K 6144×3456",
+          "card": 256,
+          "minutes": {
+            "24": 28,
+            "25": 27,
+            "30": 22,
+            "50": 13,
+            "23.98": 28,
+            "29.97": 22
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw8-6k",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "6K 6144×3456",
+          "card": 256,
+          "minutes": {
+            "24": 45,
+            "25": 43,
+            "30": 36,
+            "50": 21,
+            "23.98": 45,
+            "29.97": 36
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw12-6k",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "6K 6144×3456",
+          "card": 256,
+          "minutes": {
+            "24": 67,
+            "25": 64,
+            "30": 54,
+            "50": 32,
+            "23.98": 67,
+            "29.97": 54
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prhq-uhd",
+          "codec": "ProRes 422 HQ",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 47,
+            "25": 45,
+            "30": 38,
+            "50": 22,
+            "60": 18,
+            "23.98": 47,
+            "29.97": 38,
+            "59.94": 18
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "pr422-uhd",
+          "codec": "ProRes 422",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 71,
+            "25": 68,
+            "30": 57,
+            "50": 34,
+            "60": 28,
+            "23.98": 71,
+            "29.97": 57,
+            "59.94": 28
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prlt-uhd",
+          "codec": "ProRes 422 LT",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 101,
+            "25": 97,
+            "30": 81,
+            "50": 48,
+            "60": 40,
+            "23.98": 101,
+            "29.97": 81,
+            "59.94": 40
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prpx-uhd",
+          "codec": "ProRes 422 Proxy",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 230,
+            "25": 221,
+            "30": 184,
+            "50": 111,
+            "60": 92,
+            "23.98": 230,
+            "29.97": 184,
+            "59.94": 92
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        }
+      ]
+    },
+    {
+      "id": "pocket4",
+      "brand": "Blackmagic",
+      "label": "Pocket Cinema Camera 4K",
+      "media": [
+        "CFast 2.0",
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "braw3-uhd",
+          "codec": "Blackmagic RAW 3:1",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 41,
+            "25": 39,
+            "30": 33,
+            "50": 19,
+            "60": 16,
+            "23.98": 41,
+            "29.97": 33,
+            "59.94": 16
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw5-uhd",
+          "codec": "Blackmagic RAW 5:1",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 68,
+            "25": 66,
+            "30": 55,
+            "50": 33,
+            "60": 27,
+            "23.98": 68,
+            "29.97": 55,
+            "59.94": 27
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw8-uhd",
+          "codec": "Blackmagic RAW 8:1",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 109,
+            "25": 105,
+            "30": 88,
+            "50": 52,
+            "60": 44,
+            "23.98": 110,
+            "29.97": 88,
+            "59.94": 44
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "braw12-uhd",
+          "codec": "Blackmagic RAW 12:1",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 164,
+            "25": 157,
+            "30": 131,
+            "50": 79,
+            "60": 66,
+            "23.98": 164,
+            "29.97": 131,
+            "59.94": 66
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prhq-uhd",
+          "codec": "ProRes 422 HQ",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 47,
+            "25": 45,
+            "30": 38,
+            "50": 22,
+            "60": 18,
+            "23.98": 47,
+            "29.97": 38,
+            "59.94": 18
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "pr422-uhd",
+          "codec": "ProRes 422",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 71,
+            "25": 68,
+            "30": 57,
+            "50": 34,
+            "60": 28,
+            "23.98": 71,
+            "29.97": 57,
+            "59.94": 28
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prlt-uhd",
+          "codec": "ProRes 422 LT",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 101,
+            "25": 97,
+            "30": 81,
+            "50": 48,
+            "60": 40,
+            "23.98": 101,
+            "29.97": 81,
+            "59.94": 40
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        },
+        {
+          "id": "prpx-uhd",
+          "codec": "ProRes 422 Proxy",
+          "res": "Ultra HD 3840×2160",
+          "card": 256,
+          "minutes": {
+            "24": 230,
+            "25": 221,
+            "30": 184,
+            "50": 111,
+            "60": 92,
+            "23.98": 230,
+            "29.97": 184,
+            "59.94": 92
+          },
+          "src": "Blackmagic Pocket Cinema Camera manual (4K / 6K G2 / 6K Pro), record duration tables for a 256GB CFast 2.0 card — documents.blackmagicdesign.com. 29.97/59.94 take the 30/60 duration"
+        }
       ]
     },
     {
       "id": "c400",
       "brand": "Canon",
       "label": "EOS C400",
+      "media": [
+        "CFexpress B",
+        "SD"
+      ],
       "formats": [
-        [
-          "craw-st",
-          "6k"
-        ],
-        [
-          "craw-lt",
-          "6k"
-        ],
-        [
-          "xf-avc-i",
-          "uhd"
-        ]
+        {
+          "id": "xfavcs-lgop422-4k",
+          "codec": "XF-AVC S Long GOP 4:2:2 10-bit",
+          "res": "4K / UHD",
+          "max": true,
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "50": 250,
+            "23.98": 150,
+            "29.97": 150,
+            "59.94": 250
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfavcs-lgop420-4k",
+          "codec": "XF-AVC S Long GOP 4:2:0 8-bit",
+          "res": "4K / UHD",
+          "max": true,
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 150,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 150
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfhevcs-422-4k",
+          "codec": "XF-HEVC S 4:2:2 10-bit",
+          "res": "4K / UHD",
+          "max": true,
+          "mbps": {
+            "24": 135,
+            "25": 135,
+            "50": 255,
+            "23.98": 135,
+            "29.97": 135,
+            "59.94": 255
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfhevcs-420-4k",
+          "codec": "XF-HEVC S 4:2:0 10-bit",
+          "res": "4K / UHD",
+          "max": true,
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 150,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 150
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfavcs-lgop422-hd",
+          "codec": "XF-AVC S Long GOP 4:2:2 10-bit",
+          "res": "HD / 2K",
+          "max": true,
+          "mbps": {
+            "24": 50,
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        },
+        {
+          "id": "xfhevcs-422-hd",
+          "codec": "XF-HEVC S 4:2:2 10-bit",
+          "res": "HD / 2K",
+          "max": true,
+          "mbps": {
+            "24": 50,
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "src": "Canon U.S.A. EOS C400 product specs, recording formats table (Max. Bit Rate; the camera records VBR) — usa.canon.com/shop/p/eos-c400"
+        }
+      ]
+    },
+    {
+      "id": "c500ii",
+      "brand": "Canon",
+      "label": "EOS C500 Mark II",
+      "media": [
+        "CFexpress B",
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "crm-lt-ff",
+          "codec": "Cinema RAW Light LT",
+          "res": "5.9K FF 5952×3140",
+          "mbps": {
+            "25": 556,
+            "50": 1140
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-st-ff",
+          "codec": "Cinema RAW Light ST",
+          "res": "5.9K FF 5952×3140",
+          "mbps": {
+            "25": 871,
+            "50": 1750
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-hq-ff",
+          "codec": "Cinema RAW Light HQ",
+          "res": "5.9K FF 5952×3140",
+          "mbps": {
+            "25": 1770
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-lt-s35",
+          "codec": "Cinema RAW Light LT",
+          "res": "4K S35 4096×2160",
+          "mbps": {
+            "25": 269,
+            "50": 538
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-st-s35",
+          "codec": "Cinema RAW Light ST",
+          "res": "4K S35 4096×2160",
+          "mbps": {
+            "25": 414,
+            "50": 828
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "crm-hq-s35",
+          "codec": "Cinema RAW Light HQ",
+          "res": "4K S35 4096×2160",
+          "mbps": {
+            "25": 841,
+            "50": 1690
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "xfi-4k",
+          "codec": "XF-AVC Intra",
+          "res": "4K 4096×2160 / UHD",
+          "mbps": {
+            "24": 410,
+            "25": 410,
+            "50": 810,
+            "23.98": 410,
+            "29.97": 410,
+            "59.94": 810
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        },
+        {
+          "id": "xfl-4k",
+          "codec": "XF-AVC Long GOP",
+          "res": "4K 4096×2160 / UHD",
+          "mbps": {
+            "24": 160,
+            "25": 160,
+            "50": 260,
+            "23.98": 160,
+            "29.97": 160,
+            "59.94": 260
+          },
+          "max": true,
+          "src": "Canon Europe EOS C500 Mark II specifications, \"Cinema RAW Light Bit Rate/Bit Depth (PAL)\" and \"XF-AVC Recording Bit Rate (PAL)\" — Canon publishes RAW at 25P/50P only (RAW rates scale with frame rate, so no NTSC figure is assumed); XF-AVC NTSC rates take the same class (59.94P as 50P, 23.98P–29.97P as 25P). The camera records VBR; these are its rates"
+        }
       ]
     },
     {
       "id": "c300iii",
       "brand": "Canon",
       "label": "EOS C300 Mark III",
+      "media": [
+        "CFexpress B",
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "crm-4k",
+          "codec": "Cinema RAW Light",
+          "res": "4K 4096×2160",
+          "card": 512,
+          "minutes": {
+            "24": 64,
+            "25": 64,
+            "50": 64,
+            "23.98": 64,
+            "29.97": 64,
+            "59.94": 64
+          },
+          "src": "Canon USA EOS C300 Mark III specifications, recording time on a 512 GB CFexpress card; Canon Europe specifications give the 50.00P/25.00P split (NTSC rates take the same class: 59.94P as 50P, 23.98P–29.97P as 25P)"
+        },
+        {
+          "id": "xfi-4k",
+          "codec": "XF-AVC Intra",
+          "res": "4K 4096×2160 / UHD",
+          "card": 512,
+          "minutes": {
+            "24": 156,
+            "25": 156,
+            "50": 79,
+            "23.98": 156,
+            "29.97": 156,
+            "59.94": 79
+          },
+          "src": "Canon USA EOS C300 Mark III specifications, recording time on a 512 GB CFexpress card; Canon Europe specifications give the 50.00P/25.00P split (NTSC rates take the same class: 59.94P as 50P, 23.98P–29.97P as 25P)"
+        },
+        {
+          "id": "crm-2k",
+          "codec": "Cinema RAW Light",
+          "res": "2K 2048×1080",
+          "card": 512,
+          "minutes": {
+            "24": 256,
+            "25": 256,
+            "50": 256,
+            "23.98": 256,
+            "29.97": 256,
+            "59.94": 256
+          },
+          "src": "Canon USA EOS C300 Mark III specifications, recording time on a 512 GB CFexpress card; Canon Europe specifications give the 50.00P/25.00P split (NTSC rates take the same class: 59.94P as 50P, 23.98P–29.97P as 25P)"
+        },
+        {
+          "id": "xfi-2k",
+          "codec": "XF-AVC Intra",
+          "res": "2K / HD 1920×1080",
+          "card": 512,
+          "minutes": {
+            "24": 401,
+            "25": 401,
+            "50": 207,
+            "23.98": 401,
+            "29.97": 401,
+            "59.94": 207
+          },
+          "src": "Canon USA EOS C300 Mark III specifications, recording time on a 512 GB CFexpress card; Canon Europe specifications give the 50.00P/25.00P split (NTSC rates take the same class: 59.94P as 50P, 23.98P–29.97P as 25P)"
+        }
+      ]
+    },
+    {
+      "id": "c70",
+      "brand": "Canon",
+      "label": "EOS C70",
+      "media": [
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "raw-st-4k",
+          "codec": "Cinema RAW Light ST",
+          "res": "4K 4096×2160",
+          "mbps": {
+            "24": 398,
+            "25": 414,
+            "23.98": 398,
+            "29.97": 497
+          },
+          "max": true,
+          "src": "Canon EOS C70 Instruction Manual (IM13), \"Video Recording Configuration\" and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/4/0300040134/12/eosc70-im13-en.pdf (the camera records VBR; these are its maximum rates)"
+        },
+        {
+          "id": "raw-lt-4k",
+          "codec": "Cinema RAW Light LT",
+          "res": "4K 4096×2160",
+          "mbps": {
+            "24": 259,
+            "25": 269,
+            "50": 538,
+            "23.98": 259,
+            "29.97": 323,
+            "59.94": 645
+          },
+          "max": true,
+          "src": "Canon EOS C70 Instruction Manual (IM13), \"Video Recording Configuration\" and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/4/0300040134/12/eosc70-im13-en.pdf (the camera records VBR; these are its maximum rates)"
+        },
+        {
+          "id": "xfi-4k",
+          "codec": "XF-AVC Intra",
+          "res": "4K 4096×2160 / UHD",
+          "mbps": {
+            "24": 410,
+            "25": 410,
+            "50": 500,
+            "23.98": 410,
+            "29.97": 410,
+            "59.94": 600
+          },
+          "max": true,
+          "src": "Canon EOS C70 Instruction Manual (IM13), \"Video Recording Configuration\" and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/4/0300040134/12/eosc70-im13-en.pdf (the camera records VBR; these are its maximum rates)"
+        },
+        {
+          "id": "xfl-4k",
+          "codec": "XF-AVC Long GOP",
+          "res": "4K 4096×2160 / UHD",
+          "mbps": {
+            "24": 160,
+            "25": 160,
+            "50": 260,
+            "23.98": 160,
+            "29.97": 160,
+            "59.94": 260
+          },
+          "max": true,
+          "src": "Canon EOS C70 Instruction Manual (IM13), \"Video Recording Configuration\" and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/4/0300040134/12/eosc70-im13-en.pdf (the camera records VBR; these are its maximum rates)"
+        }
+      ]
+    },
+    {
+      "id": "c80",
+      "brand": "Canon",
+      "label": "EOS C80",
+      "media": [
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "xfavc-i-4k-hi",
+          "codec": "XF-AVC Intra (high)",
+          "res": "4K / UHD",
+          "mbps": {
+            "24": 480,
+            "25": 500,
+            "50": 500,
+            "23.98": 480,
+            "29.97": 600,
+            "59.94": 600
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
+        },
+        {
+          "id": "xfavc-i-4k-mid",
+          "codec": "XF-AVC Intra (medium)",
+          "res": "4K / UHD",
+          "mbps": {
+            "24": 360,
+            "25": 375,
+            "23.98": 360,
+            "29.97": 450
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
+        },
+        {
+          "id": "xfavc-i-4k-lo",
+          "codec": "XF-AVC Intra (low)",
+          "res": "4K / UHD",
+          "mbps": {
+            "24": 240,
+            "25": 250,
+            "23.98": 240,
+            "29.97": 300
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
+        },
+        {
+          "id": "xfavc-lgop-4k",
+          "codec": "XF-AVC Long GOP",
+          "res": "4K / UHD",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "50": 250,
+            "23.98": 150,
+            "29.97": 150,
+            "59.94": 250
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
+        },
+        {
+          "id": "xfavc-i-hd",
+          "codec": "XF-AVC Intra",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "24": 120,
+            "25": 125,
+            "50": 250,
+            "23.98": 120,
+            "29.97": 150,
+            "59.94": 300
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
+        },
+        {
+          "id": "xfavc-lgop-hd",
+          "codec": "XF-AVC Long GOP",
+          "res": "HD 1920×1080",
+          "mbps": {
+            "24": 50,
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "src": "Canon EOS C80 Instruction Manual, Video Configuration and \"Selecting the Bit Rate for Primary Clips\" — gdlp01.c-wss.com/gds/3/0300050553/01/eosc80-im-en.pdf (the camera records VBR; these are its maximum rates)",
+          "max": true
+        }
+      ]
+    },
+    {
+      "id": "hero13",
+      "brand": "GoPro",
+      "label": "HERO13 Black",
+      "media": [
+        "microSD"
+      ],
+      "oneSlot": true,
+      "formats": [
+        {
+          "id": "high-5-3k",
+          "codec": "HEVC High bit rate",
+          "res": "5.3K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 124,
+            "25": 124,
+            "30": 124,
+            "50": 123,
+            "60": 123
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "high-4k",
+          "codec": "HEVC High bit rate",
+          "res": "4K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 197,
+            "25": 165,
+            "30": 165,
+            "50": 123,
+            "60": 123,
+            "100": 122,
+            "120": 122
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "high-2-7k",
+          "codec": "HEVC High bit rate",
+          "res": "2.7K 16:9",
+          "card": 128,
+          "minutes": {
+            "200": 122,
+            "240": 122
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "high-1080p",
+          "codec": "HEVC High bit rate",
+          "res": "1080p 16:9",
+          "card": 128,
+          "minutes": {
+            "25": 361,
+            "30": 361,
+            "50": 223,
+            "60": 223,
+            "100": 160,
+            "120": 160,
+            "200": 123,
+            "240": 123
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "standard-5-3k",
+          "codec": "HEVC Standard bit rate",
+          "res": "5.3K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 291,
+            "25": 266,
+            "30": 266,
+            "50": 240,
+            "60": 240
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "standard-4k",
+          "codec": "HEVC Standard bit rate",
+          "res": "4K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 473,
+            "25": 322,
+            "30": 322,
+            "50": 261,
+            "60": 261,
+            "100": 191,
+            "120": 191
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "standard-2-7k",
+          "codec": "HEVC Standard bit rate",
+          "res": "2.7K 16:9",
+          "card": 128,
+          "minutes": {
+            "200": 203,
+            "240": 203
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "standard-1080p",
+          "codec": "HEVC Standard bit rate",
+          "res": "1080p 16:9",
+          "card": 128,
+          "minutes": {
+            "25": 687,
+            "30": 687,
+            "50": 459,
+            "60": 459,
+            "100": 306,
+            "120": 306,
+            "200": 223,
+            "240": 223
+          },
+          "src": "GoPro Support · HERO13 Black: SD Card Capacity In Various Settings (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        }
+      ]
+    },
+    {
+      "id": "hero12",
+      "brand": "GoPro",
+      "label": "HERO12 Black",
+      "media": [
+        "microSD"
+      ],
+      "oneSlot": true,
+      "formats": [
+        {
+          "id": "high-5-3k",
+          "codec": "HEVC High bit rate",
+          "res": "5.3K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 146,
+            "25": 123,
+            "30": 123,
+            "50": 121,
+            "60": 121
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "high-4k",
+          "codec": "HEVC High bit rate",
+          "res": "4K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 193,
+            "25": 162,
+            "30": 162,
+            "50": 121,
+            "60": 121,
+            "100": 120,
+            "120": 120
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "high-2-7k",
+          "codec": "HEVC High bit rate",
+          "res": "2.7K 16:9",
+          "card": 128,
+          "minutes": {
+            "200": 120,
+            "240": 120
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "high-1080p",
+          "codec": "HEVC High bit rate",
+          "res": "1080p 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 395,
+            "25": 349,
+            "30": 349,
+            "50": 217,
+            "60": 217,
+            "100": 157,
+            "120": 157,
+            "200": 125,
+            "240": 125
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "standard-5-3k",
+          "codec": "HEVC Standard bit rate",
+          "res": "5.3K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 284,
+            "25": 259,
+            "30": 259,
+            "50": 234,
+            "60": 234
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "standard-4k",
+          "codec": "HEVC Standard bit rate",
+          "res": "4K 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 454,
+            "25": 395,
+            "30": 395,
+            "50": 276,
+            "60": 276,
+            "100": 186,
+            "120": 186
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "standard-2-7k",
+          "codec": "HEVC Standard bit rate",
+          "res": "2.7K 16:9",
+          "card": 128,
+          "minutes": {
+            "200": 186,
+            "240": 186
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        },
+        {
+          "id": "standard-1080p",
+          "codec": "HEVC Standard bit rate",
+          "res": "1080p 16:9",
+          "card": 128,
+          "minutes": {
+            "24": 647,
+            "25": 647,
+            "30": 647,
+            "50": 434,
+            "60": 434,
+            "100": 296,
+            "120": 296,
+            "200": 229,
+            "240": 229
+          },
+          "src": "GoPro Support · HERO12 Black: SD Card Capacity In Each Video Setting (128 GB card, 16:9) — community.gopro.com. PAL rates (25/50/100/200) take the time of their pair (30/60/120/240) — GoPro lists each pair as one setting in \"Video Settings And Resolutions\""
+        }
+      ]
+    },
+    {
+      "id": "ronin4d",
+      "brand": "DJI",
+      "label": "Ronin 4D 6K",
+      "media": [
+        "DJI PROSSD",
+        "CFexpress B"
+      ],
       "formats": [
         [
-          "craw-st",
-          "uhd"
+          "prores-hq",
+          "dci4k",
+          120
         ],
         [
-          "xf-avc-i",
-          "uhd"
+          "prores-lt",
+          "dci4k",
+          120
         ]
+      ]
+    },
+    {
+      "id": "osmo-action5",
+      "brand": "DJI",
+      "label": "Osmo Action 5 Pro",
+      "media": [
+        "microSD"
+      ],
+      "oneSlot": true,
+      "formats": [
+        {
+          "id": "uhd",
+          "codec": "H.264 / H.265",
+          "res": "4K 16:9 3840×2160",
+          "max": true,
+          "mbps": {
+            "24": 120,
+            "25": 120,
+            "30": 120,
+            "48": 120,
+            "50": 120,
+            "60": 120,
+            "100": 120,
+            "120": 120
+          },
+          "src": "DJI Osmo Action 5 Pro specs (Max Video Bitrate 120 Mbps; standard recording modes) — dji.com/osmo-action-5-pro/specs"
+        },
+        {
+          "id": "27k",
+          "codec": "H.264 / H.265",
+          "res": "2.7K 16:9 2688×1512",
+          "max": true,
+          "mbps": {
+            "24": 120,
+            "25": 120,
+            "30": 120,
+            "48": 120,
+            "50": 120,
+            "60": 120,
+            "100": 120,
+            "120": 120
+          },
+          "src": "DJI Osmo Action 5 Pro specs (Max Video Bitrate 120 Mbps; standard recording modes) — dji.com/osmo-action-5-pro/specs"
+        },
+        {
+          "id": "hd",
+          "codec": "H.264 / H.265",
+          "res": "1080p 16:9 1920×1080",
+          "max": true,
+          "mbps": {
+            "24": 120,
+            "25": 120,
+            "30": 120,
+            "48": 120,
+            "50": 120,
+            "60": 120,
+            "100": 120,
+            "120": 120,
+            "200": 120,
+            "240": 120
+          },
+          "src": "DJI Osmo Action 5 Pro specs (Max Video Bitrate 120 Mbps; standard recording modes) — dji.com/osmo-action-5-pro/specs"
+        }
+      ]
+    },
+    {
+      "id": "osmo-pocket3",
+      "brand": "DJI",
+      "label": "Osmo Pocket 3",
+      "media": [
+        "microSD"
+      ],
+      "oneSlot": true,
+      "formats": [
+        {
+          "id": "uhd",
+          "codec": "H.264 / H.265",
+          "res": "4K 16:9 3840×2160",
+          "max": true,
+          "mbps": {
+            "24": 130,
+            "25": 130,
+            "30": 130,
+            "48": 130,
+            "50": 130,
+            "60": 130,
+            "120": 130
+          },
+          "src": "DJI Osmo Pocket 3 specs (Max Video Bitrate 130 Mbps; normal video and slow-motion modes) — dji.com/osmo-pocket-3/specs"
+        },
+        {
+          "id": "27k",
+          "codec": "H.264 / H.265",
+          "res": "2.7K 16:9 2688×1512",
+          "max": true,
+          "mbps": {
+            "24": 130,
+            "25": 130,
+            "30": 130,
+            "48": 130,
+            "50": 130,
+            "60": 130,
+            "120": 130
+          },
+          "src": "DJI Osmo Pocket 3 specs (Max Video Bitrate 130 Mbps; normal video and slow-motion modes) — dji.com/osmo-pocket-3/specs"
+        },
+        {
+          "id": "hd",
+          "codec": "H.264 / H.265",
+          "res": "1080p 16:9 1920×1080",
+          "max": true,
+          "mbps": {
+            "24": 130,
+            "25": 130,
+            "30": 130,
+            "48": 130,
+            "50": 130,
+            "60": 130,
+            "120": 130,
+            "240": 130
+          },
+          "src": "DJI Osmo Pocket 3 specs (Max Video Bitrate 130 Mbps; normal video and slow-motion modes) — dji.com/osmo-pocket-3/specs"
+        }
+      ]
+    },
+    {
+      "id": "eva1",
+      "brand": "Panasonic",
+      "label": "AU-EVA1",
+      "media": [
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "alli400-uhd",
+          "codec": "422 ALL-I 400M",
+          "res": "UHD 3840×2160 / 4K",
+          "mbps": {
+            "24": 400,
+            "25": 400,
+            "23.98": 400,
+            "29.97": 400
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop150-uhd",
+          "codec": "422 LongGOP 150M",
+          "res": "UHD 3840×2160 / 4K",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "23.98": 150,
+            "29.97": 150
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "hevc150-uhd",
+          "codec": "HEVC LongGOP 150M",
+          "res": "UHD 3840×2160 / 4K",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "50": 150,
+            "23.98": 150,
+            "29.97": 150,
+            "59.94": 150
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop100-uhd",
+          "codec": "420 LongGOP 100M",
+          "res": "UHD 3840×2160 / 4K",
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 100,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 100
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "alli100-hd",
+          "codec": "422 ALL-I 100M",
+          "res": "FHD 1920×1080 / 2K",
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 100,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 100
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop50-hd",
+          "codec": "422 LongGOP 50M",
+          "res": "FHD 1920×1080 / 2K",
+          "mbps": {
+            "24": 50,
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50
+          },
+          "src": "Panasonic AU-EVA1 Operating Instructions: \"Selecting the resolution, codec, and frame rate\" (codec names carry the rate) and \"Recording time of the SD card\" — pro-av.panasonic.net"
+        }
+      ]
+    },
+    {
+      "id": "cx350",
+      "brand": "Panasonic",
+      "label": "AG-CX350",
+      "media": [
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "alli400-uhd",
+          "codec": "422 ALL-I 400M",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "25": 400,
+            "23.98": 400,
+            "29.97": 400
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "hevc200-uhd",
+          "codec": "HEVC LongGOP 200M",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "50": 200,
+            "59.94": 200
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "hevc100-uhd",
+          "codec": "HEVC LongGOP 100M",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "50": 100,
+            "59.94": 100
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "hevc150-uhd",
+          "codec": "HEVC LongGOP 150M",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "25": 150,
+            "23.98": 150,
+            "29.97": 150
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop422-150-uhd",
+          "codec": "422 LongGOP 150M",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "25": 150,
+            "23.98": 150,
+            "29.97": 150
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop420-150-uhd",
+          "codec": "420 LongGOP 150M",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "50": 150,
+            "59.94": 150
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop420-100-uhd",
+          "codec": "420 LongGOP 100M",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "25": 100,
+            "23.98": 100,
+            "29.97": 100
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "alli200-hd",
+          "codec": "422 ALL-I 200M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "50": 200,
+            "59.94": 200
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop100-hd",
+          "codec": "422 LongGOP 100M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "50": 100,
+            "59.94": 100
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "alli100-hd",
+          "codec": "422 ALL-I 100M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "25": 100,
+            "23.98": 100,
+            "29.97": 100,
+            "50i": 100,
+            "59.94i": 100
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        },
+        {
+          "id": "lgop50-hd",
+          "codec": "422 LongGOP 50M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "50i": 50,
+            "59.94i": 50
+          },
+          "src": "Panasonic AG-CX350 Operating Instructions (DVQP1830WA): [SYSTEM] → [REC FORMAT] options (codec names carry the rate) and \"Recording time\" — pro-av.panasonic.net"
+        }
+      ]
+    },
+    {
+      "id": "ux180",
+      "brand": "Panasonic",
+      "label": "AG-UX180",
+      "media": [
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "uhd-lgop",
+          "codec": "LongGOP",
+          "res": "UHD 3840×2160",
+          "mbps": {
+            "25": 100,
+            "50": 150,
+            "23.98": 100,
+            "29.97": 100,
+            "59.94": 150
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "c4k-lgop",
+          "codec": "LongGOP",
+          "res": "4K 4096×2160",
+          "mbps": {
+            "24": 100
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "fhd-alli200",
+          "codec": "ALL-Intra 200M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "25": 200,
+            "50": 200,
+            "23.98": 200,
+            "29.97": 200,
+            "59.94": 200
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "fhd-lgop100",
+          "codec": "LongGOP 100M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "50": 100,
+            "59.94": 100
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "fhd-lgop50",
+          "codec": "LongGOP 50M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "25": 50,
+            "50": 50,
+            "23.98": 50,
+            "29.97": 50,
+            "59.94": 50,
+            "50i": 50,
+            "59.94i": 50
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "avchd-ps",
+          "codec": "AVCHD 25M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "50": 25,
+            "59.94": 25
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "avchd-21",
+          "codec": "AVCHD 21M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "23.98": 21,
+            "50i": 21,
+            "59.94i": 21
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        },
+        {
+          "id": "avchd-17",
+          "codec": "AVCHD 17M",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "50i": 17,
+            "59.94i": 17
+          },
+          "src": "Panasonic AG-UX180 product page, \"Recording Format\" table — pro-av.panasonic.net/en/products/ag-ux180/features.html"
+        }
+      ]
+    },
+    {
+      "id": "s1h",
+      "brand": "Panasonic",
+      "label": "LUMIX S1H",
+      "media": [
+        "SD"
+      ],
+      "formats": [
+        {
+          "id": "6k-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "6K 5952×3968",
+          "mbps": {
+            "24": 200,
+            "23.98": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "5-9k-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "5.9K 5888×3312",
+          "mbps": {
+            "24": 200,
+            "25": 200,
+            "29.97": 200,
+            "23.98": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "c4k-422-10-i-avc",
+          "codec": "H.264 4:2:2 10-bit ALL-I",
+          "res": "C4K 4096×2160",
+          "mbps": {
+            "24": 400,
+            "25": 400,
+            "29.97": 400,
+            "23.98": 400
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "c4k-422-10-l-avc",
+          "codec": "H.264 4:2:2 10-bit LongGOP",
+          "res": "C4K 4096×2160",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "29.97": 150,
+            "23.98": 150
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "c4k-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "C4K 4096×2160",
+          "mbps": {
+            "48": 200,
+            "50": 200,
+            "59.94": 200,
+            "47.95": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "4k-422-10-i-avc",
+          "codec": "H.264 4:2:2 10-bit ALL-I",
+          "res": "4K UHD 3840×2160",
+          "mbps": {
+            "24": 400,
+            "25": 400,
+            "29.97": 400,
+            "23.98": 400
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "4k-422-10-l-avc",
+          "codec": "H.264 4:2:2 10-bit LongGOP",
+          "res": "4K UHD 3840×2160",
+          "mbps": {
+            "24": 150,
+            "25": 150,
+            "29.97": 150,
+            "23.98": 150
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "4k-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "4K UHD 3840×2160",
+          "mbps": {
+            "48": 200,
+            "50": 200,
+            "59.94": 200,
+            "47.95": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "fhd-422-10-i-avc",
+          "codec": "H.264 4:2:2 10-bit ALL-I",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "24": 200,
+            "25": 200,
+            "50": 200,
+            "59.94": 200,
+            "29.97": 200,
+            "23.98": 200
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "fhd-422-10-l-avc",
+          "codec": "H.264 4:2:2 10-bit LongGOP",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "24": 100,
+            "25": 100,
+            "50": 100,
+            "59.94": 100,
+            "29.97": 100,
+            "23.98": 100
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        },
+        {
+          "id": "fhd-420-10-l-hevc",
+          "codec": "HEVC 4:2:0 10-bit LongGOP",
+          "res": "FHD 1920×1080",
+          "mbps": {
+            "48": 100,
+            "100": 150,
+            "119.88": 150,
+            "47.95": 100
+          },
+          "src": "Panasonic LUMIX DC-S1H Operating Instructions (DVQX1939), \"[Rec Quality]\" tables for [MOV] (NTSC, PAL and CINEMA) — help.na.panasonic.com"
+        }
       ]
     },
     {
