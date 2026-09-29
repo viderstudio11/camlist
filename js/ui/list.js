@@ -1,5 +1,6 @@
 import { esc, icons, toast, openSheet, confirmDialog } from './dom.js';
-import { groupByDept, setQty, setNote, totalQty } from '../list.js';
+import { groupByDept, setQty, setNote, totalQty, addItem } from '../list.js';
+import { gearKitFor, gearKitStatus } from '../gearkits.js';
 import { brandText } from '../brands.js';
 import { displayName, formatDateRange } from '../export-text.js';
 import { DEPT_EMOJI } from '../i18n.js';
@@ -9,7 +10,11 @@ import { editProjectSheet } from './projects.js';
 import { presetCatalog } from './catalog.js';
 
 const collapsed = new Set();
-let showKit = false; // set by "Build around": bring the new kit into view on the next draw
+let showKit = false;
+// Design preview (temporary): where an item's must-have accessories show — 'inline' under the item,
+// or 'build' through the same "Build around" button the cameras use.
+let kitLook = 'inline';
+const openKits = new Set(); // inline look: items whose checklist is open // set by "Build around": bring the new kit into view on the next draw
 let pickup = false; // prep day: the list turns into a check-off sheet
 
 export const thumbHTML = (p, key) => `<div class="thumb"><span>${DEPT_EMOJI[key] || '📦'}</span>${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" onerror="this.remove()">` : ''}</div>`;
@@ -46,7 +51,29 @@ export function render(ctx, { id }, root) {
   const activeProf = active ? compat.profileFor(active) : null;
   const groups = groupByDept(p.items, ctx.resolve, ctx.deptOrder());
 
+  const gearKit = (product) => gearKitFor(ctx.catalog, product);
+  const qtyOf = (pid) => p.items.find(i => i.productId === pid)?.qty || 1;
+  const kitSlots = (product) => gearKitStatus(gearKit(product), qtyOf(product.id), p.items, ctx.resolve);
+  // Look A: a chip under the item that opens its checklist in place.
+  const kitChip = (product) => {
+    if (kitLook !== 'inline' || !gearKit(product)) return '';
+    const st = kitSlots(product), done = st.filter(x => x.done).length;
+    return `<button class="buildbtn kitchip ${done === st.length ? 'active' : ''}" data-kitchip="${esc(product.id)}">${done === st.length ? '✓' : '▾'} ${t('kit_short')} ${done}/${st.length}</button>`;
+  };
+  const slotRows = (product) => kitSlots(product).map(x => `
+      <div class="slot ${x.done ? 'done' : ''}">
+        <span class="slot-check">${x.done ? '✓' : ''}</span>
+        <span class="slot-label">${esc(ctx.lang() === 'he' ? x.he : x.en)}</span>
+        <span class="slot-have">${x.have} / ${x.need}</span>
+        ${x.done ? '' : x.add != null ? `<button class="btn sm" data-kitadd="${esc(product.id)}" data-slot="${esc(x.key)}">${t('add')}</button>` : `<button class="btn sm" data-kitfind="${esc(x.key)}">${t('choose')}</button>`}
+      </div>`).join('');
+  const inlineKit = (product) => (kitLook === 'inline' && openKits.has(product.id) && gearKit(product)
+    ? `<div class="gkit"><div class="gkit-head">${t('must_have_for', { name: esc(displayName(product)) })}</div><div class="slots">${slotRows(product)}</div></div>` : '');
   const buildBtn = (product) => {
+    if (kitLook === 'build' && gearKit(product)) {
+      const on = p.buildItemId === product.id;
+      return `<button class="buildbtn ${on ? 'active' : ''}" data-builditem="${esc(product.id)}">${on ? `✓ ${t('building_this')}` : `⚙ ${t('build_around')}`}</button>`;
+    }
     if (!compat.isCamera(product) || !compat.profileFor(product)) return '';
     const isActive = p.buildCameraId === product.id;
     return `<button class="buildbtn ${isActive ? 'active' : ''}" data-build="${esc(product.id)}">${isActive ? `✓ ${t('active_camera')}` : `⚙ ${t('build_around')}`}</button>`;
@@ -66,11 +93,11 @@ export function render(ctx, { id }, root) {
           ${thumbHTML(product, g.key)}
           <div class="body">
             <div class="name">${esc(displayName(product))}</div>
-            <div class="sub">${brandText(product.brand, product.brandName)}${product.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${pickup ? '' : buildBtn(product)}</div>
+            <div class="sub">${brandText(product.brand, product.brandName)}${product.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${pickup ? '' : buildBtn(product) + kitChip(product)}</div>
             ${pickup ? (item.note ? `<div class="sub dim" dir="auto">${esc(item.note)}</div>` : '') : `<input class="note" value="${esc(item.note)}" placeholder="${t('note_placeholder')}" data-note>`}
           </div>
           ${tailHTML(item)}
-        </div>`).join('')}</div>
+        </div>${pickup ? '' : inlineKit(product)}`).join('')}</div>
     </section>`);
 
   // Prep day banner: how much of the list is already in the truck.
@@ -81,9 +108,21 @@ export function render(ctx, { id }, root) {
     ${packedQty < n ? `<div class="m-note">${t('missing_items', { n: n - packedQty })}</div>` : ''}
   </section>`;
 
-  // Base kit checklist for the active camera
+  // Look B: an item's must-have kit, in the same place the camera's base kit sits.
+  const buildItem = kitLook === 'build' && p.buildItemId != null ? ctx.resolve(p.buildItemId) : null;
   let kitHTML = '';
-  if (active && activeProf && !pickup) {
+  if (buildItem && gearKit(buildItem) && !pickup) {
+    kitHTML = `<section class="kit">
+      <div class="kit-head">
+        ${thumbHTML(buildItem, ctx.catalog.deptKey(buildItem.dept))}
+        <div class="kit-title"><small>${esc(ctx.lang() === 'he' ? gearKit(buildItem).he : gearKit(buildItem).en)} · ${t('building_around')}</small><b dir="auto">${esc(displayName(buildItem))}</b></div>
+        <button class="iconbtn" data-clear-builditem aria-label="${t('clear_build')}">×</button>
+      </div>
+      <div class="slots">${slotRows(buildItem)}</div>
+    </section>`;
+  }
+  // Base kit checklist for the active camera
+  if (!kitHTML && active && activeProf && !pickup) {
     const slots = compat.kitStatus(activeProf, p.items, ctx.resolve);
     const lang = ctx.lang();
     kitHTML = `<section class="kit">
@@ -114,9 +153,11 @@ export function render(ctx, { id }, root) {
   const listHTML = groups.length ? ''
     : `<div class="empty"><div class="big">🧰</div><h2>${t('list_empty')}</h2><p>${t('list_empty_hint')}</p></div>`;
   // The kit sits right under the cameras it is built around, not three screens down the list.
-  const camAt = groups.findIndex(g => g.key === 'cameras');
+  const kitKey = buildItem ? ctx.catalog.deptKey(buildItem.dept) : 'cameras';
+  const camAt = groups.findIndex(g => g.key === kitKey);
   if (!pickup && kitHTML) sections.splice(camAt + 1, 0, kitHTML);
-  root.innerHTML = headHTML + pickHTML + (groups.length ? sections.join('') : listHTML);
+  const lookHTML = pickup ? '' : `<div class="look-switch"><span>Design preview</span>${[['inline', 'A · Under each item'], ['build', 'B · Build around']].map(([k, l]) => `<button class="chip pick ${kitLook === k ? 'on' : ''}" data-kitlook="${k}">${l}</button>`).join('')}</div>`;
+  root.innerHTML = headHTML + lookHTML + pickHTML + (groups.length ? sections.join('') : listHTML);
   if (showKit) { showKit = false; root.querySelector('.kit')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   root.insertAdjacentHTML('beforeend', `<div class="bottombar">${pickup
     ? `<button class="btn primary" data-pick-off>${t('pickup_off')}</button>`
@@ -142,6 +183,29 @@ export function render(ctx, { id }, root) {
   root.querySelectorAll('.group-head').forEach(h => { h.onclick = () => { const k = h.parentElement.dataset.key; collapsed.has(k) ? collapsed.delete(k) : collapsed.add(k); h.parentElement.classList.toggle('collapsed'); }; });
   root.querySelectorAll('[data-build]').forEach(b => { b.onclick = () => { const pid = parseId(b.dataset.build); const on = p.buildCameraId !== pid; store.setBuildCamera(id, on ? pid : null); showKit = on; ctx.render(); }; });
   root.querySelector('[data-clear-build]')?.addEventListener('click', () => { store.setBuildCamera(id, null); ctx.render(); });
+  root.querySelectorAll('[data-kitlook]').forEach(b => { b.onclick = () => { kitLook = b.dataset.kitlook; ctx.render(); }; });
+  root.querySelectorAll('[data-kitchip]').forEach(b => { b.onclick = () => { const k = parseId(b.dataset.kitchip); openKits.has(k) ? openKits.delete(k) : openKits.add(k); ctx.render(); }; });
+  root.querySelectorAll('[data-builditem]').forEach(b => { b.onclick = () => {
+    const pid = parseId(b.dataset.builditem); const on = p.buildItemId !== pid;
+    store.updateProject(id, { buildItemId: on ? pid : null, ...(on ? { buildCameraId: null } : {}) }); showKit = on; ctx.render();
+  }; });
+  root.querySelector('[data-clear-builditem]')?.addEventListener('click', () => { store.updateProject(id, { buildItemId: null }); ctx.render(); });
+  // A missing slot adds what it lacks; a slot with a choice (V-Mount or Gold plate) asks first.
+  root.querySelectorAll('[data-kitadd]').forEach(b => { b.onclick = () => {
+    const parent = ctx.resolve(parseId(b.dataset.kitadd));
+    const slot = kitSlots(parent).find(x => x.key === b.dataset.slot);
+    const put = (pid) => {
+      const items = store.getProject(id).items, cur = items.find(i => i.productId === pid)?.qty || 0;
+      const n = slot.need - slot.have;
+      store.setItems(id, cur ? setQty(items, pid, cur + n) : addItem(items, ctx.resolve(pid), n));
+      ctx.render();
+    };
+    const choices = [slot.add].flat();
+    if (choices.length === 1) return put(choices[0]);
+    openSheet({ title: ctx.lang() === 'he' ? slot.he : slot.en, bodyHTML: '', stack: true,
+      actions: choices.map(c => ({ label: ctx.resolve(c).name, onClick: () => put(c) })) });
+  }; });
+  root.querySelectorAll('[data-kitfind]').forEach(b => { b.onclick = () => { presetCatalog({}); ctx.navigate(`#/p/${id}/add`); }; });
   root.querySelectorAll('[data-choose]').forEach(b => { b.onclick = () => {
     const slot = compat.kitStatus(activeProf, p.items, ctx.resolve).find(s => s.slot === b.dataset.choose);
     presetCatalog({ dept: slot.deptId, subcat: slot.subId, strict: true, kind: slot.kind || null });

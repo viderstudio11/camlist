@@ -249,6 +249,97 @@
       "brand": "schneider",
       "dept": "accessories",
       "subcat": "4X5.6"
+    },
+    {
+      "id": "x_gen_sunhood",
+      "name": "Monitor Sunhood",
+      "brand": null,
+      "dept": "video",
+      "subcat": "Monitors"
+    },
+    {
+      "id": "x_gen_rain_cover",
+      "name": "Monitor Rain Cover",
+      "brand": null,
+      "dept": "video",
+      "subcat": "Monitors"
+    },
+    {
+      "id": "x_gen_ac_cable",
+      "name": "AC Power Cable",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_xlr4",
+      "name": "4-Pin XLR Power Cable",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_dtap",
+      "name": "D-Tap Power Cable",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_plate_v",
+      "name": "V-Mount Battery Plate",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_plate_gold",
+      "name": "Gold Mount Battery Plate",
+      "brand": null,
+      "dept": "power",
+      "subcat": "Power Cables"
+    },
+    {
+      "id": "x_gen_monitor_arm",
+      "name": "Monitor Arm",
+      "brand": null,
+      "dept": "grip",
+      "subcat": "Grip Accessories"
+    },
+    {
+      "id": "x_gen_rods15",
+      "name": "15mm Rods",
+      "brand": null,
+      "dept": "grip",
+      "subcat": "Camera Support & Rigs"
+    },
+    {
+      "id": "x_gen_gear_rings",
+      "name": "Lens Gear Rings Set",
+      "brand": null,
+      "dept": "accessories",
+      "subcat": "Follow Focus"
+    },
+    {
+      "id": "x_gen_top_flag",
+      "name": "Top Flag",
+      "brand": null,
+      "dept": "accessories",
+      "subcat": "Matte Boxes"
+    },
+    {
+      "id": "x_gen_donuts",
+      "name": "Lens Donut Rings",
+      "brand": null,
+      "dept": "accessories",
+      "subcat": "Matte Boxes"
+    },
+    {
+      "id": "x_gen_ssd",
+      "name": "Portable SSD",
+      "brand": null,
+      "dept": "media",
+      "subcat": "Drives & SSD"
     }
   ],
   "departments": [
@@ -286,7 +377,7 @@
       "dept": "power",
       "subcategories": [
         {
-          "he": "כבלי חשמל",
+          "he": "כבלי חשמל ופלייטים",
           "en": "Power Cables"
         }
       ]

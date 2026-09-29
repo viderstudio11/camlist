@@ -2,7 +2,7 @@
 // and cables, a head wants legs, a battery wants its charger. Suggestions come from the catalog itself.
 import { BATTERY, mediaFamilies } from './compat.js';
 
-const subNames = (catalog, p) => p.subcats.map(id => catalog.departments.flatMap(d => d.subcategories).find(s => s.id === id)?.en).filter(Boolean);
+const subNames = (catalog, p) => (p.subcats || []).map(id => catalog.departments.flatMap(d => d.subcategories).find(s => s.id === id)?.en).filter(Boolean);
 const inches = (name) => { const m = String(name).match(/(\d+(?:\.\d+)?)\s*(?:["″”]|inch|in\b)/i); return m ? Number(m[1]) : null; };
 const byName = (catalog, rx) => catalog.products.find(p => rx.test(p.name)) || null;
 const familiesOf = (name) => Object.entries(BATTERY).filter(([, rx]) => rx.test(name)).map(([k]) => k);
@@ -31,7 +31,7 @@ export function companionsFor(product, catalog, { items = [], resolve = () => nu
   } else if (dept === 'tripods' && subs.includes('Tripod Legs')) {
     const heads = catalog.products.filter(p => subNames(catalog, p).includes('Fluid Heads'));
     heads.filter(p => p.brand === product.brand).concat(heads).forEach(add);
-  } else if (dept === 'power' && familiesOf(name).length) {
+  } else if (dept === 'power' && familiesOf(name).length && !/plate|cable/i.test(name)) {
     const fam = familiesOf(name)[0];
     const isCharger = /charger|station/i.test(name);
     const want = catalog.products.filter(p => catalog.deptKey(p.dept) === 'power' && p.id !== product.id
