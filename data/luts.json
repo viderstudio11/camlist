@@ -1,464 +1,177 @@
 {
-  "_readme": "Log formats by camera. Pick a camera, get the log it records and the manufacturer’s own LUT download. `url` is the maker’s download page for the log (checked 2026-09-30); a camera may carry its own `url` where the maker files LUTs per product (DJI, LUMIX). `monitor` names the conversion to watch the picture with. Exposure notes are common practice on set, not manufacturer instruction.",
+  "_readme": "Log formats and the conversion LUTs that go with them. 'source' is where the manufacturer publishes its own LUTs. 'verified' marks a link that was checked against the manufacturer's site; entries without it name the source but deliberately carry no deep link, because an invented download URL is worse than none. Exposure notes are common practice on set, not manufacturer instruction — treat them as a starting point and test on your own camera. 'slug' is the brand folder the logo is filed under in logos/.",
   "logs": [
     {
       "id": "slog3",
-      "brand": "Sony",
-      "slug": "sony",
       "name": "S-Log3 / S-Gamut3.Cine",
-      "monitor": "s709",
-      "url": "https://pro.sony/ue_US/technology/professional-video-lut-look-up-table",
-      "source": "Sony Pro — LUT library",
-      "cameras": [
-        {
-          "name": "VENICE 2"
-        },
-        {
-          "name": "BURANO"
-        },
-        {
-          "name": "PXW-FX9"
-        },
-        {
-          "name": "PXW-FX6"
-        },
-        {
-          "name": "ILME-FX3"
-        },
-        {
-          "name": "ILME-FX30"
-        },
-        {
-          "name": "ILME-FX2"
-        },
-        {
-          "name": "ILME-FX5"
-        },
-        {
-          "name": "Alpha 7S III"
-        },
-        {
-          "name": "Alpha 7 IV"
-        },
-        {
-          "name": "FR7"
-        },
-        {
-          "name": "PXW-FS7 / FS7 II"
-        },
-        {
-          "name": "PMW-F55"
-        }
-      ],
-      "noteHe": "s709 הוא הלוק שסוני בנתה לניטור על הסט; 709(800) הוא ההמרה הטכנית. נהוג לחשוף שליש עד שני סטופים מעל המדד כדי להרחיק רעש מהצללים, ואז למשוך חזרה בגרייד.",
-      "noteEn": "s709 is the look Sony built for on-set monitoring; 709(800) is the technical conversion. Common practice is to rate a third to two stops over to keep noise out of the shadows, then pull back in the grade.",
+      "brand": "Sony",
+      "cameras": "VENICE · BURANO · FX9 · FX6 · FX3 · FX30 · A7S III",
       "luts": [
         "s709 Monitor Look",
         "Sony Look Profiles (S-Gamut3.Cine/S-Log3)",
         "709(800) technical LUT"
       ],
-      "verified": true
+      "source": "Sony Pro — LUT Library",
+      "url": "https://pro.sony/ue_US/technology/professional-video-lut-look-up-table",
+      "verified": true,
+      "noteHe": "s709 הוא הלוק שסוני בנתה לניטור על הסט; 709(800) הוא ההמרה הטכנית. נהוג לחשוף שליש עד שני סטופים מעל המדד כדי להרחיק רעש מהצללים, ואז למשוך חזרה בגרייד.",
+      "noteEn": "s709 is the look Sony built for on-set monitoring; 709(800) is the technical conversion. Common practice is to rate a third to two stops over to keep noise out of the shadows, then pull back in the grade.",
+      "slug": "sony"
     },
     {
       "id": "slog2",
-      "brand": "Sony",
-      "slug": "sony",
       "name": "S-Log2 / S-Gamut",
-      "monitor": "S-Log2 → Rec.709 (Sony look profile)",
-      "url": "https://pro.sony/ue_US/technology/professional-video-lut-look-up-table",
-      "source": "Sony Pro — LUT library",
-      "cameras": [
-        {
-          "name": "PXW-FS7 / FS7 II"
-        },
-        {
-          "name": "PMW-F55"
-        },
-        {
-          "name": "PMW-F5"
-        },
-        {
-          "name": "Alpha 7S II"
-        }
-      ],
-      "noteHe": "הדור שלפני S-Log3. שומר פחות מידע בצללים — אל תערבב בין הלוטים של השניים.",
-      "noteEn": "The generation before S-Log3. It holds less in the shadows — do not mix the two families of LUT.",
+      "brand": "Sony",
+      "cameras": "F55 · F5 · FS7 · A7S II",
       "luts": [
         "Sony Look Profiles (S-Gamut/S-Log2)"
       ],
-      "verified": true
+      "source": "Sony Pro — LUT Library",
+      "url": "https://pro.sony/ue_US/technology/professional-video-lut-look-up-table",
+      "verified": true,
+      "noteHe": "הדור שלפני S-Log3. שומר פחות מידע בצללים — אל תערבב בין הלוטים של השניים.",
+      "noteEn": "The generation before S-Log3. It holds less in the shadows — do not mix the two families of LUT.",
+      "slug": "sony"
     },
     {
       "id": "logc4",
-      "brand": "ARRI",
-      "slug": "arri",
       "name": "LogC4 / AWG4",
-      "monitor": "LogC4 → Rec.709 (ARRI LUT package)",
-      "url": "https://www.arri.com/en/learn-help/learn-help-camera-system/tools/lut-generator",
-      "source": "ARRI — LUTs & LUT Generator",
-      "cameras": [
-        {
-          "name": "ALEXA 35"
-        },
-        {
-          "name": "ALEXA 35 Xtreme"
-        },
-        {
-          "name": "ALEXA 265"
-        }
-      ],
-      "noteHe": "חבילת הלוטים הרשמית ל-LogC4. שים לב: מחולל הלוטים של ARRI עצמו בונה רק LogC3 — ל-LogC4 יש חבילה מוכנה להורדה באותו עמוד.",
-      "noteEn": "The official LUT package for LogC4. Note that ARRI's own generator builds LogC3 only — LogC4 comes as a ready package on the same page.",
+      "brand": "ARRI",
+      "cameras": "ALEXA 35 · ALEXA 35 Xtreme · ALEXA 265",
       "luts": [
         "ARRI LogC4 LUT Package (.cube)"
       ],
-      "verified": true
+      "source": "ARRI — LUT Generator",
+      "url": "https://www.arri.com/en/learn-help/learn-help-camera-system/tools/lut-generator",
+      "verified": true,
+      "noteHe": "חבילת הלוטים הרשמית ל-LogC4. שים לב: מחולל הלוטים של ARRI עצמו בונה רק LogC3 — ל-LogC4 יש חבילה מוכנה להורדה באותו עמוד.",
+      "noteEn": "The official LUT package for LogC4. Note that ARRI's own generator builds LogC3 only — LogC4 comes as a ready package on the same page.",
+      "slug": "arri"
     },
     {
       "id": "logc3",
-      "brand": "ARRI",
-      "slug": "arri",
       "name": "LogC3 / AWG3",
-      "monitor": "LogC3 → Rec.709 (K1S1)",
-      "url": "https://www.arri.com/en/learn-help/learn-help-camera-system/tools/lut-generator",
-      "source": "ARRI — LUTs & LUT Generator",
-      "cameras": [
-        {
-          "name": "ALEXA Mini LF"
-        },
-        {
-          "name": "ALEXA Mini"
-        },
-        {
-          "name": "AMIRA"
-        },
-        {
-          "name": "ALEXA LF / SXT"
-        }
-      ],
-      "noteHe": "המחולל בונה לוט לפי ה-EI ומרחב היעד שתבחר, כולל המרה ללינארי ל-VFX.",
-      "noteEn": "The generator builds a LUT for the EI and target space you choose, including a linear conversion for VFX.",
+      "brand": "ARRI",
+      "cameras": "ALEXA Mini LF · ALEXA Mini · AMIRA · ALEXA Classic",
       "luts": [
         "ARRI LogC3 LUT Package (.cube)",
         "LUT Generator — custom LogC3 → Rec 709 / Rec 2020"
       ],
-      "verified": true
+      "source": "ARRI — LUT Generator",
+      "url": "https://www.arri.com/en/learn-help/learn-help-camera-system/tools/lut-generator",
+      "verified": true,
+      "noteHe": "המחולל בונה לוט לפי ה-EI ומרחב היעד שתבחר, כולל המרה ללינארי ל-VFX.",
+      "noteEn": "The generator builds a LUT for the EI and target space you choose, including a linear conversion for VFX.",
+      "slug": "arri"
     },
     {
-      "id": "redwg",
-      "brand": "RED",
-      "slug": "red",
-      "name": "Log3G10 / REDWideGamutRGB",
-      "monitor": "IPP2 Rec.709 / BT.1886 — medium contrast, soft roll-off",
-      "url": "https://www.reddigitalcinema.com/download/ipp2-output-presets",
-      "source": "RED — IPP2 output presets",
-      "cameras": [
-        {
-          "name": "V-RAPTOR 8K"
-        },
-        {
-          "name": "V-RAPTOR X"
-        },
-        {
-          "name": "KOMODO 6K"
-        },
-        {
-          "name": "KOMODO-X"
-        },
-        {
-          "name": "DSMC2 (Gemini / Helium / Monstro)"
-        }
-      ],
-      "noteHe": "ב-IPP2 ההמרה היא Output Transform ולא לוט קלאסי — בדרך כלל עדיף להשתמש בו ולא בלוט חיצוני.",
-      "noteEn": "Under IPP2 the conversion is an output transform rather than a classic LUT — usually better to use it than an external LUT.",
+      "id": "vlog",
+      "name": "V-Log / V-Gamut",
+      "brand": "Panasonic",
+      "cameras": "VariCam 35 · VariCam LT · S1H · S5 II · GH6 · GH5",
       "luts": [
-        "IPP2 output transforms (Rec 709 / Rec 2020)",
-        "RED Log3G10 → Rec 709"
+        "V-Log to V-709"
       ],
-      "verified": true
-    },
-    {
-      "id": "bmdfilm",
-      "brand": "Blackmagic",
-      "slug": "blackmagic-design",
-      "name": "Blackmagic Film Gen 5",
-      "monitor": "Blackmagic Gen 5 Film to Video",
-      "url": "https://www.blackmagicdesign.com/support/family/professional-cameras",
-      "source": "Blackmagic — installed with Blackmagic Camera Setup",
-      "howHe": "בלאקמג׳יק לא מפרסמת עמוד הורדה נפרד ללוטים: הם מותקנים עם תוכנת Blackmagic Camera Setup (חינם, בעמוד התמיכה) ונמצאים גם בתוך DaVinci Resolve.",
-      "howEn": "Blackmagic has no separate LUT download: the LUTs install with Blackmagic Camera Setup (free, on the support page) and also ship inside DaVinci Resolve.",
-      "cameras": [
-        {
-          "name": "URSA Cine 12K"
-        },
-        {
-          "name": "URSA Mini Pro 12K"
-        },
-        {
-          "name": "URSA Mini Pro 4.6K G2"
-        },
-        {
-          "name": "PYXIS 6K"
-        },
-        {
-          "name": "Pocket Cinema Camera 6K"
-        },
-        {
-          "name": "Pocket Cinema Camera 4K"
-        }
-      ],
-      "noteHe": "הלוטים מגיעים מותקנים עם Resolve. Extended Video שומר יותר בהיילייטס — נוח לניטור על הסט.",
-      "noteEn": "The LUTs ship with Resolve. Extended Video holds more highlight — easier to monitor on set.",
-      "luts": [
-        "Blackmagic Design Film to Video",
-        "Blackmagic Design Film to Extended Video"
-      ],
-      "verified": true
+      "source": "Panasonic — VariCam / LUMIX support downloads",
+      "noteHe": "V-709 הוא לוט הניטור הרשמי של פנסוניק. V-Log של גופי LUMIX ו-V-Log של VariCam חולקים את אותה עקומה, כך שאותו לוט מתאים לשניהם.",
+      "noteEn": "V-709 is Panasonic's own monitoring LUT. V-Log on the LUMIX bodies and V-Log on VariCam share the curve, so the same LUT serves both.",
+      "slug": "panasonic"
     },
     {
       "id": "clog3",
-      "brand": "Canon",
-      "slug": "canon",
       "name": "Canon Log 3",
-      "monitor": "Canon Log 3 → BT.709 (WideDR)",
-      "url": "https://asia.canon/en/support/0200751202",
-      "source": "Canon — lookup table package (ver.202510)",
-      "cameras": [
-        {
-          "name": "EOS C400"
-        },
-        {
-          "name": "EOS C80"
-        },
-        {
-          "name": "EOS C70"
-        },
-        {
-          "name": "EOS C500 Mark II"
-        },
-        {
-          "name": "EOS C300 Mark III"
-        },
-        {
-          "name": "EOS C200"
-        },
-        {
-          "name": "EOS R5 C"
-        }
-      ],
-      "noteHe": "Canon Log 3 הוא פשרה בין Log 2 לוידאו רגיל: פחות טווח דינמי מ-Log 2, אבל הרבה יותר סלחני בגרייד מהיר.",
-      "noteEn": "Canon Log 3 sits between Log 2 and straight video: less dynamic range than Log 2, far more forgiving in a fast grade.",
+      "brand": "Canon",
+      "cameras": "C400 · C500 Mark II · C300 Mark III · C70 · R5 C",
       "luts": [
         "Canon Log 3 → BT.709 (Wide DR)",
         "Canon Log 3 → BT.2020 PQ / HLG"
       ],
-      "verified": true
+      "source": "Canon — Cinema EOS support downloads",
+      "noteHe": "Canon Log 3 הוא פשרה בין Log 2 לוידאו רגיל: פחות טווח דינמי מ-Log 2, אבל הרבה יותר סלחני בגרייד מהיר.",
+      "noteEn": "Canon Log 3 sits between Log 2 and straight video: less dynamic range than Log 2, far more forgiving in a fast grade.",
+      "slug": "canon"
     },
     {
       "id": "clog2",
-      "brand": "Canon",
-      "slug": "canon",
       "name": "Canon Log 2",
-      "monitor": "Canon Log 2 → BT.709 (WideDR)",
-      "url": "https://asia.canon/en/support/0200751202",
-      "source": "Canon — lookup table package (ver.202510)",
-      "cameras": [
-        {
-          "name": "EOS C400"
-        },
-        {
-          "name": "EOS C80"
-        },
-        {
-          "name": "EOS C70"
-        },
-        {
-          "name": "EOS C500 Mark II"
-        },
-        {
-          "name": "EOS C300 Mark III"
-        },
-        {
-          "name": "EOS C200"
-        }
-      ],
-      "noteHe": "הטווח הדינמי הרחב ביותר של קאנון, ודורש גרייד אמיתי. לא לבחור אותו כשאין זמן לצבע.",
-      "noteEn": "Canon's widest dynamic range, and it needs a real grade. Not the choice when there is no colour time.",
+      "brand": "Canon",
+      "cameras": "C500 Mark II · C300 Mark III · C400",
       "luts": [
         "Canon Log 2 → BT.709 (Wide DR)"
       ],
-      "verified": true
+      "source": "Canon — Cinema EOS support downloads",
+      "noteHe": "הטווח הדינמי הרחב ביותר של קאנון, ודורש גרייד אמיתי. לא לבחור אותו כשאין זמן לצבע.",
+      "noteEn": "Canon's widest dynamic range, and it needs a real grade. Not the choice when there is no colour time.",
+      "slug": "canon"
     },
     {
-      "id": "vlog",
-      "brand": "Panasonic",
-      "slug": "panasonic",
-      "name": "V-Log / V-Gamut",
-      "monitor": "V-Log → V-709",
-      "url": "https://pro-av.panasonic.net/en/cinema_camera_varicam_eva/support/lut/",
-      "source": "Panasonic — VariCam LUT library",
-      "cameras": [
-        {
-          "name": "VariCam 35"
-        },
-        {
-          "name": "VariCam LT"
-        },
-        {
-          "name": "AU-EVA1"
-        },
-        {
-          "name": "AG-CX350"
-        },
-        {
-          "name": "AG-UX180"
-        },
-        {
-          "name": "LUMIX S1H",
-          "url": "https://av.jpn.support.panasonic.com/support/global/cs/dsc/download/lut/index.html"
-        },
-        {
-          "name": "LUMIX S5 II",
-          "url": "https://av.jpn.support.panasonic.com/support/global/cs/dsc/download/lut/index.html"
-        },
-        {
-          "name": "LUMIX GH6 / GH7",
-          "url": "https://av.jpn.support.panasonic.com/support/global/cs/dsc/download/lut/index.html"
-        },
-        {
-          "name": "LUMIX BGH1 / BS1H",
-          "url": "https://av.jpn.support.panasonic.com/support/global/cs/dsc/download/lut/index.html"
-        }
-      ],
-      "noteHe": "V-709 הוא לוט הניטור הרשמי של פנסוניק. V-Log של גופי LUMIX ו-V-Log של VariCam חולקים את אותה עקומה, כך שאותו לוט מתאים לשניהם.",
-      "noteEn": "V-709 is Panasonic's own monitoring LUT. V-Log on the LUMIX bodies and V-Log on VariCam share the curve, so the same LUT serves both.",
+      "id": "redwg",
+      "name": "REDWideGamutRGB / Log3G10",
+      "brand": "RED",
+      "cameras": "V-RAPTOR · KOMODO · DSMC2",
       "luts": [
-        "V-Log to V-709"
+        "IPP2 output transforms (Rec 709 / Rec 2020)",
+        "RED Log3G10 → Rec 709"
       ],
-      "verified": true
+      "source": "RED — REDCINE-X PRO, and the IPP2 transforms built into DaVinci Resolve",
+      "noteHe": "ב-IPP2 ההמרה היא Output Transform ולא לוט קלאסי — בדרך כלל עדיף להשתמש בו ולא בלוט חיצוני.",
+      "noteEn": "Under IPP2 the conversion is an output transform rather than a classic LUT — usually better to use it than an external LUT.",
+      "slug": "red"
+    },
+    {
+      "id": "bmdfilm",
+      "name": "Blackmagic Film Gen 5",
+      "brand": "Blackmagic",
+      "cameras": "URSA Cine · URSA Mini Pro 12K · PYXIS · Pocket 6K / 4K",
+      "luts": [
+        "Blackmagic Design Film to Video",
+        "Blackmagic Design Film to Extended Video"
+      ],
+      "source": "Blackmagic — bundled with DaVinci Resolve and with Blackmagic Camera Setup",
+      "noteHe": "הלוטים מגיעים מותקנים עם Resolve. Extended Video שומר יותר בהיילייטס — נוח לניטור על הסט.",
+      "noteEn": "The LUTs ship with Resolve. Extended Video holds more highlight — easier to monitor on set.",
+      "slug": "blackmagic-design"
     },
     {
       "id": "flog2",
-      "brand": "Fujifilm",
-      "slug": "fujifilm",
       "name": "F-Log2 / F-Log",
-      "monitor": "F-Log2 → BT.709 (film-simulation LUTs too)",
-      "url": "https://www.fujifilm-x.com/global/support/download/lut/",
-      "source": "Fujifilm — LUT downloads",
-      "cameras": [
-        {
-          "name": "GFX ETERNA"
-        },
-        {
-          "name": "GFX100 II"
-        },
-        {
-          "name": "X-H2S"
-        },
-        {
-          "name": "X-H2"
-        },
-        {
-          "name": "X-T5"
-        }
-      ],
-      "noteHe": "F-Log2 רחב יותר מ-F-Log ודורש לוט אחר. הם לא מתחלפים.",
-      "noteEn": "F-Log2 is wider than F-Log and needs its own LUT. They are not interchangeable.",
+      "brand": "Fujifilm",
+      "cameras": "GFX100 II · X-H2S · X-H2",
       "luts": [
         "F-Log2 → BT.709",
         "F-Log → BT.709"
       ],
-      "verified": true
+      "source": "Fujifilm — X / GFX support downloads",
+      "noteHe": "F-Log2 רחב יותר מ-F-Log ודורש לוט אחר. הם לא מתחלפים.",
+      "noteEn": "F-Log2 is wider than F-Log and needs its own LUT. They are not interchangeable.",
+      "slug": "fujifilm"
     },
     {
       "id": "dlog",
-      "brand": "DJI",
-      "slug": "dji",
       "name": "D-Log / D-Log M",
-      "monitor": "D-Log → Rec.709",
-      "url": "https://www.dji.com/downloads/softwares/dji-zenmuse-x9-dlog2rec709-lut",
-      "source": "DJI — Download Center",
-      "cameras": [
-        {
-          "name": "Ronin 4D",
-          "url": "https://www.dji.com/downloads/softwares/dji-zenmuse-x9-dlog2rec709-lut"
-        },
-        {
-          "name": "Inspire 3",
-          "url": "https://www.dji.com/downloads/softwares/dji-zenmuse-x9-dlog2rec709-lut"
-        },
-        {
-          "name": "Osmo Pocket 3",
-          "url": "https://www.dji.com/downloads/softwares/osmo-pocket-3-dlog-to-rec709"
-        },
-        {
-          "name": "Osmo Action 5 Pro",
-          "url": "https://www.dji.com/downloads/products/osmo-action-5-pro"
-        }
-      ],
-      "noteHe": "D-Log M הוא גרסה מצומצמת ל-10 ביט בגופים הקטנים, ויש לו לוט נפרד. החלפה ביניהם נותנת צבע שגוי.",
-      "noteEn": "D-Log M is the reduced 10-bit version on the smaller bodies and has its own LUT. Swapping them gives wrong colour.",
+      "brand": "DJI",
+      "cameras": "Ronin 4D · Inspire 3 · Mavic 3 · Air 3",
       "luts": [
         "D-Log → Rec.709",
         "D-Log M → Rec.709"
       ],
-      "verified": true
+      "source": "DJI — product download page for the specific aircraft or camera",
+      "noteHe": "D-Log M הוא גרסה מצומצמת ל-10 ביט בגופים הקטנים, ויש לו לוט נפרד. החלפה ביניהם נותנת צבע שגוי.",
+      "noteEn": "D-Log M is the reduced 10-bit version on the smaller bodies and has its own LUT. Swapping them gives wrong colour.",
+      "slug": "dji"
     },
     {
       "id": "nlog",
-      "brand": "Nikon",
-      "slug": "nikon",
       "name": "N-Log",
-      "monitor": "N-Log 3D LUT → Rec.709",
-      "url": "https://downloadcenter.nikonimglib.com/en/download/sw/244.html",
-      "source": "Nikon — Download Center",
-      "cameras": [
-        {
-          "name": "Z9"
-        },
-        {
-          "name": "Z8"
-        },
-        {
-          "name": "Z6 III"
-        },
-        {
-          "name": "Zf"
-        },
-        {
-          "name": "ZR"
-        }
-      ],
-      "noteHe": "נדרש בעיקר כשמקליטים N-Log פנימית; בהקלטת ProRes RAW חיצונית ההמרה נעשית בפוסט.",
-      "noteEn": "Mostly needed when recording N-Log internally; with external ProRes RAW the conversion happens in post.",
+      "brand": "Nikon",
+      "cameras": "Z9 · Z8 · Z6 III",
       "luts": [
         "N-Log 3D LUT → Rec.709"
       ],
-      "verified": true
-    },
-    {
-      "id": "gplog",
-      "brand": "GoPro",
-      "slug": "gopro",
-      "name": "GP-Log",
-      "monitor": "GP-Log → Rec.709 (technical LUT)",
-      "url": "https://community.gopro.com/s/article/GoPro-Log-Profiles-LUT-Downloads?language=en_US",
-      "source": "GoPro — Log profile LUT downloads",
-      "cameras": [
-        {
-          "name": "HERO13 Black"
-        },
-        {
-          "name": "HERO12 Black"
-        }
-      ],
-      "noteHe": "גו־פרו מפרסמת שני לוטים: טכני (GP-Log ל־Rec.709 בלי לוק) ולוק שמחקה את פרופיל Natural של המצלמה.",
-      "noteEn": "GoPro publishes two LUTs: a technical one (GP-Log to Rec.709, no look) and a creative one close to the camera’s Natural profile.",
-      "luts": [
-        "GP-Log → Rec.709 (technical)",
-        "GP-Log → Natural (creative)"
-      ],
-      "verified": true
+      "source": "Nikon — Download Center",
+      "noteHe": "נדרש בעיקר כשמקליטים N-Log פנימית; בהקלטת ProRes RAW חיצונית ההמרה נעשית בפוסט.",
+      "noteEn": "Mostly needed when recording N-Log internally; with external ProRes RAW the conversion happens in post.",
+      "slug": "nikon"
     }
   ]
 }

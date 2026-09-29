@@ -109,30 +109,3 @@ export const PLACES = [
   { id: 'mitzpe', he: 'מצפה רמון',    en: 'Mitzpe Ramon', lat: 30.6094, lon: 34.8013 },
   { id: 'dead',   he: 'ים המלח',      en: 'Dead Sea',     lat: 31.5590, lon: 35.4732 },
 ];
-
-// ---------- the place's own clock ----------
-// Sun times belong to the place, not to the phone: a Tokyo sunset read in Tel Aviv is still 17:28.
-// Each country carries its IANA time zone; a city overrides it where the country spans several.
-export const zoneOf = (country, city) => city?.tz || country?.tz || null;
-
-export function localTime(date, tz) {
-  if (!(date instanceof Date) || Number.isNaN(+date)) return '—';
-  return new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', ...(tz ? { timeZone: tz } : {}) }).format(date);
-}
-
-// Today's date where the place is, as YYYY-MM-DD.
-export function todayIn(tz, now = new Date()) {
-  const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit', ...(tz ? { timeZone: tz } : {}) })
-    .formatToParts(now).map(x => [x.type, x.value]));
-  return `${p.year}-${p.month}-${p.day}`;
-}
-
-// What the light is doing at `now`, and how long until the next change — for today's page only.
-export function sunStatus(day, now = new Date()) {
-  const t = +now, g = day.goldenEvening, b = day.blueEvening;
-  if (day.sunrise && t < +day.sunrise) return { key: 'st_sunrise_in', ms: +day.sunrise - t };
-  if (g && t < +g.from) return { key: 'st_golden_in', ms: +g.from - t };
-  if (day.sunset && t < +day.sunset) return { key: 'st_golden_now', ms: +day.sunset - t };
-  if (b && t < +b.to) return { key: 'st_blue_now', ms: +b.to - t };
-  return { key: 'st_dark', ms: 0 };
-}

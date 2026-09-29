@@ -1,1071 +1,1016 @@
 {
-  "_readme": "Places for the sun tool. Coordinates are decimal degrees, positive north and east. Israel is first because that is where most of these shoots happen; the rest is a spread of places a production actually travels to. Add a city by copying a row. tz: the IANA time zone the times are shown in — set per country, and per city where a country spans several.",
-  "defaultCountry": "IL",
-  "countries": [
+ "_readme": "Places for the sun tool. Coordinates are decimal degrees, positive north and east. Israel is first because that is where most of these shoots happen; the rest is a spread of places a production actually travels to. Add a city by copying a row.",
+ "defaultCountry": "IL",
+ "countries": [
+  {
+   "he": "ישראל",
+   "en": "Israel",
+   "code": "IL",
+   "cities": [
     {
-      "he": "ישראל",
-      "en": "Israel",
-      "code": "IL",
-      "tz": "Asia/Jerusalem",
-      "cities": [
-        {
-          "he": "תל אביב",
-          "en": "Tel Aviv",
-          "lat": 32.0853,
-          "lon": 34.7818
-        },
-        {
-          "he": "ירושלים",
-          "en": "Jerusalem",
-          "lat": 31.7683,
-          "lon": 35.2137
-        },
-        {
-          "he": "חיפה",
-          "en": "Haifa",
-          "lat": 32.794,
-          "lon": 34.9896
-        },
-        {
-          "he": "באר שבע",
-          "en": "Beer Sheva",
-          "lat": 31.2518,
-          "lon": 34.7913
-        },
-        {
-          "he": "אילת",
-          "en": "Eilat",
-          "lat": 29.5577,
-          "lon": 34.9519
-        },
-        {
-          "he": "טבריה",
-          "en": "Tiberias",
-          "lat": 32.7922,
-          "lon": 35.5312
-        },
-        {
-          "he": "מצפה רמון",
-          "en": "Mitzpe Ramon",
-          "lat": 30.6094,
-          "lon": 34.8013
-        },
-        {
-          "he": "ים המלח",
-          "en": "Dead Sea",
-          "lat": 31.559,
-          "lon": 35.4732
-        },
-        {
-          "he": "ראש פינה",
-          "en": "Rosh Pina",
-          "lat": 32.9686,
-          "lon": 35.5425
-        },
-        {
-          "he": "אשדוד",
-          "en": "Ashdod",
-          "lat": 31.8014,
-          "lon": 34.6435
-        }
-      ]
+     "he": "תל אביב",
+     "en": "Tel Aviv",
+     "lat": 32.0853,
+     "lon": 34.7818
     },
     {
-      "he": "ארצות הברית",
-      "en": "United States",
-      "code": "US",
-      "tz": "America/New_York",
-      "cities": [
-        {
-          "he": "לוס אנג׳לס",
-          "en": "Los Angeles",
-          "lat": 34.0522,
-          "lon": -118.2437,
-          "tz": "America/Los_Angeles"
-        },
-        {
-          "he": "ניו יורק",
-          "en": "New York",
-          "lat": 40.7128,
-          "lon": -74.006
-        },
-        {
-          "he": "אטלנטה",
-          "en": "Atlanta",
-          "lat": 33.749,
-          "lon": -84.388
-        },
-        {
-          "he": "אלבוקרקי",
-          "en": "Albuquerque",
-          "lat": 35.0844,
-          "lon": -106.6504,
-          "tz": "America/Denver"
-        },
-        {
-          "he": "שיקגו",
-          "en": "Chicago",
-          "lat": 41.8781,
-          "lon": -87.6298,
-          "tz": "America/Chicago"
-        },
-        {
-          "he": "מיאמי",
-          "en": "Miami",
-          "lat": 25.7617,
-          "lon": -80.1918
-        },
-        {
-          "he": "לאס וגאס",
-          "en": "Las Vegas",
-          "lat": 36.1699,
-          "lon": -115.1398,
-          "tz": "America/Los_Angeles"
-        }
-      ]
+     "he": "ירושלים",
+     "en": "Jerusalem",
+     "lat": 31.7683,
+     "lon": 35.2137
     },
     {
-      "he": "בריטניה",
-      "en": "United Kingdom",
-      "code": "GB",
-      "tz": "Europe/London",
-      "cities": [
-        {
-          "he": "לונדון",
-          "en": "London",
-          "lat": 51.5074,
-          "lon": -0.1278
-        },
-        {
-          "he": "מנצ׳סטר",
-          "en": "Manchester",
-          "lat": 53.4808,
-          "lon": -2.2426
-        },
-        {
-          "he": "גלזגו",
-          "en": "Glasgow",
-          "lat": 55.8642,
-          "lon": -4.2518
-        },
-        {
-          "he": "בלפסט",
-          "en": "Belfast",
-          "lat": 54.5973,
-          "lon": -5.9301
-        }
-      ]
+     "he": "חיפה",
+     "en": "Haifa",
+     "lat": 32.794,
+     "lon": 34.9896
     },
     {
-      "he": "צרפת",
-      "en": "France",
-      "code": "FR",
-      "tz": "Europe/Paris",
-      "cities": [
-        {
-          "he": "פריז",
-          "en": "Paris",
-          "lat": 48.8566,
-          "lon": 2.3522
-        },
-        {
-          "he": "ניס",
-          "en": "Nice",
-          "lat": 43.7102,
-          "lon": 7.262
-        },
-        {
-          "he": "מרסיי",
-          "en": "Marseille",
-          "lat": 43.2965,
-          "lon": 5.3698
-        },
-        {
-          "he": "ליון",
-          "en": "Lyon",
-          "lat": 45.764,
-          "lon": 4.8357
-        }
-      ]
+     "he": "באר שבע",
+     "en": "Beer Sheva",
+     "lat": 31.2518,
+     "lon": 34.7913
     },
     {
-      "he": "גרמניה",
-      "en": "Germany",
-      "code": "DE",
-      "tz": "Europe/Berlin",
-      "cities": [
-        {
-          "he": "ברלין",
-          "en": "Berlin",
-          "lat": 52.52,
-          "lon": 13.405
-        },
-        {
-          "he": "מינכן",
-          "en": "Munich",
-          "lat": 48.1351,
-          "lon": 11.582
-        },
-        {
-          "he": "המבורג",
-          "en": "Hamburg",
-          "lat": 53.5511,
-          "lon": 9.9937
-        },
-        {
-          "he": "קלן",
-          "en": "Cologne",
-          "lat": 50.9375,
-          "lon": 6.9603
-        }
-      ]
+     "he": "אילת",
+     "en": "Eilat",
+     "lat": 29.5577,
+     "lon": 34.9519
     },
     {
-      "he": "איטליה",
-      "en": "Italy",
-      "code": "IT",
-      "tz": "Europe/Rome",
-      "cities": [
-        {
-          "he": "רומא",
-          "en": "Rome",
-          "lat": 41.9028,
-          "lon": 12.4964
-        },
-        {
-          "he": "מילאנו",
-          "en": "Milan",
-          "lat": 45.4642,
-          "lon": 9.19
-        },
-        {
-          "he": "ונציה",
-          "en": "Venice",
-          "lat": 45.4408,
-          "lon": 12.3155
-        },
-        {
-          "he": "פלרמו",
-          "en": "Palermo",
-          "lat": 38.1157,
-          "lon": 13.3615
-        }
-      ]
+     "he": "טבריה",
+     "en": "Tiberias",
+     "lat": 32.7922,
+     "lon": 35.5312
     },
     {
-      "he": "ספרד",
-      "en": "Spain",
-      "code": "ES",
-      "tz": "Europe/Madrid",
-      "cities": [
-        {
-          "he": "מדריד",
-          "en": "Madrid",
-          "lat": 40.4168,
-          "lon": -3.7038
-        },
-        {
-          "he": "ברצלונה",
-          "en": "Barcelona",
-          "lat": 41.3851,
-          "lon": 2.1734
-        },
-        {
-          "he": "מלאגה",
-          "en": "Malaga",
-          "lat": 36.7213,
-          "lon": -4.4214
-        },
-        {
-          "he": "לאס פלמאס",
-          "en": "Las Palmas",
-          "lat": 28.1235,
-          "lon": -15.4363,
-          "tz": "Atlantic/Canary"
-        }
-      ]
+     "he": "מצפה רמון",
+     "en": "Mitzpe Ramon",
+     "lat": 30.6094,
+     "lon": 34.8013
     },
     {
-      "he": "פורטוגל",
-      "en": "Portugal",
-      "code": "PT",
-      "tz": "Europe/Lisbon",
-      "cities": [
-        {
-          "he": "ליסבון",
-          "en": "Lisbon",
-          "lat": 38.7223,
-          "lon": -9.1393
-        },
-        {
-          "he": "פורטו",
-          "en": "Porto",
-          "lat": 41.1579,
-          "lon": -8.6291
-        }
-      ]
+     "he": "ים המלח",
+     "en": "Dead Sea",
+     "lat": 31.559,
+     "lon": 35.4732
     },
     {
-      "he": "יוון",
-      "en": "Greece",
-      "code": "GR",
-      "tz": "Europe/Athens",
-      "cities": [
-        {
-          "he": "אתונה",
-          "en": "Athens",
-          "lat": 37.9838,
-          "lon": 23.7275
-        },
-        {
-          "he": "סנטוריני",
-          "en": "Santorini",
-          "lat": 36.3932,
-          "lon": 25.4615
-        },
-        {
-          "he": "רודוס",
-          "en": "Rhodes",
-          "lat": 36.4349,
-          "lon": 28.2176
-        }
-      ]
+     "he": "ראש פינה",
+     "en": "Rosh Pina",
+     "lat": 32.9686,
+     "lon": 35.5425
     },
     {
-      "he": "קפריסין",
-      "en": "Cyprus",
-      "code": "CY",
-      "tz": "Asia/Nicosia",
-      "cities": [
-        {
-          "he": "לימסול",
-          "en": "Limassol",
-          "lat": 34.7071,
-          "lon": 33.0226
-        },
-        {
-          "he": "ניקוסיה",
-          "en": "Nicosia",
-          "lat": 35.1856,
-          "lon": 33.3823
-        }
-      ]
-    },
-    {
-      "he": "טורקיה",
-      "en": "Turkey",
-      "code": "TR",
-      "tz": "Europe/Istanbul",
-      "cities": [
-        {
-          "he": "איסטנבול",
-          "en": "Istanbul",
-          "lat": 41.0082,
-          "lon": 28.9784
-        },
-        {
-          "he": "קפדוקיה",
-          "en": "Cappadocia",
-          "lat": 38.6431,
-          "lon": 34.8289
-        },
-        {
-          "he": "אנטליה",
-          "en": "Antalya",
-          "lat": 36.8969,
-          "lon": 30.7133
-        }
-      ]
-    },
-    {
-      "he": "מרוקו",
-      "en": "Morocco",
-      "code": "MA",
-      "tz": "Africa/Casablanca",
-      "cities": [
-        {
-          "he": "מרקש",
-          "en": "Marrakesh",
-          "lat": 31.6295,
-          "lon": -7.9811
-        },
-        {
-          "he": "ורזאזאת",
-          "en": "Ouarzazate",
-          "lat": 30.9335,
-          "lon": -6.937
-        },
-        {
-          "he": "קזבלנקה",
-          "en": "Casablanca",
-          "lat": 33.5731,
-          "lon": -7.5898
-        }
-      ]
-    },
-    {
-      "he": "מצרים",
-      "en": "Egypt",
-      "code": "EG",
-      "tz": "Africa/Cairo",
-      "cities": [
-        {
-          "he": "קהיר",
-          "en": "Cairo",
-          "lat": 30.0444,
-          "lon": 31.2357
-        },
-        {
-          "he": "לוקסור",
-          "en": "Luxor",
-          "lat": 25.6872,
-          "lon": 32.6396
-        },
-        {
-          "he": "שארם א-שייח",
-          "en": "Sharm el-Sheikh",
-          "lat": 27.9158,
-          "lon": 34.33
-        }
-      ]
-    },
-    {
-      "he": "איחוד האמירויות",
-      "en": "United Arab Emirates",
-      "code": "AE",
-      "tz": "Asia/Dubai",
-      "cities": [
-        {
-          "he": "דובאי",
-          "en": "Dubai",
-          "lat": 25.2048,
-          "lon": 55.2708
-        },
-        {
-          "he": "אבו דאבי",
-          "en": "Abu Dhabi",
-          "lat": 24.4539,
-          "lon": 54.3773
-        }
-      ]
-    },
-    {
-      "he": "ירדן",
-      "en": "Jordan",
-      "code": "JO",
-      "tz": "Asia/Amman",
-      "cities": [
-        {
-          "he": "עמאן",
-          "en": "Amman",
-          "lat": 31.9454,
-          "lon": 35.9284
-        },
-        {
-          "he": "ואדי רם",
-          "en": "Wadi Rum",
-          "lat": 29.5765,
-          "lon": 35.4206
-        },
-        {
-          "he": "פטרה",
-          "en": "Petra",
-          "lat": 30.3285,
-          "lon": 35.4444
-        }
-      ]
-    },
-    {
-      "he": "הודו",
-      "en": "India",
-      "code": "IN",
-      "tz": "Asia/Kolkata",
-      "cities": [
-        {
-          "he": "מומבאי",
-          "en": "Mumbai",
-          "lat": 19.076,
-          "lon": 72.8777
-        },
-        {
-          "he": "דלהי",
-          "en": "Delhi",
-          "lat": 28.6139,
-          "lon": 77.209
-        },
-        {
-          "he": "גואה",
-          "en": "Goa",
-          "lat": 15.2993,
-          "lon": 74.124
-        }
-      ]
-    },
-    {
-      "he": "תאילנד",
-      "en": "Thailand",
-      "code": "TH",
-      "tz": "Asia/Bangkok",
-      "cities": [
-        {
-          "he": "בנגקוק",
-          "en": "Bangkok",
-          "lat": 13.7563,
-          "lon": 100.5018
-        },
-        {
-          "he": "פוקט",
-          "en": "Phuket",
-          "lat": 7.8804,
-          "lon": 98.3923
-        },
-        {
-          "he": "צ׳יאנג מאי",
-          "en": "Chiang Mai",
-          "lat": 18.7883,
-          "lon": 98.9853
-        }
-      ]
-    },
-    {
-      "he": "יפן",
-      "en": "Japan",
-      "code": "JP",
-      "tz": "Asia/Tokyo",
-      "cities": [
-        {
-          "he": "טוקיו",
-          "en": "Tokyo",
-          "lat": 35.6762,
-          "lon": 139.6503
-        },
-        {
-          "he": "קיוטו",
-          "en": "Kyoto",
-          "lat": 35.0116,
-          "lon": 135.7681
-        },
-        {
-          "he": "אוסקה",
-          "en": "Osaka",
-          "lat": 34.6937,
-          "lon": 135.5023
-        }
-      ]
-    },
-    {
-      "he": "סין",
-      "en": "China",
-      "code": "CN",
-      "tz": "Asia/Shanghai",
-      "cities": [
-        {
-          "he": "בייג׳ינג",
-          "en": "Beijing",
-          "lat": 39.9042,
-          "lon": 116.4074
-        },
-        {
-          "he": "שנגחאי",
-          "en": "Shanghai",
-          "lat": 31.2304,
-          "lon": 121.4737
-        },
-        {
-          "he": "הונג קונג",
-          "en": "Hong Kong",
-          "lat": 22.3193,
-          "lon": 114.1694,
-          "tz": "Asia/Hong_Kong"
-        }
-      ]
-    },
-    {
-      "he": "אוסטרליה",
-      "en": "Australia",
-      "code": "AU",
-      "tz": "Australia/Sydney",
-      "cities": [
-        {
-          "he": "סידני",
-          "en": "Sydney",
-          "lat": -33.8688,
-          "lon": 151.2093
-        },
-        {
-          "he": "מלבורן",
-          "en": "Melbourne",
-          "lat": -37.8136,
-          "lon": 144.9631,
-          "tz": "Australia/Melbourne"
-        },
-        {
-          "he": "גולד קוסט",
-          "en": "Gold Coast",
-          "lat": -28.0167,
-          "lon": 153.4,
-          "tz": "Australia/Brisbane"
-        }
-      ]
-    },
-    {
-      "he": "ניו זילנד",
-      "en": "New Zealand",
-      "code": "NZ",
-      "tz": "Pacific/Auckland",
-      "cities": [
-        {
-          "he": "אוקלנד",
-          "en": "Auckland",
-          "lat": -36.8485,
-          "lon": 174.7633
-        },
-        {
-          "he": "קווינסטאון",
-          "en": "Queenstown",
-          "lat": -45.0312,
-          "lon": 168.6626
-        },
-        {
-          "he": "וולינגטון",
-          "en": "Wellington",
-          "lat": -41.2866,
-          "lon": 174.7756
-        }
-      ]
-    },
-    {
-      "he": "דרום אפריקה",
-      "en": "South Africa",
-      "code": "ZA",
-      "tz": "Africa/Johannesburg",
-      "cities": [
-        {
-          "he": "קייפטאון",
-          "en": "Cape Town",
-          "lat": -33.9249,
-          "lon": 18.4241
-        },
-        {
-          "he": "יוהנסבורג",
-          "en": "Johannesburg",
-          "lat": -26.2041,
-          "lon": 28.0473
-        }
-      ]
-    },
-    {
-      "he": "ברזיל",
-      "en": "Brazil",
-      "code": "BR",
-      "tz": "America/Sao_Paulo",
-      "cities": [
-        {
-          "he": "ריו דה ז׳ניירו",
-          "en": "Rio de Janeiro",
-          "lat": -22.9068,
-          "lon": -43.1729
-        },
-        {
-          "he": "סאו פאולו",
-          "en": "Sao Paulo",
-          "lat": -23.5505,
-          "lon": -46.6333
-        }
-      ]
-    },
-    {
-      "he": "ארגנטינה",
-      "en": "Argentina",
-      "code": "AR",
-      "tz": "America/Argentina/Buenos_Aires",
-      "cities": [
-        {
-          "he": "בואנוס איירס",
-          "en": "Buenos Aires",
-          "lat": -34.6037,
-          "lon": -58.3816
-        },
-        {
-          "he": "אושואיה",
-          "en": "Ushuaia",
-          "lat": -54.8019,
-          "lon": -68.303,
-          "tz": "America/Argentina/Ushuaia"
-        }
-      ]
-    },
-    {
-      "he": "מקסיקו",
-      "en": "Mexico",
-      "code": "MX",
-      "tz": "America/Mexico_City",
-      "cities": [
-        {
-          "he": "מקסיקו סיטי",
-          "en": "Mexico City",
-          "lat": 19.4326,
-          "lon": -99.1332
-        },
-        {
-          "he": "קנקון",
-          "en": "Cancun",
-          "lat": 21.1619,
-          "lon": -86.8515,
-          "tz": "America/Cancun"
-        }
-      ]
-    },
-    {
-      "he": "קנדה",
-      "en": "Canada",
-      "code": "CA",
-      "tz": "America/Toronto",
-      "cities": [
-        {
-          "he": "טורונטו",
-          "en": "Toronto",
-          "lat": 43.6532,
-          "lon": -79.3832
-        },
-        {
-          "he": "ונקובר",
-          "en": "Vancouver",
-          "lat": 49.2827,
-          "lon": -123.1207,
-          "tz": "America/Vancouver"
-        },
-        {
-          "he": "מונטריאול",
-          "en": "Montreal",
-          "lat": 45.5017,
-          "lon": -73.5673
-        }
-      ]
-    },
-    {
-      "he": "איסלנד",
-      "en": "Iceland",
-      "code": "IS",
-      "tz": "Atlantic/Reykjavik",
-      "cities": [
-        {
-          "he": "רייקיאוויק",
-          "en": "Reykjavik",
-          "lat": 64.1466,
-          "lon": -21.9426
-        },
-        {
-          "he": "ויק",
-          "en": "Vik",
-          "lat": 63.4187,
-          "lon": -19.006
-        }
-      ]
-    },
-    {
-      "he": "נורווגיה",
-      "en": "Norway",
-      "code": "NO",
-      "tz": "Europe/Oslo",
-      "cities": [
-        {
-          "he": "אוסלו",
-          "en": "Oslo",
-          "lat": 59.9139,
-          "lon": 10.7522
-        },
-        {
-          "he": "טרומסו",
-          "en": "Tromso",
-          "lat": 69.6492,
-          "lon": 18.9553
-        },
-        {
-          "he": "ברגן",
-          "en": "Bergen",
-          "lat": 60.3913,
-          "lon": 5.3221
-        }
-      ]
-    },
-    {
-      "he": "שוודיה",
-      "en": "Sweden",
-      "code": "SE",
-      "tz": "Europe/Stockholm",
-      "cities": [
-        {
-          "he": "שטוקהולם",
-          "en": "Stockholm",
-          "lat": 59.3293,
-          "lon": 18.0686
-        },
-        {
-          "he": "קירונה",
-          "en": "Kiruna",
-          "lat": 67.8558,
-          "lon": 20.2253
-        }
-      ]
-    },
-    {
-      "he": "פינלנד",
-      "en": "Finland",
-      "code": "FI",
-      "tz": "Europe/Helsinki",
-      "cities": [
-        {
-          "he": "הלסינקי",
-          "en": "Helsinki",
-          "lat": 60.1699,
-          "lon": 24.9384
-        },
-        {
-          "he": "רובניימי",
-          "en": "Rovaniemi",
-          "lat": 66.5039,
-          "lon": 25.7294
-        }
-      ]
-    },
-    {
-      "he": "הולנד",
-      "en": "Netherlands",
-      "code": "NL",
-      "tz": "Europe/Amsterdam",
-      "cities": [
-        {
-          "he": "אמסטרדם",
-          "en": "Amsterdam",
-          "lat": 52.3676,
-          "lon": 4.9041
-        },
-        {
-          "he": "רוטרדם",
-          "en": "Rotterdam",
-          "lat": 51.9244,
-          "lon": 4.4777
-        }
-      ]
-    },
-    {
-      "he": "בלגיה",
-      "en": "Belgium",
-      "code": "BE",
-      "tz": "Europe/Brussels",
-      "cities": [
-        {
-          "he": "בריסל",
-          "en": "Brussels",
-          "lat": 50.8503,
-          "lon": 4.3517
-        }
-      ]
-    },
-    {
-      "he": "שווייץ",
-      "en": "Switzerland",
-      "code": "CH",
-      "tz": "Europe/Zurich",
-      "cities": [
-        {
-          "he": "ציריך",
-          "en": "Zurich",
-          "lat": 47.3769,
-          "lon": 8.5417
-        },
-        {
-          "he": "צרמט",
-          "en": "Zermatt",
-          "lat": 46.0207,
-          "lon": 7.7491
-        }
-      ]
-    },
-    {
-      "he": "אוסטריה",
-      "en": "Austria",
-      "code": "AT",
-      "tz": "Europe/Vienna",
-      "cities": [
-        {
-          "he": "וינה",
-          "en": "Vienna",
-          "lat": 48.2082,
-          "lon": 16.3738
-        },
-        {
-          "he": "זלצבורג",
-          "en": "Salzburg",
-          "lat": 47.8095,
-          "lon": 13.055
-        }
-      ]
-    },
-    {
-      "he": "צ׳כיה",
-      "en": "Czechia",
-      "code": "CZ",
-      "tz": "Europe/Prague",
-      "cities": [
-        {
-          "he": "פראג",
-          "en": "Prague",
-          "lat": 50.0755,
-          "lon": 14.4378
-        }
-      ]
-    },
-    {
-      "he": "הונגריה",
-      "en": "Hungary",
-      "code": "HU",
-      "tz": "Europe/Budapest",
-      "cities": [
-        {
-          "he": "בודפשט",
-          "en": "Budapest",
-          "lat": 47.4979,
-          "lon": 19.0402
-        }
-      ]
-    },
-    {
-      "he": "פולין",
-      "en": "Poland",
-      "code": "PL",
-      "tz": "Europe/Warsaw",
-      "cities": [
-        {
-          "he": "ורשה",
-          "en": "Warsaw",
-          "lat": 52.2297,
-          "lon": 21.0122
-        },
-        {
-          "he": "קרקוב",
-          "en": "Krakow",
-          "lat": 50.0647,
-          "lon": 19.945
-        }
-      ]
-    },
-    {
-      "he": "רומניה",
-      "en": "Romania",
-      "code": "RO",
-      "tz": "Europe/Bucharest",
-      "cities": [
-        {
-          "he": "בוקרשט",
-          "en": "Bucharest",
-          "lat": 44.4268,
-          "lon": 26.1025
-        }
-      ]
-    },
-    {
-      "he": "בולגריה",
-      "en": "Bulgaria",
-      "code": "BG",
-      "tz": "Europe/Sofia",
-      "cities": [
-        {
-          "he": "סופיה",
-          "en": "Sofia",
-          "lat": 42.6977,
-          "lon": 23.3219
-        }
-      ]
-    },
-    {
-      "he": "גאורגיה",
-      "en": "Georgia",
-      "code": "GE",
-      "tz": "Asia/Tbilisi",
-      "cities": [
-        {
-          "he": "טביליסי",
-          "en": "Tbilisi",
-          "lat": 41.7151,
-          "lon": 44.8271
-        }
-      ]
-    },
-    {
-      "he": "קרואטיה",
-      "en": "Croatia",
-      "code": "HR",
-      "tz": "Europe/Zagreb",
-      "cities": [
-        {
-          "he": "דוברובניק",
-          "en": "Dubrovnik",
-          "lat": 42.6507,
-          "lon": 18.0944
-        },
-        {
-          "he": "זאגרב",
-          "en": "Zagreb",
-          "lat": 45.815,
-          "lon": 15.9819
-        }
-      ]
-    },
-    {
-      "he": "אירלנד",
-      "en": "Ireland",
-      "code": "IE",
-      "tz": "Europe/Dublin",
-      "cities": [
-        {
-          "he": "דבלין",
-          "en": "Dublin",
-          "lat": 53.3498,
-          "lon": -6.2603
-        }
-      ]
-    },
-    {
-      "he": "קניה",
-      "en": "Kenya",
-      "code": "KE",
-      "tz": "Africa/Nairobi",
-      "cities": [
-        {
-          "he": "ניירובי",
-          "en": "Nairobi",
-          "lat": -1.2921,
-          "lon": 36.8219
-        },
-        {
-          "he": "מסאי מארה",
-          "en": "Maasai Mara",
-          "lat": -1.4061,
-          "lon": 35.0078
-        }
-      ]
-    },
-    {
-      "he": "נמיביה",
-      "en": "Namibia",
-      "code": "NA",
-      "tz": "Africa/Windhoek",
-      "cities": [
-        {
-          "he": "וינדהוק",
-          "en": "Windhoek",
-          "lat": -22.5609,
-          "lon": 17.0658
-        },
-        {
-          "he": "סוסוסוולי",
-          "en": "Sossusvlei",
-          "lat": -24.7333,
-          "lon": 15.3
-        }
-      ]
+     "he": "אשדוד",
+     "en": "Ashdod",
+     "lat": 31.8014,
+     "lon": 34.6435
     }
-  ]
+   ]
+  },
+  {
+   "he": "ארצות הברית",
+   "en": "United States",
+   "code": "US",
+   "cities": [
+    {
+     "he": "לוס אנג׳לס",
+     "en": "Los Angeles",
+     "lat": 34.0522,
+     "lon": -118.2437
+    },
+    {
+     "he": "ניו יורק",
+     "en": "New York",
+     "lat": 40.7128,
+     "lon": -74.006
+    },
+    {
+     "he": "אטלנטה",
+     "en": "Atlanta",
+     "lat": 33.749,
+     "lon": -84.388
+    },
+    {
+     "he": "אלבוקרקי",
+     "en": "Albuquerque",
+     "lat": 35.0844,
+     "lon": -106.6504
+    },
+    {
+     "he": "שיקגו",
+     "en": "Chicago",
+     "lat": 41.8781,
+     "lon": -87.6298
+    },
+    {
+     "he": "מיאמי",
+     "en": "Miami",
+     "lat": 25.7617,
+     "lon": -80.1918
+    },
+    {
+     "he": "לאס וגאס",
+     "en": "Las Vegas",
+     "lat": 36.1699,
+     "lon": -115.1398
+    }
+   ]
+  },
+  {
+   "he": "בריטניה",
+   "en": "United Kingdom",
+   "code": "GB",
+   "cities": [
+    {
+     "he": "לונדון",
+     "en": "London",
+     "lat": 51.5074,
+     "lon": -0.1278
+    },
+    {
+     "he": "מנצ׳סטר",
+     "en": "Manchester",
+     "lat": 53.4808,
+     "lon": -2.2426
+    },
+    {
+     "he": "גלזגו",
+     "en": "Glasgow",
+     "lat": 55.8642,
+     "lon": -4.2518
+    },
+    {
+     "he": "בלפסט",
+     "en": "Belfast",
+     "lat": 54.5973,
+     "lon": -5.9301
+    }
+   ]
+  },
+  {
+   "he": "צרפת",
+   "en": "France",
+   "code": "FR",
+   "cities": [
+    {
+     "he": "פריז",
+     "en": "Paris",
+     "lat": 48.8566,
+     "lon": 2.3522
+    },
+    {
+     "he": "ניס",
+     "en": "Nice",
+     "lat": 43.7102,
+     "lon": 7.262
+    },
+    {
+     "he": "מרסיי",
+     "en": "Marseille",
+     "lat": 43.2965,
+     "lon": 5.3698
+    },
+    {
+     "he": "ליון",
+     "en": "Lyon",
+     "lat": 45.764,
+     "lon": 4.8357
+    }
+   ]
+  },
+  {
+   "he": "גרמניה",
+   "en": "Germany",
+   "code": "DE",
+   "cities": [
+    {
+     "he": "ברלין",
+     "en": "Berlin",
+     "lat": 52.52,
+     "lon": 13.405
+    },
+    {
+     "he": "מינכן",
+     "en": "Munich",
+     "lat": 48.1351,
+     "lon": 11.582
+    },
+    {
+     "he": "המבורג",
+     "en": "Hamburg",
+     "lat": 53.5511,
+     "lon": 9.9937
+    },
+    {
+     "he": "קלן",
+     "en": "Cologne",
+     "lat": 50.9375,
+     "lon": 6.9603
+    }
+   ]
+  },
+  {
+   "he": "איטליה",
+   "en": "Italy",
+   "code": "IT",
+   "cities": [
+    {
+     "he": "רומא",
+     "en": "Rome",
+     "lat": 41.9028,
+     "lon": 12.4964
+    },
+    {
+     "he": "מילאנו",
+     "en": "Milan",
+     "lat": 45.4642,
+     "lon": 9.19
+    },
+    {
+     "he": "ונציה",
+     "en": "Venice",
+     "lat": 45.4408,
+     "lon": 12.3155
+    },
+    {
+     "he": "פלרמו",
+     "en": "Palermo",
+     "lat": 38.1157,
+     "lon": 13.3615
+    }
+   ]
+  },
+  {
+   "he": "ספרד",
+   "en": "Spain",
+   "code": "ES",
+   "cities": [
+    {
+     "he": "מדריד",
+     "en": "Madrid",
+     "lat": 40.4168,
+     "lon": -3.7038
+    },
+    {
+     "he": "ברצלונה",
+     "en": "Barcelona",
+     "lat": 41.3851,
+     "lon": 2.1734
+    },
+    {
+     "he": "מלאגה",
+     "en": "Malaga",
+     "lat": 36.7213,
+     "lon": -4.4214
+    },
+    {
+     "he": "לאס פלמאס",
+     "en": "Las Palmas",
+     "lat": 28.1235,
+     "lon": -15.4363
+    }
+   ]
+  },
+  {
+   "he": "פורטוגל",
+   "en": "Portugal",
+   "code": "PT",
+   "cities": [
+    {
+     "he": "ליסבון",
+     "en": "Lisbon",
+     "lat": 38.7223,
+     "lon": -9.1393
+    },
+    {
+     "he": "פורטו",
+     "en": "Porto",
+     "lat": 41.1579,
+     "lon": -8.6291
+    }
+   ]
+  },
+  {
+   "he": "יוון",
+   "en": "Greece",
+   "code": "GR",
+   "cities": [
+    {
+     "he": "אתונה",
+     "en": "Athens",
+     "lat": 37.9838,
+     "lon": 23.7275
+    },
+    {
+     "he": "סנטוריני",
+     "en": "Santorini",
+     "lat": 36.3932,
+     "lon": 25.4615
+    },
+    {
+     "he": "רודוס",
+     "en": "Rhodes",
+     "lat": 36.4349,
+     "lon": 28.2176
+    }
+   ]
+  },
+  {
+   "he": "קפריסין",
+   "en": "Cyprus",
+   "code": "CY",
+   "cities": [
+    {
+     "he": "לימסול",
+     "en": "Limassol",
+     "lat": 34.7071,
+     "lon": 33.0226
+    },
+    {
+     "he": "ניקוסיה",
+     "en": "Nicosia",
+     "lat": 35.1856,
+     "lon": 33.3823
+    }
+   ]
+  },
+  {
+   "he": "טורקיה",
+   "en": "Turkey",
+   "code": "TR",
+   "cities": [
+    {
+     "he": "איסטנבול",
+     "en": "Istanbul",
+     "lat": 41.0082,
+     "lon": 28.9784
+    },
+    {
+     "he": "קפדוקיה",
+     "en": "Cappadocia",
+     "lat": 38.6431,
+     "lon": 34.8289
+    },
+    {
+     "he": "אנטליה",
+     "en": "Antalya",
+     "lat": 36.8969,
+     "lon": 30.7133
+    }
+   ]
+  },
+  {
+   "he": "מרוקו",
+   "en": "Morocco",
+   "code": "MA",
+   "cities": [
+    {
+     "he": "מרקש",
+     "en": "Marrakesh",
+     "lat": 31.6295,
+     "lon": -7.9811
+    },
+    {
+     "he": "ורזאזאת",
+     "en": "Ouarzazate",
+     "lat": 30.9335,
+     "lon": -6.937
+    },
+    {
+     "he": "קזבלנקה",
+     "en": "Casablanca",
+     "lat": 33.5731,
+     "lon": -7.5898
+    }
+   ]
+  },
+  {
+   "he": "מצרים",
+   "en": "Egypt",
+   "code": "EG",
+   "cities": [
+    {
+     "he": "קהיר",
+     "en": "Cairo",
+     "lat": 30.0444,
+     "lon": 31.2357
+    },
+    {
+     "he": "לוקסור",
+     "en": "Luxor",
+     "lat": 25.6872,
+     "lon": 32.6396
+    },
+    {
+     "he": "שארם א-שייח",
+     "en": "Sharm el-Sheikh",
+     "lat": 27.9158,
+     "lon": 34.33
+    }
+   ]
+  },
+  {
+   "he": "איחוד האמירויות",
+   "en": "United Arab Emirates",
+   "code": "AE",
+   "cities": [
+    {
+     "he": "דובאי",
+     "en": "Dubai",
+     "lat": 25.2048,
+     "lon": 55.2708
+    },
+    {
+     "he": "אבו דאבי",
+     "en": "Abu Dhabi",
+     "lat": 24.4539,
+     "lon": 54.3773
+    }
+   ]
+  },
+  {
+   "he": "ירדן",
+   "en": "Jordan",
+   "code": "JO",
+   "cities": [
+    {
+     "he": "עמאן",
+     "en": "Amman",
+     "lat": 31.9454,
+     "lon": 35.9284
+    },
+    {
+     "he": "ואדי רם",
+     "en": "Wadi Rum",
+     "lat": 29.5765,
+     "lon": 35.4206
+    },
+    {
+     "he": "פטרה",
+     "en": "Petra",
+     "lat": 30.3285,
+     "lon": 35.4444
+    }
+   ]
+  },
+  {
+   "he": "הודו",
+   "en": "India",
+   "code": "IN",
+   "cities": [
+    {
+     "he": "מומבאי",
+     "en": "Mumbai",
+     "lat": 19.076,
+     "lon": 72.8777
+    },
+    {
+     "he": "דלהי",
+     "en": "Delhi",
+     "lat": 28.6139,
+     "lon": 77.209
+    },
+    {
+     "he": "גואה",
+     "en": "Goa",
+     "lat": 15.2993,
+     "lon": 74.124
+    }
+   ]
+  },
+  {
+   "he": "תאילנד",
+   "en": "Thailand",
+   "code": "TH",
+   "cities": [
+    {
+     "he": "בנגקוק",
+     "en": "Bangkok",
+     "lat": 13.7563,
+     "lon": 100.5018
+    },
+    {
+     "he": "פוקט",
+     "en": "Phuket",
+     "lat": 7.8804,
+     "lon": 98.3923
+    },
+    {
+     "he": "צ׳יאנג מאי",
+     "en": "Chiang Mai",
+     "lat": 18.7883,
+     "lon": 98.9853
+    }
+   ]
+  },
+  {
+   "he": "יפן",
+   "en": "Japan",
+   "code": "JP",
+   "cities": [
+    {
+     "he": "טוקיו",
+     "en": "Tokyo",
+     "lat": 35.6762,
+     "lon": 139.6503
+    },
+    {
+     "he": "קיוטו",
+     "en": "Kyoto",
+     "lat": 35.0116,
+     "lon": 135.7681
+    },
+    {
+     "he": "אוסקה",
+     "en": "Osaka",
+     "lat": 34.6937,
+     "lon": 135.5023
+    }
+   ]
+  },
+  {
+   "he": "סין",
+   "en": "China",
+   "code": "CN",
+   "cities": [
+    {
+     "he": "בייג׳ינג",
+     "en": "Beijing",
+     "lat": 39.9042,
+     "lon": 116.4074
+    },
+    {
+     "he": "שנגחאי",
+     "en": "Shanghai",
+     "lat": 31.2304,
+     "lon": 121.4737
+    },
+    {
+     "he": "הונג קונג",
+     "en": "Hong Kong",
+     "lat": 22.3193,
+     "lon": 114.1694
+    }
+   ]
+  },
+  {
+   "he": "אוסטרליה",
+   "en": "Australia",
+   "code": "AU",
+   "cities": [
+    {
+     "he": "סידני",
+     "en": "Sydney",
+     "lat": -33.8688,
+     "lon": 151.2093
+    },
+    {
+     "he": "מלבורן",
+     "en": "Melbourne",
+     "lat": -37.8136,
+     "lon": 144.9631
+    },
+    {
+     "he": "גולד קוסט",
+     "en": "Gold Coast",
+     "lat": -28.0167,
+     "lon": 153.4
+    }
+   ]
+  },
+  {
+   "he": "ניו זילנד",
+   "en": "New Zealand",
+   "code": "NZ",
+   "cities": [
+    {
+     "he": "אוקלנד",
+     "en": "Auckland",
+     "lat": -36.8485,
+     "lon": 174.7633
+    },
+    {
+     "he": "קווינסטאון",
+     "en": "Queenstown",
+     "lat": -45.0312,
+     "lon": 168.6626
+    },
+    {
+     "he": "וולינגטון",
+     "en": "Wellington",
+     "lat": -41.2866,
+     "lon": 174.7756
+    }
+   ]
+  },
+  {
+   "he": "דרום אפריקה",
+   "en": "South Africa",
+   "code": "ZA",
+   "cities": [
+    {
+     "he": "קייפטאון",
+     "en": "Cape Town",
+     "lat": -33.9249,
+     "lon": 18.4241
+    },
+    {
+     "he": "יוהנסבורג",
+     "en": "Johannesburg",
+     "lat": -26.2041,
+     "lon": 28.0473
+    }
+   ]
+  },
+  {
+   "he": "ברזיל",
+   "en": "Brazil",
+   "code": "BR",
+   "cities": [
+    {
+     "he": "ריו דה ז׳ניירו",
+     "en": "Rio de Janeiro",
+     "lat": -22.9068,
+     "lon": -43.1729
+    },
+    {
+     "he": "סאו פאולו",
+     "en": "Sao Paulo",
+     "lat": -23.5505,
+     "lon": -46.6333
+    }
+   ]
+  },
+  {
+   "he": "ארגנטינה",
+   "en": "Argentina",
+   "code": "AR",
+   "cities": [
+    {
+     "he": "בואנוס איירס",
+     "en": "Buenos Aires",
+     "lat": -34.6037,
+     "lon": -58.3816
+    },
+    {
+     "he": "אושואיה",
+     "en": "Ushuaia",
+     "lat": -54.8019,
+     "lon": -68.303
+    }
+   ]
+  },
+  {
+   "he": "מקסיקו",
+   "en": "Mexico",
+   "code": "MX",
+   "cities": [
+    {
+     "he": "מקסיקו סיטי",
+     "en": "Mexico City",
+     "lat": 19.4326,
+     "lon": -99.1332
+    },
+    {
+     "he": "קנקון",
+     "en": "Cancun",
+     "lat": 21.1619,
+     "lon": -86.8515
+    }
+   ]
+  },
+  {
+   "he": "קנדה",
+   "en": "Canada",
+   "code": "CA",
+   "cities": [
+    {
+     "he": "טורונטו",
+     "en": "Toronto",
+     "lat": 43.6532,
+     "lon": -79.3832
+    },
+    {
+     "he": "ונקובר",
+     "en": "Vancouver",
+     "lat": 49.2827,
+     "lon": -123.1207
+    },
+    {
+     "he": "מונטריאול",
+     "en": "Montreal",
+     "lat": 45.5017,
+     "lon": -73.5673
+    }
+   ]
+  },
+  {
+   "he": "איסלנד",
+   "en": "Iceland",
+   "code": "IS",
+   "cities": [
+    {
+     "he": "רייקיאוויק",
+     "en": "Reykjavik",
+     "lat": 64.1466,
+     "lon": -21.9426
+    },
+    {
+     "he": "ויק",
+     "en": "Vik",
+     "lat": 63.4187,
+     "lon": -19.006
+    }
+   ]
+  },
+  {
+   "he": "נורווגיה",
+   "en": "Norway",
+   "code": "NO",
+   "cities": [
+    {
+     "he": "אוסלו",
+     "en": "Oslo",
+     "lat": 59.9139,
+     "lon": 10.7522
+    },
+    {
+     "he": "טרומסו",
+     "en": "Tromso",
+     "lat": 69.6492,
+     "lon": 18.9553
+    },
+    {
+     "he": "ברגן",
+     "en": "Bergen",
+     "lat": 60.3913,
+     "lon": 5.3221
+    }
+   ]
+  },
+  {
+   "he": "שוודיה",
+   "en": "Sweden",
+   "code": "SE",
+   "cities": [
+    {
+     "he": "שטוקהולם",
+     "en": "Stockholm",
+     "lat": 59.3293,
+     "lon": 18.0686
+    },
+    {
+     "he": "קירונה",
+     "en": "Kiruna",
+     "lat": 67.8558,
+     "lon": 20.2253
+    }
+   ]
+  },
+  {
+   "he": "פינלנד",
+   "en": "Finland",
+   "code": "FI",
+   "cities": [
+    {
+     "he": "הלסינקי",
+     "en": "Helsinki",
+     "lat": 60.1699,
+     "lon": 24.9384
+    },
+    {
+     "he": "רובניימי",
+     "en": "Rovaniemi",
+     "lat": 66.5039,
+     "lon": 25.7294
+    }
+   ]
+  },
+  {
+   "he": "הולנד",
+   "en": "Netherlands",
+   "code": "NL",
+   "cities": [
+    {
+     "he": "אמסטרדם",
+     "en": "Amsterdam",
+     "lat": 52.3676,
+     "lon": 4.9041
+    },
+    {
+     "he": "רוטרדם",
+     "en": "Rotterdam",
+     "lat": 51.9244,
+     "lon": 4.4777
+    }
+   ]
+  },
+  {
+   "he": "בלגיה",
+   "en": "Belgium",
+   "code": "BE",
+   "cities": [
+    {
+     "he": "בריסל",
+     "en": "Brussels",
+     "lat": 50.8503,
+     "lon": 4.3517
+    }
+   ]
+  },
+  {
+   "he": "שווייץ",
+   "en": "Switzerland",
+   "code": "CH",
+   "cities": [
+    {
+     "he": "ציריך",
+     "en": "Zurich",
+     "lat": 47.3769,
+     "lon": 8.5417
+    },
+    {
+     "he": "צרמט",
+     "en": "Zermatt",
+     "lat": 46.0207,
+     "lon": 7.7491
+    }
+   ]
+  },
+  {
+   "he": "אוסטריה",
+   "en": "Austria",
+   "code": "AT",
+   "cities": [
+    {
+     "he": "וינה",
+     "en": "Vienna",
+     "lat": 48.2082,
+     "lon": 16.3738
+    },
+    {
+     "he": "זלצבורג",
+     "en": "Salzburg",
+     "lat": 47.8095,
+     "lon": 13.055
+    }
+   ]
+  },
+  {
+   "he": "צ׳כיה",
+   "en": "Czechia",
+   "code": "CZ",
+   "cities": [
+    {
+     "he": "פראג",
+     "en": "Prague",
+     "lat": 50.0755,
+     "lon": 14.4378
+    }
+   ]
+  },
+  {
+   "he": "הונגריה",
+   "en": "Hungary",
+   "code": "HU",
+   "cities": [
+    {
+     "he": "בודפשט",
+     "en": "Budapest",
+     "lat": 47.4979,
+     "lon": 19.0402
+    }
+   ]
+  },
+  {
+   "he": "פולין",
+   "en": "Poland",
+   "code": "PL",
+   "cities": [
+    {
+     "he": "ורשה",
+     "en": "Warsaw",
+     "lat": 52.2297,
+     "lon": 21.0122
+    },
+    {
+     "he": "קרקוב",
+     "en": "Krakow",
+     "lat": 50.0647,
+     "lon": 19.945
+    }
+   ]
+  },
+  {
+   "he": "רומניה",
+   "en": "Romania",
+   "code": "RO",
+   "cities": [
+    {
+     "he": "בוקרשט",
+     "en": "Bucharest",
+     "lat": 44.4268,
+     "lon": 26.1025
+    }
+   ]
+  },
+  {
+   "he": "בולגריה",
+   "en": "Bulgaria",
+   "code": "BG",
+   "cities": [
+    {
+     "he": "סופיה",
+     "en": "Sofia",
+     "lat": 42.6977,
+     "lon": 23.3219
+    }
+   ]
+  },
+  {
+   "he": "גאורגיה",
+   "en": "Georgia",
+   "code": "GE",
+   "cities": [
+    {
+     "he": "טביליסי",
+     "en": "Tbilisi",
+     "lat": 41.7151,
+     "lon": 44.8271
+    }
+   ]
+  },
+  {
+   "he": "קרואטיה",
+   "en": "Croatia",
+   "code": "HR",
+   "cities": [
+    {
+     "he": "דוברובניק",
+     "en": "Dubrovnik",
+     "lat": 42.6507,
+     "lon": 18.0944
+    },
+    {
+     "he": "זאגרב",
+     "en": "Zagreb",
+     "lat": 45.815,
+     "lon": 15.9819
+    }
+   ]
+  },
+  {
+   "he": "אירלנד",
+   "en": "Ireland",
+   "code": "IE",
+   "cities": [
+    {
+     "he": "דבלין",
+     "en": "Dublin",
+     "lat": 53.3498,
+     "lon": -6.2603
+    }
+   ]
+  },
+  {
+   "he": "קניה",
+   "en": "Kenya",
+   "code": "KE",
+   "cities": [
+    {
+     "he": "ניירובי",
+     "en": "Nairobi",
+     "lat": -1.2921,
+     "lon": 36.8219
+    },
+    {
+     "he": "מסאי מארה",
+     "en": "Maasai Mara",
+     "lat": -1.4061,
+     "lon": 35.0078
+    }
+   ]
+  },
+  {
+   "he": "נמיביה",
+   "en": "Namibia",
+   "code": "NA",
+   "cities": [
+    {
+     "he": "וינדהוק",
+     "en": "Windhoek",
+     "lat": -22.5609,
+     "lon": 17.0658
+    },
+    {
+     "he": "סוסוסוולי",
+     "en": "Sossusvlei",
+     "lat": -24.7333,
+     "lon": 15.3
+    }
+   ]
+  }
+ ]
 }

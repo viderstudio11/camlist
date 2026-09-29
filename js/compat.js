@@ -39,7 +39,7 @@ export const BATTERY = {
   'BP-U': /bp-?u\s?\d*|\bu\d{2,3}\b|bc-?u\d/i,
   'V-Mount': /v[-\s]?mount|v[-\s]?lock|bp-?gl\d|\bbp-?\d{2,3}s\b|\bv\d{2,3}\b|\bd-?3004|\bsc-?302|fx-?m2s/i,
   'Gold': /gold|anton|\bab-?mount|\bg\d{2,3}\b/i, 'B-Mount': /\bb-?mount/i,
-  'NP-F': /np-?f\d{3}|ac-?vl1|bc-?l1/i, 'NP-FV': /np-?fv|bc-?qm1/i, 'NP-FZ100': /np-?fz|fz-?100|bc-?qz1/i, 'NP-FW50': /fw-?50|bc-?trw/i, 'NP-SA100': /np-?sa\d{2,3}/i,
+  'NP-F': /np-?f\d{3}|ac-?vl1|bc-?l1/i, 'NP-FV': /np-?fv|bc-?qm1/i, 'NP-FZ100': /np-?fz|fz-?100|bc-?qz1/i, 'NP-FW50': /fw-?50|bc-?trw/i,
   'LP-E6': /lp-?e6|lc-?e6/i, 'BP-A': /bp-?a\d{2}|cg-?a\d{2}/i, 'BP-9': /bp-?9\d{2}|ca-?930|cg-?940/i,
   'VBR': /\bvbr|\bvbd|ag-?vb[rd]|vw-?vb[rd]|vw-?ad20|ag-?b23|s-?8d58/i, 'VBG': /vbg\d|vw-?vbg/i, 'VBT': /vbt\d|vw-?vbt|vw-?bc10/i, 'CGA-D54': /cga-?d54|de-?a20|ag-?b23/i,
   'DMW-BLF19': /blf-?19/i, 'DMW-BLK22': /blk-?22/i, 'DMW-BLJ31': /blj-?31/i, 'NP-W235': /w-?235/i, 'TB50': /tb-?50/i, 'BP-FL': /bp-?fl/i,
@@ -122,7 +122,7 @@ export function createCompat(data, catalog) {
       if (partial) return { status: 'partial', reason: 'coverage', via: viaAdapter ? 'adapter' : 'native' };
       return viaAdapter ? { status: 'adapter', reason: 'mount' } : { status: 'native' };
     }
-    if (dept === 'media' ? subs.includes('Memory Cards') || subs.includes('Card Readers') : dept === 'video' && subs.includes('Recorders & Media')) {
+    if (dept === 'video' && subs.includes('Recorders & Media')) {
       if (MEDIA_IGNORE.test(product.name)) return { status: 'neutral', kind: 'other' };
       const fams = mediaFamilies(product.name);
       const kind = READER_RX.test(product.name) ? 'reader' : fams.length ? 'card' : 'other';
@@ -153,19 +153,16 @@ export function createCompat(data, catalog) {
     for (const it of items) { const p = resolve(it.productId); if (!p) continue; const v = verdict(p, prof); if (v.kind === 'card' && v.family && !fams.includes(v.family)) fams.push(v.family); }
     return fams;
   }
-  // Readers in the catalog that cover a family — empty means the catalog has none for it.
-  const readersFor = (family) => catalog.products.filter(p => ['media', 'video'].includes(catalog.deptKey(p.dept)) && READER_RX.test(p.name) && mediaFamilies(p.name).includes(family));
+  // Readers in the catalog that cover a family — empty means Utopia has none for it.
+  const readersFor = (family) => catalog.products.filter(p => catalog.deptKey(p.dept) === 'video' && READER_RX.test(p.name) && mediaFamilies(p.name).includes(family));
 
   // Kit slot progress against the project's items: how many units of matching products are already in the list.
   // A slot with `kind` (card / reader / battery / charger) only counts items of that kind.
   function kitStatus(prof, items, resolve) {
     const chosen = chosenMedia(prof, items, resolve);
     return (prof?.kit || []).map(slot => {
-      // Cards and readers live in Media & Offload; a catalog without that department keeps them in Video.
-      const hasMedia = catalog.departments.some(d => d.slug === 'media');
-      const where = slot.dept === 'media' && !hasMedia ? { dept: 'video', subcat: 'Recorders & Media' } : slot;
-      const deptId = catalog.departments.find(d => d.slug === where.dept)?.id;
-      const subId = where.subcat ? catalog.departments.flatMap(d => d.subcategories).find(s => s.en === where.subcat)?.id : null;
+      const deptId = catalog.departments.find(d => d.slug === slot.dept)?.id;
+      const subId = slot.subcat ? catalog.departments.flatMap(d => d.subcategories).find(s => s.en === slot.subcat)?.id : null;
       const have = items.reduce((n, it) => {
         const p = resolve(it.productId) || { dept: it.snapshot?.dept, subcats: [] };
         if (p.dept !== deptId || (subId && !(p.subcats || []).includes(subId))) return n;

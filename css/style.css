@@ -313,24 +313,40 @@ body.print-mode { background: #fff; color: #111; background-image: none; }
 body.print-mode .view { padding: 0; max-width: none; }
 .print { max-width: 820px; margin: 0 auto; padding: 20px; font-size: 12px; color: #000; }
 
-/* The printed list: a thin clapper stripe, the name, one line of details, then plain rows. */
-.print .pstripe { height: 12px; position: relative; background: repeating-linear-gradient(65deg, #000 0 9px, #fff 9px 18px); border-block: 1px solid #000; }
-.print .pstripe .mark { position: absolute; inset-inline-end: 8px; top: -1px; background: #fff; border: 1px solid #000; padding: 0 5px; font-size: 9px; letter-spacing: .14em; line-height: 12px; font-weight: 600; }
-.print .pstripe .mark b { font-weight: 600; }
-.print .phead-print { padding: 14px 0 10px; }
-.print .phead-print h1 { font-family: var(--font-head); font-weight: 700; font-size: 34px; line-height: 1; margin: 0 0 6px; }
-.print .phead-print p { margin: 2px 0 0; font-size: 12.5px; color: #222; }
-.print .phead-print p.dim { color: #666; font-size: 11.5px; }
-.print .pdept { margin-block-start: 12px; break-inside: auto; }
-.print .pdept h2 { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 4px; padding-block-end: 3px; border-block-end: 1px solid #000; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; break-after: avoid; }
-.print .pdept h2 .n { font-weight: 700; }
-.print .pline { display: flex; align-items: baseline; gap: 10px; padding: 3px 0; break-inside: avoid; font-size: 12.5px; }
-.print .pline .q { flex: none; min-width: 30px; font-family: var(--mono); font-weight: 700; font-variant-numeric: tabular-nums; }
-.print .pline .nm { flex: 1; font-weight: 400; }
-.print .pline .nm small { display: block; color: #666; font-size: 11px; margin-top: 1px; }
-.print .pline .im { flex: none; align-self: center; }
-.print .pline .im img { width: 26px; height: 26px; object-fit: cover; display: block; }
-.print .pfoot { margin-block-start: 18px; padding-block-start: 6px; border-block-start: 1px solid #ccc; color: #777; font-size: 10.5px; font-family: var(--mono); }
+/* Slate: one tight grid of fields with hairline rules — the only solid ink is the clapper strip. */
+.print .slate { border: 1px solid #000; background: #000; }
+.print .sticks { height: 26px; display: flex; align-items: center; justify-content: flex-end; padding-inline: 8px;
+  background: repeating-linear-gradient(65deg, #000 0 17px, #fff 17px 34px);
+  border-block-end: 2px solid #000; position: relative; }
+.print .sticks::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; width: 26px;
+  background: #000; }
+.print .sticks .mark { background: #fff; border: 1px solid #000; padding: 0 5px; font-size: 10px; font-weight: 800; letter-spacing: .14em; line-height: 14px; }
+.print .sticks .mark b { font-weight: 800; }
+.print .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: #000; }
+.print .cell { background: #fff; border-inline-end: 1px solid #000; border-block-end: 1px solid #000; padding: 3px 7px 4px; display: flex; flex-direction: column; justify-content: center; min-height: 30px; overflow: hidden; }
+.print .cell i { font-style: normal; font-size: 8px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #666; line-height: 1.25; }
+.print .cell b { font-size: 13px; font-weight: 800; line-height: 1.2; overflow-wrap: anywhere; }
+.print .cell:first-child b { font-size: 18px; letter-spacing: -.01em; }
+/* The production name is centred in its cell: left-aligned it lands on opposite sides in
+   Hebrew and English, which reads as a mistake on a printed sheet. */
+.print .cell.mid { align-items: center; text-align: center; }
+.print .slate.foot { margin-block-start: 10px; break-inside: avoid; }
+.print .cell.sig { min-height: 42px; }
+.print .cell.sig b { min-height: 22px; border-block-end: 1px dotted #999; }
+
+.print table { width: 100%; border-collapse: collapse; margin-block-start: 10px; }
+.print td { border-block-end: 1px solid #ddd; padding: 2px 7px; vertical-align: middle; }
+.print tr { break-inside: avoid; }
+.print tr.dept td { color: #000; font-size: 10.5px; font-weight: 800; letter-spacing: .14em;
+  text-transform: uppercase; padding: 9px 7px 3px; border: 0; border-block-start: 2px solid #000;
+  border-block-end: 1px solid #000; break-after: avoid; }
+.print tbody:first-child tr.dept td { border-block-start: 0; padding-block-start: 4px; }
+.print tr.dept td.q { color: #000; font-size: 11px; }
+.print td.br { width: 20%; font-weight: 700; }
+.print td.nt { width: 24%; color: #555; font-size: 11px; }
+.print td.q { width: 34px; text-align: center; font-weight: 900; font-variant-numeric: tabular-nums; }
+.print td.im { width: 30px; padding-inline-end: 0; }
+.print td.im img { width: 26px; height: 26px; object-fit: cover; display: block; }
 .print .screen-only { margin: 0 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 
 @media print {
@@ -338,8 +354,10 @@ body.print-mode .view { padding: 0; max-width: none; }
   @page { margin: 11mm; }
   body { background: #fff; }
   .print { padding: 0; max-width: none; font-size: 10.5pt; }
-  /* The stripe is the only solid ink; keep it when the browser would drop backgrounds. */
-  .print .pstripe { -webkit-print-color-adjust: exact; print-color-adjust: exact; height: 3.5mm; background: repeating-linear-gradient(65deg, #000 0 2.6mm, #fff 2.6mm 5.2mm); }
+  /* Rental houses print in black and white: keep the rules and bands, drop everything else. */
+  /* Only the clapper strip and the hairline grid need ink the browser might otherwise drop. */
+  .print .sticks, .print .grid { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .print .sticks { height: 7mm; background: repeating-linear-gradient(65deg, #000 0 5mm, #fff 5mm 10mm); }
 }
 
 /* Brand header logo size + side rail of brand logo squares */
@@ -645,6 +663,22 @@ img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; }
   font-family: var(--mono); }
 .pass.verify { background: var(--tint); color: var(--muted); border-color: var(--border); }
 
+/* The day, drawn */
+.card.suncard { padding: 12px 8px 10px; margin-bottom: 12px; }
+.sun-svg { width: 100%; height: auto; display: block; }
+.sun-svg .b-horizon { stroke: var(--border-2); stroke-width: 1; }
+.sun-svg .b-arc { fill: none; stroke: var(--amber, #B26A00); stroke-width: 2; }
+.sun-svg .b-sun { fill: var(--amber, #B26A00); }
+.sun-svg .b-gold { fill: var(--amber-soft, rgba(178,106,0,.14)); }
+.sun-svg .b-blue { fill: rgba(27,95,168,.16); }
+.sun-svg .b-lab { fill: var(--muted); font-size: 10px; font-weight: 700; font-family: var(--mono); }
+.sun-svg .b-lab.end { text-anchor: end; }
+.sun-key { display: flex; gap: 12px; padding: 8px 8px 0; font-size: 11px; color: var(--muted); }
+.sun-key span::before { content: ""; display: inline-block; width: 9px; height: 9px; margin-inline-end: 5px;
+  vertical-align: -1px; border-radius: 2px; }
+.sun-key .k-gold::before { background: var(--amber, #B26A00); }
+.sun-key .k-blue::before { background: #1B5FA8; }
+
 /* Lenses from the catalog that fit the chosen body */
 .card.lenslist { margin-top: 14px; padding: 12px 14px 14px; }
 .chip.pick.adp { border-style: dashed; }
@@ -817,130 +851,10 @@ body.split .view { max-width: none; padding: 12px 16px 0; }
 .split-panes .pane-cat .bottombar, .split-panes [data-add] { display: none; }
 .split-panes .bottombar { position: sticky; bottom: 0; inset-inline: auto; margin: 16px 0 0; max-width: none; }
 
-
-/* ============================================================ FRAME RATE & SHUTTER (v2) ============ */
-.sh-answer { padding: 16px; }
-.sh-top { display: flex; align-items: center; gap: 16px; }
-.sh-top .dial-svg { width: 76px; height: 76px; }
-.sh-main { display: flex; flex-direction: column; gap: 4px; }
-.sh-big { font-family: var(--mono); font-weight: 700; font-size: 44px; line-height: 1; letter-spacing: .01em; }
-.sh-answer.ok .sh-big { color: var(--text); }
-.sh-small { font-family: var(--mono); font-weight: 600; font-size: 15px; color: var(--text-3); letter-spacing: .04em; }
-.sh-line { margin-top: 10px; font-size: 14.5px; color: var(--text-2); line-height: 1.45; }
-.sh-line.ok { color: var(--ok-ink); font-weight: var(--w-strong); }
-.sh-line.warn { color: var(--warn-ink); font-weight: var(--w-strong); }
-.sh-sec { margin-top: 12px; }
-.sh-sec .tsub { font-family: var(--mono); font-weight: 600; font-size: 13px; letter-spacing: .14em; color: var(--text-3); }
-.sh-sec .chips { gap: 7px; }
-.sh-sec .chip.pick { font-family: var(--mono); font-weight: 600; font-size: 15px; padding: 7px 13px; display: inline-flex; align-items: center; gap: 6px; }
-.sh-ok { font-style: normal; color: var(--ok-ink); font-size: 12px; }
-.chip.pick.on .sh-ok { color: inherit; }
-.sh-rec { font-style: normal; font-family: var(--font); font-size: 10.5px; font-weight: 700; padding: 1px 6px; border-radius: 5px; background: var(--accent-soft); color: var(--accent-ink); }
-.chip.pick.on .sh-rec { background: rgba(0,0,0,.15); color: inherit; }
-.sh-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.sh-mode { display: inline-flex; background: var(--surface-2); border-radius: 10px; padding: 3px; }
-.sh-mode button { height: 30px; padding: 0 12px; border-radius: 8px; font-weight: var(--w-strong); font-size: 13px; color: var(--text-2); }
-.sh-custom { margin-top: 8px; max-width: 200px; }
-
-/* ============================================================ LENS CHOICE (v2) ============ */
-.fov-top { display: flex; align-items: center; gap: 12px; }
-.fov-top .sh-big small { font-size: 18px; margin-inline-start: 4px; color: var(--text-3); }
-.fov-models { margin-top: 2px; }
-.fov-dist { display: flex; align-items: center; gap: 14px; margin-top: 8px; }
-.fov-dist input[type="range"] { flex: 1; accent-color: var(--accent); height: 28px; }
-.fov-dnum { display: flex; align-items: baseline; gap: 4px; }
-.fov-dnum input { width: 72px; font-family: var(--mono); font-weight: 700; font-size: 26px; text-align: center; background: var(--surface-2); border: var(--stroke) solid var(--line); border-radius: 10px; padding: 4px 6px; }
-.fov-dnum span { font-size: 14px; color: var(--text-3); }
-.sh-answer .frame-svg { width: 100%; max-height: 190px; margin-top: 10px; }
-/* Lens choice drawings: the monitor (what the camera sees) and the measured frame below it. */
-.fov-monitor { display: block; width: 100%; height: auto; margin-top: 12px; }
-.fov-monitor .mon-bg { fill: #1b1c1f; }
-.fov-monitor .mon-floor { fill: #2a2b2f; }
-.fov-monitor .fig { fill: #f2f2f0; stroke: #1b1c1f; stroke-width: 1.2; stroke-linejoin: round; }
-.fov-monitor .mon-safe { fill: none; stroke: rgba(255,255,255,.35); stroke-dasharray: 3 4; }
-.fov-monitor .mon-cross { stroke: var(--accent); stroke-width: 1.5; }
-.fov-monitor .mon-mm { fill: var(--accent); font-family: var(--mono); font-weight: 700; font-size: 15px; }
-.fov-monitor .mon-edge { fill: none; stroke: var(--accent); stroke-width: 2.5; }
-.fov-measure { display: block; width: 100%; max-height: 160px; margin-top: 10px; }
-.fov-measure .fig { fill: var(--surface); stroke: var(--text); stroke-width: 2; stroke-linejoin: round; }
-.fov-measure .ms-tick { stroke: var(--text-3); stroke-width: 1; }
-.fov-measure .ms-num { fill: var(--text-3); font-family: var(--mono); font-weight: 600; font-size: 10px; }
-.fov-measure .ms-ground { stroke: var(--line-2); stroke-width: 1; }
-.fov-measure .ms-frame { fill: none; stroke: var(--accent); stroke-width: 2.2; }
-.fov-measure .ms-dim { stroke: var(--accent-ink); stroke-width: 1.3; fill: none; }
-.fov-measure .ms-lbl { fill: var(--accent-ink); font-family: var(--mono); font-weight: 700; font-size: 12px; }
-/* Where a number comes from: the maker's own table, or the older estimate. */
-.src-badge { display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 1px 7px; border-radius: 5px; margin-inline-end: 4px; }
-.src-badge.ok { background: var(--ok-soft); color: var(--ok-ink); }
-.src-badge.est { background: var(--warn-soft); color: var(--warn-ink); }
-
-/* Media: the source sits one tap away; backup cards come in pairs; the day's footage hands over to offload. */
-.src-more { margin-top: 10px; font-size: 13px; color: var(--text-3); }
-.src-more summary { cursor: pointer; list-style: none; display: block; line-height: 1.6; color: var(--text-2); }
-.src-more summary::-webkit-details-marker { display: none; }
-.src-more .src-i { font-size: 14px; color: var(--text-3); margin-inline-start: 2px; }
-.src-more[open] .src-i { color: var(--accent-ink); }
-.src-more p { margin-top: 6px; line-height: 1.45; overflow-wrap: anywhere; }
-.cardchip.twin { margin-inline-start: -8px; opacity: .8; }
-.to-offload { margin-top: 12px; font-weight: var(--w-strong); font-size: 14px; color: var(--accent-ink); background: var(--accent-soft); padding: 8px 12px; border-radius: 10px; }
-/* A small secondary choice inside a step: label on one side, chips on the other. */
-.sh-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 12px; padding-top: 10px; border-top: var(--stroke) solid var(--border); font-size: 14px; color: var(--text-2); }
-.sh-row .chips { gap: 6px; }
-.sh-row .chip.pick { font-size: 13px; padding: 5px 11px; }
-/* Sun: the answer card carries the drawing; the country is a compact picker above the city chips. */
-.sun-country select, .sh-sec input[type="date"] { background: var(--bg-2); border: var(--stroke) solid var(--border); border-radius: 9px; padding: 9px 10px; font-size: 14px; font-weight: 600; color: var(--text); width: 100%; max-width: 260px; margin-top: 8px; }
-.k-gold-t { color: var(--accent-ink); font-weight: var(--w-strong); }
-.k-blue-t { color: #1B5FA8; font-weight: var(--w-strong); }
-/* Sun: the path coloured by the light it gives, the sun gliding to where it is now. */
-.sun-status { margin-top: 8px; font-weight: var(--w-strong); font-size: 15px; color: var(--text); }
-.sun-status.st_golden_now, .sun-status.st_golden_in { color: var(--accent-ink); }
-.sun-status.st_blue_now { color: #2F6DB5; }
-.sun-arc { display: block; width: 100%; height: auto; margin-top: 12px; overflow: visible; }
-.sun-arc .sky-top { stop-color: #DCEBFA; } .sun-arc .sky-low { stop-color: #FFF1DC; }
-.sun-arc .a-sky { fill: url(#skyg); }
-.sun-arc .a-ground { fill: var(--bg-2); }
-.sun-arc .a-horizon { stroke: var(--border-2); stroke-width: 1.5; }
-.sun-arc .a-seg { fill: none; stroke-width: 7; stroke-linecap: round; }
-.sun-arc .a-seg.day { stroke: #F6D98A; } .sun-arc .a-seg.gold { stroke: #EE9A1E; } .sun-arc .a-seg.blue { stroke: #2F6DB5; }
-.sun-arc .a-dot { fill: var(--surface); stroke: var(--text-2); stroke-width: 1.5; }
-.sun-arc .a-lab { fill: var(--text-2); font-family: var(--mono); font-size: 11px; font-weight: 600; }
-.sun-arc .a-lab.gold { fill: var(--accent-ink); font-weight: 700; }
-.sun-arc .a-lab.blue { fill: #2F6DB5; font-weight: 700; }
-.sun-arc .a-lab.strong { fill: var(--text); font-weight: 800; font-size: 13px; }
-.sun-arc .sun-core { stop-color: rgba(255, 196, 64, .55); } .sun-arc .sun-halo { stop-color: rgba(255, 196, 64, 0); }
-.sun-arc .a-sun-core { fill: #FFB020; stroke: #fff; stroke-width: 2; }
-.sun-arc .a-sun.down { opacity: .45; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sun-arc .sky-top { stop-color: #1E2B40; } :root:not([data-theme="light"]) .sun-arc .sky-low { stop-color: #3A2E22; } }
-:root[data-theme="dark"] .sun-arc .sky-top { stop-color: #1E2B40; } :root[data-theme="dark"] .sun-arc .sky-low { stop-color: #3A2E22; }
-
-/* "Build around" scrolls the kit into view; keep its head clear of the floating top bar. */
-.kit { scroll-margin-top: 96px; }
-
-/* Quick-filter rows: one line each, swiped sideways, so the products stay on screen on a phone. */
-.filterbar .fchips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-.filterbar .fchips::-webkit-scrollbar { display: none; }
-.filterbar .fchips > * { flex: none; }
-
-/* "+ My item" sits beside the search: gear the catalog does not carry is one tap away, always. */
-.search { display: grid; grid-template-columns: 1fr auto; column-gap: 8px; }
-.search > :not(.field):not(.manual-btn) { grid-column: 1 / -1; }
-.search .manual-btn { height: 50px; border-radius: 13px; padding: 0 12px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
-.search .manual-btn svg { width: 16px; height: 16px; }
-
-/* "Goes with" window */
-.gw-list { display: grid; gap: 8px; }
-.gw-row { margin: 0; }
-.gw-done { width: 40px; text-align: center; font-weight: 800; color: var(--ok-ink); }
-
-/* Must-have kits for items other than cameras (monitors, wireless video, follow focus…) */
-.kitchip { margin-inline-start: 6px; }
-.gkit { margin: -4px 0 10px; padding: 10px 12px; border: var(--stroke) solid var(--border); border-radius: var(--radius); background: var(--surface-2); }
-.gkit-head { font-size: 12px; font-weight: 700; color: var(--text-2); margin-bottom: 6px; }
-
-/* LUTs: the log a camera records, big; the maker's download one tap below it. */
-.lut-answer .lut-log { display: block; font-family: var(--font-head); font-weight: 700; font-size: 30px; line-height: 1.05; margin-top: 2px; }
-.lut-answer .sh-small { margin: 0; }
-.lut-answer .lut-dl { margin-top: 12px; display: inline-flex; }
-.lut-answer.second { margin-top: 10px; }
-.lut-answer.second .lut-log { font-size: 22px; }
-.lut-answer .lut-dl { text-decoration: none; }
+/* ============================================================ PRINT (v2) ============
+   The slate keeps its layout; it now speaks the same type as the app. */
+.print .cell:first-child b, .print .cell.mid b { font-family: var(--font-head); font-weight: 700; font-size: 30px; line-height: .95; letter-spacing: 0; }
+.print .cell i, .print .sticks .mark, .print tr.dept td { font-family: var(--mono); font-weight: 600; }
+.print .cell i { font-size: 9px; }
+.print tr.dept td { font-size: 12px; }
+.print td.q { font-family: var(--mono); font-weight: 700; font-size: 14px; }

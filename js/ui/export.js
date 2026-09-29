@@ -14,7 +14,7 @@ export function render(ctx, { id, print }, root) {
   const { store, t } = ctx;
   const p = store.getProject(id);
   const groups = groupByDept(p.items, ctx.resolve, ctx.deptOrder());
-  if (print) return renderPrint(ctx, p, groups, root, { ...opts, lang: docLang || ctx.lang() });
+  if (print) return renderPrint(ctx, p, groups, root, opts);
   ctx.setTopbar({ title: esc(t('export')), back: `#/p/${id}` });
   const lang = () => docLang || ctx.lang();
   const text = () => buildShareText(p, groups, { lang: lang(), ...opts });

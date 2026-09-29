@@ -1,6 +1,5 @@
 import { esc, icons, toast, openSheet, confirmDialog } from './dom.js';
-import { groupByDept, setQty, setNote, totalQty, addItem } from '../list.js';
-import { gearKitFor, gearKitStatus } from '../gearkits.js';
+import { groupByDept, setQty, setNote, totalQty } from '../list.js';
 import { brandText } from '../brands.js';
 import { displayName, formatDateRange } from '../export-text.js';
 import { DEPT_EMOJI } from '../i18n.js';
@@ -10,8 +9,6 @@ import { editProjectSheet } from './projects.js';
 import { presetCatalog } from './catalog.js';
 
 const collapsed = new Set();
-let showKit = false;
-const openKits = new Set(); // items whose must-have checklist is open // set by "Build around": bring the new kit into view on the next draw
 let pickup = false; // prep day: the list turns into a check-off sheet
 
 export const thumbHTML = (p, key) => `<div class="thumb"><span>${DEPT_EMOJI[key] || '📦'}</span>${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy" onerror="this.remove()">` : ''}</div>`;
@@ -48,25 +45,6 @@ export function render(ctx, { id }, root) {
   const activeProf = active ? compat.profileFor(active) : null;
   const groups = groupByDept(p.items, ctx.resolve, ctx.deptOrder());
 
-  const gearKit = (product) => gearKitFor(ctx.catalog, product);
-  const qtyOf = (pid) => p.items.find(i => i.productId === pid)?.qty || 1;
-  const kitSlots = (product) => gearKitStatus(gearKit(product), qtyOf(product.id), p.items, ctx.resolve);
-  // Monitors, wireless video, follow focus, matte boxes, laptops: a chip under the item opens its
-  // must-have checklist in place, so several kits can be open side by side.
-  const kitChip = (product) => {
-    if (!gearKit(product)) return '';
-    const st = kitSlots(product), done = st.filter(x => x.done).length;
-    return `<button class="buildbtn kitchip ${done === st.length ? 'active' : ''}" data-kitchip="${esc(product.id)}">${done === st.length ? '✓' : '▾'} ${t('kit_short')} ${done}/${st.length}</button>`;
-  };
-  const slotRows = (product) => kitSlots(product).map(x => `
-      <div class="slot ${x.done ? 'done' : ''}">
-        <span class="slot-check">${x.done ? '✓' : ''}</span>
-        <span class="slot-label">${esc(ctx.lang() === 'he' ? x.he : x.en)}</span>
-        <span class="slot-have">${x.have} / ${x.need}</span>
-        ${x.done ? '' : x.add != null ? `<button class="btn sm" data-kitadd="${esc(product.id)}" data-slot="${esc(x.key)}">${t('add')}</button>` : `<button class="btn sm" data-kitfind="${esc(x.key)}">${t('choose')}</button>`}
-      </div>`).join('');
-  const inlineKit = (product) => (openKits.has(product.id) && gearKit(product)
-    ? `<div class="gkit"><div class="gkit-head">${t('must_have_for', { name: esc(displayName(product)) })}</div><div class="slots">${slotRows(product)}</div></div>` : '');
   const buildBtn = (product) => {
     if (!compat.isCamera(product) || !compat.profileFor(product)) return '';
     const isActive = p.buildCameraId === product.id;
@@ -79,7 +57,7 @@ export function render(ctx, { id }, root) {
     return `<button class="packbtn ${have >= item.qty ? 'done' : ''}" data-pack aria-label="${t('pickup_mode')}"><span class="pk-check">${have >= item.qty ? '✓' : ''}</span><span class="pk-count">${have}/${item.qty}</span></button>`;
   };
 
-  const sections = groups.map(g => `
+  const body = groups.map(g => `
     <section class="group ${collapsed.has(g.key) ? 'collapsed' : ''}" data-key="${g.key}">
       <div class="group-head"><span class="dept-ico sm">${deptIcon(g.key)}</span><h2>${t(`dept_${g.key}`)}</h2><span class="count">${g.entries.reduce((s, e) => s + e.item.qty, 0)}</span><span class="chev">${icons.chev}</span></div>
       <div class="group-body">${g.entries.map(({ item, product }) => `
@@ -87,12 +65,12 @@ export function render(ctx, { id }, root) {
           ${thumbHTML(product, g.key)}
           <div class="body">
             <div class="name">${esc(displayName(product))}</div>
-            <div class="sub">${brandText(product.brand, product.brandName)}${product.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${pickup ? '' : buildBtn(product) + kitChip(product)}</div>
+            <div class="sub">${brandText(product.brand, product.brandName)}${product.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${product.extra ? `<span class="chip extra">${t('not_at_utopia_item')}</span>` : ''}${pickup ? '' : buildBtn(product)}</div>
             ${pickup ? (item.note ? `<div class="sub dim" dir="auto">${esc(item.note)}</div>` : '') : `<input class="note" value="${esc(item.note)}" placeholder="${t('note_placeholder')}" data-note>`}
           </div>
           ${tailHTML(item)}
-        </div>${pickup ? '' : inlineKit(product)}`).join('')}</div>
-    </section>`);
+        </div>`).join('')}</div>
+    </section>`).join('');
 
   // Prep day banner: how much of the list is already in the truck.
   const pickHTML = !pickup ? '' : `<section class="card pickbar ${packedQty >= n && n ? 'done' : ''}">
@@ -102,8 +80,8 @@ export function render(ctx, { id }, root) {
     ${packedQty < n ? `<div class="m-note">${t('missing_items', { n: n - packedQty })}</div>` : ''}
   </section>`;
 
-  let kitHTML = '';
   // Base kit checklist for the active camera
+  let kitHTML = '';
   if (active && activeProf && !pickup) {
     const slots = compat.kitStatus(activeProf, p.items, ctx.resolve);
     const lang = ctx.lang();
@@ -132,19 +110,14 @@ export function render(ctx, { id }, root) {
     <div class="phead-n">${t('items_count', { n })}</div>
     <div class="ticks"></div>
   </header>`;
-  const listHTML = groups.length ? ''
+  const listHTML = groups.length ? body
     : `<div class="empty"><div class="big">🧰</div><h2>${t('list_empty')}</h2><p>${t('list_empty_hint')}</p></div>`;
-  // The kit sits right under the cameras it is built around, not three screens down the list.
-  const camAt = groups.findIndex(g => g.key === 'cameras');
-  if (!pickup && kitHTML) sections.splice(camAt + 1, 0, kitHTML);
-  root.innerHTML = headHTML + pickHTML + (groups.length ? sections.join('') : listHTML);
-  if (showKit) { showKit = false; root.querySelector('.kit')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  root.innerHTML = headHTML + pickHTML + listHTML + (pickup ? '' : kitHTML);
   root.insertAdjacentHTML('beforeend', `<div class="bottombar">${pickup
     ? `<button class="btn primary" data-pick-off>${t('pickup_off')}</button>`
     : `<button class="btn primary" data-add>${icons.plus}${t('add_gear')}</button><button class="btn" data-export ${n ? '' : 'disabled'}>${icons.share}${t('export')}</button>`}</div>`);
 
-  // Adding gear starts from the departments page, not wherever the catalog was left.
-  root.querySelector('[data-add]')?.addEventListener('click', () => { presetCatalog({}); ctx.navigate(`#/p/${id}/add`); });
+  root.querySelector('[data-add]')?.addEventListener('click', () => ctx.navigate(`#/p/${id}/add`));
   root.querySelector('[data-export]')?.addEventListener('click', () => ctx.navigate(`#/p/${id}/export`));
   root.querySelector('[data-pick-off]')?.addEventListener('click', () => { pickup = false; ctx.render(); });
   root.querySelector('[data-mark-all]')?.addEventListener('click', () => {
@@ -161,25 +134,8 @@ export function render(ctx, { id }, root) {
     try { await navigator.clipboard.writeText(txt); toast(t('copied'), { kind: 'ok' }); } catch { toast(t('export_failed'), { kind: 'err' }); }
   });
   root.querySelectorAll('.group-head').forEach(h => { h.onclick = () => { const k = h.parentElement.dataset.key; collapsed.has(k) ? collapsed.delete(k) : collapsed.add(k); h.parentElement.classList.toggle('collapsed'); }; });
-  root.querySelectorAll('[data-build]').forEach(b => { b.onclick = () => { const pid = parseId(b.dataset.build); const on = p.buildCameraId !== pid; store.setBuildCamera(id, on ? pid : null); showKit = on; ctx.render(); }; });
+  root.querySelectorAll('[data-build]').forEach(b => { b.onclick = () => { const pid = parseId(b.dataset.build); store.setBuildCamera(id, p.buildCameraId === pid ? null : pid); ctx.render(); }; });
   root.querySelector('[data-clear-build]')?.addEventListener('click', () => { store.setBuildCamera(id, null); ctx.render(); });
-  root.querySelectorAll('[data-kitchip]').forEach(b => { b.onclick = () => { const k = parseId(b.dataset.kitchip); openKits.has(k) ? openKits.delete(k) : openKits.add(k); ctx.render(); }; });
-  // A missing slot adds what it lacks; a slot with a choice (V-Mount or Gold plate) asks first.
-  root.querySelectorAll('[data-kitadd]').forEach(b => { b.onclick = () => {
-    const parent = ctx.resolve(parseId(b.dataset.kitadd));
-    const slot = kitSlots(parent).find(x => x.key === b.dataset.slot);
-    const put = (pid) => {
-      const items = store.getProject(id).items, cur = items.find(i => i.productId === pid)?.qty || 0;
-      const n = slot.need - slot.have;
-      store.setItems(id, cur ? setQty(items, pid, cur + n) : addItem(items, ctx.resolve(pid), n));
-      ctx.render();
-    };
-    const choices = [slot.add].flat();
-    if (choices.length === 1) return put(choices[0]);
-    openSheet({ title: ctx.lang() === 'he' ? slot.he : slot.en, bodyHTML: '', stack: true,
-      actions: choices.map(c => ({ label: ctx.resolve(c).name, onClick: () => put(c) })) });
-  }; });
-  root.querySelectorAll('[data-kitfind]').forEach(b => { b.onclick = () => { presetCatalog({}); ctx.navigate(`#/p/${id}/add`); }; });
   root.querySelectorAll('[data-choose]').forEach(b => { b.onclick = () => {
     const slot = compat.kitStatus(activeProf, p.items, ctx.resolve).find(s => s.slot === b.dataset.choose);
     presetCatalog({ dept: slot.deptId, subcat: slot.subId, strict: true, kind: slot.kind || null });
