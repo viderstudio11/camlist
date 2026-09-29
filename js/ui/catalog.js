@@ -250,7 +250,7 @@ export function render(ctx, { id }, root) {
   }
 
   root.innerHTML = `
-    <div class="search"><div class="field"><span class="sico">${icons.search}</span><input type="search" value="${esc(st.q)}" placeholder="${t('search_placeholder')}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" data-q>${st.q ? `<button class="clear" data-clear aria-label="clear">×</button>` : ''}</div>
+    <div class="search"><div class="field"><span class="sico">${icons.search}</span><input type="search" value="${esc(st.q)}" placeholder="${t('search_placeholder')}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" data-q>${st.q ? `<button class="clear" data-clear aria-label="clear">×</button>` : ''}</div><button class="btn sm manual-btn" data-manual>${icons.plus}${t('my_item')}</button>
       ${prof ? `<div class="cbar"><div class="thumb">${active.image ? `<img src="${esc(active.image)}" alt="">` : `<span class="ci">${deptIcon('cameras')}</span>`}</div><div class="cbar-body"><small>${t('building_around')}</small><b dir="auto">${esc(active.name)}</b><div class="pchips">${profileChips(prof, t)}</div></div><label class="cbar-toggle"><input type="checkbox" data-compat-only ${compatOnly ? 'checked' : ''}><span>${t('compat_only')}</span></label></div>` : ''}
       ${st.q || st.dept || st.brand ? '' : `<div class="tabs"><button class="${st.view === 'depts' ? 'active' : ''}" data-tab="depts">${t('departments')}</button><button class="${st.view === 'brands' ? 'active' : ''}" data-tab="brands">${t('all_brands')}</button></div>`}
     </div>
@@ -321,10 +321,11 @@ export function render(ctx, { id }, root) {
   root.querySelectorAll('.row').forEach(bindRow);
 
   const openManual = () => openSheet({
-    title: t('manual_item'),
+    title: t('my_item'),
     bodyHTML: `<div class="form">
       <label>${t('item_name')}<input name="name" value="${esc(manualPrefill || st.q)}" autocomplete="off" required></label>
       <label>${t('brand')}<input name="brand" list="brand-list" autocomplete="off" value="${st.brand ? esc(catalog.brandName(st.brand)) : ''}"><datalist id="brand-list">${catalog.brands.map(b => `<option value="${esc(b.name)}">`).join('')}</datalist></label>
+      <label>${t('qty')}<input name="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label>
       <label>${t('department')}<select name="dept">${catalog.departments.map(d => `<option value="${d.id}" ${st.dept === d.id ? 'selected' : ''}>${esc(deptName(d))}</option>`).join('')}<option value="other">${t('other')}</option></select></label>
     </div>`,
     actions: [{ label: t('cancel'), kind: 'ghost' }, { label: t('add'), kind: 'primary', onClick: (body) => {
@@ -332,11 +333,12 @@ export function render(ctx, { id }, root) {
       const brandName = body.querySelector('[name=brand]').value.trim() || null;
       const deptV = body.querySelector('[name=dept]').value; const dept = deptV === 'other' ? 'other' : Number(deptV);
       const m = store.addManualProduct({ name, brand: brandName ? slugify(brandName) : null, brandName, dept });
-      store.setItems(id, addItem(items(), catalog.byId(m.id) || { ...m, manual: true }, 1));
+      const qty = Math.max(1, Math.round(Number(body.querySelector('[name=qty]').value) || 1));
+      store.setItems(id, addItem(items(), catalog.byId(m.id) || { ...m, manual: true }, qty));
       st.q = ''; toast(t('added'), { kind: 'ok' }); rerender();
     } }],
     onOpen: (body) => body.querySelector('[name=name]').focus(),
   });
-  root.querySelector('[data-manual]')?.addEventListener('click', () => { manualPrefill = ''; openManual(); });
+  root.querySelectorAll('[data-manual]').forEach(b => { b.onclick = () => { manualPrefill = ''; openManual(); }; });
   root.querySelectorAll('[data-manual-reader]').forEach(b => { b.onclick = () => { manualPrefill = b.dataset.manualReader; openManual(); }; });
 }

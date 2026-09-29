@@ -945,3 +945,9 @@ body.split .view { max-width: none; padding: 12px 16px 0; }
 .filterbar .fchips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .filterbar .fchips::-webkit-scrollbar { display: none; }
 .filterbar .fchips > * { flex: none; }
+
+/* "+ My item" sits beside the search: gear the catalog does not carry is one tap away, always. */
+.search { display: grid; grid-template-columns: 1fr auto; column-gap: 8px; }
+.search > :not(.field):not(.manual-btn) { grid-column: 1 / -1; }
+.search .manual-btn { height: 50px; border-radius: 13px; padding: 0 12px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.search .manual-btn svg { width: 16px; height: 16px; }
