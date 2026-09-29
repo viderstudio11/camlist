@@ -367,3 +367,14 @@ test('sun: times read in the place’s own clock, not the phone’s', async () =
   const us = places.countries.find(c => c.code === 'US');
   assert.equal(zoneOf(us, us.cities.find(x => x.en === 'Albuquerque')), 'America/Denver');
 });
+
+test('sun: what the light is doing now, and how long until it changes', async () => {
+  const { sunStatus } = await import('../js/tools/solar.js');
+  const h = (hh, mm = 0) => new Date(Date.UTC(2026, 8, 29, hh, mm));
+  const day = { sunrise: h(6, 30), sunset: h(18, 30), goldenEvening: { from: h(18), to: h(18, 30) }, blueEvening: { from: h(18, 30), to: h(19) } };
+  assert.deepEqual(sunStatus(day, h(5)), { key: 'st_sunrise_in', ms: 90 * 60000 });
+  assert.deepEqual(sunStatus(day, h(16, 48)), { key: 'st_golden_in', ms: 72 * 60000 });
+  assert.deepEqual(sunStatus(day, h(18, 10)), { key: 'st_golden_now', ms: 20 * 60000 });
+  assert.deepEqual(sunStatus(day, h(18, 40)), { key: 'st_blue_now', ms: 20 * 60000 });
+  assert.deepEqual(sunStatus(day, h(20)), { key: 'st_dark', ms: 0 });
+});

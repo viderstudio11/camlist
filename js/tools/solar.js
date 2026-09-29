@@ -126,3 +126,13 @@ export function todayIn(tz, now = new Date()) {
     .formatToParts(now).map(x => [x.type, x.value]));
   return `${p.year}-${p.month}-${p.day}`;
 }
+
+// What the light is doing at `now`, and how long until the next change — for today's page only.
+export function sunStatus(day, now = new Date()) {
+  const t = +now, g = day.goldenEvening, b = day.blueEvening;
+  if (day.sunrise && t < +day.sunrise) return { key: 'st_sunrise_in', ms: +day.sunrise - t };
+  if (g && t < +g.from) return { key: 'st_golden_in', ms: +g.from - t };
+  if (day.sunset && t < +day.sunset) return { key: 'st_golden_now', ms: +day.sunset - t };
+  if (b && t < +b.to) return { key: 'st_blue_now', ms: +b.to - t };
+  return { key: 'st_dark', ms: 0 };
+}
