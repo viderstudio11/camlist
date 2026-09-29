@@ -4,7 +4,7 @@ import { toolIcon } from './icons.js';
 import { createMedia } from '../tools/media.js';
 import { timeFromAngle, angleFromTime, asFraction, flicker, slowMotion, FRAME_RATES, shutterChoices } from '../tools/shutter.js';
 import { PRIME_SET, SHOTS, lensFor, frameAt, pickLens, toUnit, fromUnit } from '../tools/fov.js';
-import { sunDay } from '../tools/solar.js';
+import { sunDay, zoneOf, localTime, todayIn } from '../tools/solar.js';
 import { offload, transfer, READERS, DRIVES, PORTS, UNIT_GROUPS, convert, cToF, fToC, mahToWh, whToMah } from '../tools/convert.js';
 import { num, hm } from '../format.js';
 
@@ -179,6 +179,16 @@ const L = {
   blue_pm: { he: 'שעה כחולה · ערב', en: 'Blue hour · evening' },
   noon: { he: 'שיא היום', en: 'Solar noon' },
   day_len: { he: 'אורך יום', en: 'Day length' },
+  sun_at:     { he: 'שקיעה · {place} · {day}', en: 'sunset · {place} · {day}' },
+  sun_morning: { he: 'בוקר: זריחה {rise} · שעת זהב {gold} · שעה כחולה {blue} · אורך היום {len}', en: 'Morning: sunrise {rise} · golden {gold} · blue {blue} · day length {len}' },
+  tz_note:    { he: 'השעות לפי השעון המקומי ב{place} ({tz})', en: 'Times are local to {place} ({tz})' },
+  sun_calc:   { he: 'מחושב לפי משוואות השמש של NOAA', en: 'worked out with NOAA’s solar equations' },
+  sun_src:    { he: 'זריחה ושקיעה: מרכז השמש 0.833° מתחת לאופק (כולל שבירת אור). שעת זהב: השמש עד 6° מעל האופק. שעה כחולה: השמש בין 0° ל־6° מתחת לאופק (דמדומים אזרחיים).', en: 'Sunrise and sunset: the sun’s centre 0.833° below the horizon (allowing for refraction). Golden hour: the sun up to 6° above the horizon. Blue hour: the sun 0–6° below it (civil twilight).' },
+  golden:     { he: 'שעת זהב', en: 'Golden hour' },
+  blue:       { he: 'שעה כחולה', en: 'Blue hour' },
+  today:      { he: 'היום', en: 'Today' },
+  tomorrow:   { he: 'מחר', en: 'Tomorrow' },
+  other_date: { he: 'תאריך אחר…', en: 'Other date…' },
   polar: { he: 'במקום הזה השמש לא זורחת או לא שוקעת בתאריך הזה', en: 'At this place the sun does not rise or set on this date' },
 
   group: { he: 'סוג', en: 'Type' },
@@ -204,7 +214,7 @@ const S = {
   fov: { distance: 4, unit: 'm', shot: 'waist', focal: 0, phone: 'main', vf: false, cam: '', camBrand: '' },
   shutter: { fps: 25, mode: 'speed', speed: 50, angle: 180, mains: 50, projectFps: 25, customFps: false },
   offload: { gb: 1000, reader: 'CFexpress A', drive: 'ssd10', copies: 2, verify: true, customGb: false, fromMedia: false, readOther: false, readMBs: 800, writeOther: false, writeMBs: 1000, readers: 1, port: 'tb', cardGb: 0 },
-  sun: { country: 'IL', city: 0, date: new Date().toISOString().slice(0, 10), lat: null, lon: null },
+  sun: { country: 'IL', city: 0, date: new Date().toISOString().slice(0, 10), dateMode: 'today', lat: null, lon: null },
   units: { group: 'length', from: 'mm', to: 'in', value: 100, c: 20, mah: 6600, volts: 14.4 },
   luts: { brand: '', model: '' },
   hours: { call: '07:00', wrap: '19:30', breaks: 60, otAfter: 12, turnaround: 11 },
@@ -228,9 +238,6 @@ export const toolLabel = (k, lang) => L[k]?.[lang] ?? L[k]?.he ?? k;
 
 const TOOLS = ['media', 'fov', 'shutter', 'hours', 'offload', 'sun', 'luts', 'units'];
 
-const fmtTime = (d, lang) => (d instanceof Date && !Number.isNaN(+d)
-  ? d.toLocaleTimeString(lang === 'he' ? 'he-IL' : 'en-GB', { hour: '2-digit', minute: '2-digit' })
-  : '—');
 
 export function render(ctx, { tool: id }, root) {
   const lang = ctx.lang();
@@ -708,60 +715,86 @@ function offloadTool(T, lang) {
 }
 
 // ---------- sun ----------
+const deviceZone = () => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { return null; } };
+const addDays = (iso, n) => new Date(Date.parse(`${iso}T12:00:00Z`) + n * 86400000).toISOString().slice(0, 10);
+
 function sunTool(T, lang) {
   const s = S.sun;
+  const Tp = (k, p) => T(k).replace(/\{(\w+)\}/g, (_, x) => p[x] ?? '');
+  const chip = (attr, val, label, on) => `<button class="chip pick ${on ? 'on' : ''}" ${attr}="${esc(val)}">${label}</button>`;
+  const name = (x) => (lang === 'he' ? x.he : x.en);
+
   const countries = placeData.countries || [];
   const country = countries.find(c => c.code === s.country) || countries[0];
   const cityList = country?.cities || [];
   const city = cityList[Math.min(s.city, cityList.length - 1)] || null;
-  const lat = s.lat ?? city?.lat ?? 32.0853;
-  const lon = s.lon ?? city?.lon ?? 34.7818;
+  const here = s.lat != null && s.lon != null;
+  const lat = here ? s.lat : city?.lat ?? 32.0853;
+  const lon = here ? s.lon : city?.lon ?? 34.7818;
+  // The times belong to the place: its own clock, or the phone's when "my location" is on.
+  const tz = here ? deviceZone() : zoneOf(country, city);
+  const at = (d) => localTime(d, tz);
+  const placeName = here ? T('my_location') : city ? name(city) : '';
+
+  // Today and tomorrow are the place's today and tomorrow, not the phone's.
+  const today = todayIn(tz);
+  if (s.dateMode === 'today') s.date = today;
+  if (s.dateMode === 'tomorrow') s.date = addDays(today, 1);
   const [y, m, d] = s.date.split('-').map(Number);
   const day = sunDay(new Date(Date.UTC(y, m - 1, d)), lat, lon);
-  const span = (w) => (w ? `${fmtTime(w.from, lang)} – ${fmtTime(w.to, lang)}` : '—');
+  const span = (w) => (w ? `${at(w.from)} – ${at(w.to)}` : '—');
+  const dayWord = s.dateMode === 'today' ? T('today') : s.dateMode === 'tomorrow' ? T('tomorrow')
+    : new Date(Date.UTC(y, m - 1, d)).toLocaleDateString(lang === 'he' ? 'he-IL' : 'en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+
   // The day drawn as the sun's own path: the horizon, the arc, and the bands either side of it.
+  // On today's page the sun sits where it is now; any other day, at noon.
   const W = 300, H = 118, horizon = 92;
   const arc = (() => {
     if (!day.sunrise || !day.sunset) return '';
     const t0 = +day.sunrise, t1 = +day.sunset;
-    const at = (d) => ((+d - t0) / (t1 - t0));
-    const x = (f) => 14 + f * (W - 28);
-    const y = (f) => horizon - Math.sin(Math.max(0, Math.min(f, 1)) * Math.PI) * 72;
-    const path = Array.from({ length: 41 }, (_, i) => {
-      const f = i / 40;
-      return `${i ? 'L' : 'M'}${x(f).toFixed(1)} ${y(f).toFixed(1)}`;
-    }).join(' ');
-    const band = (w, cls) => (w ? `<rect x="${x(at(w.from)).toFixed(1)}" y="8" width="${Math.max(x(at(w.to)) - x(at(w.from)), 2).toFixed(1)}" height="${horizon - 8}" class="${cls}"/>` : '');
+    const f = (t) => ((+t - t0) / (t1 - t0));
+    const x = (v) => 14 + v * (W - 28);
+    const yy = (v) => horizon - Math.sin(Math.max(0, Math.min(v, 1)) * Math.PI) * 72;
+    const path = Array.from({ length: 41 }, (_, i) => `${i ? 'L' : 'M'}${x(i / 40).toFixed(1)} ${yy(i / 40).toFixed(1)}`).join(' ');
+    const band = (w, cls) => (w ? `<rect x="${x(f(w.from)).toFixed(1)}" y="8" width="${Math.max(x(f(w.to)) - x(f(w.from)), 2).toFixed(1)}" height="${horizon - 8}" class="${cls}"/>` : '');
+    const nowF = s.dateMode === 'today' ? f(Date.now()) : 0.5;
+    const up = nowF >= 0 && nowF <= 1;
     return `
       ${band(day.goldenMorning, 'b-gold')}${band(day.goldenEvening, 'b-gold')}
       ${band(day.blueMorning, 'b-blue')}${band(day.blueEvening, 'b-blue')}
       <line x1="0" y1="${horizon}" x2="${W}" y2="${horizon}" class="b-horizon"/>
       <path d="${path}" class="b-arc"/>
-      <circle cx="${x(0.5).toFixed(1)}" cy="${y(0.5).toFixed(1)}" r="6" class="b-sun"/>
-      <text x="14" y="${horizon + 15}" class="b-lab">${fmtTime(day.sunrise, lang)}</text>
-      <text x="${W - 14}" y="${horizon + 15}" class="b-lab end">${fmtTime(day.sunset, lang)}</text>`;
+      ${up ? `<circle cx="${x(nowF).toFixed(1)}" cy="${yy(nowF).toFixed(1)}" r="6" class="b-sun"/>` : ''}
+      <text x="14" y="${horizon + 15}" class="b-lab">${at(day.sunrise)}</text>
+      <text x="${W - 14}" y="${horizon + 15}" class="b-lab end">${at(day.sunset)}</text>`;
   })();
 
-  return `
-    ${headline(fmtTime(day.sunset, lang), '', `${esc(T('sunrise'))} ${fmtTime(day.sunrise, lang)} · ${esc(T('day_len'))} ${hm(day.dayLengthHours)}`)}
-    ${day.polar ? '' : `<div class="card suncard"><svg viewBox="0 0 ${W} ${H}" class="sun-svg" role="img">${arc}</svg>
-      <div class="sun-key"><span class="k-gold">${esc(T('golden_pm'))}</span><span class="k-blue">${esc(T('blue_pm'))}</span></div></div>`}
-    <div class="card tform">
-      ${field(T('country'), sel('country', countries.map(c => ({ v: c.code, l: lang === 'he' ? c.he : c.en })), s.country))}
-      ${field(T('place'), sel('city', cityList.map((c, i) => ({ v: i, l: lang === 'he' ? c.he : c.en })), s.city))}
-      ${field(T('date'), `<input type="date" data-f="date" value="${esc(s.date)}">`)}
-      <button class="btn sm" data-geo>${icons.pin || '◎'} ${esc(T('my_location'))}</button>
+  const answer = day.polar
+    ? `<div class="card sh-answer warn"><p class="sh-line">${esc(T('polar'))}</p></div>`
+    : `<div class="card sh-answer ok">
+    <div class="fov-top"><b class="sh-big">${at(day.sunset)}</b><span class="sh-small">${esc(Tp('sun_at', { place: placeName, day: dayWord }))}</span></div>
+    <p class="sh-line"><span class="k-gold-t">${esc(T('golden'))}</span> ${span(day.goldenEvening)} · <span class="k-blue-t">${esc(T('blue'))}</span> ${span(day.blueEvening)}</p>
+    <svg viewBox="0 0 ${W} ${H}" class="sun-svg" role="img">${arc}</svg>
+    <p class="tnote">${esc(Tp('sun_morning', { rise: at(day.sunrise), gold: span(day.goldenMorning), blue: span(day.blueMorning), len: hm(day.dayLengthHours) }))}</p>
+    ${tz && tz !== deviceZone() ? `<p class="tnote">${esc(Tp('tz_note', { place: placeName, tz }))}</p>` : ''}
+    <details class="src-more">
+      <summary><span class="src-badge ok">NOAA</span> ${esc(T('sun_calc'))} <span class="src-i">ⓘ</span></summary>
+      <p>${esc(T('sun_src'))}</p>
+    </details>
+  </div>`;
+
+  const dateOther = s.dateMode === 'pick';
+  return `${answer}
+    <div class="card sh-sec">
+      <div class="tsub">1 · ${esc(T('place'))}</div>
+      <div class="sun-country">${sel('country', countries.map(c => ({ v: c.code, l: name(c) })), s.country)}</div>
+      <div class="chips fov-models">${cityList.map((c, i) => chip('data-scity', i, esc(name(c)), !here && i === s.city)).join('')}${chip('data-geo', 1, `${icons.pin || '◎'} ${esc(T('my_location'))}`, here)}</div>
     </div>
-    ${day.polar ? `<p class="tnote warn">${esc(T('polar'))}</p>` : out([
-      [T('sunrise'), fmtTime(day.sunrise, lang), 'big'],
-      [T('sunset'), fmtTime(day.sunset, lang), 'big'],
-      [T('golden_am'), span(day.goldenMorning)],
-      [T('golden_pm'), span(day.goldenEvening), 'ok'],
-      [T('blue_am'), span(day.blueMorning)],
-      [T('blue_pm'), span(day.blueEvening)],
-      [T('noon'), fmtTime(day.noon, lang)],
-      [T('day_len'), hm(day.dayLengthHours)],
-    ])}`;
+    <div class="card sh-sec">
+      <div class="tsub">2 · ${esc(T('date'))}</div>
+      <div class="chips">${chip('data-sdate', 'today', esc(T('today')), s.dateMode === 'today')}${chip('data-sdate', 'tomorrow', esc(T('tomorrow')), s.dateMode === 'tomorrow')}${chip('data-sdate', 'pick', esc(T('other_date')), dateOther)}</div>
+      ${dateOther ? `<div class="sh-custom"><input type="date" data-f="date" value="${esc(s.date)}"></div>` : ''}
+    </div>`;
 }
 
 // ---------- LUT bank ----------
@@ -915,7 +948,7 @@ function wire(root, ctx, id, T, lang) {
       if (id === 'fov' && k === 'camBrand') { s.camBrand = el.value; s.cam = ''; }
       if (id === 'shutter' && k === 'fps') { s.speed = shutterChoices(s.fps, s.mains, 'speed').recommended?.value ?? s.speed; s.angle = shutterChoices(s.fps, s.mains, 'angle').recommended?.value ?? s.angle; }
       if (id === 'offload' && k === 'gb') s.fromMedia = false;
-      if (id === 'sun' && (k === 'city' || k === 'country')) { s.lat = null; s.lon = null; if (k === 'country') s.city = 0; }
+      if (id === 'sun' && k === 'country') { s.lat = null; s.lon = null; s.city = 0; }
       if (id === 'units' && k === 'group') {
         const g = UNIT_GROUPS.find(x => x.id === s.group);
         s.from = g.units[0].id; s.to = g.units[1].id;
@@ -1012,6 +1045,8 @@ function wire(root, ctx, id, T, lang) {
   root.querySelector('[data-vf-start]')?.addEventListener('click', () => startViewfinder(ctx));
   root.querySelector('[data-vf-stop]')?.addEventListener('click', () => stopViewfinder(ctx));
 
+  root.querySelectorAll('[data-scity]').forEach(b => { b.onclick = () => { Object.assign(S.sun, { city: Number(b.dataset.scity), lat: null, lon: null }); redraw(); }; });
+  root.querySelectorAll('[data-sdate]').forEach(b => { b.onclick = () => { S.sun.dateMode = b.dataset.sdate; redraw(); }; });
   root.querySelector('[data-geo]')?.addEventListener('click', () => {
     if (!navigator.geolocation) return;
     navigator.geolocation.getCurrentPosition(

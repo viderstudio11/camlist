@@ -347,3 +347,23 @@ test('offload: two readers share one drive; the computer port caps each link', (
   assert.deepEqual(transfer(1250, 1950, { port: 500 }), { mbPerSec: 500, limit: 'port' });
   assert.deepEqual(transfer(300, 1950, { port: 500 }), { mbPerSec: 300, limit: 'source' });
 });
+
+test('sun: times read in the place’s own clock, not the phone’s', async () => {
+  const { localTime, todayIn, zoneOf } = await import('../js/tools/solar.js');
+  assert.equal(localTime(new Date(Date.UTC(2026, 8, 29, 9, 0)), 'Asia/Tokyo'), '18:00');
+  assert.equal(localTime(new Date(Date.UTC(2026, 8, 29, 9, 0)), 'Asia/Jerusalem'), '12:00');
+  assert.equal(todayIn('Pacific/Auckland', new Date(Date.UTC(2026, 8, 29, 20, 0))), '2026-09-30');
+  const places = JSON.parse(readFileSync(url('../data/places.json'), 'utf8'));
+  for (const c of places.countries) for (const city of c.cities) {
+    const tz = zoneOf(c, city);
+    assert.ok(tz, `${city.en} has a time zone`);
+    assert.doesNotThrow(() => localTime(new Date(), tz), `${city.en}: ${tz}`);
+  }
+  const jp = places.countries.find(c => c.code === 'JP');
+  const tokyo = jp.cities[0];
+  const day = sunDay(new Date(Date.UTC(2026, 8, 29)), tokyo.lat, tokyo.lon);
+  const set = localTime(day.sunset, zoneOf(jp, tokyo));
+  assert.ok(set >= '17:20' && set <= '17:35', `Tokyo sunset ${set}`);
+  const us = places.countries.find(c => c.code === 'US');
+  assert.equal(zoneOf(us, us.cities.find(x => x.en === 'Albuquerque')), 'America/Denver');
+});
