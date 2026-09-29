@@ -951,3 +951,8 @@ body.split .view { max-width: none; padding: 12px 16px 0; }
 .search > :not(.field):not(.manual-btn) { grid-column: 1 / -1; }
 .search .manual-btn { height: 50px; border-radius: 13px; padding: 0 12px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
 .search .manual-btn svg { width: 16px; height: 16px; }
+
+/* "Goes with" window */
+.gw-list { display: grid; gap: 8px; }
+.gw-row { margin: 0; }
+.gw-done { width: 40px; text-align: center; font-weight: 800; color: var(--ok-ink); }

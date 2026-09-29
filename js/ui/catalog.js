@@ -4,6 +4,7 @@ import { logoHTML, slugify, brandText } from '../brands.js';
 import { thumbHTML, parseId, profileChips } from './list.js';
 import { lensTypes, LENS_TYPES } from '../lens.js';
 import { deptIcon } from './icons-dept.js';
+import { companionsFor } from '../companions.js';
 import { accessoryKind, filterType, filterSize, ACC_KINDS, FILTER_TYPES, FILTER_SIZES } from '../accessory.js';
 
 // Departments that drill Brand → models (the rest drill Subcategory → models grouped by brand).
@@ -19,6 +20,7 @@ let lf = { type: null, mount: null, format: null };  // lens quick filters
 let af = { kind: null, type: null, size: null };      // accessory quick filters: shelf, then filter type and size
 let kind = null;        // kit slot kind (card / reader / battery / charger) — restricts the list to that kind
 export function presetCatalog(o) { preset = o; }
+const offered = new Set(); // products whose "goes with" window was already shown this session
 
 export function render(ctx, { id }, root) {
   const { store, t, catalog } = ctx;
@@ -315,10 +317,36 @@ export function render(ctx, { id }, root) {
       const fresh = document.createElement('template'); fresh.innerHTML = productRow(catalog.byId(productId), { showBrand });
       const nr = fresh.content.firstElementChild; row.replaceWith(nr); bindRow(nr);
       root.querySelector('[data-done]').innerHTML = `${icons.check}${t('back_to_list', { n: totalQty(items()) })}`;
-      if (!cur) toast(t('added'), { kind: 'ok', ms: 900 });
+      if (!cur) { toast(t('added'), { kind: 'ok', ms: 900 }); offerCompanions(p); }
     }; });
   };
   root.querySelectorAll('.row').forEach(bindRow);
+
+  // "Goes with": right after something is added, what usually rides along with it. Shown once per product.
+  function offerCompanions(p) {
+    if (offered.has(p.id)) return;
+    const list = companionsFor(p, catalog, { items: items(), resolve: ctx.resolve });
+    if (!list.length) return;
+    offered.add(p.id);
+    const rowHTML = (c) => `<div class="row gw-row" data-gw="${esc(c.id)}">${thumbHTML(c, catalog.deptKey(c.dept))}
+      <div class="body"><div class="name" dir="auto">${esc(c.name)}</div><div class="sub">${brandText(c.brand, c.brandName)}</div></div>
+      <button class="addbtn" data-gw-add aria-label="${t('add')}">+</button></div>`;
+    const { body } = openSheet({
+      title: t('goes_with', { name: p.name }),
+      bodyHTML: `<div class="gw-list">${list.map(rowHTML).join('')}</div>`,
+      actions: [{ label: t('done'), kind: 'primary' }],
+    });
+    body.querySelectorAll('[data-gw]').forEach(row => {
+      row.querySelector('[data-gw-add]').onclick = (e) => {
+        const c = catalog.byId(parseId(row.dataset.gw));
+        store.setItems(id, addItem(items(), c, 1));
+        e.currentTarget.outerHTML = '<span class="gw-done">✓</span>';
+        root.querySelector('[data-done]').innerHTML = `${icons.check}${t('back_to_list', { n: totalQty(items()) })}`;
+        const inPage = root.querySelector(`.row[data-pid="${CSS.escape(String(c.id))}"]`);
+        if (inPage) { const f = document.createElement('template'); f.innerHTML = productRow(c, { showBrand: !!inPage.querySelector('.brandname') }); const nr = f.content.firstElementChild; inPage.replaceWith(nr); bindRow(nr); }
+      };
+    });
+  }
 
   const openManual = () => openSheet({
     title: t('my_item'),
