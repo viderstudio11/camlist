@@ -15,10 +15,21 @@ export function offload({ gb = 0, mbPerSec = 0, copies = 2, verify = true }) {
 }
 
 // A copy runs at the slower of the two ends: the card as its reader delivers it, and the drive's write speed.
-export const transfer = (readMBs, writeMBs) => ({
-  mbPerSec: Math.min(readMBs, writeMBs),
-  limit: readMBs <= writeMBs ? 'source' : 'dest',
-});
+// Several readers offload side by side into the same drive; the computer's port caps every link.
+export function transfer(readMBs, writeMBs, { readers = 1, port = Infinity } = {}) {
+  const src = readers * Math.min(readMBs, port);
+  const dst = Math.min(writeMBs, port);
+  const limit = src <= dst ? (port < readMBs ? 'port' : 'source') : (port < writeMBs ? 'port' : 'dest');
+  return { mbPerSec: Math.min(src, dst), limit };
+}
+
+// The computer's port, as a data ceiling: 5 Gb/s USB loses a fifth to 8b/10b coding, 10 Gb/s about 3%.
+// Thunderbolt / USB4 sits above every reader and drive in the lists here.
+export const PORTS = [
+  { id: 'usb5',  label: 'USB 5Gb',  mbPerSec: 500 },
+  { id: 'usb10', label: 'USB 10Gb', mbPerSec: 1200 },
+  { id: 'tb',    label: 'Thunderbolt / USB4', mbPerSec: Infinity },
+];
 
 // Card readers, one per card type the media tool knows (ids match data/codecs.json "media").
 // A card reads no faster than the card itself or the reader's link allows — the slower of the two.

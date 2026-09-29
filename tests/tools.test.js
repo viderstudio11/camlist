@@ -337,3 +337,13 @@ test('offload: every card type the media tool knows has a reader', async () => {
   const codecs = JSON.parse(readFileSync(url('../data/codecs.json'), 'utf8'));
   for (const type of Object.keys(codecs.media)) assert.ok(READERS.some(r => r.id === type), type);
 });
+
+test('offload: two readers share one drive; the computer port caps each link', () => {
+  // two CFexpress A cards at once into a T9: 2 × 800 MB/s, under the drive's 1950
+  assert.deepEqual(transfer(800, 1950, { readers: 2 }), { mbPerSec: 1600, limit: 'source' });
+  // two readers into a T7: the drive becomes the bottleneck
+  assert.deepEqual(transfer(800, 1000, { readers: 2 }), { mbPerSec: 1000, limit: 'dest' });
+  // an old 5 Gb/s port holds a fast drive back
+  assert.deepEqual(transfer(1250, 1950, { port: 500 }), { mbPerSec: 500, limit: 'port' });
+  assert.deepEqual(transfer(300, 1950, { port: 500 }), { mbPerSec: 300, limit: 'source' });
+});
