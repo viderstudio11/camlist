@@ -937,3 +937,6 @@ body.split .view { max-width: none; padding: 12px 16px 0; }
 .sun-arc .a-sun.down { opacity: .45; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sun-arc .sky-top { stop-color: #1E2B40; } :root:not([data-theme="light"]) .sun-arc .sky-low { stop-color: #3A2E22; } }
 :root[data-theme="dark"] .sun-arc .sky-top { stop-color: #1E2B40; } :root[data-theme="dark"] .sun-arc .sky-low { stop-color: #3A2E22; }
+
+/* "Build around" scrolls the kit into view; keep its head clear of the floating top bar. */
+.kit { scroll-margin-top: 96px; }

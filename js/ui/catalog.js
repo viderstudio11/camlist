@@ -1,6 +1,6 @@
 import { esc, icons, openSheet, toast } from './dom.js';
 import { addItem, setQty, getQty, totalQty } from '../list.js';
-import { logoHTML, slugify } from '../brands.js';
+import { logoHTML, slugify, brandText } from '../brands.js';
 import { thumbHTML, parseId, profileChips } from './list.js';
 import { lensTypes, LENS_TYPES } from '../lens.js';
 import { deptIcon } from './icons-dept.js';
@@ -91,7 +91,7 @@ export function render(ctx, { id }, root) {
     return `<div class="row ${q ? 'in-list' : ''}${fcClass(p)}" data-pid="${esc(p.id)}">
       ${thumbHTML(p, catalog.deptKey(p.dept))}
       <div class="body"><div class="name" dir="auto">${esc(p.name)}</div>
-        <div class="sub">${showBrand && p.brand ? `<span class="brandname">${esc(p.brandName)}</span>` : ''}${isLens ? lensChips() : (sub ? `<span class="chip">${esc(subName(sub))}</span>` : '')}${p.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${p.extra ? `<span class="chip extra">${t('not_at_utopia_item')}</span>` : ''}${tagHTML(p)}</div></div>
+        <div class="sub">${showBrand && p.brand ? brandText(p.brand, p.brandName) : ''}${isLens ? lensChips() : (sub ? `<span class="chip">${esc(subName(sub))}</span>` : '')}${p.manual ? `<span class="chip">${t('manual_item')}</span>` : ''}${tagHTML(p)}</div></div>
       ${q ? `<div class="stepper compact"><button data-d="-1" aria-label="-">−</button><span class="q">${q}</span><button class="plus" data-d="1" aria-label="+">+</button></div>` : `<button class="addbtn" data-d="1" aria-label="${t('add')}">+</button>`}
     </div>`;
   };

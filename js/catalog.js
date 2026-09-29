@@ -3,8 +3,14 @@ export const normalize = (s = '') => String(s).toLowerCase()
   .replace(/[-_/\\.,()\[\]"'+:;|]+/g, ' ')
   .replace(/\s+/g, ' ').trim();
 
-// data = data/catalog.json; manual = user's own items; extra = data/extra.json (products Utopia doesn't carry,
-// referenced by department slug + subcategory English name, flagged `extra: true`).
+// data = data/catalog.json; manual = user's own items; extra = data/extra.json (products the source catalog
+// doesn't carry, referenced by department slug + subcategory English name, flagged `extra: true`).
+
+// The source catalog files its own no-name gear (apple boxes, sand bags, pipes) under the rental house's
+// name. The app never shows that name: those, and anything without a brand, read as "General".
+export const GENERAL = 'general';
+const HOUSE_BRANDS = new Set(['utopia']);
+const brandOf = (b) => (!b || HOUSE_BRANDS.has(b) ? GENERAL : b);
 export function createCatalog(data, manual = [], extra = null) {
   const departments = [...(data.departments || [])].sort((a, b) => a.order - b.order);
   const deptMap = new Map(departments.map(d => [d.id, d]));
@@ -21,7 +27,8 @@ export function createCatalog(data, manual = [], extra = null) {
   };
   const subcatMap = new Map();
   for (const d of departments) for (const s of d.subcategories || []) subcatMap.set(s.id, { ...s, dept: d.id });
-  const brandNames = new Map((data.brands || []).map(b => [b.id, b.name]));
+  const brandNames = new Map((data.brands || []).filter(b => !HOUSE_BRANDS.has(b.id)).map(b => [b.id, b.name]));
+  brandNames.set(GENERAL, 'General');
   for (const b of extra?.brands || []) brandNames.set(b.id, b.name); // supplement's display names win
   const extraProducts = (extra?.products || []).map(x => {
     const d = departments.find(dd => dd.slug === x.dept);
@@ -34,8 +41,8 @@ export function createCatalog(data, manual = [], extra = null) {
   let manualProducts = [];
 
   const decorate = (p, isManual) => ({
-    id: p.id, name: p.name, brand: p.brand || null,
-    brandName: p.brandName || brandNames.get(p.brand) || p.brand || null,
+    id: p.id, name: p.name, brand: brandOf(p.brand),
+    brandName: brandOf(p.brand) === GENERAL ? 'General' : p.brandName || brandNames.get(p.brand) || p.brand,
     dept: p.dept, subcats: p.subcats || [], image: p.image || null, url: p.url || null, manual: !!isManual, extra: !!p.extra,
     _n: '', _b: '', _all: '',
   });
@@ -51,7 +58,9 @@ export function createCatalog(data, manual = [], extra = null) {
     if (p.brand && !brandNames.has(p.brand)) brandNames.set(p.brand, p.brandName);
     products.push(p); byIdMap.set(p.id, p);
   }
-  const brands = (data.brands || []).map(b => ({ ...b }));
+  const brands = (data.brands || []).filter(b => !HOUSE_BRANDS.has(b.id)).map(b => ({ ...b }));
+  const generalCount = products.filter(p => p.brand === GENERAL).length;
+  if (generalCount) brands.push({ id: GENERAL, name: 'General', count: generalCount });
   for (const x of extraProducts) { if (!x.brand) continue; let b = brands.find(bb => bb.id === x.brand); if (!b) { b = { id: x.brand, name: brandNames.get(x.brand), count: 0 }; brands.push(b); } b.name = brandNames.get(x.brand) || b.name; b.count++; }
 
   function setManual(list) {

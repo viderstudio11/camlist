@@ -52,12 +52,6 @@ export function renderPrint(ctx, project, groups, root, { includeNotes = true, i
       ])}
     </div>
     <table>${sections}</table>
-    <div class="slate foot">
-      ${grid([
-        { label: t('received_by'), value: ' ', span: 3 },
-        { label: t('date_received'), value: ' ', span: 3 },
-      ], 'sig')}
-    </div>
   </div>`;
 
   const go = () => window.print();

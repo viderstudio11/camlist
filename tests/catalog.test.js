@@ -101,3 +101,25 @@ test('a subcategory includes the products filed in its sub-subcategories', () =>
   assert.deepEqual(c.bySubcat(246).map(p => p.id).sort(), [2, 3, 4]);
   assert.deepEqual(c.subcatsOf(9).map(s => s.id), [244]);
 });
+
+test('house-brand and unbranded products read as General, and never carry the rental house’s name', async () => {
+  const { displayName } = await import('../js/export-text.js');
+  const cat = createCatalog({
+    departments: [{ id: 1, slug: 'grip', he: 'גריפ', en: 'Grip', order: 1, subcategories: [] }],
+    brands: [{ id: 'utopia', name: 'Utopia', count: 1 }, { id: 'sony', name: 'Sony', count: 1 }],
+    products: [
+      { id: 1, name: 'Apple Box 50X30X10', brand: 'utopia', dept: 1 },
+      { id: 2, name: 'Sand bag', brand: null, dept: 1 },
+      { id: 3, name: 'PXW-FX6', brand: 'sony', dept: 1 },
+    ],
+  });
+  for (const id of [1, 2]) {
+    const p = cat.byId(id);
+    assert.equal(p.brand, 'general');
+    assert.equal(p.brandName, 'General');
+    assert.equal(displayName(p), p.name, 'no brand prefix on a generic item');
+  }
+  assert.equal(displayName(cat.byId(3)), 'Sony PXW-FX6');
+  assert.ok(!cat.brands.some(b => /utopia/i.test(b.name)));
+  assert.equal(cat.brands.find(b => b.id === 'general').count, 2);
+});

@@ -1,5 +1,5 @@
 import { loadScript, download } from './ui/dom.js';
-import { displayName, formatDateRange, fmtDate, todayStr } from './export-text.js';
+import { displayName, formatDateRange } from './export-text.js';
 import { safeName } from './export-xlsx.js';
 
 // OOXML defines the children of <w:rPr> as a sequence, so their order is part of the format.
@@ -72,7 +72,6 @@ export async function exportDocx(project, groups, { lang, includeNotes = true, i
     children.push(new D.Table({ width: { size: 100, type: D.WidthType.PERCENTAGE }, visuallyRightToLeft: rtl, rows }));
   }
   children.push(P(`${t('total')}: ${t('items_count', { n: total })}`, { bold: true, size: 24, para: { spacing: { before: 240 } } }));
-  children.push(P(`${t('signature')}: ____________________        ${fmtDate(todayStr())}`, { color: '555555', para: { spacing: { before: 480 } } }));
 
   const doc = new D.Document({ creator: 'CamList', title: project.name || 'Gear list',
     styles: { default: { document: { run: { font: { ascii: 'Arial', cs: 'Arial', eastAsia: 'Arial', hAnsi: 'Arial' }, size: 22 } } } },

@@ -1,3 +1,4 @@
+import { t } from './i18n.js';
 export const slugify = (name = '') => name.toLowerCase().trim()
   .replace(/['’]/g, '').replace(/[^a-z0-9֐-׿]+/g, '-').replace(/^-+|-+$/g, '');
 
@@ -95,12 +96,16 @@ export function fallbackHTML(slug, name, size = 'row') {
 
 // In the gear list the product name is what matters, so the brand is set in plain type there.
 // The marks stay where they help you navigate: the brand grid and the jump rail in the catalog.
+// No-name gear ("General") reads in the interface language.
+const label = (slug, name) => (slug === 'general' ? t('brand_general') : name || slug);
+
 export function brandText(slug, name) {
-  const label = name || slug;
-  return label ? `<span class="brandname" title="${esc(label)}">${esc(label)}</span>` : '';
+  const text = label(slug, name);
+  return text ? `<span class="brandname" title="${esc(text)}">${esc(text)}</span>` : '';
 }
 
 export function logoHTML(slug, name, size = 'row') {
+  name = label(slug, name);
   if (!slug) return `<span class="logo logo-${size} logo-none" aria-hidden="true"></span>`;
   const f = files.get(slug);
   if (!f) return fallbackHTML(slug, name, size);

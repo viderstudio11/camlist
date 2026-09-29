@@ -2,7 +2,7 @@ import { t } from './i18n.js';
 
 export function displayName(p) {
   const b = p.brandName;
-  if (!b || p.name.toLowerCase().startsWith(b.toLowerCase())) return p.name;
+  if (!b || p.brand === 'general' || p.name.toLowerCase().startsWith(b.toLowerCase())) return p.name;
   return `${b} ${p.name}`;
 }
 
@@ -32,8 +32,7 @@ export function buildShareText(project, groups, { lang = 'he', includeNotes = tr
     for (const { item, product } of g.entries) {
       total += item.qty;
       const note = includeNotes && item.note ? `  (${item.note})` : '';
-      const src = product.extra ? `  [${t('not_at_utopia_item', {}, lang)}]` : '';
-      lines.push(` ${item.qty}× ${displayName(product)}${src}${note}`);
+      lines.push(` ${item.qty}× ${displayName(product)}${note}`);
       if (includeLinks && product.url) lines.push(`   ${product.url}`);
     }
   }
