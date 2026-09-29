@@ -186,6 +186,7 @@ const L = {
   sun_src:    { he: 'זריחה ושקיעה: מרכז השמש 0.833° מתחת לאופק (כולל שבירת אור). שעת זהב: השמש עד 6° מעל האופק. שעה כחולה: השמש בין 0° ל־6° מתחת לאופק (דמדומים אזרחיים).', en: 'Sunrise and sunset: the sun’s centre 0.833° below the horizon (allowing for refraction). Golden hour: the sun up to 6° above the horizon. Blue hour: the sun 0–6° below it (civil twilight).' },
   golden:     { he: 'שעת זהב', en: 'Golden hour' },
   blue:       { he: 'שעה כחולה', en: 'Blue hour' },
+  now:        { he: 'עכשיו', en: 'now' },
   today:      { he: 'היום', en: 'Today' },
   tomorrow:   { he: 'מחר', en: 'Tomorrow' },
   other_date: { he: 'תאריך אחר…', en: 'Other date…' },
@@ -718,6 +719,56 @@ function offloadTool(T, lang) {
 const deviceZone = () => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { return null; } };
 const addDays = (iso, n) => new Date(Date.parse(`${iso}T12:00:00Z`) + n * 86400000).toISOString().slice(0, 10);
 
+// Design preview — three ways to draw the day. Temporary: the chosen one stays, the switch goes.
+function sunStrip(day, at, T, isToday) {
+  // The evening only: an hour of daylight, golden hour, sunset, blue hour, then night.
+  const g = day.goldenEvening, b = day.blueEvening;
+  if (!g || !b) return '';
+  const t0 = +g.from - 45 * 60000, t1 = +b.to + 30 * 60000;
+  const W = 300, x = (t) => 6 + ((+t - t0) / (t1 - t0)) * (W - 12);
+  const seg = (a, z, cls) => `<rect x="${x(a).toFixed(1)}" y="10" width="${Math.max(x(z) - x(a), 1).toFixed(1)}" height="30" class="${cls}"/>`;
+  const tick = (t, label, cls = '') => `<line x1="${x(t).toFixed(1)}" y1="6" x2="${x(t).toFixed(1)}" y2="44" class="st-tick"/>
+    <text x="${x(t).toFixed(1)}" y="60" class="st-lab ${cls}">${label}</text>`;
+  const now = Date.now();
+  return `<svg viewBox="0 0 ${W} 68" class="sun-svg strip" role="img">
+    ${seg(t0, g.from, 's-day')}${seg(g.from, g.to, 's-gold')}${seg(b.from, b.to, 's-blue')}${seg(b.to, t1, 's-night')}
+    ${tick(g.from, at(g.from))}${tick(day.sunset, at(day.sunset), 'strong')}${tick(b.to, at(b.to))}
+    <circle cx="${x(day.sunset).toFixed(1)}" cy="25" r="7" class="b-sun"/>
+    ${isToday && now > t0 && now < t1 ? `<line x1="${x(now).toFixed(1)}" y1="4" x2="${x(now).toFixed(1)}" y2="46" class="st-now"/><text x="${x(now).toFixed(1)}" y="3" class="st-lab now">${esc(T('now'))}</text>` : ''}
+  </svg>`;
+}
+
+function sunDial(day, at, T, isToday) {
+  // The whole 24 hours as a clock face: midnight at the bottom, noon at the top.
+  const mins = (d) => { const [h, m] = at(d).split(':').map(Number); return h * 60 + m; };
+  const cx = 62, cy = 62, r = 48;
+  const pt = (m, rr = r) => { const a = (m / 1440) * 2 * Math.PI + Math.PI / 2; return [cx + rr * Math.cos(a), cy + rr * Math.sin(a)]; };
+  const arcPath = (m0, m1) => {
+    const span = ((m1 - m0) + 1440) % 1440;
+    const [x0, y0] = pt(m0), [x1, y1] = pt(m1);
+    return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 ${span > 720 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;
+  };
+  const w = (win, cls) => (win ? `<path d="${arcPath(mins(win.from), mins(win.to))}" class="${cls}"/>` : '');
+  const now = new Date();
+  const hand = isToday ? (() => { const [x, y] = pt(mins(now), r - 14); return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" class="d-hand"/>`; })() : '';
+  const row = (cls, label, val) => `<div class="dial-row"><i class="${cls}"></i><span>${esc(label)}</span><b>${val}</b></div>`;
+  return `<div class="sun-dial">
+    <svg viewBox="0 0 124 124" class="dial-svg" role="img">
+      <circle cx="${cx}" cy="${cy}" r="${r}" class="d-night"/>
+      <path d="${arcPath(mins(day.sunrise), mins(day.sunset))}" class="d-day"/>
+      ${w(day.blueMorning, 'd-blue')}${w(day.blueEvening, 'd-blue')}${w(day.goldenMorning, 'd-gold')}${w(day.goldenEvening, 'd-gold')}
+      <text x="${cx}" y="30" class="d-lab">12</text><text x="${cx}" y="100" class="d-lab">00</text>
+      ${hand}<circle cx="${cx}" cy="${cy}" r="3" class="d-pin"/>
+    </svg>
+    <div class="dial-key">
+      ${row('k-rise', T('sunrise'), at(day.sunrise))}
+      ${row('k-gold', T('golden'), day.goldenEvening ? `${at(day.goldenEvening.from)}–${at(day.goldenEvening.to)}` : '—')}
+      ${row('k-set', T('sunset'), at(day.sunset))}
+      ${row('k-blue', T('blue'), day.blueEvening ? `${at(day.blueEvening.from)}–${at(day.blueEvening.to)}` : '—')}
+    </div>
+  </div>`;
+}
+
 function sunTool(T, lang) {
   const s = S.sun;
   const Tp = (k, p) => T(k).replace(/\{(\w+)\}/g, (_, x) => p[x] ?? '');
@@ -771,10 +822,11 @@ function sunTool(T, lang) {
 
   const answer = day.polar
     ? `<div class="card sh-answer warn"><p class="sh-line">${esc(T('polar'))}</p></div>`
-    : `<div class="card sh-answer ok">
+    : `<div class="look-switch"><span>Design preview</span>${[['arc', 'A · Arc'], ['strip', 'B · Evening strip'], ['dial', 'C · 24h dial']].map(([k, l]) => chip('data-slook', k, l, (s.look || 'arc') === k)).join('')}</div>
+  <div class="card sh-answer ok">
     <div class="fov-top"><b class="sh-big">${at(day.sunset)}</b><span class="sh-small">${esc(Tp('sun_at', { place: placeName, day: dayWord }))}</span></div>
     <p class="sh-line"><span class="k-gold-t">${esc(T('golden'))}</span> ${span(day.goldenEvening)} · <span class="k-blue-t">${esc(T('blue'))}</span> ${span(day.blueEvening)}</p>
-    <svg viewBox="0 0 ${W} ${H}" class="sun-svg" role="img">${arc}</svg>
+    ${{ arc: `<svg viewBox="0 0 ${W} ${H}" class="sun-svg" role="img">${arc}</svg>`, strip: sunStrip(day, at, T, s.dateMode === 'today'), dial: sunDial(day, at, T, s.dateMode === 'today') }[s.look || 'arc']}
     <p class="tnote">${esc(Tp('sun_morning', { rise: at(day.sunrise), gold: span(day.goldenMorning), blue: span(day.blueMorning), len: hm(day.dayLengthHours) }))}</p>
     ${tz && tz !== deviceZone() ? `<p class="tnote">${esc(Tp('tz_note', { place: placeName, tz }))}</p>` : ''}
     <details class="src-more">
@@ -1046,6 +1098,7 @@ function wire(root, ctx, id, T, lang) {
   root.querySelector('[data-vf-stop]')?.addEventListener('click', () => stopViewfinder(ctx));
 
   root.querySelectorAll('[data-scity]').forEach(b => { b.onclick = () => { Object.assign(S.sun, { city: Number(b.dataset.scity), lat: null, lon: null }); redraw(); }; });
+  root.querySelectorAll('[data-slook]').forEach(b => { b.onclick = () => { S.sun.look = b.dataset.slook; redraw(); }; });
   root.querySelectorAll('[data-sdate]').forEach(b => { b.onclick = () => { S.sun.dateMode = b.dataset.sdate; redraw(); }; });
   root.querySelector('[data-geo]')?.addEventListener('click', () => {
     if (!navigator.geolocation) return;
