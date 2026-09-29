@@ -378,3 +378,16 @@ test('sun: what the light is doing now, and how long until it changes', async ()
   assert.deepEqual(sunStatus(day, h(18, 40)), { key: 'st_blue_now', ms: 20 * 60000 });
   assert.deepEqual(sunStatus(day, h(20)), { key: 'st_dark', ms: 0 });
 });
+
+test('LUTs: every camera leads to the maker’s own download page', () => {
+  const luts = JSON.parse(readFileSync(url('../data/luts.json'), 'utf8'));
+  for (const g of luts.logs) {
+    assert.match(g.url, /^https:\/\//, g.id);
+    assert.ok(g.monitor, `${g.id} names the LUT to monitor with`);
+    assert.ok(g.cameras.length, g.id);
+    for (const c of g.cameras) assert.ok(c.name && (!c.url || /^https:\/\//.test(c.url)), `${g.id}/${c.name}`);
+  }
+  // A camera that records two logs shows both (Canon Log 2 and 3 on the C70).
+  const c70 = luts.logs.filter(g => g.cameras.some(c => c.name === 'EOS C70')).map(g => g.id);
+  assert.deepEqual(c70, ['clog3', 'clog2']);
+});

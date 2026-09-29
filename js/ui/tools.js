@@ -1,5 +1,4 @@
 import { esc, icons, toast } from './dom.js';
-import { logoHTML } from '../brands.js';
 import { toolIcon } from './icons.js';
 import { createMedia } from '../tools/media.js';
 import { timeFromAngle, angleFromTime, asFraction, flicker, slowMotion, FRAME_RATES, shutterChoices } from '../tools/shutter.js';
@@ -27,15 +26,12 @@ const L = {
   units_sub2: { he: '', en: '' },
   luts:       { he: 'מאגר לוטים', en: 'LUT bank' },
   luts_sub:   { he: 'איזה לוט הולך עם איזה לוג, ומאיפה מורידים', en: 'Which LUT goes with which log, and where to get it' },
-  lut_cameras:{ he: 'מצלמות', en: 'Cameras' },
+  lut_pick:   { he: 'בחר מצלמה — נראה איזה לוג היא מצלמת ואיפה היצרן מפרסם את הלוט', en: 'Pick a camera — see the log it records and where its maker publishes the LUT' },
+  lut_records:{ he: '{cam} מצלמת', en: '{cam} records' },
+  lut_monitor:{ he: 'לניטור על הסט', en: 'Monitor with' },
+  lut_download:{ he: 'הורדת הלוטים הרשמיים', en: 'Download the official LUTs' },
+  lut_also:   { he: 'גם', en: 'Also' },
   lut_files:  { he: 'לוטים', en: 'LUTs' },
-  lut_source: { he: 'מקור', en: 'Source' },
-  lut_open:   { he: 'פתח', en: 'Open' },
-  lut_verified:{ he: 'קישור מאומת', en: 'Link verified' },
-  lut_nolink: { he: 'אין קישור ישיר — חפש בעמוד התמיכה של היצרן', en: 'No direct link — look on the maker’s support page' },
-  lut_all: { he: 'הכול', en: 'All' },
-  lut_camera: { he: 'דגם', en: 'Model' },
-  all_models: { he: 'כל הדגמים', en: 'All models' },
   brand_pick: { he: 'מותג', en: 'Brand' },
   country: { he: 'מדינה', en: 'Country' },
   hours: { he: 'דוח שעות', en: 'Hours report' },
@@ -829,48 +825,46 @@ function sunTool(T, lang) {
 }
 
 // ---------- LUT bank ----------
+// Maker, then camera, then one answer: the log it records, the LUT to monitor with, and the maker's own
+// download. A camera that records two logs (Canon Log 2 and 3) gets both, the current one first.
 function lutsTool(T, lang) {
   const logs = lutData.logs || [];
   if (!logs.length) return `<p class="tnote">—</p>`;
+  const Tp = (k, p) => T(k).replace(/\{(\w+)\}/g, (_, x) => p[x] ?? '');
+  const chip = (attr, val, label, on) => `<button class="chip pick ${on ? 'on' : ''}" ${attr}="${esc(val)}">${label}</button>`;
 
-  // Twelve formats in one column read as a pile. Filtering by maker turns it into a shelf:
-  // you already know whose camera you are on, so that is the first thing you choose.
-  const brands = [];
-  for (const g of logs) if (!brands.some(b => b.name === g.brand)) brands.push({ name: g.brand, slug: g.slug });
-  const active = brands.some(b => b.name === S.luts.brand) ? S.luts.brand : '';
-  const inBrand = active ? logs.filter(g => g.brand === active) : logs;
-  // Under a maker, the camera you are actually on narrows twelve formats to one or two.
-  const models = active
-    ? [...new Set(inBrand.flatMap(g => g.cameras.split('·').map(x => x.trim()).filter(Boolean)))].sort()
-    : [];
+  const brands = [...new Set(logs.map(g => g.brand))];
+  const brand = brands.includes(S.luts.brand) ? S.luts.brand : brands[0];
+  const models = [...new Set(logs.filter(g => g.brand === brand).flatMap(g => g.cameras.map(c => c.name)))];
   const model = models.includes(S.luts.model) ? S.luts.model : '';
-  const shown = model ? inBrand.filter(g => g.cameras.includes(model)) : inBrand;
+  const hits = model ? logs.filter(g => g.brand === brand && g.cameras.some(c => c.name === model)) : [];
 
-  const rail = `<div class="lut-rail">
-    <button class="lut-brand ${active ? '' : 'on'}" data-lutbrand="">${esc(T('lut_all'))}</button>
-    ${brands.map(b => `<button class="lut-brand ${active === b.name ? 'on' : ''}" data-lutbrand="${esc(b.name)}" title="${esc(b.name)}">${
-      b.slug ? logoHTML(b.slug, b.name, 'mini') : `<span class="lut-brandname">${esc(b.name)}</span>`
-    }</button>`).join('')}
-  </div>`;
+  const answerFor = (g, i) => {
+    const cam = g.cameras.find(c => c.name === model);
+    const url = cam?.url || g.url;
+    return `<div class="card sh-answer ok lut-answer ${i ? 'second' : ''}">
+      ${i ? `<div class="tsub">${esc(T('lut_also'))}</div>` : `<p class="sh-small">${esc(Tp('lut_records', { cam: model }))}</p>`}
+      <b class="lut-log">${esc(g.name)}</b>
+      <p class="sh-line">${esc(T('lut_monitor'))}: <b>${esc(g.monitor)}</b></p>
+      ${i && url === (hits[0].cameras.find(c => c.name === model)?.url || hits[0].url) ? '' : `<a class="btn primary lut-dl" href="${esc(url)}" target="_blank" rel="noopener">${esc(T('lut_download'))} ↗</a>`}
+      ${(lang === 'he' ? g.howHe : g.howEn) ? `<p class="tnote">${esc(lang === 'he' ? g.howHe : g.howEn)}</p>` : ''}
+      <details class="src-more">
+        <summary><span class="src-badge ok">${esc(T('src_official'))}</span> ${esc(g.source)} <span class="src-i">ⓘ</span></summary>
+        ${(lang === 'he' ? g.noteHe : g.noteEn) ? `<p>${esc(lang === 'he' ? g.noteHe : g.noteEn)}</p>` : ''}
+        ${g.luts?.length ? `<p>${esc(T('lut_files'))}: ${g.luts.map(esc).join(' · ')}</p>` : ''}
+        <p>${esc(T('lut_disclaimer'))}</p>
+      </details>
+    </div>`;
+  };
 
-  const modelRow = models.length > 1
-    ? `<div class="card tform" style="padding:10px 12px;margin-bottom:10px">${field(T('lut_camera'), sel('lutmodel', [{ v: '', l: T('all_models') }, ...models.map(m => ({ v: m, l: m }))], model))}</div>`
-    : '';
-
-  return rail + modelRow + shown.map(g => `
-    <div class="card lut">
-      <div class="lut-head">
-        <b>${esc(g.name)}</b>
-        <span class="pchip">${esc(g.brand)}</span>
-      </div>
-      <div class="lut-row"><i>${esc(T('lut_cameras'))}</i><span>${esc(g.cameras)}</span></div>
-      <div class="lut-row"><i>${esc(T('lut_files'))}</i><span>${g.luts.map(x => `<em>${esc(x)}</em>`).join('')}</span></div>
-      <div class="lut-row"><i>${esc(T('lut_source'))}</i><span>${esc(g.source)}${g.verified ? ` <b class="ok-chip">${esc(T('lut_verified'))}</b>` : ''}</span></div>
-      <p class="lut-note">${esc(lang === 'he' ? g.noteHe : g.noteEn)}</p>
-      ${g.url
-        ? `<a class="btn sm" href="${esc(g.url)}" target="_blank" rel="noopener">${esc(T('lut_open'))} \u2197</a>`
-        : `<div class="tnote">${esc(T('lut_nolink'))}</div>`}
-    </div>`).join('') + `<p class="tnote">${esc(T('lut_disclaimer'))}</p>`;
+  const answer = hits.length ? hits.map(answerFor).join('')
+    : `<div class="card sh-answer warn"><p class="sh-line">${esc(T('lut_pick'))}</p></div>`;
+  return `${answer}
+    <div class="card sh-sec">
+      <div class="tsub">1 · ${esc(T('camera_step'))}</div>
+      <div class="chips">${brands.map(x => chip('data-lutbrand', x, esc(x), x === brand)).join('')}</div>
+      <div class="chips fov-models">${models.map(m => chip('data-lutmodel', m, esc(m), m === model)).join('')}</div>
+    </div>`;
 }
 
 // ---------- hours report ----------
@@ -972,7 +966,6 @@ function wire(root, ctx, id, T, lang) {
       else if (el.type === 'date' || el.tagName === 'SELECT' && Number.isNaN(Number(el.value))) s[k] = el.value;
       else s[k] = el.type === 'number' || !Number.isNaN(Number(el.value)) ? Number(el.value) : el.value;
 
-      if (id === 'luts' && k === 'lutmodel') s.model = el.value;
       if (id === 'fov' && k === 'distance') s.focal = 0;
       if (id === 'media' && k === 'card') s.cardPicked = true;
       if (id === 'fov' && k === 'cam') s.cam = el.value;
@@ -989,6 +982,7 @@ function wire(root, ctx, id, T, lang) {
   });
 
   root.querySelectorAll('[data-lutbrand]').forEach(b => { b.onclick = () => { S.luts.brand = b.dataset.lutbrand; S.luts.model = ''; ctx.render(); }; });
+  root.querySelectorAll('[data-lutmodel]').forEach(b => { b.onclick = () => { S.luts.model = b.dataset.lutmodel; ctx.render(); }; });
   root.querySelectorAll('[data-lens]').forEach(b => { b.onclick = () => { S.fov.focal = Number(b.dataset.lens); ctx.render(); }; });
   root.querySelector('[data-lens-reset]')?.addEventListener('click', () => { S.fov.focal = 0; ctx.render(); });
   root.querySelectorAll('[data-cbrand]').forEach(b => { b.onclick = () => { S.fov.camBrand = b.dataset.cbrand; S.fov.cam = ''; S.fov.focal = 0; ctx.render(); }; });
